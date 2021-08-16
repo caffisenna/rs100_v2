@@ -50,3 +50,7 @@ Route::post('/email/verification-notification', function (Request $request) {
 // 確認済みのユーザーのみがこのルートにアクセス可能
 Route::get('/profile', function () {
 })->middleware('verified');
+
+
+Route::resource('adminConfigs', App\Http\Controllers\AdminConfigController::class)
+->middleware('auth');
