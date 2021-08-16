@@ -26,7 +26,7 @@ Auth::routes();
 
 Route::get('/home', [
     HomeController::class, 'index'
-])->name('home');
+])->name('home')->middleware('verified');
 
 // メール確認の通知
 Route::get('/email/verify', function () {
