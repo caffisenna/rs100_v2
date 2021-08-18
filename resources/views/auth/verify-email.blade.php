@@ -48,7 +48,7 @@
     </div>
 </div>
 <footer class="footer text-muted text-center small">
-    <strong>Copyright &copy; 2017- <a href="{{ url('/') }}">東京連盟RS100kmハイク登録システム</a>.</strong> All rights
+    <strong>Copyright &copy; 2017- <a href="{{ url('/') }}">{{ config('app.name') }}</a>.</strong> All rights
     reserved.
 </footer>
 </body>
