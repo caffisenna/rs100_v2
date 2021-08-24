@@ -5,12 +5,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Entry Forms</h1>
+                    <h1>参加申込書</h1>
                 </div>
                 @unless ($entryForm->id)
                 <div class="col-sm-6">
                     <a class="btn btn-primary float-right" href="{{ route('entryForms.create') }}">
-                        Add New
+                        申込書作成
                     </a>
                 </div>
                 @endunless

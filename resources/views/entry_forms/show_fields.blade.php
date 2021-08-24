@@ -66,8 +66,8 @@
 
 <!-- 50Km Exp Field -->
 <div class="col-sm-12">
-    {!! Form::label('50km_exp', '50Km Exp:') !!}
-    <p>{{ $entryForm->50km_exp }}</p>
+    {!! Form::label('exp_50km', 'Exp 50Km:') !!}
+    <p>{{ $entryForm->exp_50km }}</p>
 </div>
 
 <!-- Parent Name Field -->
