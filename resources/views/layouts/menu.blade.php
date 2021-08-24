@@ -16,3 +16,21 @@
         </a>
     </li>
 @endif
+
+@if (Auth::user()->is_staff)
+    <li class="nav-item">
+        <a href="{{ route('adminConfigs.index') }}"
+            class="nav-link {{ Request::is('adminConfigs*') ? 'active' : '' }}">
+            <p>スタッフ用メニュー</p>
+        </a>
+    </li>
+@endif
+
+@if (Auth::user()->is_commi)
+    <li class="nav-item">
+        <a href="{{ route('adminConfigs.index') }}"
+            class="nav-link {{ Request::is('adminConfigs*') ? 'active' : '' }}">
+            <p>地区コミ用メニュー</p>
+        </a>
+    </li>
+@endif
