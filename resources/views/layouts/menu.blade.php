@@ -6,11 +6,13 @@
         <li><a href="#">設定</a></li>
     </ul>
 @endif
-<li class="nav-item">
-    <a href="{{ route('adminConfigs.index') }}"
-       class="nav-link {{ Request::is('adminConfigs*') ? 'active' : '' }}">
-        <p>Admin Configs</p>
-    </a>
-</li>
 
-
+{{-- 管理者アカウントでのみ表示 --}}
+@if (Auth::user()->is_admin)
+    <li class="nav-item">
+        <a href="{{ route('adminConfigs.index') }}"
+            class="nav-link {{ Request::is('adminConfigs*') ? 'active' : '' }}">
+            <p>管理コンパネ</p>
+        </a>
+    </li>
+@endif

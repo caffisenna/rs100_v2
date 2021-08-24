@@ -38,5 +38,10 @@ class AuthServiceProvider extends ServiceProvider
                 ->action('メールを認証する', $url);
         });
         //
+
+        // admin
+        Gate::define('admin', function (\App\Models\User $user) {
+            return $user->is_admin;
+        });
     }
 }

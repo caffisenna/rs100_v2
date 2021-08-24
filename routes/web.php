@@ -24,9 +24,9 @@ Route::get('/', function () {
 Auth::routes();
 // Auth::routes(['verify' => true]);
 
-Route::get('/home', [
-    HomeController::class, 'index'
-])->name('home')->middleware('verified');
+// Route::get('/home', [
+//     HomeController::class, 'index'
+// ])->name('home')->middleware('verified');
 
 // メール確認の通知
 Route::get('/email/verify', function () {
@@ -48,9 +48,21 @@ Route::post('/email/verification-notification', function (Request $request) {
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 // 確認済みのユーザーのみがこのルートにアクセス可能
-Route::get('/profile', function () {
-})->middleware('verified');
+// Route::get('/profile', function () {
+// })->middleware('verified');
 
 
-Route::resource('adminConfigs', App\Http\Controllers\AdminConfigController::class)
-->middleware('auth');
+Route::middleware('verified')->group(function() {
+    // 共通
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+    // 一般ユーザ用
+    Route::prefix('user')->group(function(){
+        Route::get('/', 'User\HomeController@index');
+    });
+    // 管理ユーザ用
+    Route::prefix('admin')->middleware('can:admin')->group(function(){
+        Route::get('/', 'Admin\HomeController@index');
+        Route::resource('adminConfigs', App\Http\Controllers\AdminConfigController::class);
+    });
+});
