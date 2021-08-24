@@ -59,6 +59,7 @@ Route::middleware('verified')->group(function() {
     // 一般ユーザ用
     Route::prefix('user')->group(function(){
         Route::get('/', 'User\HomeController@index');
+        Route::resource('entryForms', App\Http\Controllers\entryFormController::class);
     });
     // 管理ユーザ用
     Route::prefix('admin')->middleware('can:admin')->group(function(){

@@ -34,3 +34,11 @@
         </a>
     </li>
 @endif
+<li class="nav-item">
+    <a href="{{ route('entryForms.index') }}"
+       class="nav-link {{ Request::is('user/entryForms*') ? 'active' : '' }}">
+        <p>Entry Forms</p>
+    </a>
+</li>
+
+

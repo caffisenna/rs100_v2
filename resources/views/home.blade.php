@@ -5,9 +5,11 @@
         <div class="row">
             @if (isset(Auth::user()->email_verified_at))
 
-                <a href="#" class="btn btn-info btn-lg btn-block">申込書</a>
+                <a href="{{ url('/user/entryForms') }}" class="btn btn-info btn-lg btn-block">申込書</a>
                 <a href="#" class="btn btn-info btn-lg btn-block">Eラーニング</a>
                 <a href="#" class="btn btn-info btn-lg btn-block">健康調査書</a>
+                <a href="#" class="btn btn-info btn-lg btn-block">競技開始</a>
+                <a href="#" class="btn btn-info btn-lg btn-block">リタイア申請</a>
                 <a href="#" class="btn btn-info btn-lg btn-block">設定</a>
 
             @else
