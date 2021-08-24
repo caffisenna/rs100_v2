@@ -16,11 +16,11 @@ class CreateAdminConfigsTable extends Migration
     {
         Schema::create('admin_configs', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('create_account');
-            $table->string('create_application');
-            $table->string('elearning');
-            $table->string('healthcheck');
-            $table->string('user_edit');
+            $table->boolean('create_account')->default(false);
+            $table->boolean('create_application')->default(false);
+            $table->boolean('elearning')->default(false);
+            $table->boolean('healthcheck')->default(false);
+            $table->boolean('user_edit')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });
