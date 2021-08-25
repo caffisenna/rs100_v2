@@ -65,6 +65,7 @@ Route::middleware('verified')->group(function() {
     Route::prefix('admin')->middleware('can:admin')->group(function(){
         Route::get('/', 'Admin\HomeController@index');
         Route::resource('adminConfigs', App\Http\Controllers\AdminConfigController::class);
+        Route::resource('entryForms', App\Http\Controllers\adminentryFormController::class);
     });
 });
 

@@ -15,6 +15,12 @@
             <p>管理コンパネ</p>
         </a>
     </li>
+    <li class="nav-item">
+        <a href="{{ route('entryForms.index') }}"
+           class="nav-link {{ Request::is('entryForms*') ? 'active' : '' }}">
+            <p>管理者用一覧</p>
+        </a>
+    </li>
 @endif
 
 @if (Auth::user()->is_staff)
