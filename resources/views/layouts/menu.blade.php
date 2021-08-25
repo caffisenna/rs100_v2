@@ -42,3 +42,11 @@
 </li>
 
 
+<li class="nav-item">
+    <a href="{{ route('elearnings.index') }}"
+       class="nav-link {{ Request::is('elearnings*') ? 'active' : '' }}">
+        <p>Elearnings</p>
+    </a>
+</li>
+
+

@@ -44,5 +44,6 @@ class User extends Authenticatable implements MustVerifyEmail
     public function unko() {
         return $this->hasOne(Unko::class);
         return $this->hasOne(entryForm::class);
+        return $this->hasOne(elearning::class);
     }
 }

@@ -67,3 +67,6 @@ Route::middleware('verified')->group(function() {
         Route::resource('adminConfigs', App\Http\Controllers\AdminConfigController::class);
     });
 });
+
+
+Route::resource('elearnings', App\Http\Controllers\elearningController::class);
