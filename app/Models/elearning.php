@@ -45,7 +45,8 @@ class elearning extends Model
      * @var array
      */
     public static $rules = [
-        'q1' => 'required'
+        'q1' => 'in:1|required',
+        'q2' => 'in:3|required'
     ];
 
     public function user() {
