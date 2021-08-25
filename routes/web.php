@@ -58,16 +58,14 @@ Route::middleware('verified')->group(function() {
 
     // 一般ユーザ用
     Route::prefix('user')->group(function(){
-        Route::get('/', 'User\HomeController@index');
+        // Route::get('/', 'User\HomeController@index');
         Route::resource('entryForms', App\Http\Controllers\entryFormController::class);
+        Route::resource('elearnings', App\Http\Controllers\elearningController::class);
     });
     // 管理ユーザ用
     Route::prefix('admin')->middleware('can:admin')->group(function(){
-        Route::get('/', 'Admin\HomeController@index');
+        // Route::get('/', 'Admin\HomeController@index');
         Route::resource('adminConfigs', App\Http\Controllers\AdminConfigController::class);
         Route::resource('entryForms', App\Http\Controllers\adminentryFormController::class);
     });
 });
-
-
-Route::resource('elearnings', App\Http\Controllers\elearningController::class);
