@@ -24,10 +24,10 @@ class elearningController extends AppBaseController
     {
         /** @var elearning $elearnings */
         // $elearnings = elearning::all();
-        $elearning = elearning::where('user_id',Auth::user()->id)->first();
+        $elearning = elearning::where('user_id', Auth::user()->id)->first();
 
-        if(is_null($elearning)){
-			$elearning = new elearning;
+        if (is_null($elearning)) {
+            $elearning = new elearning;
         }
 
         return view('elearnings.index')
@@ -51,15 +51,39 @@ class elearningController extends AppBaseController
      *
      * @return Response
      */
-    public function store(CreateelearningRequest $request)
+    // public function store(CreateelearningRequest $request)
+    // store(CreateelearningRequest $request) のままだと自由にエラーメッセージを
+    // コントロールできないので旧来の方法に迂回する
+    // 迂回することでコントローラー部で制御可能に
+    public function store(Request $request)
     {
         $input = $request->all();
         $input['user_id'] = Auth()->user()->id;
 
+        $rules = [
+            'q1' => 'in:1|required',
+            'q2' => 'in:1|required',
+        ];
+
+        $messages = [
+            'q1.in' => 'Q1 不正解です',
+            'q2.in' => 'Q2 不正解です',
+            'q1.required' => 'Q1 選択肢より選択してください',
+            'q2.required' => 'Q2 選択肢より選択してください',
+        ];
+
+        $validation = \Validator::make($input,$rules,$messages);
+
+        //エラー時の処理
+		if($validation->fails())
+		{
+			return redirect()->back()->withErrors($validation->errors())->withInput();
+		}
+
         /** @var elearning $elearning */
         $elearning = elearning::create($input);
 
-        Flash::success('Elearning saved successfully.');
+        Flash::success('全問正解! 合格です!');
 
         return redirect(route('elearnings.index'));
     }
