@@ -5,7 +5,8 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1>Create Elearning</h1>
+                    <h1>Eラーニング受講</h1>
+                    <h4>全ての設問に合格すると修了になります。</h4>
                 </div>
             </div>
         </div>

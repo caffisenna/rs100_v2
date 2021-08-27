@@ -1,6 +1,6 @@
 <!-- Q1 Field -->
 <div class="form-group col-sm-12 @if($errors->has('q1')) has-error @endif">
-    {!! Form::label('q1', 'Q1', ['class' => 'form-check-label']) !!}
+    {!! Form::label('q1', 'Q1 好きなデバイスは?', ['class' => 'form-check-label']) !!}
     <label class="form-check">
         {!! Form::radio('q1', '1', null, ['class' => 'form-check-input']) !!} mac
     </label>
@@ -17,7 +17,7 @@
 
 <!-- Q2 Field -->
 <div class="form-group col-sm-12">
-    {!! Form::label('q2', 'Q2', ['class' => 'form-check-label']) !!}
+    {!! Form::label('q2', 'Q2 好きな食べ物は?', ['class' => 'form-check-label']) !!}
     <label class="form-check">
         {!! Form::radio('q2', '1', null, ['class' => 'form-check-input']) !!} 牛丼
     </label>
