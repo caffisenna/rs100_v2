@@ -59,7 +59,7 @@ class adminentryFormController extends AppBaseController
 
         Flash::success('Entry Form saved successfully.');
 
-        return redirect(route('entryForms.index'));
+        return redirect(route('entries.index'));
     }
 
     /**
@@ -77,10 +77,10 @@ class adminentryFormController extends AppBaseController
         if (empty($entryForm)) {
             Flash::error('Entry Form not found');
 
-            return redirect(route('entryForms.index'));
+            return redirect(route('entries.index'));
         }
 
-        return view('entry_forms.show')->with('entryForm', $entryForm);
+        return view('admin.entry_forms.show')->with('entryForm', $entryForm);
     }
 
     /**
@@ -98,10 +98,10 @@ class adminentryFormController extends AppBaseController
         if (empty($entryForm)) {
             Flash::error('Entry Form not found');
 
-            return redirect(route('entryForms.index'));
+            return redirect(route('entries.index'));
         }
 
-        return view('entry_forms.edit')->with('entryForm', $entryForm);
+        return view('admin.entry_forms.edit')->with('entryForm', $entryForm);
     }
 
     /**
@@ -120,7 +120,7 @@ class adminentryFormController extends AppBaseController
         if (empty($entryForm)) {
             Flash::error('Entry Form not found');
 
-            return redirect(route('entryForms.index'));
+            return redirect(route('entriesindex'));
         }
 
         $entryForm->fill($request->all());
@@ -128,7 +128,7 @@ class adminentryFormController extends AppBaseController
 
         Flash::success('Entry Form updated successfully.');
 
-        return redirect(route('entryForms.index'));
+        return redirect(route('entries.index'));
     }
 
     /**
@@ -148,13 +148,13 @@ class adminentryFormController extends AppBaseController
         if (empty($entryForm)) {
             Flash::error('Entry Form not found');
 
-            return redirect(route('entryForms.index'));
+            return redirect(route('entries.index'));
         }
 
         $entryForm->delete();
 
         Flash::success('Entry Form deleted successfully.');
 
-        return redirect(route('entryForms.index'));
+        return redirect(route('entries.index'));
     }
 }

@@ -8,7 +8,7 @@
                     <h1>申込書詳細</h1>
                 </div>
                 <div class="col-sm-6">
-                    <a class="btn btn-default float-right" href="{{ route('entryForms.index') }}">
+                    <a class="btn btn-default float-right" href="{{ route('entries.index') }}">
                         Back
                     </a>
                 </div>

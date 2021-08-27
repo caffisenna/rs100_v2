@@ -9,6 +9,7 @@ use App\Models\entryForm;
 use Auth;
 use Illuminate\Http\Request;
 use Flash;
+use Ramsey\Uuid\Uuid;
 use Response;
 
 class entryFormController extends AppBaseController
@@ -56,6 +57,7 @@ class entryFormController extends AppBaseController
     {
         $input = $request->all();
         $input['user_id'] = Auth()->user()->id;
+        $input['uuid'] = Uuid::uuid4();
 
         /** @var entryForm $entryForm */
         $entryForm = entryForm::create($input);

@@ -7,12 +7,13 @@
                 <div class="col-sm-6">
                     <h1>参加申込書</h1>
                 </div>
-                @unless ($entryForm->id)
-                <div class="col-sm-6">
-                    <a class="btn btn-primary float-right" href="{{ route('entryForms.create') }}">
-                        申込書作成
-                    </a>
-                </div>
+                @unless($entryForm->id)
+                    <div class="col-sm-6">
+                        <a class="btn btn-primary float-right" href="{{ route('entryForms.create') }}">
+                            {{-- <a class="btn btn-primary float-right" href="{{ url('/user/entryForms/create') }}"> --}}
+                            申込書作成
+                        </a>
+                    </div>
                 @endunless
             </div>
         </div>

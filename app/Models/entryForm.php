@@ -62,7 +62,8 @@ class entryForm extends Model
         'parent_relation',
         'emer_phone',
         'sm_name',
-        'sm_position'
+        'sm_position',
+        'uuid'
     ];
 
     /**
@@ -89,7 +90,8 @@ class entryForm extends Model
         'parent_relation' => 'string',
         'emer_phone' => 'string',
         'sm_name' => 'string',
-        'sm_position' => 'string'
+        'sm_position' => 'string',
+        'uuid' => 'string'
     ];
 
     /**

@@ -1,10 +1,12 @@
 @if (isset(Auth::user()->email_verified_at))
-    <ul>
-        <li><a href="#">申込書</a></li>
-        <li><a href="#">Eラーニング</a></li>
-        <li><a href="#">健康調査書</a></li>
-        <li><a href="#">設定</a></li>
-    </ul>
+    @unless(Auth::user()->is_admin)
+        <ul>
+            <li><a href="#">申込書</a></li>
+            <li><a href="#">Eラーニング</a></li>
+            <li><a href="#">健康調査書</a></li>
+            <li><a href="#">設定</a></li>
+        </ul>
+    @endunless
 @endif
 
 {{-- 管理者アカウントでのみ表示 --}}
@@ -16,8 +18,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="{{ route('entryForms.index') }}"
-           class="nav-link {{ Request::is('entryForms*') ? 'active' : '' }}">
+        <a href="{{ route('entries.index') }}" class="nav-link {{ Request::is('entryForms*') ? 'active' : '' }}">
             <p>管理者用一覧</p>
         </a>
     </li>
@@ -40,7 +41,7 @@
         </a>
     </li>
 @endif
-<li class="nav-item">
+{{-- <li class="nav-item">
     <a href="{{ route('entryForms.index') }}"
        class="nav-link {{ Request::is('user/entryForms*') ? 'active' : '' }}">
         <p>Entry Forms</p>
@@ -53,6 +54,4 @@
        class="nav-link {{ Request::is('elearnings*') ? 'active' : '' }}">
         <p>Elearnings</p>
     </a>
-</li>
-
-
+</li> --}}
