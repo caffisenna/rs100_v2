@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAdminConfigsTable extends Migration
+class CreateElearningsTable extends Migration
 {
 
     /**
@@ -14,13 +14,10 @@ class CreateAdminConfigsTable extends Migration
      */
     public function up()
     {
-        Schema::create('admin_configs', function (Blueprint $table) {
+        Schema::create('elearnings', function (Blueprint $table) {
             $table->increments('id');
-            $table->boolean('create_account')->default(false);
-            $table->boolean('create_application')->default(false);
-            $table->boolean('elearning')->default(false);
-            $table->boolean('healthcheck')->default(false);
-            $table->boolean('user_edit')->default(false);
+            $table->foreignId('user_id')->nullable()->constrained();
+            // $table->string('q1');
             $table->timestamps();
             $table->softDeletes();
         });
@@ -33,6 +30,6 @@ class CreateAdminConfigsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('admin_configs');
+        Schema::drop('elearnings');
     }
 }
