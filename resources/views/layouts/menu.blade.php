@@ -55,3 +55,11 @@
         <p>Elearnings</p>
     </a>
 </li> --}}
+<li class="nav-item">
+    <a href="{{ route('resultUploads.index') }}"
+       class="nav-link {{ Request::is('resultUploads*') ? 'active' : '' }}">
+        <p>Result Uploads</p>
+    </a>
+</li>
+
+
