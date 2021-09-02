@@ -21,7 +21,6 @@ class CreateEntryFormsTable extends Migration
             $table->text('bs_id');
             $table->text('district');
             $table->text('dan_name');
-            $table->text('dan_number');
             $table->date('birth_day');
             $table->text('gender');
             $table->text('zip');

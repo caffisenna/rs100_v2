@@ -1,120 +1,114 @@
 <!-- Furigana Field -->
 <div class="col-sm-12">
-    {!! Form::label('furigana', 'Furigana:') !!}
+    {!! Form::label('furigana', 'ふりがな:') !!}
     <p>{{ $entryForm->furigana }}</p>
 </div>
 
 <!-- Bs Id Field -->
 <div class="col-sm-12">
-    {!! Form::label('bs_id', 'Bs Id:') !!}
+    {!! Form::label('bs_id', '登録番号:') !!}
     <p>{{ $entryForm->bs_id }}</p>
 </div>
 
 <!-- District Field -->
 <div class="col-sm-12">
-    {!! Form::label('district', 'District:') !!}
+    {!! Form::label('district', '地区:') !!}
     <p>{{ $entryForm->district }}</p>
 </div>
 
 <!-- Dan Name Field -->
 <div class="col-sm-12">
-    {!! Form::label('dan_name', 'Dan Name:') !!}
+    {!! Form::label('dan_name', '団名:') !!}
     <p>{{ $entryForm->dan_name }}</p>
-</div>
-
-<!-- Dan Number Field -->
-<div class="col-sm-12">
-    {!! Form::label('dan_number', 'Dan Number:') !!}
-    <p>{{ $entryForm->dan_number }}</p>
 </div>
 
 <!-- Birth Day Field -->
 <div class="col-sm-12">
-    {!! Form::label('birth_day', 'Birth Day:') !!}
+    {!! Form::label('birth_day', '生年月日:') !!}
     <p>{{ $entryForm->birth_day }}</p>
 </div>
 
 <!-- Gender Field -->
 <div class="col-sm-12">
-    {!! Form::label('gender', 'Gender:') !!}
+    {!! Form::label('gender', '性別:') !!}
     <p>{{ $entryForm->gender }}</p>
 </div>
 
 <!-- Zip Field -->
 <div class="col-sm-12">
-    {!! Form::label('zip', 'Zip:') !!}
+    {!! Form::label('zip', '郵便番号:') !!}
     <p>{{ $entryForm->zip }}</p>
 </div>
 
 <!-- Address Field -->
 <div class="col-sm-12">
-    {!! Form::label('address', 'Address:') !!}
+    {!! Form::label('address', '住所:') !!}
     <p>{{ $entryForm->address }}</p>
 </div>
 
 <!-- Telephone Field -->
 <div class="col-sm-12">
-    {!! Form::label('telephone', 'Telephone:') !!}
+    {!! Form::label('telephone', '電話番号:') !!}
     <p>{{ $entryForm->telephone }}</p>
 </div>
 
 <!-- Cellphone Field -->
 <div class="col-sm-12">
-    {!! Form::label('cellphone', 'Cellphone:') !!}
+    {!! Form::label('cellphone', 'ケータイ:') !!}
     <p>{{ $entryForm->cellphone }}</p>
 </div>
 
 <!-- 50Km Exp Field -->
 <div class="col-sm-12">
-    {!! Form::label('exp_50km', 'Exp 50Km:') !!}
+    {!! Form::label('exp_50km', '50kmハイク経験:') !!}
     <p>{{ $entryForm->exp_50km }}</p>
 </div>
 
 <!-- Parent Name Field -->
 <div class="col-sm-12">
-    {!! Form::label('parent_name', 'Parent Name:') !!}
+    {!! Form::label('parent_name', '保護者氏名:') !!}
     <p>{{ $entryForm->parent_name }}</p>
 </div>
 
 <!-- Parent Name Furigana Field -->
 <div class="col-sm-12">
-    {!! Form::label('parent_name_furigana', 'Parent Name Furigana:') !!}
+    {!! Form::label('parent_name_furigana', '保護者ふりがな:') !!}
     <p>{{ $entryForm->parent_name_furigana }}</p>
 </div>
 
 <!-- Parent Relation Field -->
 <div class="col-sm-12">
-    {!! Form::label('parent_relation', 'Parent Relation:') !!}
+    {!! Form::label('parent_relation', '保護者続柄:') !!}
     <p>{{ $entryForm->parent_relation }}</p>
 </div>
 
 <!-- Emer Phone Field -->
 <div class="col-sm-12">
-    {!! Form::label('emer_phone', 'Emer Phone:') !!}
+    {!! Form::label('emer_phone', '緊急連絡先:') !!}
     <p>{{ $entryForm->emer_phone }}</p>
 </div>
 
 <!-- Sm Name Field -->
 <div class="col-sm-12">
-    {!! Form::label('sm_name', 'Sm Name:') !!}
+    {!! Form::label('sm_name', '隊長氏名:') !!}
     <p>{{ $entryForm->sm_name }}</p>
 </div>
 
 <!-- Sm Position Field -->
 <div class="col-sm-12">
-    {!! Form::label('sm_position', 'Sm Position:') !!}
+    {!! Form::label('sm_position', '役務:') !!}
     <p>{{ $entryForm->sm_position }}</p>
 </div>
 
 <!-- Created At Field -->
 <div class="col-sm-12">
-    {!! Form::label('created_at', 'Created At:') !!}
+    {!! Form::label('created_at', '作成日:') !!}
     <p>{{ $entryForm->created_at }}</p>
 </div>
 
 <!-- Updated At Field -->
 <div class="col-sm-12">
-    {!! Form::label('updated_at', 'Updated At:') !!}
+    {!! Form::label('updated_at', '最終更新日:') !!}
     <p>{{ $entryForm->updated_at }}</p>
 </div>
 
