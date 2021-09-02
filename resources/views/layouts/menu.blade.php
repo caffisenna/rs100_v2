@@ -1,11 +1,26 @@
 @if (isset(Auth::user()->email_verified_at))
     @unless(Auth::user()->is_admin)
-        <ul>
+        {{-- <ul>
             <li><a href="#">申込書</a></li>
             <li><a href="#">Eラーニング</a></li>
             <li><a href="#">健康調査書</a></li>
             <li><a href="#">設定</a></li>
-        </ul>
+        </ul> --}}
+        {{-- @if ($configs->create_application)
+            <a href="{{ url('/user/entryForms') }}" class="btn btn-info btn-xs btn-block">申込書</a>
+        @endif
+
+        @if ($configs->elearning)
+            <a href="{{ url('/user/elearnings') }}" class="btn btn-info btn-xs btn-block">Eラーニング</a>
+        @endif
+
+        @if ($configs->healthcheck)
+            <a href="#" class="btn btn-info btn-xs btn-block">健康調査書</a>
+        @endif
+
+        @if ($configs->user_upload)
+            <a href="{{ url('/user/resultUploads') }}" class="btn btn-info btn-xs btn-block">結果アップロード</a>
+        @endif --}}
     @endunless
 @endif
 
@@ -55,11 +70,9 @@
         <p>Elearnings</p>
     </a>
 </li> --}}
-<li class="nav-item">
+{{-- <li class="nav-item">
     <a href="{{ route('resultUploads.index') }}"
        class="nav-link {{ Request::is('resultUploads*') ? 'active' : '' }}">
         <p>Result Uploads</p>
     </a>
-</li>
-
-
+</li> --}}
