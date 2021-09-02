@@ -13,12 +13,18 @@
         <div class="form-group">
             {!! Form::label('furigana', 'ふりがな:') !!}
             {!! Form::text('furigana', null, ['class' => 'form-control','placeholder'=>'ふりがな']) !!}
+            @error('furigana')
+                <div class="error text-danger">入力必須です</div>
+            @enderror
         </div>
 
         <!-- Birth Day Field -->
         <div class="form-group">
             {!! Form::label('birth_day', '生年月日:') !!}
             {!! Form::text('birth_day', null, ['class' => 'form-control', 'id' => 'birth_day','placeholder'=>'2021-01-23の形式']) !!}
+            @error('birth_day')
+                <div class="error text-danger">入力必須です</div>
+            @enderror
         </div>
 
         @push('page_scripts')
@@ -37,37 +43,55 @@
         <div class="form-group">
             {!! Form::label('gender', '性別:') !!}
             {!! Form::select('gender', [''=>'','男' => '男', '女' => '女'], null, ['class' => 'form-control custom-select']) !!}
+            @error('gender')
+                <div class="error text-danger">選択必須です</div>
+            @enderror
         </div>
 
 
         <!-- Zip Field -->
         <div class="form-group">
             {!! Form::label('zip', '郵便番号:') !!}
-            {!! Form::text('zip', null, ['class' => 'form-control', 'placeholder' => '1600000', 'maxlength' => '7', 'required' => 'required']) !!}
+            {!! Form::text('zip', null, ['class' => 'form-control', 'placeholder' => '1600000', 'maxlength' => '7']) !!}
+            @error('zip')
+                <div class="error text-danger">7桁の半角整数で入力してください</div>
+            @enderror
         </div>
 
         <!-- Address Field -->
         <div class="form-group">
             {!! Form::label('address', '住所:') !!}
-            {!! Form::text('address', null, ['class' => 'form-control', 'required' => 'required','placeholder'=>'番地まで正確に']) !!}
+            {!! Form::text('address', null, ['class' => 'form-control','placeholder'=>'番地まで正確に']) !!}
+            @error('address')
+                <div class="error text-danger">番地まで入力してください</div>
+            @enderror
         </div>
 
         <!-- Telephone Field -->
         <div class="form-group">
             {!! Form::label('telephone', '電話番号(自宅):') !!}
-            {!! Form::text('telephone', null, ['class' => 'form-control', 'required' => 'required']) !!}
+            {!! Form::text('telephone', null, ['class' => 'form-control']) !!}
+            @error('telephone')
+                <div class="error text-danger">入力必須です</div>
+            @enderror
         </div>
 
         <!-- Cellphone Field -->
         <div class="form-group">
             {!! Form::label('cellphone', 'ケータイ番号:') !!}
-            {!! Form::text('cellphone', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => '08012345678(ハイク中連絡がとれるもの)']) !!}
+            {!! Form::text('cellphone', null, ['class' => 'form-control', 'placeholder' => '08012345678(ハイク中連絡がとれるもの)']) !!}
+            @error('cellphone')
+                <div class="error text-danger">11桁のケータイ番号を入力してください</div>
+            @enderror
         </div>
 
         <!-- 50Km Exp Field -->
         <div class="form-group">
             {!! Form::label('exp_50km_exp', '50kmハイクの経験:') !!}
-            {!! Form::select('exp_50km', ['' => '', 'あり' => 'あり', 'なし' => 'なし'], null, ['class' => 'form-control custom-select', 'required' => 'required']) !!}
+            {!! Form::select('exp_50km', ['' => '', 'あり' => 'あり', 'なし' => 'なし'], null, ['class' => 'form-control custom-select']) !!}
+            @error('exp_50km')
+                <div class="error text-danger">選択必須です</div>
+            @enderror
         </div>
 
     </div>
@@ -116,10 +140,10 @@
         <!-- Dan Name Field -->
         <div class="form-group">
             {!! Form::label('dan_name', '団名:') !!}
-            <select class="children form-control" name="dan_name" disabled>
+            <select class="children form-control" name="dan_name" @if(!old('dan_name')) disabled @endif>
                 <option value="" selected="selected">団を選択</option>
-                <option value="千代田1" data-val="大都心">千代田1</option>
-                <option value="千代田6" data-val="大都心">千代田6</option>
+                <option value="千代田1" data-val="大都心" @if(old('dan_name')=="千代田1") selected @endif>千代田1</option>
+                <option value="千代田6" data-val="大都心" @if(old('dan_name')=="千代田6") selected @endif>千代田6</option>
                 <option value="千代田7" data-val="大都心">千代田7</option>
                 <option value="千代田8" data-val="大都心">千代田8</option>
                 <option value="千代田9" data-val="大都心">千代田9</option>
@@ -363,25 +387,25 @@
         <!-- Parent Name Field -->
         <div class="form-group">
             {!! Form::label('parent_name', '保護者氏名:') !!}
-            {!! Form::text('parent_name', null, ['class' => 'form-control', 'required' => 'required']) !!}
+            {!! Form::text('parent_name', null, ['class' => 'form-control']) !!}
         </div>
 
         <!-- Parent Name Furigana Field -->
         <div class="form-group">
             {!! Form::label('parent_name_furigana', '保護者ふりがな:') !!}
-            {!! Form::text('parent_name_furigana', null, ['class' => 'form-control', 'required' => 'required']) !!}
+            {!! Form::text('parent_name_furigana', null, ['class' => 'form-control']) !!}
         </div>
 
         <!-- Parent Relation Field -->
         <div class="form-group">
             {!! Form::label('parent_relation', '保護者続柄:') !!}
-            {!! Form::text('parent_relation', null, ['class' => 'form-control', 'required' => 'required', 'placeholder' => '父、母など']) !!}
+            {!! Form::text('parent_relation', null, ['class' => 'form-control', 'placeholder' => '父、母など']) !!}
         </div>
 
         <!-- Emer Phone Field -->
         <div class="form-group">
             {!! Form::label('emer_phone', '緊急連絡先電話番号:') !!}
-            {!! Form::text('emer_phone', null, ['class' => 'form-control', 'required' => 'required']) !!}
+            {!! Form::text('emer_phone', null, ['class' => 'form-control']) !!}
         </div>
     </div>
 </div>
@@ -394,13 +418,13 @@
         <!-- Sm Name Field -->
         <div class="form-group">
             {!! Form::label('sm_name', '隊長もしくは団委員長氏名:') !!}
-            {!! Form::text('sm_name', null, ['class' => 'form-control', 'required' => 'required']) !!}
+            {!! Form::text('sm_name', null, ['class' => 'form-control']) !!}
         </div>
 
         <!-- Sm Position Field -->
         <div class="form-group">
             {!! Form::label('sm_position', '役務:') !!}
-            {!! Form::select('sm_position', ['' => '', 'RS隊長' => 'RS隊長', '団委員長' => '団委員長'], null, ['class' => 'form-control custom-select', 'required' => 'required']) !!}
+            {!! Form::select('sm_position', ['' => '', 'RS隊長' => 'RS隊長', '団委員長' => '団委員長'], null, ['class' => 'form-control custom-select']) !!}
         </div>
 
     </div>
