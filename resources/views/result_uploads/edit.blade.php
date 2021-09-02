@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1>申込書編集</h1>
+                    <h1>Edit Result Upload</h1>
                 </div>
             </div>
         </div>
@@ -17,17 +17,17 @@
 
         <div class="card">
 
-            {!! Form::model($entryForm, ['route' => ['entryForms.update', $entryForm->id], 'method' => 'patch']) !!}
+            {!! Form::model($resultUpload, ['route' => ['resultUploads.update', $resultUpload->id], 'method' => 'patch', 'files' => true]) !!}
 
             <div class="card-body">
                 <div class="row">
-                    @include('entry_forms.fields')
+                    @include('result_uploads.fields')
                 </div>
             </div>
 
             <div class="card-footer">
-                {!! Form::submit('更新', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('entryForms.index') }}" class="btn btn-default">キャンセル</a>
+                {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
+                <a href="{{ route('resultUploads.index') }}" class="btn btn-default">Cancel</a>
             </div>
 
            {!! Form::close() !!}

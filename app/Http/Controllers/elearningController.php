@@ -179,7 +179,7 @@ class elearningController extends AppBaseController
 
         $elearning->delete();
 
-        Flash::success('Elearning deleted successfully.');
+        Flash::success('受講歴を削除しました。');
 
         return redirect(route('elearnings.index'));
     }

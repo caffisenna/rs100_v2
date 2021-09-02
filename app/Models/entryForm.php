@@ -15,7 +15,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string $bs_id
  * @property string $district
  * @property string $dan_name
- * @property string $dan_number
  * @property string $birth_day
  * @property string $gender
  * @property string $zip
@@ -49,7 +48,6 @@ class entryForm extends Model
         'bs_id',
         'district',
         'dan_name',
-        'dan_number',
         'birth_day',
         'gender',
         'zip',
@@ -77,7 +75,6 @@ class entryForm extends Model
         'bs_id' => 'string',
         'district' => 'string',
         'dan_name' => 'string',
-        'dan_number' => 'string',
         'birth_day' => 'date',
         'gender' => 'string',
         'zip' => 'string',
@@ -104,7 +101,6 @@ class entryForm extends Model
         'bs_id' => 'required',
         'district' => 'required',
         'dan_name' => 'required',
-        'dan_number' => 'required',
         'birth_day' => 'required',
         'gender' => 'required',
         'zip' => 'required',
@@ -120,9 +116,8 @@ class entryForm extends Model
         'sm_position' => 'required'
     ];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
-
-
 }

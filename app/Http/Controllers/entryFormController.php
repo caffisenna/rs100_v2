@@ -62,7 +62,7 @@ class entryFormController extends AppBaseController
         /** @var entryForm $entryForm */
         $entryForm = entryForm::create($input);
 
-        Flash::success('Entry Form saved successfully.');
+        Flash::success('申込書が作成されました');
 
         return redirect(route('entryForms.index'));
     }
@@ -98,7 +98,8 @@ class entryFormController extends AppBaseController
     public function edit($id)
     {
         /** @var entryForm $entryForm */
-        $entryForm = entryForm::find($id);
+        // $entryForm = entryForm::find($id);
+        $entryForm = entryForm::where('user_id',Auth::user()->id)->first();
 
         if (empty($entryForm)) {
             Flash::error('Entry Form not found');
@@ -131,7 +132,7 @@ class entryFormController extends AppBaseController
         $entryForm->fill($request->all());
         $entryForm->save();
 
-        Flash::success('Entry Form updated successfully.');
+        Flash::success('申込書を更新しました。');
 
         return redirect(route('entryForms.index'));
     }
@@ -158,7 +159,7 @@ class entryFormController extends AppBaseController
 
         $entryForm->delete();
 
-        Flash::success('Entry Form deleted successfully.');
+        Flash::success('申込書を削除しました');
 
         return redirect(route('entryForms.index'));
     }

@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1>Create Entry Form</h1>
+                    <h1>申込書作成</h1>
                 </div>
             </div>
         </div>
