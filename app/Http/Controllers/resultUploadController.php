@@ -210,6 +210,7 @@ class resultUploadController extends AppBaseController
 
         // ファイル削除
         File::delete(public_path('/images/user_uploads/') . $delFileName);
+        File::delete(public_path('/images/user_uploads/') . $delFileName. '_result.txt');
 
 
         if (empty($resultUpload)) {
