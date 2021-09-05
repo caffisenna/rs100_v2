@@ -220,7 +220,7 @@ class resultUploadController extends AppBaseController
 
         $resultUpload->delete();
 
-        Flash::success('Result Upload deleted successfully.');
+        Flash::success('アップロード画像の削除が完了しました。');
 
         return redirect(route('resultUploads.index'));
     }
