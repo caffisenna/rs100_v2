@@ -28,7 +28,7 @@
                         </div>
                     </div>
 
-                    <div class="card" style="width:100%;">
+                    {{-- <div class="card" style="width:100%;">
                         <div class="card-header">
                             <h5>開始と終了</h5>
                         </div>
@@ -37,7 +37,7 @@
                             <a href="#" class="btn btn-info btn-lg btn-block">ハイク終了</a>
                             <a href="#" class="btn btn-info btn-lg btn-block">リタイア申請</a>
                         </div>
-                    </div>
+                    </div> --}}
                 @endunless
 
             @else
