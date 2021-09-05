@@ -28,8 +28,8 @@
             </div>
 
             <div class="card-footer">
-                {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('entryForms.index') }}" class="btn btn-default">Cancel</a>
+                {!! Form::submit('作成', ['class' => 'btn btn-primary']) !!}
+                <a href="{{ route('entryForms.index') }}" class="btn btn-default">キャンセル</a>
             </div>
 
             {!! Form::close() !!}
