@@ -6,21 +6,13 @@
             <li><a href="#">健康調査書</a></li>
             <li><a href="#">設定</a></li>
         </ul> --}}
-        {{-- @if ($configs->create_application)
-            <a href="{{ url('/user/entryForms') }}" class="btn btn-info btn-xs btn-block">申込書</a>
-        @endif
+        <a href="{{ url('/user/entryForms') }}" class="btn btn-info btn-xs btn-block">申込書</a>
 
-        @if ($configs->elearning)
-            <a href="{{ url('/user/elearnings') }}" class="btn btn-info btn-xs btn-block">Eラーニング</a>
-        @endif
+        <a href="{{ url('/user/elearnings') }}" class="btn btn-info btn-xs btn-block">Eラーニング</a>
 
-        @if ($configs->healthcheck)
-            <a href="#" class="btn btn-info btn-xs btn-block">健康調査書</a>
-        @endif
+        <a href="#" class="btn btn-info btn-xs btn-block">健康調査書</a>
 
-        @if ($configs->user_upload)
-            <a href="{{ url('/user/resultUploads') }}" class="btn btn-info btn-xs btn-block">結果アップロード</a>
-        @endif --}}
+        <a href="{{ url('/user/resultUploads') }}" class="btn btn-info btn-xs btn-block">結果アップロード</a>
     @endunless
 @endif
 
