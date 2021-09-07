@@ -26,7 +26,12 @@ class UpdateentryFormRequest extends FormRequest
     public function rules()
     {
         $rules = entryForm::$rules;
-        
+
         return $rules;
+    }
+
+    public function messages()
+    {
+        return entryForm::$messages;
     }
 }

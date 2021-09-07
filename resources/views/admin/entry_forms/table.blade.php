@@ -10,6 +10,7 @@
         </thead>
         <tbody>
             @foreach ($entryForms as $entryForm)
+            @unless($entryForm->user->is_admin || $entryForm->user->is_staff || $entryForm->user->is_commi)
                 <tr>
                     <td><a
                             href="mailto:{{ $entryForm->user->email }}">{{ $entryForm->user->name }}</a><br>{{ $entryForm->furigana }}
@@ -34,6 +35,7 @@
                         @endif
                     </td>
                 </tr>
+                @endunless
             @endforeach
         </tbody>
     </table>

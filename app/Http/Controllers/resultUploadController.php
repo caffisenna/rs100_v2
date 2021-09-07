@@ -210,6 +210,7 @@ class resultUploadController extends AppBaseController
 
         // ファイル削除
         File::delete(public_path('/images/user_uploads/') . $delFileName);
+        File::delete(public_path('/images/user_uploads/') . $delFileName. '_result.txt');
 
 
         if (empty($resultUpload)) {
@@ -220,7 +221,7 @@ class resultUploadController extends AppBaseController
 
         $resultUpload->delete();
 
-        Flash::success('Result Upload deleted successfully.');
+        Flash::success('アップロード画像の削除が完了しました。');
 
         return redirect(route('resultUploads.index'));
     }

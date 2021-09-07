@@ -2,13 +2,13 @@
     <table class="table" id="resultUploads-table">
         <thead>
             <tr>
-                <th>User Id</th>
-                <th>Date</th>
-                <th>Distance</th>
-                <th>Time</th>
-                <th>Image Path</th>
-                <th>Image</th>
-                <th colspan="3">Action</th>
+                <th>Id</th>
+                <th>計測日</th>
+                <th>距離</th>
+                <th>時間</th>
+                <th>ファイル名</th>
+                <th>画像</th>
+                <th colspan="3">Act</th>
             </tr>
         </thead>
         <tbody>
@@ -31,7 +31,7 @@
                                 class='btn btn-default btn-xs'>
                                 <i class="far fa-edit"></i>
                             </a>
-                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
+                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('本当に削除しますか?')"]) !!}
                         </div>
                         {!! Form::close() !!}
                     </td>

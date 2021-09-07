@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Ramsey\Uuid\Uuid;
 use Response;
+use App\Models\AdminConfig;
 
 class entryFormController extends AppBaseController
 {
@@ -25,12 +26,14 @@ class entryFormController extends AppBaseController
     {
         /** @var entryForm $entryForms */
         // $entryForms = entryForm::all();
-        $entryForm = entryForm::where('user_id',Auth::user()->id)->first();
+        $entryForm = entryForm::where('user_id', Auth::user()->id)->first();
         // dd($entryForm);
 
-        if(is_null($entryForm)){
-			$entryForm = new entryForm;
+        if (is_null($entryForm)) {
+            $entryForm = new entryForm;
         }
+
+        $entryForm->available = AdminConfig::first()->create_application;
 
         return view('entry_forms.index')
             ->with('entryForm', $entryForm);
@@ -43,7 +46,12 @@ class entryFormController extends AppBaseController
      */
     public function create()
     {
-        return view('entry_forms.create');
+        $config = AdminConfig::first()->create_application;
+        if ($config) {
+            return view('entry_forms.create');
+        } else {
+            return redirect('/home');
+        }
     }
 
     /**
@@ -99,7 +107,7 @@ class entryFormController extends AppBaseController
     {
         /** @var entryForm $entryForm */
         // $entryForm = entryForm::find($id);
-        $entryForm = entryForm::where('user_id',Auth::user()->id)->first();
+        $entryForm = entryForm::where('user_id', Auth::user()->id)->first();
 
         if (empty($entryForm)) {
             Flash::error('Entry Form not found');

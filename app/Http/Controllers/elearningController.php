@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Response;
 use Auth;
+use App\Models\entryForm;
 
 class elearningController extends AppBaseController
 {
@@ -24,7 +25,11 @@ class elearningController extends AppBaseController
     {
         /** @var elearning $elearnings */
         // $elearnings = elearning::all();
+        // Eランの受講状況をチェック
         $elearning = elearning::where('user_id', Auth::user()->id)->first();
+
+        // 申込書の作成状況をチェック
+        $entryform = entryForm::where('user_id', Auth::user()->id)->first();
 
         if (is_null($elearning)) {
             $elearning = new elearning;

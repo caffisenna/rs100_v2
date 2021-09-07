@@ -1,7 +1,7 @@
 <!-- Furigana Field -->
 <div class="col-sm-12">
-    {!! Form::label('furigana', 'ふりがな:') !!}
-    <p>{{ $entryForm->furigana }}</p>
+    {!! Form::label('furigana', '氏名:') !!}
+    <p>{{ $entryForm->user->name }}({{ $entryForm->furigana }})</p>
 </div>
 
 <!-- Bs Id Field -->
@@ -12,20 +12,14 @@
 
 <!-- District Field -->
 <div class="col-sm-12">
-    {!! Form::label('district', '地区:') !!}
-    <p>{{ $entryForm->district }}</p>
-</div>
-
-<!-- Dan Name Field -->
-<div class="col-sm-12">
-    {!! Form::label('dan_name', '団名:') !!}
-    <p>{{ $entryForm->dan_name }}</p>
+    {!! Form::label('district', '所属:') !!}
+    <p>{{ $entryForm->district }}地区 {{ $entryForm->dan_name }}団</p>
 </div>
 
 <!-- Birth Day Field -->
 <div class="col-sm-12">
     {!! Form::label('birth_day', '生年月日:') !!}
-    <p>{{ $entryForm->birth_day }}</p>
+    <p>{{ $entryForm->birth_day->format('Y-m-d') }}</p>
 </div>
 
 <!-- Gender Field -->
@@ -98,17 +92,5 @@
 <div class="col-sm-12">
     {!! Form::label('sm_position', '役務:') !!}
     <p>{{ $entryForm->sm_position }}</p>
-</div>
-
-<!-- Created At Field -->
-<div class="col-sm-12">
-    {!! Form::label('created_at', '作成日:') !!}
-    <p>{{ $entryForm->created_at }}</p>
-</div>
-
-<!-- Updated At Field -->
-<div class="col-sm-12">
-    {!! Form::label('updated_at', '最終更新日:') !!}
-    <p>{{ $entryForm->updated_at }}</p>
 </div>
 

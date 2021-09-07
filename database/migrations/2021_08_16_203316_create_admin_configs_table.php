@@ -21,6 +21,7 @@ class CreateAdminConfigsTable extends Migration
             $table->boolean('elearning')->default(false);
             $table->boolean('healthcheck')->default(false);
             $table->boolean('user_edit')->default(false);
+            $table->boolean('user_upload')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });
