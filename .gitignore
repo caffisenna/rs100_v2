@@ -1,5 +1,7 @@
 /node_modules
 /public/hot
+/public/images/user_uploads/*
+!/public/images/user_uploads/ocr.sh
 /public/storage
 /public/images/user_uploads/*
 !/public/images/user_uploads/ocr.sh
