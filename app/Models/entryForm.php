@@ -98,12 +98,12 @@ class entryForm extends Model
      */
     public static $rules = [
         'furigana' => 'required',
-        'bs_id' => 'required',
+        'bs_id' => 'required|digits:10',
         'district' => 'required',
         'dan_name' => 'required',
-        'birth_day' => 'required|date',
+        'birth_day' => 'required|date_format:"Y-m-d"',
         'gender' => 'required',
-        'zip' => 'required|min:7|max:7',
+        'zip' => 'required|digits:7',
         'address' => 'required',
         'telephone' => 'required',
         'cellphone' => 'required',
@@ -114,6 +114,31 @@ class entryForm extends Model
         'emer_phone' => 'required',
         'sm_name' => 'required',
         'sm_position' => 'required'
+    ];
+
+    // ここにカスタムエラーメッセージを定義する
+    // viewの方の該当箇所に {{ $message }} を入れると拾ってくれる
+    public static $messages= [
+        'furigana.required' => '入力必須です',
+        'bs_id.required' => '登録証を確認してください',
+        'bs_id.digits'=>'10桁の登録番号を登録証で確認してください',
+        'zip.required'=>'必須',
+        'zip.digits'=>'7桁の半角数字で入力してください',
+        'birth_day.required'=>'入力必須です',
+        'birth_day.date_format'=>'2001-12-03の形式で入力してください',
+        'gender.required' => '性別を選択してください',
+        'address.required' => '入力必須です(番地まで正確に)',
+        'telephone.required'=>'入力必須です',
+        'cellphone.required'=>'入力必須です',
+        'exp_50km.required'=>'選択してください',
+        'district.required'=>'選択してください',
+        'dan_name.required'=>'選択してください',
+        'parent_name.required'=>'入力してください',
+        'parent_name_furigana.required'=>'入力してください',
+        'parent_relation.required'=>'入力してください',
+        'emer_phone.required'=>'入力してください',
+        'sm_name.required'=>'入力してください',
+        'sm_position.required'=>'選択してください',
     ];
 
     public function user()

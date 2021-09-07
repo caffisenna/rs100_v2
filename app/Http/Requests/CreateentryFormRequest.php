@@ -27,4 +27,9 @@ class CreateentryFormRequest extends FormRequest
     {
         return entryForm::$rules;
     }
+
+    public function messages()
+    {
+        return entryForm::$messages;
+    }
 }
