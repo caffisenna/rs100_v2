@@ -58,7 +58,12 @@ class resultUpload extends Model
      * @var array
      */
     public static $rules = [
-        'user_id' => 'required'
+        'user_id' => 'required',
+        'image' => 'required',
+    ];
+
+    public static $messages = [
+        'image.required'=>'TATTAの記録画面を選択してください',
     ];
 
 

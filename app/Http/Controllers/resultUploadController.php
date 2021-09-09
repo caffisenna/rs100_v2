@@ -105,14 +105,20 @@ class resultUploadController extends AppBaseController
         exec($cmd);
 
         // OCR結果ファイル読み込み
-        $result = file($pp . $imageName . "_result.txt", FILE_IGNORE_NEW_LINES);
+        // $result = file($pp . $imageName . "_result.txt", FILE_IGNORE_NEW_LINES);
+        $result = file($pp . $imageName . "_result.txt");
+        // dd($result);
         // 半角スペースで1行だけexplode
-        $result = explode(" ", $result[0]);
+        foreach($result as $key=>$value){
+            $lines[] = explode(" ", $result[$key]);
+        }
+        // dd($lines);
+
 
         // inputに格納
-        $input['date'] = $result['0'];
-        $input['time'] = $result['2'];
-        $input['distance'] = $result['1'];
+        // $input['date'] = $result['0'];
+        $input['time'] = str_replace(PHP_EOL, '', $lines['1']['0']);
+        $input['distance'] = str_replace(PHP_EOL, '', $lines['0']['1']);
         // ここまで画像解析処理
 
 

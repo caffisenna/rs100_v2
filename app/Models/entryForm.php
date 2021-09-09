@@ -101,7 +101,7 @@ class entryForm extends Model
         'bs_id' => 'required|digits:10',
         'district' => 'required',
         'dan_name' => 'required',
-        'birth_day' => 'required|date_format:"Y-m-d"',
+        'birth_day' => 'required|date_format:"Y/m/d"',
         'gender' => 'required',
         'zip' => 'required|digits:7',
         'address' => 'required',

@@ -1,21 +1,21 @@
-@if(Auth()->user()->is_admin && Auth()->user()->is_commi && Auth()->user()->is_staff)
-<!-- Time Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('time', 'Time:') !!}
-    {!! Form::text('time', null, ['class' => 'form-control']) !!}
-</div>
+@if (Auth()->user()->is_admin && Auth()->user()->is_commi && Auth()->user()->is_staff)
+    <!-- Time Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('time', 'Time:') !!}
+        {!! Form::text('time', null, ['class' => 'form-control']) !!}
+    </div>
 
-<!-- Distance Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('distance', 'Distance:') !!}
-    {!! Form::text('distance', null, ['class' => 'form-control']) !!}
-</div>
+    <!-- Distance Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('distance', 'Distance:') !!}
+        {!! Form::text('distance', null, ['class' => 'form-control']) !!}
+    </div>
 
-<!-- Image Path Field -->
-<div class="form-group col-sm-6">
-    {!! Form::label('image_path', 'Image Path:') !!}
-    {!! Form::text('image_path', null, ['class' => 'form-control']) !!}
-</div>
+    <!-- Image Path Field -->
+    <div class="form-group col-sm-6">
+        {!! Form::label('image_path', 'Image Path:') !!}
+        {!! Form::text('image_path', null, ['class' => 'form-control']) !!}
+    </div>
 @endunless
 
 <!-- Image Field -->
@@ -23,10 +23,13 @@
     {!! Form::label('image', '画像ファイル:') !!}
     <div class="input-group">
         <div class="custom-file">
-            {!! Form::file('image', ['class' => 'custom-file-input']) !!}
+            {!! Form::file('image', ['class' => 'custom-file-input','required'=>'required']) !!}
             {!! Form::label('image', '画像ファイルを選択', ['class' => 'custom-file-label']) !!}
         </div>
     </div>
+    @error('image')
+        <div class="error text-danger">{{ $message }}</div>
+    @enderror
 </div>
 <div class="clearfix"></div>
 <!-- User Id Field -->
