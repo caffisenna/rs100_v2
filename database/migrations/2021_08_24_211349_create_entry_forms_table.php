@@ -34,6 +34,8 @@ class CreateEntryFormsTable extends Migration
             $table->text('emer_phone');
             $table->text('sm_name');
             $table->text('sm_position');
+            $table->boolean('sm_confirmation')->nullable;
+            $table->boolean('map_upload')->nullable;
             $table->uuid('uuid')->nullable();
             $table->timestamps();
             $table->softDeletes();
