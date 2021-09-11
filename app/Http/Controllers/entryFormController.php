@@ -12,6 +12,7 @@ use Flash;
 use Ramsey\Uuid\Uuid;
 use Response;
 use App\Models\AdminConfig;
+use Carbon\Carbon;
 
 class entryFormController extends AppBaseController
 {
@@ -109,6 +110,11 @@ class entryFormController extends AppBaseController
         // $entryForm = entryForm::find($id);
         $entryForm = entryForm::where('user_id', Auth::user()->id)->first();
 
+        // 生年月日分解
+        $entryForm->bd_year =  carbon::parse($entryForm->birth_day)->year;
+        $entryForm->bd_month =  carbon::parse($entryForm->birth_day)->month;
+        $entryForm->bd_day =  carbon::parse($entryForm->birth_day)->day;
+
         if (empty($entryForm)) {
             Flash::error('Entry Form not found');
 
@@ -132,7 +138,7 @@ class entryFormController extends AppBaseController
         $entryForm = entryForm::find($id);
 
         if (empty($entryForm)) {
-            Flash::error('Entry Form not found');
+            Flash::error('当該IDがDBで見つかりません');
 
             return redirect(route('entryForms.index'));
         }
