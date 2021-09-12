@@ -5,15 +5,8 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>管理者用 参加申込状況</h1>
+                    <h1>{{ Auth::user()->is_commi }}地区 参加申込状況</h1>
                 </div>
-                {{-- @unless ($entryForm->id) --}}
-                {{-- <div class="col-sm-6">
-                    <a class="btn btn-primary float-right" href="{{ route('entries.create') }}">
-                        申込書作成
-                    </a>
-                </div> --}}
-                {{-- @endunless --}}
             </div>
         </div>
     </section>
@@ -26,7 +19,7 @@
 
         <div class="card">
             <div class="card-body p-0">
-                @include('admin.entry_forms.table')
+                @include('commi.entry_forms.table')
 
                 <div class="card-footer clearfix float-right">
                     <div class="float-right">

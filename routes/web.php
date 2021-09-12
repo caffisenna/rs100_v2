@@ -53,22 +53,26 @@ Route::post('/email/verification-notification', function (Request $request) {
 // })->middleware('verified');
 
 
-Route::middleware('verified')->group(function() {
+Route::middleware('verified')->group(function () {
     // 共通
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     // 一般ユーザ用
-    Route::prefix('user')->group(function(){
+    Route::prefix('user')->group(function () {
         // Route::get('/', 'User\HomeController@index');
         Route::resource('entryForms', App\Http\Controllers\entryFormController::class);
         Route::resource('elearnings', App\Http\Controllers\elearningController::class);
         Route::resource('resultUploads', App\Http\Controllers\resultUploadController::class);
     });
     // 管理ユーザ用
-    Route::prefix('admin')->middleware('can:admin')->group(function(){
+    Route::prefix('admin')->middleware('can:admin')->group(function () {
         // Route::get('/', 'Admin\HomeController@index');
         Route::resource('adminConfigs', App\Http\Controllers\AdminConfigController::class);
         Route::resource('entries', App\Http\Controllers\adminentryFormController::class);
+    });
+    // 地区コミ用
+    Route::prefix('commi')->middleware('can:commi')->group(function () {
+        Route::resource('entries', App\Http\Controllers\commiEntryFormController::class, ['only' => ['index', 'show']]);
     });
 });
 

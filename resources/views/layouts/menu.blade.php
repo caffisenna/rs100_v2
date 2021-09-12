@@ -1,11 +1,5 @@
 @if (isset(Auth::user()->email_verified_at))
-    @unless(Auth::user()->is_admin)
-        {{-- <ul>
-            <li><a href="#">申込書</a></li>
-            <li><a href="#">Eラーニング</a></li>
-            <li><a href="#">健康調査書</a></li>
-            <li><a href="#">設定</a></li>
-        </ul> --}}
+    @unless(Auth::user()->is_admin || Auth::user()->is_commi)
         <a href="{{ url('/user/entryForms') }}" class="btn btn-info btn-xs btn-block">申込書</a>
 
         <a href="{{ url('/user/elearnings') }}" class="btn btn-info btn-xs btn-block">Eラーニング</a>
@@ -42,9 +36,8 @@
 
 @if (Auth::user()->is_commi)
     <li class="nav-item">
-        <a href="{{ route('adminConfigs.index') }}"
-            class="nav-link {{ Request::is('adminConfigs*') ? 'active' : '' }}">
-            <p>地区コミ用メニュー</p>
+        <a href="{{ route('entries.index') }}" class="nav-link {{ Request::is('entries*') ? 'active' : '' }}">
+            <p>{{ Auth::user()->is_commi }}地区参加者一覧</p>
         </a>
     </li>
 @endif
