@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\entryFormController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 
@@ -70,3 +71,12 @@ Route::middleware('verified')->group(function() {
         Route::resource('entries', App\Http\Controllers\adminentryFormController::class);
     });
 });
+
+Route::get('/sm_confirm', [
+    entryFormController::class, 'confirm_index'
+    // {url}/sm_confirm/?q=12345 の形式で投げる
+]);
+
+Route::post('/sm_confirm', [
+    entryFormController::class, 'confirm_post'
+])->name('comfirm_post');

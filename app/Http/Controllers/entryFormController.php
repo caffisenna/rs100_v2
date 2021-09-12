@@ -13,6 +13,8 @@ use Ramsey\Uuid\Uuid;
 use Response;
 use App\Models\AdminConfig;
 use Carbon\Carbon;
+use App\Models\User;
+use PhpParser\Node\Stmt\TryCatch;
 
 class entryFormController extends AppBaseController
 {
@@ -176,5 +178,48 @@ class entryFormController extends AppBaseController
         Flash::success('申込書を削除しました');
 
         return redirect(route('entryForms.index'));
+    }
+
+    public function confirm_index(Request $request)
+    {
+        // 隊長の承認リンクを踏んだときの処理
+
+        $input = $request->all();
+
+        // ポストされたuuidから該当申込書をピックアップ
+        if (isset($input['q'])) {
+            $entryForm = entryForm::where('uuid', $input['q'])->firstOrFail();
+            // リレーションからユーザーIDを引っ張る
+            if($entryForm){
+                $user = User::where('id', $entryForm->user_id)->first();
+                $entryForm->name = $user->name;}
+        }else{
+            $entryForm = new entryForm;
+        }
+
+        return view('sm_confirmation.index')
+            ->with('entryForm', $entryForm);
+    }
+
+    public function confirm_post(Request $request)
+    {
+        // 隊長が承認ボタンを押したときの処理
+
+        $input = $request->all();
+
+        // ポストされたuuidから該当申込書をピックアップ
+        $entryForm = entryForm::where('uuid', $input['confirm'])->first();
+
+        // 承認年月日をcarbonで生成
+        $entryForm->sm_confirmation = Carbon::now()->format('Y-m-d H:i:s');
+
+        // DBに保存
+        $entryForm->save();
+
+        // flashメッセージを返してリダイレクト
+        Flash::success('以下の参加を承認しました。');
+
+        return view('sm_confirmation.index')
+            ->with('entryForm', $entryForm);
     }
 }
