@@ -25,15 +25,27 @@
             </tr>
             <tr>
                 <td>隊の承認</td>
-                <td>{{ $entryForm->sm_confirmation }}</td>
+                @if (isset($entryForm->sm_confirmation))
+                    <td>{{ $entryForm->sm_confirmation }}</td>
+                @else
+                    <td> <span class="uk-text-danger">未承認</span></td>
+                @endif
             </tr>
             <tr>
                 <td>コース概略</td>
-                <td>{{ $entryForm->map_upload }}</td>
+                @if (isset($entryForm->map_upload))
+                    <td>{{ $entryForm->map_upload }}</td>
+                @else
+                    <td> <span class="uk-text-danger">アップロードされていません</span></td>
+                @endif
             </tr>
             <tr>
-                <td>Eラーニング合格</td>
-                <td>{{ $entryForm->elearning }}</td>
+                <td>Eラーニング修了</td>
+                @if (isset($entryForm->elearning))
+                    <td>{{ $entryForm->elearning }}</td>
+                @else
+                    <td> <span class="uk-text-danger">未修了</span></td>
+                @endif
             </tr>
         </tbody>
     </table>

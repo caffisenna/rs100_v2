@@ -32,7 +32,8 @@ class entryFormController extends AppBaseController
         /** @var entryForm $entryForms */
         // $entryForms = entryForm::all();
         $entryForm = entryForm::where('user_id', Auth::user()->id)->first();
-        $elearning = elearning::where('user_id',Auth::user()->id)->first();
+        $elearning = elearning::where('user_id',Auth::user()->id)->where('deleted_at',NULL)->first();
+        $entryForm->elearning = $elearning->created_at;
 
         if (is_null($entryForm)) {
             $entryForm = new entryForm;

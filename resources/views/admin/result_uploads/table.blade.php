@@ -15,7 +15,10 @@
             @foreach ($resultUploads as $resultUpload)
             {{-- {{ dd($resultUploads) }} --}}
                 <tr>
-                    <td>{{ $resultUpload->id }}{{ $resultUpload->user_name }}{{ $resultUpload->district }}{{ $resultUpload->dan_name }}</td>
+                    <td>画像ID: {{ $resultUpload->id }}<br>
+                        氏名: <a href="{{ route('adminentries.show', [$resultUpload->user_id]) }}">{{ $resultUpload->user_name }}</a><br>
+                        参加者ID:{{ $resultUpload->user_id }}<br>
+                        所属: {{ $resultUpload->district }}地区{{ $resultUpload->dan_name }}団</td>
                     <td>{{ $resultUpload->date }}</td>
                     <td>{{ $resultUpload->distance }}</td>
                     <td>{{ $resultUpload->time }}</td>

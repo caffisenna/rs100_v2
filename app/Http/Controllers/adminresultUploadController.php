@@ -28,7 +28,7 @@ class adminresultUploadController extends AppBaseController
         /** @var resultUpload $resultUploads */
 
         // チェックアイコンが押されたときの処理
-        if(isset($request->check)){
+        if (isset($request->check)) {
             $resultUpload = resultUpload::find($request->check);
             // 現在時刻を取得
             $resultUpload->checked_at = now();
@@ -41,15 +41,22 @@ class adminresultUploadController extends AppBaseController
 
         // 氏名、地区名、団名を取得
         foreach ($resultUploads as $value) {
-            $name = User::where('id',$value['user_id'])->first('name');
-            $value['user_name'] = $name->name;
+                $name = User::where('id', $value['user_id'])->first('name');
+                $value['user_name'] = $name->name;
 
-            // ユーザーIDで引っかけて、地区と団名カラムだけ引っこ抜く
-            $dan_info = entryForm::where('user_id',$value['user_id'])->first(['district','dan_name']);
-            // 配列に入れる
-            $value['district'] = $dan_info->district;
-            $value['dan_name'] = $dan_info->dan_name;
-
+                // ユーザーIDで引っかけて、地区と団名カラムだけ引っこ抜く
+                $dan_info = entryForm::where('user_id', $value['user_id'])->first(['district', 'dan_name']);
+                // 配列に入れる
+                try {
+                    $value['district'] = $dan_info->district;
+                } catch (\Throwable $e) {
+                    $value['district'] = '申込書なし';
+                }
+                try {
+                    $value['dan_name'] = $dan_info->dan_name;
+                } catch (\Throwable $e) {
+                    $value['dan_name'] = '申込書なし';
+                }
         }
         // dd($resultUploads);
 
@@ -107,7 +114,7 @@ class adminresultUploadController extends AppBaseController
         $result = file($pp . $imageName . "_result.txt");
         // dd($result);
         // 半角スペースで1行だけexplode
-        foreach($result as $key=>$value){
+        foreach ($result as $key => $value) {
             $lines[] = explode(" ", $result[$key]);
         }
         // dd($lines);
@@ -215,7 +222,7 @@ class adminresultUploadController extends AppBaseController
 
         // ファイル削除
         File::delete(public_path('/images/user_uploads/') . $delFileName);
-        File::delete(public_path('/images/user_uploads/') . $delFileName. '_result.txt');
+        File::delete(public_path('/images/user_uploads/') . $delFileName . '_result.txt');
 
 
         if (empty($resultUpload)) {

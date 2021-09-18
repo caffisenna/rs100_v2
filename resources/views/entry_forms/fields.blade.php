@@ -454,7 +454,7 @@
 
 <div class="card col-sm-6">
     <div class="card-header">
-        隊の承認
+        隊長・団委員長
     </div>
     <div class="card-body">
         <!-- Sm Name Field -->

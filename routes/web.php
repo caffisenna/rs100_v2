@@ -75,10 +75,6 @@ Route::middleware('verified')->group(function () {
     Route::prefix('commi')->middleware('can:commi')->group(function () {
         Route::resource('entries', App\Http\Controllers\commiEntryFormController::class, ['only' => ['index', 'show']]);
     });
-    // 地区コミ用
-    Route::prefix('commi')->middleware('can:commi')->group(function () {
-        Route::resource('entries', App\Http\Controllers\commiEntryFormController::class, ['only' => ['index', 'show']]);
-    });
 });
 
 Route::get('/sm_confirm', [
