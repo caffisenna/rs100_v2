@@ -12,9 +12,11 @@ use Flash;
 use Ramsey\Uuid\Uuid;
 use Response;
 use App\Models\AdminConfig;
+use App\Models\elearning as ModelsElearning;
 use Carbon\Carbon;
 use App\Models\User;
 use PhpParser\Node\Stmt\TryCatch;
+use App\Models\elearning;
 
 class entryFormController extends AppBaseController
 {
@@ -30,10 +32,11 @@ class entryFormController extends AppBaseController
         /** @var entryForm $entryForms */
         // $entryForms = entryForm::all();
         $entryForm = entryForm::where('user_id', Auth::user()->id)->first();
-        // dd($entryForm);
+        $elearning = elearning::where('user_id',Auth::user()->id)->first();
 
         if (is_null($entryForm)) {
             $entryForm = new entryForm;
+            $entryForm->elearning = $elearning->created_at;
         }
 
         $entryForm->available = AdminConfig::first()->create_application;
@@ -70,6 +73,9 @@ class entryFormController extends AppBaseController
         $input['user_id'] = Auth()->user()->id;
         $input['uuid'] = Uuid::uuid4();
 
+        // 生年月日生成
+        $input['birth_day'] = Carbon::create($input['bd_year'],$input['bd_month'],$input['bd_day']);
+
         /** @var entryForm $entryForm */
         $entryForm = entryForm::create($input);
 
@@ -90,8 +96,8 @@ class entryFormController extends AppBaseController
         /** @var entryForm $entryForm */
         $entryForm = entryForm::find($id);
 
-        if (empty($entryForm)) {
-            Flash::error('Entry Form not found');
+        if (empty($entryForm) || $entryForm->user_id <> Auth::user()->id) {
+            Flash::error('該当データが見つかりません');
 
             return redirect(route('entryForms.index'));
         }
@@ -118,7 +124,7 @@ class entryFormController extends AppBaseController
         $entryForm->bd_day =  carbon::parse($entryForm->birth_day)->day;
 
         if (empty($entryForm)) {
-            Flash::error('Entry Form not found');
+            Flash::error('該当データが見つかりません');
 
             return redirect(route('entryForms.index'));
         }
@@ -144,6 +150,9 @@ class entryFormController extends AppBaseController
 
             return redirect(route('entryForms.index'));
         }
+
+        // 生年月日生成
+        $request['birth_day'] = Carbon::create($request['bd_year'],$request['bd_month'],$request['bd_day']);
 
         $entryForm->fill($request->all());
         $entryForm->save();

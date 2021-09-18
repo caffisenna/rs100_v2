@@ -66,5 +66,9 @@ class resultUpload extends Model
         'image.required'=>'TATTAの記録画面を選択してください',
     ];
 
+    public function user() {
+        return $this->belongsTo(User::class);
+    }
+
 
 }

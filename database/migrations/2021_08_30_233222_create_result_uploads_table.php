@@ -21,6 +21,7 @@ class CreateResultUploadsTable extends Migration
             $table->string('distance')->nullable();
             $table->time('time')->nullable();
             $table->string('image_path')->nullable();
+            $table->dateTime('checked_at')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -4,6 +4,12 @@
     <p>{{ $entryForm->furigana }}</p>
 </div>
 
+<!-- Email Field -->
+<div class="col-sm-12">
+    {!! Form::label('email', 'Email:') !!}
+    <p>{{ $entryForm->email }}</p>
+</div>
+
 <!-- Bs Id Field -->
 <div class="col-sm-12">
     {!! Form::label('bs_id', 'Bs Id:') !!}

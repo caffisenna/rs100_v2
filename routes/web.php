@@ -68,7 +68,12 @@ Route::middleware('verified')->group(function () {
     Route::prefix('admin')->middleware('can:admin')->group(function () {
         // Route::get('/', 'Admin\HomeController@index');
         Route::resource('adminConfigs', App\Http\Controllers\AdminConfigController::class);
-        Route::resource('entries', App\Http\Controllers\adminentryFormController::class);
+        Route::resource('adminentries', App\Http\Controllers\adminentryFormController::class);
+        Route::resource('adminresultUploads', App\Http\Controllers\adminresultUploadController::class);
+    });
+    // 地区コミ用
+    Route::prefix('commi')->middleware('can:commi')->group(function () {
+        Route::resource('entries', App\Http\Controllers\commiEntryFormController::class, ['only' => ['index', 'show']]);
     });
     // 地区コミ用
     Route::prefix('commi')->middleware('can:commi')->group(function () {

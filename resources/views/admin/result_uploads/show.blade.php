@@ -5,10 +5,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>申込書詳細</h1>
+                    <h1>Result Upload Details</h1>
                 </div>
                 <div class="col-sm-6">
-                    <a class="btn btn-default float-right" href="{{ route('adminentries.index') }}">
+                    <a class="btn btn-default float-right"
+                       href="{{ route('resultUploads.index') }}">
                         Back
                     </a>
                 </div>
@@ -21,7 +22,7 @@
 
             <div class="card-body">
                 <div class="row">
-                    @include('entry_forms.show_fields')
+                    @include('result_uploads.show_fields')
                 </div>
             </div>
 

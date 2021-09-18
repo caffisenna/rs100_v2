@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Response;
 use App\Models\User;
+use Carbon\Carbon;
 
 class adminentryFormController extends AppBaseController
 {
@@ -39,7 +40,7 @@ class adminentryFormController extends AppBaseController
      */
     public function create()
     {
-        return view('entry_forms.create');
+        return view('admin.entry_forms.create');
     }
 
     /**
@@ -54,12 +55,15 @@ class adminentryFormController extends AppBaseController
         $input = $request->all();
         $input['user_id'] = Auth()->user()->id;
 
+        // 生年月日生成
+        $input['birth_day'] = Carbon::create($input['bd_year'],$input['bd_month'],$input['bd_day']);
+
         /** @var entryForm $entryForm */
         $entryForm = entryForm::create($input);
 
         Flash::success('Entry Form saved successfully.');
 
-        return redirect(route('entries.index'));
+        return redirect(route('adminentries.index'));
     }
 
     /**
@@ -95,6 +99,11 @@ class adminentryFormController extends AppBaseController
         /** @var entryForm $entryForm */
         $entryForm = entryForm::find($id);
 
+        // 生年月日分解
+        $entryForm->bd_year =  carbon::parse($entryForm->birth_day)->year;
+        $entryForm->bd_month =  carbon::parse($entryForm->birth_day)->month;
+        $entryForm->bd_day =  carbon::parse($entryForm->birth_day)->day;
+
         if (empty($entryForm)) {
             Flash::error('Entry Form not found');
 
@@ -120,15 +129,18 @@ class adminentryFormController extends AppBaseController
         if (empty($entryForm)) {
             Flash::error('Entry Form not found');
 
-            return redirect(route('entriesindex'));
+            return redirect(route('adminentries.index'));
         }
+
+        // 生年月日生成
+        $request['birth_day'] = Carbon::create($request['bd_year'],$request['bd_month'],$request['bd_day']);
 
         $entryForm->fill($request->all());
         $entryForm->save();
 
-        Flash::success('Entry Form updated successfully.');
+        Flash::success('更新しました');
 
-        return redirect(route('entries.index'));
+        return redirect(route('adminentries.index'));
     }
 
     /**
@@ -146,15 +158,15 @@ class adminentryFormController extends AppBaseController
         $entryForm = entryForm::find($id);
 
         if (empty($entryForm)) {
-            Flash::error('Entry Form not found');
+            Flash::error('見つかりません');
 
-            return redirect(route('entries.index'));
+            return redirect(route('adminentries.index'));
         }
 
         $entryForm->delete();
 
-        Flash::success('Entry Form deleted successfully.');
+        Flash::success('削除しました');
 
-        return redirect(route('entries.index'));
+        return redirect(route('adminentries.index'));
     }
 }

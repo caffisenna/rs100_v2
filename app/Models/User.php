@@ -41,9 +41,16 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    // public function unko() {
-    //     return $this->hasOne(Unko::class);
-    //     return $this->hasOne(entryForm::class);
-    //     return $this->hasOne(elearning::class);
-    // }
+    public function user() {
+        // return $this->hasOne(entryForm::class);
+        return $this->hasOne(elearning::class);
+    }
+
+    public function entryform() {
+        return $this->hasOne(entryForm::class);
+    }
+
+    public function resultupload() {
+        return $this->hasMany(resultUpload::class);
+    }
 }

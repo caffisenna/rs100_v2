@@ -7,13 +7,6 @@
                 <div class="col-sm-6">
                     <h1>管理者用 参加申込状況</h1>
                 </div>
-                {{-- @unless ($entryForm->id) --}}
-                {{-- <div class="col-sm-6">
-                    <a class="btn btn-primary float-right" href="{{ route('entries.create') }}">
-                        申込書作成
-                    </a>
-                </div> --}}
-                {{-- @endunless --}}
             </div>
         </div>
     </section>
