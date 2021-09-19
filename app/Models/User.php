@@ -53,4 +53,8 @@ class User extends Authenticatable implements MustVerifyEmail
     public function resultupload() {
         return $this->hasMany(resultUpload::class);
     }
+
+    public function planupload() {
+        return $this->hasMany(planUpload::class);
+    }
 }

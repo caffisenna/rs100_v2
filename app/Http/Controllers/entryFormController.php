@@ -6,6 +6,7 @@ use App\Http\Requests\CreateentryFormRequest;
 use App\Http\Requests\UpdateentryFormRequest;
 use App\Http\Controllers\AppBaseController;
 use App\Models\entryForm;
+use App\Models\planUpload;
 use Auth;
 use Illuminate\Http\Request;
 use Flash;
@@ -32,8 +33,14 @@ class entryFormController extends AppBaseController
         /** @var entryForm $entryForms */
         // $entryForms = entryForm::all();
         $entryForm = entryForm::where('user_id', Auth::user()->id)->first();
+
+        // Eラーニング
         $elearning = elearning::where('user_id',Auth::user()->id)->where('deleted_at',NULL)->first();
         $entryForm->elearning = $elearning->created_at;
+
+        // 計画書アップロード
+        $plan = planUpload::where('user_id',Auth::user()->id)->where('deleted_at',NULL)->first();
+        $entryForm->plan_upload = $plan->created_at;
 
         if (is_null($entryForm)) {
             $entryForm = new entryForm;

@@ -33,8 +33,8 @@
             </tr>
             <tr>
                 <td>コース概略</td>
-                @if (isset($entryForm->map_upload))
-                    <td>{{ $entryForm->map_upload }}</td>
+                @if (isset($entryForm->plan_upload))
+                    <td>{{ $entryForm->plan_upload }}</td>
                 @else
                     <td> <span class="uk-text-danger">アップロードされていません</span></td>
                 @endif

@@ -3,6 +3,7 @@
 /public/images/user_uploads/*
 !/public/images/user_uploads/ocr.sh
 /public/storage
+/public/plans
 /public/images/user_uploads/*
 !/public/images/user_uploads/ocr.sh
 /storage/*.key

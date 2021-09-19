@@ -4,9 +4,11 @@
 
         <a href="{{ url('/user/elearnings') }}" class="btn btn-info btn-xs btn-block">Eラーニング</a>
 
-        <a href="#" class="btn btn-info btn-xs btn-block">健康調査書</a>
+        {{-- <a href="#" class="btn btn-info btn-xs btn-block">健康調査書</a> --}}
 
         <a href="{{ url('/user/resultUploads') }}" class="btn btn-info btn-xs btn-block">結果アップロード</a>
+
+        <a href="{{ url('/user/planUploads') }}" class="btn btn-info btn-xs btn-block">計画書アップロード</a>
     @endunless
 @endif
 

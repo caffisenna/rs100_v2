@@ -63,6 +63,7 @@ Route::middleware('verified')->group(function () {
         Route::resource('entryForms', App\Http\Controllers\entryFormController::class);
         Route::resource('elearnings', App\Http\Controllers\elearningController::class);
         Route::resource('resultUploads', App\Http\Controllers\resultUploadController::class);
+        Route::resource('planUploads', App\Http\Controllers\planUploadController::class);
     });
     // 管理ユーザ用
     Route::prefix('admin')->middleware('can:admin')->group(function () {
