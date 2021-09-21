@@ -7,7 +7,7 @@
                 <div class="col-sm-6">
                     <h1>参加申込書</h1>
                 </div>
-                @unless($entryForm->id || !$entryForm->available)
+                @unless(isset($entryForm->id) || !$entryForm->available)
                     <div class="col-sm-6">
                         <a class="btn btn-primary float-right" href="{{ route('entryForms.create') }}">
                             {{-- <a class="btn btn-primary float-right" href="{{ url('/user/entryForms/create') }}"> --}}

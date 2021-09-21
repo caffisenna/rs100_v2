@@ -12,10 +12,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @version August 30, 2021, 11:32 pm JST
  *
  * @property string $user_id
- * @property string $time
- * @property string $distance
- * @property string $image_path
- * @property file $image
+ * @property string $file_path
+ * @property file $file
  */
 class planUpload extends Model
 {

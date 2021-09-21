@@ -35,16 +35,24 @@ class entryFormController extends AppBaseController
         $entryForm = entryForm::where('user_id', Auth::user()->id)->first();
 
         // Eラーニング
-        $elearning = elearning::where('user_id',Auth::user()->id)->where('deleted_at',NULL)->first();
-        $entryForm->elearning = $elearning->created_at;
+        try {
+            $elearning = elearning::where('user_id',Auth::user()->id)->where('deleted_at',NULL)->first();
+            $entryForm->elearning = $elearning->created_at;
+        } catch (\Throwable $e) {
+            // エラー発生でも進める
+        }
 
         // 計画書アップロード
-        $plan = planUpload::where('user_id',Auth::user()->id)->where('deleted_at',NULL)->first();
-        $entryForm->plan_upload = $plan->created_at;
+        try {
+            $plan = planUpload::where('user_id',Auth::user()->id)->where('deleted_at',NULL)->first();
+            $entryForm->plan_upload = $plan->created_at;
+        } catch (\Throwable $th) {
+            // エラー発生でも進める
+        }
 
         if (is_null($entryForm)) {
             $entryForm = new entryForm;
-            $entryForm->elearning = $elearning->created_at;
+            // $entryForm->elearning = $elearning->created_at;
         }
 
         $entryForm->available = AdminConfig::first()->create_application;

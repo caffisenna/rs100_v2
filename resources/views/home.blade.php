@@ -18,9 +18,7 @@
                                 <a href="{{ url('/user/elearnings') }}" class="btn btn-info btn-lg btn-block">Eラーニング</a>
                             @endif
 
-                            @if ($configs->healthcheck)
-                                <a href="#" class="btn btn-info btn-lg btn-block">健康調査書</a>
-                            @endif
+                            <a href="{{ url('/user/planUploads') }}" class="btn btn-info btn-lg btn-block">計画書アップロード</a>
 
                             @if ($configs->user_upload)
                                 <a href="{{ url('/user/resultUploads') }}" class="btn btn-info btn-lg btn-block">結果アップロード</a>

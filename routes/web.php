@@ -63,14 +63,14 @@ Route::middleware('verified')->group(function () {
         Route::resource('entryForms', App\Http\Controllers\entryFormController::class);
         Route::resource('elearnings', App\Http\Controllers\elearningController::class);
         Route::resource('resultUploads', App\Http\Controllers\resultUploadController::class);
-        Route::resource('planUploads', App\Http\Controllers\planUploadController::class);
+        Route::resource('planUploads', App\Http\Controllers\planUploadController::class, ['except' => ['edit','show','update']]);
     });
     // 管理ユーザ用
     Route::prefix('admin')->middleware('can:admin')->group(function () {
         // Route::get('/', 'Admin\HomeController@index');
         Route::resource('adminConfigs', App\Http\Controllers\AdminConfigController::class);
-        Route::resource('adminentries', App\Http\Controllers\adminentryFormController::class);
-        Route::resource('adminresultUploads', App\Http\Controllers\adminresultUploadController::class);
+        Route::resource('adminentries', App\Http\Controllers\adminentryFormController::class, ['except' => 'create']);
+        Route::resource('adminresultUploads', App\Http\Controllers\adminresultUploadController::class, ['except' => 'create']);
     });
     // 地区コミ用
     Route::prefix('commi')->middleware('can:commi')->group(function () {

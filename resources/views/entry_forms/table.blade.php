@@ -3,12 +3,16 @@
         <tbody>
             <tr>
                 <td>申込書作成日</td>
+                @if (isset($entryForm->created_at))
                 <td>{{ $entryForm->created_at }}</td>
+                @else
+                    <td> <span class="uk-text-danger">未作成</span></td>
+                @endif
             </tr>
             <tr>
                 <td>申込書</td>
                 <td>
-                    @if ($entryForm->id)
+                    @if (isset($entryForm->id))
                         {!! Form::open(['route' => ['entryForms.destroy', $entryForm->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>
                             <a href="{{ route('entryForms.show', [$entryForm->id]) }}" class='btn btn-default btn-lg'>
