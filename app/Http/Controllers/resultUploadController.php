@@ -109,7 +109,7 @@ class resultUploadController extends AppBaseController
         $result = file($pp . $imageName . "_result.txt");
         // dd($result);
         // 半角スペースで1行だけexplode
-        foreach($result as $key=>$value){
+        foreach ($result as $key => $value) {
             $lines[] = explode(" ", $result[$key]);
         }
         // dd($lines);
@@ -117,8 +117,18 @@ class resultUploadController extends AppBaseController
 
         // inputに格納
         // $input['date'] = $result['0'];
-        $input['time'] = str_replace(PHP_EOL, '', $lines['1']['0']);
-        $input['distance'] = str_replace(PHP_EOL, '', $lines['0']['1']);
+        if (isset($lines['1']['0'])) {
+            $input['time'] = str_replace(PHP_EOL, '', $lines['1']['0']);
+        }else{
+            Flash::warning('正しいログファイルがアップロードされなかった可能性があります');
+            return redirect(route('resultUploads.index'));
+        }
+        if (isset($lines['0']['1'])) {
+            $input['distance'] = str_replace(PHP_EOL, '', $lines['0']['1']);
+        }else{
+            Flash::warning('正しいログファイルがアップロードされなかった可能性があります');
+            return redirect(route('resultUploads.index'));
+        }
         // ここまで画像解析処理
 
 
@@ -216,7 +226,7 @@ class resultUploadController extends AppBaseController
 
         // ファイル削除
         File::delete(public_path('/images/user_uploads/') . $delFileName);
-        File::delete(public_path('/images/user_uploads/') . $delFileName. '_result.txt');
+        File::delete(public_path('/images/user_uploads/') . $delFileName . '_result.txt');
 
 
         if (empty($resultUpload)) {
