@@ -8,10 +8,13 @@
                     <h1>歩行データアップロード</h1>
                 </div>
                 <div class="col-sm-6">
-                    <a class="btn btn-primary float-right"
-                       href="{{ route('resultUploads.create') }}">
-                        新規にアップする
-                    </a>
+                    @if ($resultUploads->count() < 5)
+                        <a class="btn btn-primary float-right" href="{{ route('resultUploads.create') }}">
+                            新規にアップする
+                        </a>
+                    @else
+                        <p class="uk-text-danger">アップロード上限数を超えました</p>
+                    @endif
                 </div>
             </div>
         </div>
@@ -38,4 +41,3 @@
     </div>
 
 @endsection
-

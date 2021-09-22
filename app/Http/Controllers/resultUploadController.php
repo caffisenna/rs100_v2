@@ -120,13 +120,17 @@ class resultUploadController extends AppBaseController
         if (isset($lines['1']['0'])) {
             $input['time'] = str_replace(PHP_EOL, '', $lines['1']['0']);
         }else{
-            Flash::warning('正しいログファイルがアップロードされなかった可能性があります');
+            Flash::warning('正しいスクリーンショットがアップロードされなかった可能性があります1。<br>
+            もし結果のスクリーンショットをアップ使用としてこのエラーメッセージが表示されている場合は下記のアドレスに画像を送信して下さい。<br>
+            <a href="mailto:register.rs100km@gmail.com">register.rs100km@gmail.com</a>');
             return redirect(route('resultUploads.index'));
         }
         if (isset($lines['0']['1'])) {
             $input['distance'] = str_replace(PHP_EOL, '', $lines['0']['1']);
         }else{
-            Flash::warning('正しいログファイルがアップロードされなかった可能性があります');
+            Flash::warning('正しいスクリーンショットがアップロードされなかった可能性があります1。<br>
+            もし結果のスクリーンショットをアップ使用としてこのエラーメッセージが表示されている場合は下記のアドレスに画像を送信して下さい。<br>
+            <a href="mailto:register.rs100km@gmail.com">register.rs100km@gmail.com</a>');
             return redirect(route('resultUploads.index'));
         }
         // ここまで画像解析処理
