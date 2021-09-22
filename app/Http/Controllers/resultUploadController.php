@@ -121,7 +121,7 @@ class resultUploadController extends AppBaseController
             $input['time'] = str_replace(PHP_EOL, '', $lines['1']['0']);
         }else{
             Flash::warning('正しいスクリーンショットがアップロードされなかった可能性があります。<br>
-            もし結果のスクリーンショットをアップ使用としてこのエラーメッセージが表示されている場合は下記のアドレスに画像を送信して下さい。<br>
+            もし結果のスクリーンショットをアップしようとしてこのエラーメッセージが表示されている場合は下記のアドレスに画像を送信して下さい。<br>
             <a href="mailto:register.rs100km@gmail.com">register.rs100km@gmail.com</a>');
             return redirect(route('resultUploads.index'));
         }
@@ -129,7 +129,7 @@ class resultUploadController extends AppBaseController
             $input['distance'] = str_replace(PHP_EOL, '', $lines['0']['1']);
         }else{
             Flash::warning('正しいスクリーンショットがアップロードされなかった可能性があります。<br>
-            もし結果のスクリーンショットをアップ使用としてこのエラーメッセージが表示されている場合は下記のアドレスに画像を送信して下さい。<br>
+            もし結果のスクリーンショットをアップしようとしてこのエラーメッセージが表示されている場合は下記のアドレスに画像を送信して下さい。<br>
             <a href="mailto:register.rs100km@gmail.com">register.rs100km@gmail.com</a>');
             return redirect(route('resultUploads.index'));
         }
