@@ -27,3 +27,9 @@
     {!! Form::label('user_edit', 'User Edit:') !!}
     {!! Form::select('user_edit',['1'=>'true','0'=>'false'],is_null(old('$adminConfig->user_edit')) ? $adminConfig->user_edit : old('$adminConfig->user_edit'),['class'=>'form-control']) !!}
 </div>
+
+<!-- User Upload Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('user_upload', 'User Upload:') !!}
+    {!! Form::select('user_upload',['1'=>'true','0'=>'false'],is_null(old('$adminConfig->user_upload')) ? $adminConfig->user_upload : old('$adminConfig->user_upload'),['class'=>'form-control']) !!}
+</div>

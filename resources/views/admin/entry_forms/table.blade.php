@@ -7,7 +7,7 @@
                 <th>名前</th>
                 <th>所属</th>
                 <th>性別</th>
-                <th colspan="3">Action</th>
+                <th>Action</th>
             </tr>
         </thead>
         <tbody>

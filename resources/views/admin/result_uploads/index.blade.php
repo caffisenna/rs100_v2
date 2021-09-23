@@ -19,6 +19,7 @@
 
         <div class="card">
             <div class="card-body p-0">
+                画像数: {{ $resultUploads->count() }}
                 @include('admin.result_uploads.table')
 
                 <div class="card-footer clearfix float-right">
