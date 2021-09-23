@@ -3,7 +3,7 @@
         <img src="{{ url('/images/logo_color.png') }}"
              alt="{{ config('app.name') }} Logo"
              class="brand-image img-circle elevation-3">
-        <span class="brand-text font-weight-light">参加申込システム</span>
+        <span class="brand-text font-weight-light">{{ config('app.name') }}</span>
     </a>
 
     <div class="sidebar">

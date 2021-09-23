@@ -102,7 +102,8 @@
 
         <!-- Main Footer -->
         <footer class="main-footer">
-
+            <p class="uk-text-small uk-text-center">ボーイスカウト東京連盟<br>
+                {{ config('app.name') }} &copy;</p>
         </footer>
     </div>
 

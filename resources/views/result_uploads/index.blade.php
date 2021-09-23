@@ -8,9 +8,10 @@
                     <h1>歩行データアップロード</h1>
                 </div>
                 <div class="col-sm-6">
-                    @if ($resultUploads->count() < 5)
+                    {{-- アップロード上限を10枚に --}}
+                    @if ($resultUploads->count() < 10)
                         <a class="btn btn-primary float-right" href="{{ route('resultUploads.create') }}">
-                            新規にアップする
+                            アップロードする
                         </a>
                     @else
                         <p class="uk-text-danger">アップロード上限数を超えました</p>
@@ -25,16 +26,11 @@
         @include('flash::message')
 
         <div class="clearfix"></div>
+        <p class="uk-text-success">あと{{ 10 - $resultUploads->count() }}枚アップロード可能</p>
 
         <div class="card">
             <div class="card-body p-0">
                 @include('result_uploads.table')
-
-                <div class="card-footer clearfix float-right">
-                    <div class="float-right">
-
-                    </div>
-                </div>
             </div>
 
         </div>

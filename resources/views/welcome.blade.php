@@ -515,7 +515,7 @@
             </div>
             <footer class="uk-text-small uk-text-center uk-margin-large-top">
                 <p class="">ボーイスカウト東京連盟<br>
-                    RS100kmハイクエントリーシステム &copy;</p>
+                    {{ config('app.name') }} &copy;</p>
             </footer>
         </div>
     </div>
