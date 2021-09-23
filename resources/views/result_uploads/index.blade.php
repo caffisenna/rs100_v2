@@ -27,6 +27,10 @@
 
         <div class="clearfix"></div>
         <p class="uk-text-success">あと{{ 10 - $resultUploads->count() }}枚アップロード可能</p>
+        <ul class="uk-list">
+            <li>合計タイム: {{ $resultUploads->hms }}</li>
+            <li>総距離: {{ $resultUploads->distance_sum }}<span class="uk-text-small">km</span></li>
+        </ul>
 
         <div class="card">
             <div class="card-body p-0">
