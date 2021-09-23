@@ -24,6 +24,7 @@
                     @include('admin.result_uploads.fields')
                 </div>
             </div>
+            <img src="{{ url('/') . '/images/user_uploads/' . $resultUpload->image_path }}" width="250px" uk-img>
 
             <div class="card-footer">
                 {!! Form::submit('更新', ['class' => 'btn btn-primary']) !!}
