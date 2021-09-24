@@ -28,7 +28,7 @@
                 </td>
             </tr>
             <tr>
-                <td>隊の承認</td>
+                <td>団の承認</td>
                 @if (isset($entryForm->sm_confirmation))
                     <td>{{ $entryForm->sm_confirmation }}</td>
                 @else

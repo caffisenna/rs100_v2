@@ -138,7 +138,7 @@
                 <td>{{ $entryForm->sm_position }}</td>
             </tr>
             <tr>
-                <td>隊の承認</td>
+                <td>団の承認</td>
                 <td>{{ $entryForm->sm_confirmation }}</td>
             </tr>
         </tbody>
