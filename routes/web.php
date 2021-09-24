@@ -71,6 +71,7 @@ Route::middleware('verified')->group(function () {
         Route::resource('adminConfigs', App\Http\Controllers\AdminConfigController::class);
         Route::resource('adminentries', App\Http\Controllers\adminentryFormController::class, ['except' => 'create']);
         Route::resource('adminresultUploads', App\Http\Controllers\adminresultUploadController::class, ['except' => 'create']);
+        Route::get('/result_lists', [App\Http\Controllers\adminresultUploadController::class, 'lists'])->name('resultlists');
     });
     // 地区コミ用
     Route::prefix('commi')->middleware('can:commi')->group(function () {

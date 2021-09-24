@@ -257,4 +257,28 @@ class adminresultUploadController extends AppBaseController
 
         return redirect(route('adminresultUploads.index'));
     }
+
+    public function lists(){
+        // $resultLists = resultUpload::with('user')->get();
+        // uniqueのユーザーIDを絞る
+        // $resultLists = resultUpload::orderBy('user_id')->get()->groupBy('user_id')
+        // ->map(function($resultList){
+        //     return $resultList->distance;
+        // })->sum();
+        $resultLists = resultUpload::select('user_id',resultUpload::raw('SUM(distance) as total_distance'),
+        resultUpload::raw('SUM(time) as total_time'))
+        ->groupBy('user_id')->get();
+        dd($resultLists);
+
+
+
+        // 同じIDでまとめる
+        // - 総距離
+        // - 総距離
+        // - 地区、団名を確認取得
+        // - 一覧へ返す
+
+        return view('admin.result_lists.index')
+            ->with('resultLists', $resultLists);
+    }
 }

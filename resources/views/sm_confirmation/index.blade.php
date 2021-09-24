@@ -20,7 +20,7 @@
         @if (is_null($entryForm->sm_confirmation))
             <div class="uk-card">
                 <div class="uk-card-header">
-                    <h3 class="uk-card-title">隊長承認</h3>
+                    <h3 class="uk-card-title">団の承認</h3>
                 </div>
                 <div class="uk-card-body">
                     以下のスカウトが第54回RS100kmハイクに参加申込をしています。<br>参加を承認する場合は以下のボタンをクリックしてください。
