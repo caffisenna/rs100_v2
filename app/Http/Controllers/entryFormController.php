@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateentryFormRequest;
 use App\Http\Requests\UpdateentryFormRequest;
 use App\Http\Controllers\AppBaseController;
+use App\Mail\SmConfirm;
 use App\Models\entryForm;
 use App\Models\planUpload;
 use Auth;
@@ -18,6 +19,8 @@ use Carbon\Carbon;
 use App\Models\User;
 use PhpParser\Node\Stmt\TryCatch;
 use App\Models\elearning;
+use Mail;
+
 
 class entryFormController extends AppBaseController
 {
@@ -239,7 +242,13 @@ class entryFormController extends AppBaseController
         $entryForm->sm_confirmation = Carbon::now()->format('Y-m-d H:i:s');
 
         // DBに保存
-        $entryForm->save();
+        // $entryForm->save();
+
+        // メール送信
+        $user = User::select('email','name')->where('id',$entryForm->user_id)->first();
+        $user->sm_confirmation = $entryForm->sm_confirmation;
+        $sendto = ['email'=>$user->email];
+        Mail::to($sendto)->send(new SmConfirm($user));
 
         // flashメッセージを返してリダイレクト
         Flash::success('以下の参加を承認しました。');
