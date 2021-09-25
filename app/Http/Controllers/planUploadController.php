@@ -10,6 +10,7 @@ use Flash;
 use Response;
 use Auth;
 use File;
+use App\Http\Util\SlackPost;
 
 class planUploadController extends AppBaseController
 {
@@ -66,6 +67,12 @@ class planUploadController extends AppBaseController
 
         /** @var planUpload $planUpload */
         $planUpload = planUpload::create($input);
+
+        // slack通知
+        $id = Auth()->user()->id;
+        $name = Auth()->user()->name;
+        $slack = new SlackPost();
+        $slack->send(":memo:[計画書] 参加者ID:$id " . $name . "さんが計画書アップ!");
 
         Flash::success('アップロードが完了しました');
 

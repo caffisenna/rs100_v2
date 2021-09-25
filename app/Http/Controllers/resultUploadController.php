@@ -11,6 +11,7 @@ use Flash;
 use Response;
 use Auth;
 use File;
+use App\Http\Util\SlackPost;
 
 class resultUploadController extends AppBaseController
 {
@@ -138,6 +139,20 @@ class resultUploadController extends AppBaseController
 
         /** @var resultUpload $resultUpload */
         $resultUpload = resultUpload::create($input);
+
+        //slack通知
+        $resultUploads = resultUpload::where('user_id', Auth::user()->id)->get();
+        $resultUploads->distance_sum = resultUpload::where('user_id', Auth::user()->id)->sum('distance');
+        $id = Auth()->user()->id;
+        $name = Auth()->user()->name;
+        $slack = new SlackPost();
+        if($resultUploads->distance_sum > 100){
+            $slack->send(":tada:[100km到達!] 参加者ID:$id " . $name . "さんが100kmに到達! (累計:$resultUploads->distance_sum km)");
+        }elseif(($resultUploads->distance_sum > 50)){
+            $slack->send(":smile:[50km到達!] 参加者ID:$id " . $name . "さんが50kmに到達! (累計:$resultUploads->distance_sum km)");
+        }else{
+            $slack->send(":frame_with_picture:[スクショ] 参加者ID:$id " . $name . "さんがスクショアップ! (累計:$resultUploads->distance_sum km)");
+        }
 
         Flash::success('アップロードが完了しました');
 

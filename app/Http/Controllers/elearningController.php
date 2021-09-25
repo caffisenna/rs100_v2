@@ -11,6 +11,7 @@ use Flash;
 use Response;
 use Auth;
 use App\Models\entryForm;
+use App\Http\Util\SlackPost;
 
 class elearningController extends AppBaseController
 {
@@ -87,6 +88,12 @@ class elearningController extends AppBaseController
 
         /** @var elearning $elearning */
         $elearning = elearning::create($input);
+
+        //slack通知
+        $id = Auth()->user()->id;
+        $name = Auth()->user()->name;
+        $slack = new SlackPost();
+        $slack->send(":100:[Eラン] 参加者ID:$id " . $name . "さんがEラン合格");
 
         Flash::success('全問正解! 合格です!');
 

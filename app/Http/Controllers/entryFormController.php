@@ -20,7 +20,7 @@ use App\Models\User;
 use PhpParser\Node\Stmt\TryCatch;
 use App\Models\elearning;
 use Mail;
-
+use App\Http\Util\SlackPost;
 
 class entryFormController extends AppBaseController
 {
@@ -39,7 +39,7 @@ class entryFormController extends AppBaseController
 
         // Eラーニング
         try {
-            $elearning = elearning::where('user_id',Auth::user()->id)->where('deleted_at',NULL)->first();
+            $elearning = elearning::where('user_id', Auth::user()->id)->where('deleted_at', NULL)->first();
             $entryForm->elearning = $elearning->created_at;
         } catch (\Throwable $e) {
             // エラー発生でも進める
@@ -47,7 +47,7 @@ class entryFormController extends AppBaseController
 
         // 計画書アップロード
         try {
-            $plan = planUpload::where('user_id',Auth::user()->id)->where('deleted_at',NULL)->first();
+            $plan = planUpload::where('user_id', Auth::user()->id)->where('deleted_at', NULL)->first();
             $entryForm->plan_upload = $plan->created_at;
         } catch (\Throwable $th) {
             // エラー発生でも進める
@@ -93,10 +93,16 @@ class entryFormController extends AppBaseController
         $input['uuid'] = Uuid::uuid4();
 
         // 生年月日生成
-        $input['birth_day'] = Carbon::create($input['bd_year'],$input['bd_month'],$input['bd_day']);
+        $input['birth_day'] = Carbon::create($input['bd_year'], $input['bd_month'], $input['bd_day']);
 
         /** @var entryForm $entryForm */
         $entryForm = entryForm::create($input);
+
+        //slack通知
+        $id = Auth()->user()->id;
+        $name = Auth()->user()->name;
+        $slack = new SlackPost();
+        $slack->send(":u7533:[申込書] 参加者ID:$id " . $name . "さんが申込書を作成しました");
 
         Flash::success('申込書が作成されました');
 
@@ -171,7 +177,7 @@ class entryFormController extends AppBaseController
         }
 
         // 生年月日生成
-        $request['birth_day'] = Carbon::create($request['bd_year'],$request['bd_month'],$request['bd_day']);
+        $request['birth_day'] = Carbon::create($request['bd_year'], $request['bd_month'], $request['bd_day']);
 
         $entryForm->fill($request->all());
         $entryForm->save();
@@ -218,10 +224,11 @@ class entryFormController extends AppBaseController
         if (isset($input['q'])) {
             $entryForm = entryForm::where('uuid', $input['q'])->firstOrFail();
             // リレーションからユーザーIDを引っ張る
-            if($entryForm){
+            if ($entryForm) {
                 $user = User::where('id', $entryForm->user_id)->first();
-                $entryForm->name = $user->name;}
-        }else{
+                $entryForm->name = $user->name;
+            }
+        } else {
             $entryForm = new entryForm;
         }
 
@@ -245,10 +252,14 @@ class entryFormController extends AppBaseController
         // $entryForm->save();
 
         // メール送信
-        $user = User::select('email','name')->where('id',$entryForm->user_id)->first();
+        $user = User::select('id', 'email', 'name')->where('id', $entryForm->user_id)->first();
         $user->sm_confirmation = $entryForm->sm_confirmation;
-        $sendto = ['email'=>$user->email];
-        Mail::to($sendto)->send(new SmConfirm($user));
+        $sendto = ['email' => $user->email];
+        // Mail::to($sendto)->send(new SmConfirm($user));
+
+        // slack通知
+        $slack = new SlackPost();
+        $slack->send("[団承認] 参加者ID:$user->id " . $user->name . "さんの団承認が完了しました");
 
         // flashメッセージを返してリダイレクト
         Flash::success('以下の参加を承認しました。');
