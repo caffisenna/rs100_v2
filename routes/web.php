@@ -87,3 +87,6 @@ Route::get('/sm_confirm', [
 Route::post('/sm_confirm', [
     entryFormController::class, 'confirm_post'
 ])->name('comfirm_post');
+
+
+Route::resource('status', App\Http\Controllers\statusController::class);

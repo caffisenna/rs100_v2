@@ -68,3 +68,11 @@
         <p>Result Uploads</p>
     </a>
 </li> --}}
+<li class="nav-item">
+    <a href="{{ route('status.index') }}"
+       class="nav-link {{ Request::is('status*') ? 'active' : '' }}">
+        <p>スターテス一覧</p>
+    </a>
+</li>
+
+
