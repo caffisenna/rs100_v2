@@ -17,7 +17,7 @@ class CreateResultUploadsTable extends Migration
         Schema::create('result_uploads', function (Blueprint $table) {
             $table->increments('id');
             $table->foreignId('user_id')->nullable()->constrained();
-            $table->date('date')->nullable();
+            $table->integer('day')->nullable();
             $table->string('distance')->nullable();
             $table->time('time')->nullable();
             $table->string('image_path')->nullable();
