@@ -113,11 +113,8 @@ class resultUploadController extends AppBaseController
         foreach ($result as $key => $value) {
             $lines[] = explode(" ", $result[$key]);
         }
-        // dd($lines);
-
 
         // inputに格納
-        // $input['date'] = $result['0'];
         if (isset($lines['1']['0'])) {
             $input['time'] = str_replace(PHP_EOL, '', $lines['1']['0']);
         }else{
@@ -136,6 +133,14 @@ class resultUploadController extends AppBaseController
         }
         // ここまで画像解析処理
 
+        // 初日 or 二日目判定
+        $day_limit = strtotime('2021-09-30 22:50:00');
+        $now = strtotime(now());
+        if ($day_limit > $now){
+            $input['day'] = 1;
+        }else{
+            $input['day'] = 2;
+        }
 
         /** @var resultUpload $resultUpload */
         $resultUpload = resultUpload::create($input);

@@ -107,6 +107,9 @@ class entryFormController extends AppBaseController
 
         Flash::success('申込書が作成されました');
 
+        // スターテス画面に反映
+        status::create(['user_id'=>$input['user_id']]);
+
         return redirect(route('entryForms.index'));
     }
 

@@ -15,6 +15,7 @@
                     </td>
                     <td>
                         <ul class="uk-list">
+                            <li>{{ $resultUpload->day }}日目の記録</li>
                             <li>距離: {{ $resultUpload->distance }}<span class="uk-text-small">km</span></li>
                             <li>時間: {{ $resultUpload->time }}</li>
                             <li>{{ $resultUpload->created_at }}</li>

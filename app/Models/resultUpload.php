@@ -32,7 +32,7 @@ class resultUpload extends Model
 
     public $fillable = [
         'user_id',
-        'date',
+        'day',
         'time',
         'distance',
         'image_path'
@@ -45,7 +45,7 @@ class resultUpload extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'date' => 'date',
+        'day' => 'integer',
         'user_id' => 'string',
         'time' => 'string',
         'distance' => 'string',
