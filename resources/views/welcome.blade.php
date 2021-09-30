@@ -484,12 +484,7 @@
                 <div class="uk-card uk-card-primary uk-card-body">
                     <h5 class="uk-card-title"><span uk-icon="icon:info; ratio:1"></span>NEWS</h5>
                     <ul class="uk-list">
-                        <li><a href="#">2021/09/08 申込開始はX月X日です</a></li>
-                        <li>2021/09/08 Eラーニングの設問募集中</li>
-                        <li>2021/09/08 申込開始はX月X日です</li>
-                        <li>2021/09/08 Eラーニングの設問募集中</li>
-                        <li>2021/09/08 申込開始はX月X日です</li>
-                        <li>2021/09/08 Eラーニングの設問募集中</li>
+                        <li>2021/10/01 まもなく申込スタートします</li>
                     </ul>
                 </div>
             </div>

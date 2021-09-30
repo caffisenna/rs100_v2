@@ -6,7 +6,7 @@
 
 <!-- Create Application Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('create_application', 'Create Application:') !!}
+    {!! Form::label('create_application', '申込書作成:') !!}
     {!! Form::select('create_application',['1'=>'true','0'=>'false'],is_null(old('$adminConfig->create_application')) ? $adminConfig->create_application : old('$adminConfig->create_account'),['class'=>'form-control']) !!}
 </div>
 
@@ -30,7 +30,7 @@
 
 <!-- User Upload Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('user_upload', 'User Upload:') !!}
+    {!! Form::label('user_upload', '計画書 Upload:') !!}
     {!! Form::select('user_upload',['1'=>'true','0'=>'false'],is_null(old('$adminConfig->user_upload')) ? $adminConfig->user_upload : old('$adminConfig->user_upload'),['class'=>'form-control']) !!}
 </div>
 

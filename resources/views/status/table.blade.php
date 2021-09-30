@@ -19,7 +19,7 @@
         <tbody>
             @foreach ($statuses as $status)
                 <tr>
-                    <td>{{ $status->user_id }}<br>@auth{{ $status->name }}@endauth<br>{{ $status->dan }}</td>
+                    <td>{{ $status->user_id }}<br>@if(Auth::user()->is_admin){{ $status->name }}@endif<br>{{ $status->dan }}</td>
                     <td>{{ $status->day1_start_time }}</td>
                     <td>{{ $status->day1_end_time }}</td>
                     <td>{{ $status->day2_start_time }}</td>
