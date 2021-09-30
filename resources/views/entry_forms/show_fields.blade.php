@@ -64,5 +64,9 @@
             <td>コース概略</td>
             <td>{{ $entryForm->map_upload }}</td>
         </tr>
+        <tr>
+            <td>参加の形態</td>
+            <td>{{ $entryForm->how_to_join }}</td>
+        </tr>
     </tbody>
 </table>
