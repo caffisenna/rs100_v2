@@ -134,7 +134,7 @@ class resultUploadController extends AppBaseController
         // ここまで画像解析処理
 
         // 初日 or 二日目判定
-        $day_limit = strtotime('2021-09-30 22:50:00');
+        $day_limit = strtotime(env('DAY_LIMIT'));
         $now = strtotime(now());
         if ($day_limit > $now){
             $input['day'] = 1;
