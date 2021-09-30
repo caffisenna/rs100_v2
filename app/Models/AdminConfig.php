@@ -35,7 +35,9 @@ class AdminConfig extends Model
         'create_application',
         'elearning',
         'healthcheck',
-        'user_edit'
+        'user_edit',
+        'status_day1',
+        'status_day2'
     ];
 
     /**
@@ -49,7 +51,9 @@ class AdminConfig extends Model
         'create_application' => 'string',
         'elearning' => 'string',
         'healthcheck' => 'string',
-        'user_edit' => 'string'
+        'user_edit' => 'string',
+        'status_day1'=>'string',
+        'status_day2'=>'string'
     ];
 
     /**

@@ -65,7 +65,7 @@
             @enderror
         </div>
 
-
+        <p class="uk-text-warning">参加賞などを郵送しますので正確に入力してください。</p>
         <!-- Zip Field -->
         <div class="form-group">
             {!! Form::label('zip', '郵便番号:') !!}
@@ -475,5 +475,67 @@
             @enderror
         </div>
 
+    </div>
+</div>
+<div class="w-100"></div>
+<div class="card col-sm-6">
+    <div class="card-header">
+        参加の区分
+    </div>
+    <div class="card-body">
+        <div class="form-group">
+            <label class="radio-button">
+                {!! Form::radio('how_to_join', '両日参加(両日とも7:00〜10:00までにスタート)' , null, []) !!}
+                <span class="">両日参加(両日とも7:00〜10:00までにスタート)</span>
+            </label>
+            <div class="w-100"></div>
+            <label class="radio-button">
+                {!! Form::radio('how_to_join', '両日参加(初日7:00〜10:00までにスタート かつ 2日目10:00以降スタート)' , null, []) !!}
+                <span class="">両日参加(初日7:00〜10:00までにスタート かつ 2日目10:00以降スタート)</span>
+            </label>
+            <div class="w-100"></div>
+            <label class="radio-button">
+                {!! Form::radio('how_to_join', '両日参加(初日10:00以降スタート かつ 2日目7:00〜10:00までにスタート)' , null, []) !!}
+                <span class="">両日参加(初日10:00以降スタート かつ 2日目7:00〜10:00までにスタート)</span>
+            </label>
+            <div class="w-100"></div>
+            <label class="radio-button">
+                {!! Form::radio('how_to_join', '両日参加(両日とも10:00以降にスタート)' , null, []) !!}
+                <span class="">両日参加(両日とも10:00以降にスタート)</span>
+            </label>
+            <div class="w-100"></div>
+            <label class="radio-button">
+                {!! Form::radio('how_to_join', '1日目だけ参加(7:00〜10:00までにスタート)' , null, []) !!}
+                <span class="">1日目だけ参加(7:00〜10:00までにスタート)</span>
+            </label>
+            <div class="w-100"></div>
+            <label class="radio-button">
+                {!! Form::radio('how_to_join', '1日目だけ遅参(10:00以降にスタート)' , null, []) !!}
+                <span class="">1日目だけ遅参(10:00以降にスタート)</span>
+            </label>
+            <div class="w-100"></div>
+            <label class="radio-button">
+                {!! Form::radio('how_to_join', '2日目だけ参加(7:00〜10:00までにスタート)' , null, []) !!}
+                <span class="">2日目だけ参加(7:00〜10:00までにスタート)</span>
+            </label>
+            <div class="w-100"></div>
+            <label class="radio-button">
+                {!! Form::radio('how_to_join', '2日目だけ遅参(10:00以降にスタート)' , null, []) !!}
+                <span class="">2日目だけ遅参(10:00以降にスタート)</span>
+            </label>
+            <div class="w-100"></div>
+
+
+
+
+
+
+
+
+
+            @error('how_to_join')
+                <div class="error text-danger">{{ $message }}</div>
+            @enderror
+        </div>
     </div>
 </div>

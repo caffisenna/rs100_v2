@@ -21,6 +21,7 @@ use PhpParser\Node\Stmt\TryCatch;
 use App\Models\elearning;
 use Mail;
 use App\Http\Util\SlackPost;
+use App\Models\status;
 
 class entryFormController extends AppBaseController
 {
@@ -200,6 +201,8 @@ class entryFormController extends AppBaseController
     {
         /** @var entryForm $entryForm */
         $entryForm = entryForm::find($id);
+        $status = status::where('user_id',$entryForm->user_id);
+
 
         if (empty($entryForm)) {
             Flash::error('Entry Form not found');
@@ -208,6 +211,7 @@ class entryFormController extends AppBaseController
         }
 
         $entryForm->delete();
+        $status->delete();
 
         Flash::success('申込書を削除しました');
 

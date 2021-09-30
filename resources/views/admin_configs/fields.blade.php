@@ -33,3 +33,14 @@
     {!! Form::label('user_upload', 'User Upload:') !!}
     {!! Form::select('user_upload',['1'=>'true','0'=>'false'],is_null(old('$adminConfig->user_upload')) ? $adminConfig->user_upload : old('$adminConfig->user_upload'),['class'=>'form-control']) !!}
 </div>
+
+<!-- status day1 Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('status_day1', 'Status Day1:') !!}
+    {!! Form::select('status_day1',['1'=>'true','0'=>'false'],is_null(old('$adminConfig->status_day1')) ? $adminConfig->status_day1 : old('$adminConfig->status_day1'),['class'=>'form-control']) !!}
+</div>
+<!-- status day2 Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('status_day2', 'Status Day2:') !!}
+    {!! Form::select('status_day2',['1'=>'true','0'=>'false'],is_null(old('$adminConfig->status_day2')) ? $adminConfig->status_day2 : old('$adminConfig->status_day2'),['class'=>'form-control']) !!}
+</div>

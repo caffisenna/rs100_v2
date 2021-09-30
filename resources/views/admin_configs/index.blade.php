@@ -26,12 +26,6 @@
         <div class="card">
             <div class="card-body p-0">
                 @include('admin_configs.table')
-
-                <div class="card-footer clearfix float-right">
-                    <div class="float-right">
-
-                    </div>
-                </div>
             </div>
 
         </div>

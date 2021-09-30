@@ -7,7 +7,7 @@
                 @unless(Auth::user()->is_admin || Auth::user()->is_commi)
                     <div class="card" style="width:100%;">
                         <div class="card-header">
-                            <h5>各種申請書</h5>
+                            <h4>各種申請書</h4>
                         </div>
                         <div class="card-body">
                             @if ($configs->create_application)
@@ -18,24 +18,40 @@
                                 <a href="{{ url('/user/elearnings') }}" class="btn btn-info btn-lg btn-block">Eラーニング</a>
                             @endif
 
-                            <a href="{{ url('/user/planUploads') }}" class="btn btn-info btn-lg btn-block">計画書アップロード</a>
+                            @if ($configs->plan_upload)
+                                <a href="{{ url('/user/planUploads') }}" class="btn btn-info btn-lg btn-block">計画書アップロード</a>
+                            @endif
 
-                            @if ($configs->user_upload)
+                            @if ($configs->result_upload)
                                 <a href="{{ url('/user/resultUploads') }}" class="btn btn-info btn-lg btn-block">結果アップロード</a>
                             @endif
                         </div>
                     </div>
-
-                    {{-- <div class="card" style="width:100%;">
-                        <div class="card-header">
-                            <h5>開始と終了</h5>
+                    @if ($configs->status_day1)
+                        <div class="card" style="">
+                            <div class="card-header">
+                                <h4>ステータス報告(1日目)</h4>
+                            </div>
+                            <div class="card-body">
+                                <a href="#" class="btn btn-warning btn-lg btn-block">ハイク開始(定刻〜10:00までにスタートする場合)</a>
+                                <a href="#" class="btn btn-warning btn-lg btn-block">ハイク終了(1日目のハイクを終了する場合)</a>
+                                <a href="#" class="btn btn-danger btn-lg btn-block">棄権(途中リタイア / 1日目を棄権する場合)</a>
+                                <a href="#" class="btn btn-danger btn-lg btn-block">棄権(全日程を棄権する場合)</a>
+                            </div>
                         </div>
-                        <div class="card-body">
-                            <a href="#" class="btn btn-info btn-lg btn-block">ハイク開始</a>
-                            <a href="#" class="btn btn-info btn-lg btn-block">ハイク終了</a>
-                            <a href="#" class="btn btn-info btn-lg btn-block">リタイア申請</a>
+                    @endif
+                    @if ($configs->status_day2)
+                        <div class="card" style="">
+                            <div class="card-header">
+                                <h4>ステータス報告(2日目)</h4>
+                            </div>
+                            <div class="card-body">
+                                <a href="#" class="btn btn-warning btn-lg btn-block">ハイク開始(定刻〜10:00までにスタートする場合)</a>
+                                <a href="#" class="btn btn-warning btn-lg btn-block">ハイク終了(2日目のハイクを終了する場合)</a>
+                                <a href="#" class="btn btn-danger btn-lg btn-block">棄権(途中リタイア / 2日目を棄権する場合)</a>
+                            </div>
                         </div>
-                    </div> --}}
+                    @endif
                 @endunless
 
             @else

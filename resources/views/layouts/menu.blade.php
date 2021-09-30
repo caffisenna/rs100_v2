@@ -1,14 +1,17 @@
 @if (isset(Auth::user()->email_verified_at))
     @unless(Auth::user()->is_admin || Auth::user()->is_commi)
-        <a href="{{ url('/user/entryForms') }}" class="btn btn-info btn-xs btn-block">申込書</a>
-
-        <a href="{{ url('/user/elearnings') }}" class="btn btn-info btn-xs btn-block">Eラーニング</a>
-
-        {{-- <a href="#" class="btn btn-info btn-xs btn-block">健康調査書</a> --}}
-
-        <a href="{{ url('/user/resultUploads') }}" class="btn btn-info btn-xs btn-block">結果アップロード</a>
-
-        <a href="{{ url('/user/planUploads') }}" class="btn btn-info btn-xs btn-block">計画書アップロード</a>
+        @if ($configs->create_application)
+            <a href="{{ url('/user/entryForms') }}" class="btn btn-info btn-xs btn-block">申込書</a>
+        @endif
+        @if ($configs->elearning)
+            <a href="{{ url('/user/elearnings') }}" class="btn btn-info btn-xs btn-block">Eラーニング</a>
+        @endif
+        @if ($configs->result_upload)
+            <a href="{{ url('/user/resultUploads') }}" class="btn btn-info btn-xs btn-block">結果アップロード</a>
+        @endif
+        @if ($configs->plan_upload)
+            <a href="{{ url('/user/planUploads') }}" class="btn btn-info btn-xs btn-block">計画書アップロード</a>
+        @endif
     @endunless
 @endif
 
@@ -21,12 +24,14 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="{{ route('adminentries.index') }}" class="nav-link {{ Request::is('entryForms*') ? 'active' : '' }}">
+        <a href="{{ route('adminentries.index') }}"
+            class="nav-link {{ Request::is('entryForms*') ? 'active' : '' }}">
             <p>管理者用一覧</p>
         </a>
     </li>
     <li class="nav-item">
-        <a href="{{ route('adminresultUploads.index') }}" class="nav-link {{ Request::is('entryForms*') ? 'active' : '' }}">
+        <a href="{{ route('adminresultUploads.index') }}"
+            class="nav-link {{ Request::is('entryForms*') ? 'active' : '' }}">
             <p>結果画像一覧</p>
         </a>
     </li>
@@ -69,10 +74,7 @@
     </a>
 </li> --}}
 <li class="nav-item">
-    <a href="{{ route('status.index') }}"
-       class="nav-link {{ Request::is('status*') ? 'active' : '' }}">
+    <a href="{{ route('status.index') }}" class="nav-link {{ Request::is('status*') ? 'active' : '' }}">
         <p>スターテス一覧</p>
     </a>
 </li>
-
-

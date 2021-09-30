@@ -61,7 +61,8 @@ class entryForm extends Model
         'emer_phone',
         'sm_name',
         'sm_position',
-        'uuid'
+        'uuid',
+        'how_to_join'
     ];
 
     /**
@@ -88,6 +89,7 @@ class entryForm extends Model
         'emer_phone' => 'string',
         'sm_name' => 'string',
         'sm_position' => 'string',
+        'how_to_join' => 'string',
         'uuid' => 'string'
     ];
 
@@ -115,7 +117,8 @@ class entryForm extends Model
         'parent_relation' => 'required',
         'emer_phone' => 'required',
         'sm_name' => 'required',
-        'sm_position' => 'required'
+        'sm_position' => 'required',
+        'how_to_join' => 'required'
     ];
 
     // ここにカスタムエラーメッセージを定義する
@@ -145,6 +148,7 @@ class entryForm extends Model
         'emer_phone.required'=>'入力してください',
         'sm_name.required'=>'入力してください',
         'sm_position.required'=>'選択してください',
+        'how_to_join.required'=>'参加形態を選択してください'
     ];
 
     public function user()

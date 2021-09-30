@@ -22,7 +22,7 @@ class AdminConfigController extends AppBaseController
     public function index(Request $request)
     {
         /** @var AdminConfig $adminConfigs */
-        $adminConfigs = AdminConfig::all();
+        $adminConfigs = AdminConfig::find('1');
 
         return view('admin_configs.index')
             ->with('adminConfigs', $adminConfigs);

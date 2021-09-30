@@ -37,6 +37,7 @@ class CreateEntryFormsTable extends Migration
             $table->date('sm_confirmation')->nullable();
             $table->date('map_upload')->nullable();
             $table->uuid('uuid')->nullable();
+            $table->text('how_to_join');
             $table->timestamps();
             $table->softDeletes();
         });
