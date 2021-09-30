@@ -108,7 +108,7 @@ class entryFormController extends AppBaseController
         Flash::success('申込書が作成されました');
 
         // スターテス画面に反映
-        status::create(['user_id'=>$input['user_id']]);
+        status::create(['user_id' => $input['user_id']]);
 
         return redirect(route('entryForms.index'));
     }
@@ -124,6 +124,33 @@ class entryFormController extends AppBaseController
     {
         /** @var entryForm $entryForm */
         $entryForm = entryForm::find($id);
+
+        switch ($entryForm->how_to_join) {
+            case '1':
+                $entryForm->how_to_join = "両日参加(両日とも7:00〜10:00までにスタート)";
+                break;
+            case '2':
+                $entryForm->how_to_join = "両日参加(初日7:00〜10:00までにスタートかつ 2日目10:00以降スタート)";
+                break;
+            case '3':
+                $entryForm->how_to_join = "両日参(初日10:00以降スタート かつ 2日目7:00〜10:00までにスタート)";
+                break;
+            case '4':
+                $entryForm->how_to_join = "両日参加(両日とも10:00以降にスタート)";
+                break;
+            case '5':
+                $entryForm->how_to_join = "1日目だけ参加(7:00〜10:00までにスタート)";
+                break;
+            case '6':
+                $entryForm->how_to_join = "1日目だけ遅参(10:00以降にスタート)";
+                break;
+            case '7':
+                $entryForm->how_to_join = "2日目だけ参加(7:00〜10:00までにスタート)";
+                break;
+            case '8':
+                $entryForm->how_to_join = "2日目だけ遅参(10:00以降にスタート)";
+                break;
+        }
 
         if (empty($entryForm) || $entryForm->user_id <> Auth::user()->id) {
             Flash::error('該当データが見つかりません');
