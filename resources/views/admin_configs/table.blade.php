@@ -22,7 +22,7 @@
             <td>{{ $adminConfigs->elearning }}</td>
         </tr>
         <tr>
-            <th>健康調査票</th>
+            <th>計画書アップ</th>
             <td>{{ $adminConfigs->healthcheck }}</td>
         </tr>
 

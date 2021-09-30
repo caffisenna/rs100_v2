@@ -1,5 +1,4 @@
 @extends('layouts.app')
-{{-- {{ dd($configs->create_application) }} --}}
 @section('content')
     <div class="container">
         <div class="row">
@@ -18,11 +17,11 @@
                                 <a href="{{ url('/user/elearnings') }}" class="btn btn-info btn-lg btn-block">Eラーニング</a>
                             @endif
 
-                            @if ($configs->plan_upload)
+                            @if ($configs->healthcheck)
                                 <a href="{{ url('/user/planUploads') }}" class="btn btn-info btn-lg btn-block">計画書アップロード</a>
                             @endif
 
-                            @if ($configs->result_upload)
+                            @if ($configs->user_upload)
                                 <a href="{{ url('/user/resultUploads') }}" class="btn btn-info btn-lg btn-block">結果アップロード</a>
                             @endif
                         </div>

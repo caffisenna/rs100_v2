@@ -485,42 +485,42 @@
     <div class="card-body">
         <div class="form-group">
             <label class="radio-button">
-                {!! Form::radio('how_to_join', '両日参加(両日とも7:00〜10:00までにスタート)' , null, []) !!}
+                {!! Form::radio('how_to_join', 1 , null, []) !!}
                 <span class="">両日参加(両日とも7:00〜10:00までにスタート)</span>
             </label>
             <div class="w-100"></div>
             <label class="radio-button">
-                {!! Form::radio('how_to_join', '両日参加(初日7:00〜10:00までにスタート かつ 2日目10:00以降スタート)' , null, []) !!}
+                {!! Form::radio('how_to_join', 2 , null, []) !!}
                 <span class="">両日参加(初日7:00〜10:00までにスタート かつ 2日目10:00以降スタート)</span>
             </label>
             <div class="w-100"></div>
             <label class="radio-button">
-                {!! Form::radio('how_to_join', '両日参加(初日10:00以降スタート かつ 2日目7:00〜10:00までにスタート)' , null, []) !!}
+                {!! Form::radio('how_to_join', 3 , null, []) !!}
                 <span class="">両日参加(初日10:00以降スタート かつ 2日目7:00〜10:00までにスタート)</span>
             </label>
             <div class="w-100"></div>
             <label class="radio-button">
-                {!! Form::radio('how_to_join', '両日参加(両日とも10:00以降にスタート)' , null, []) !!}
+                {!! Form::radio('how_to_join', 4 , null, []) !!}
                 <span class="">両日参加(両日とも10:00以降にスタート)</span>
             </label>
             <div class="w-100"></div>
             <label class="radio-button">
-                {!! Form::radio('how_to_join', '1日目だけ参加(7:00〜10:00までにスタート)' , null, []) !!}
+                {!! Form::radio('how_to_join', 5 , null, []) !!}
                 <span class="">1日目だけ参加(7:00〜10:00までにスタート)</span>
             </label>
             <div class="w-100"></div>
             <label class="radio-button">
-                {!! Form::radio('how_to_join', '1日目だけ遅参(10:00以降にスタート)' , null, []) !!}
+                {!! Form::radio('how_to_join', 6 , null, []) !!}
                 <span class="">1日目だけ遅参(10:00以降にスタート)</span>
             </label>
             <div class="w-100"></div>
             <label class="radio-button">
-                {!! Form::radio('how_to_join', '2日目だけ参加(7:00〜10:00までにスタート)' , null, []) !!}
+                {!! Form::radio('how_to_join', 7 , null, []) !!}
                 <span class="">2日目だけ参加(7:00〜10:00までにスタート)</span>
             </label>
             <div class="w-100"></div>
             <label class="radio-button">
-                {!! Form::radio('how_to_join', '2日目だけ遅参(10:00以降にスタート)' , null, []) !!}
+                {!! Form::radio('how_to_join', 8 , null, []) !!}
                 <span class="">2日目だけ遅参(10:00以降にスタート)</span>
             </label>
             <div class="w-100"></div>

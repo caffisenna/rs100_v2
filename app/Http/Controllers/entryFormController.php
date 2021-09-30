@@ -60,9 +60,9 @@ class entryFormController extends AppBaseController
         }
 
         $entryForm->available = AdminConfig::first()->create_application;
+        $configs = AdminConfig::first();
 
-        return view('entry_forms.index')
-            ->with('entryForm', $entryForm);
+        return view('entry_forms.index', compact('entryForm', 'configs'));
     }
 
     /**
@@ -201,7 +201,7 @@ class entryFormController extends AppBaseController
     {
         /** @var entryForm $entryForm */
         $entryForm = entryForm::find($id);
-        $status = status::where('user_id',$entryForm->user_id);
+        $status = status::where('user_id', $entryForm->user_id);
 
 
         if (empty($entryForm)) {

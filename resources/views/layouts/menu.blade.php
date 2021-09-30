@@ -1,3 +1,4 @@
+<p class="uk-hidden">{{ $configs=\App\Models\AdminConfig::first(); }}</p>
 @if (isset(Auth::user()->email_verified_at))
     @unless(Auth::user()->is_admin || Auth::user()->is_commi)
         @if ($configs->create_application)
@@ -6,15 +7,14 @@
         @if ($configs->elearning)
             <a href="{{ url('/user/elearnings') }}" class="btn btn-info btn-xs btn-block">Eラーニング</a>
         @endif
-        @if ($configs->result_upload)
+        @if ($configs->user_upload)
             <a href="{{ url('/user/resultUploads') }}" class="btn btn-info btn-xs btn-block">結果アップロード</a>
         @endif
-        @if ($configs->plan_upload)
+        @if ($configs->healthcheck)
             <a href="{{ url('/user/planUploads') }}" class="btn btn-info btn-xs btn-block">計画書アップロード</a>
         @endif
     @endunless
 @endif
-
 {{-- 管理者アカウントでのみ表示 --}}
 @if (Auth::user()->is_admin)
     <li class="nav-item">
