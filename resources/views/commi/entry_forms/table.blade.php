@@ -8,7 +8,6 @@
                 <th>名前</th>
                 <th>所属</th>
                 <th>性別</th>
-                {{-- <th colspan="3">Action</th> --}}
             </tr>
         </thead>
         <tbody>
@@ -20,16 +19,6 @@
                         </td>
                         <td>{{ $entryForm->district }}地区 {{ $entryForm->dan_name }} {{ $entryForm->dan_number }}</td>
                         <td>{{ $entryForm->gender }}</td>
-                        {{-- <td width="120">
-                            @if ($entryForm->id)
-                                <div class='btn-group'>
-                                    <a href="{{ route('entries.show', [$entryForm->id]) }}"
-                                        class='btn btn-default btn-xs'>
-                                        <i class="far fa-eye"></i>
-                                    </a>
-                                </div>
-                            @endif
-                        </td> --}}
                     </tr>
                 @endunless
             @endforeach

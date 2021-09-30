@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Response;
 use App\Models\User;
+use Session;
 
 class commiEntryFormController extends AppBaseController
 {
@@ -27,7 +28,20 @@ class commiEntryFormController extends AppBaseController
 
         // 取得したいインスタンス = 子モデル::with(親モデル)->get(); で親子取得
         // 自地区のユーザーを抽出して返す
-        $entryForms = entryForm::with('user')->where('district',Auth::user()->is_commi)->orderby('dan_name','asc')->get();
+        if (Auth::user()->is_commi) {
+            switch (Auth::user()->email) {
+                case 'caffi.senna@gmail.com':
+                    $district = '山手';
+                    break;
+                default:
+                    $district = '';
+                    break;
+            }
+            $entryForms = entryForm::with('user')->where('district', $district)->orderby('dan_name', 'asc')->get();
+            Auth::user()->district = $district;
+            // 地区名をsessionに入れて別コントローラーでも使う
+            session()->put('district',$district);
+        }
 
         return view('commi.entry_forms.index')
             ->with('entryForms', $entryForms);
@@ -45,9 +59,10 @@ class commiEntryFormController extends AppBaseController
     {
         /** @var entryForm $entryForm */
         $entryForm = entryForm::find($id);
+        $district = session()->get('district'); // sessionから地区名を取得
 
         // 自地区のみをフィルタ
-        if (empty($entryForm) || $entryForm->district <> Auth::user()->is_commi) {
+        if (empty($entryForm) || $entryForm->district <> $district) {
             Flash::error('参加者データが見つからない、もしくは閲覧権限がありません。');
 
             return redirect(route('entries.index'));

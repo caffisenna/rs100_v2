@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{ Auth::user()->is_commi }}地区 参加申込状況</h1>
+                    <h1>{{ Auth::user()->district }}地区 参加申込状況</h1>
                 </div>
             </div>
         </div>

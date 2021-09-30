@@ -49,7 +49,7 @@
 @if (Auth::user()->is_commi)
     <li class="nav-item">
         <a href="{{ route('entries.index') }}" class="nav-link {{ Request::is('entries*') ? 'active' : '' }}">
-            <p>{{ Auth::user()->is_commi }}地区参加者一覧</p>
+            <p>地区参加者一覧</p>
         </a>
     </li>
 @endif
