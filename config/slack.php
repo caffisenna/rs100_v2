@@ -4,5 +4,5 @@ return [
     // 本番用↓
     // 'channel' => '#entrysystem',
     // テスト用↓
-    'channel' => '#web_notify',
+    'channel' => '#entrysystem',
 ];
