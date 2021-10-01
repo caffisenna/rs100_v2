@@ -38,7 +38,8 @@ class AdminConfig extends Model
         'user_edit',
         'user_upload',
         'status_day1',
-        'status_day2'
+        'status_day2',
+        'show_status_link',
     ];
 
     /**
@@ -55,7 +56,8 @@ class AdminConfig extends Model
         'user_edit' => 'string',
         'user_upload' => 'string',
         'status_day1'=>'string',
-        'status_day2'=>'string'
+        'status_day2'=>'string',
+        'show_status_link'
     ];
 
     /**

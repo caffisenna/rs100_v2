@@ -73,8 +73,10 @@
         <p>Result Uploads</p>
     </a>
 </li> --}}
+@if ($configs->show_status_link)
 <li class="nav-item">
     <a href="{{ route('status.index') }}" class="nav-link {{ Request::is('status*') ? 'active' : '' }}">
         <p>スターテス一覧</p>
     </a>
 </li>
+@endif

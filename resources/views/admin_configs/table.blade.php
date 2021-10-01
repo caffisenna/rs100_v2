@@ -42,5 +42,9 @@
             <th>ステータス入力(day2)</th>
             <td>{{ $adminConfigs->status_day2 }}</td>
         </tr>
+        <tr>
+            <th>ステータスリンク</th>
+            <td>{{ $adminConfigs->show_status_link }}</td>
+        </tr>
     </table>
 </div>

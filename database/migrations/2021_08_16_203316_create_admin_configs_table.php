@@ -24,6 +24,7 @@ class CreateAdminConfigsTable extends Migration
             $table->boolean('user_upload')->default(false);
             $table->boolean('status_day1')->default(false);
             $table->boolean('status_day2')->default(false);
+            $table->boolean('show_status_link')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

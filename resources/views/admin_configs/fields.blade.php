@@ -44,3 +44,9 @@
     {!! Form::label('status_day2', 'Status Day2:') !!}
     {!! Form::select('status_day2',['1'=>'true','0'=>'false'],is_null(old('$adminConfig->status_day2')) ? $adminConfig->status_day2 : old('$adminConfig->status_day2'),['class'=>'form-control']) !!}
 </div>
+
+<!-- status link Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('show_status_link', 'ステータスリンクの表示') !!}
+    {!! Form::select('show_status_link',['1'=>'true','0'=>'false'],is_null(old('$adminConfig->show_status_link')) ? $adminConfig->show_status_link : old('$adminConfig->show_status_link'),['class'=>'form-control']) !!}
+</div>
