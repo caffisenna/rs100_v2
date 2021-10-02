@@ -66,7 +66,7 @@
                     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <!-- User image -->
                         <li class="user-header bg-primary">
-                            <img src="{{ url('/images/logo_color.png') }}" class="img-circle elevation-2"
+                            <img src="{{ url('/images/logo_color.png') }}" class=""
                                 alt="User Image">
                             <p>
                                 {{ Auth::user()->name }}
