@@ -415,7 +415,7 @@
         @endif --}}
 
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-            <div class="">
+            <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
                 <img src="{{ url('/images/rs100km_54th.png') }}" class="logo" width="110px">
             </div>
 
@@ -486,6 +486,23 @@
                     <ul class="uk-list">
                         <li>2021/10/01 まもなく第54回ローバースカウト100kmハイクの申込をスタートします</li>
                     </ul>
+                </div>
+            </div>
+
+            <div>
+                <div class="uk-card uk-card-primary uk-card-body">
+                    <h5 class="uk-card-title"><span uk-icon="icon:info; ratio:1"></span>参加条件</h5>
+                    <ul class="uk-list">
+                        <li>申し込み時点において、東京連盟の加盟登録のあるローバースカウトであること。</li>
+                        <li>または、東京連盟の加盟登録のある 25 歳までの指導者であること。</li>
+                    </ul>
+                    <h3><span uk-icon="icon:warning; ratio:1"></span>参加資格注意事項</h3>
+                    <ul>
+                        <li>今回は感染拡大防止のため、参加者は東京連盟所属のスカウトのみとさせていただきます。</li>
+                        <li>東京都外に在住スカウト(県をまたぐ移動が生じる場合)については所属団団委員長と相談し、参加するかどうかの決定をお願いします。</li>
+                    </ul>
+                    <h3>その他</h3>
+                    <p class=""><a href="https://rs100.info">大会公式サイト</a>の情報をよくご確認の上お申し込み下さい。</p>
                 </div>
             </div>
 
