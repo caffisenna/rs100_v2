@@ -492,7 +492,7 @@
             <div>
                 <div class="uk-card uk-card-primary uk-card-body">
                     <h5 class="uk-card-title"><span uk-icon="icon:info; ratio:1"></span>参加条件</h5>
-                    <ul class="uk-list">
+                    <ul>
                         <li>申し込み時点において、東京連盟の加盟登録のあるローバースカウトであること。</li>
                         <li>または、東京連盟の加盟登録のある 25 歳までの指導者であること。</li>
                     </ul>
