@@ -484,7 +484,7 @@
                 <div class="uk-card uk-card-primary uk-card-body">
                     <h5 class="uk-card-title"><span uk-icon="icon:info; ratio:1"></span>NEWS</h5>
                     <ul class="uk-list">
-                        <li>2021/10/01 まもなく申込スタートします</li>
+                        <li>2021/10/01 まもなく第54回ローバースカウト100kmハイクの申込をスタートします</li>
                     </ul>
                 </div>
             </div>
