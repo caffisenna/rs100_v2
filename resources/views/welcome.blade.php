@@ -393,8 +393,8 @@
     <link rel="stylesheet" href="{{ url('/css/uikit.min.css') }}" />
 
     <!-- UIkit JS -->
-    <script src="{{ url('/') }}js/uikit.min.js"></script>
-    <script src="{{ url('/') }}js/uikit-icons.min.js"></script>
+    <script src="{{ url('/js/uikit.min.js') }}"></script>
+    <script src="{{ url('/js/uikit-icons.min.js') }}"></script>
 </head>
 
 <body class="antialiased">
