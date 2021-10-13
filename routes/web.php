@@ -90,3 +90,7 @@ Route::post('/sm_confirm', [
 
 
 Route::resource('status', App\Http\Controllers\statusController::class);
+
+Route::get('/hq_confirm', [
+    App\Http\Controllers\adminentryFormController::class, 'hq_confirm'
+])->name('hq_comfirm');

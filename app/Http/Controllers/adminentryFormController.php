@@ -12,6 +12,7 @@ use Flash;
 use Response;
 use App\Models\User;
 use Carbon\Carbon;
+use App\Http\Util\SlackPost;
 
 class adminentryFormController extends AppBaseController
 {
@@ -56,7 +57,7 @@ class adminentryFormController extends AppBaseController
         $input['user_id'] = Auth()->user()->id;
 
         // 生年月日生成
-        $input['birth_day'] = Carbon::create($input['bd_year'],$input['bd_month'],$input['bd_day']);
+        $input['birth_day'] = Carbon::create($input['bd_year'], $input['bd_month'], $input['bd_day']);
 
         /** @var entryForm $entryForm */
         $entryForm = entryForm::create($input);
@@ -133,7 +134,7 @@ class adminentryFormController extends AppBaseController
         }
 
         // 生年月日生成
-        $request['birth_day'] = Carbon::create($request['bd_year'],$request['bd_month'],$request['bd_day']);
+        $request['birth_day'] = Carbon::create($request['bd_year'], $request['bd_month'], $request['bd_day']);
 
         $entryForm->fill($request->all());
         $entryForm->save();
@@ -166,6 +167,31 @@ class adminentryFormController extends AppBaseController
         $entryForm->delete();
 
         Flash::success('削除しました');
+
+        return redirect(route('adminentries.index'));
+    }
+
+    public function hq_confirm(Request $request)
+    {
+        /** @var entryForm $entryForm */
+
+        // ユーザーデータもまとめて取得
+        $entryForm = entryForm::with('user')->where('user_id', $request->q)->first();
+
+        if (empty($entryForm)) {
+            Flash::error('データが見つかりません');
+
+            return redirect(route('adminentries.index'));
+        }
+
+        $entryForm->hq_confirmation = Carbon::now();
+        $entryForm->save();
+
+        // slack通知
+        $slack = new SlackPost();
+        $slack->send("[事務局確認] 参加者ID:$entryForm->id " . $entryForm->user->name . "の事務局確認が完了しました");
+
+        Flash::success('事務局確認を行いました');
 
         return redirect(route('adminentries.index'));
     }
