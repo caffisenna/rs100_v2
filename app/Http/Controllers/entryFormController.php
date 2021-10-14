@@ -103,7 +103,7 @@ class entryFormController extends AppBaseController
         $id = Auth()->user()->id;
         $name = Auth()->user()->name;
         $slack = new SlackPost();
-        $slack->send(":u7533:[申込書] 参加者ID:$id " . $name . "さんが申込書を作成しました");
+        $slack->send(":u7533: 参加者ID:$id " . $name . "さんが申込書を作成しました");
 
         Flash::success('申込書が作成されました');
 
