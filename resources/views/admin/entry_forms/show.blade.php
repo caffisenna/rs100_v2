@@ -22,7 +22,7 @@
             <div class="card-body">
                 <div class="row">
                     @include('entry_forms.show_fields')
-                    <a href="{{ url("/hq_confirm?q=$entryForm->user_id") }}" class="btn btn-primary">事務局承認</a>
+                    <a href="{{ url("/hq_confirm?q=$entryForm->user_id") }}" class="btn btn-primary">事務局登録確認済</a>
                 </div>
             </div>
 
