@@ -22,7 +22,7 @@ class Slack extends Notification
     public function __construct($message)
     {
         $this->name = config('slack.name');
-        $this->channel = config('slack.channel');
+        $this->channel = env('SLACK_CHANNEL');
         $this->message = $message;
     }
 
