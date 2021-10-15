@@ -80,3 +80,11 @@
     </a>
 </li>
 @endif
+<li class="nav-item">
+    <a href="{{ route('temps.index') }}"
+       class="nav-link {{ Request::is('temps*') ? 'active' : '' }}">
+        <p>体温計測</p>
+    </a>
+</li>
+
+
