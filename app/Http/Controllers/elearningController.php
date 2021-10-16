@@ -69,13 +69,19 @@ class elearningController extends AppBaseController
         $rules = [
             'q1' => 'in:1|required',
             'q2' => 'in:1|required',
+            'q3' => 'in:3|required',
+            'q4' => 'in:2|required',
         ];
 
         $messages = [
             'q1.in' => 'Q1 不正解です',
             'q2.in' => 'Q2 不正解です',
+            'q3.in' => 'Q3 不正解です',
+            'q4.in' => 'Q4 不正解です',
             'q1.required' => 'Q1 選択肢より選択してください',
             'q2.required' => 'Q2 選択肢より選択してください',
+            'q3.required' => 'Q3 選択肢より選択してください',
+            'q4.required' => 'Q4 選択肢より選択してください',
         ];
 
         $validation = \Validator::make($input,$rules,$messages);

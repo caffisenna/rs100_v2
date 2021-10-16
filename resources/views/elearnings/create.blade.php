@@ -29,8 +29,8 @@
             </div>
 
             <div class="card-footer">
-                {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('elearnings.index') }}" class="btn btn-default">Cancel</a>
+                {!! Form::submit('回答する', ['class' => 'btn btn-primary']) !!}
+                <a href="{{ route('elearnings.index') }}" class="btn btn-default">キャンセル</a>
             </div>
 
             {!! Form::close() !!}
