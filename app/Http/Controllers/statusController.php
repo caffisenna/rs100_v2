@@ -33,7 +33,7 @@ class statusController extends AppBaseController
             $tmp = User::where('id', $value['user_id'])->select('name')->first();
             $value['name'] = $tmp->name;
             $tmp = entryForm::where('user_id', $value['user_id'])->select('district', 'dan_name')->first();
-            $value['dan'] = $tmp->district . "/" . $tmp->dan_name;
+            @$value['dan'] = $tmp->district . "/" . $tmp->dan_name;
 
             if (empty($value['day1_start_time'])) {
                 $value['day1_start_time'] = '2021-11-13 07:00:00';

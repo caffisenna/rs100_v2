@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreatetempsRequest;
 use App\Http\Requests\UpdatetempsRequest;
 use App\Http\Controllers\AppBaseController;
+use App\Models\entryForm;
 use App\Models\temps;
 use Illuminate\Http\Request;
 use Flash;
@@ -152,5 +153,18 @@ class tempsController extends AppBaseController
         Flash::success('Temps deleted successfully.');
 
         return redirect(route('temps.index'));
+    }
+
+    public function temp_list()
+    {
+        $users = entryForm::with('user')->get();
+        foreach ($users as $value) {
+            $value->temps = temps::where('user_id',$value->user_id)->first();
+        }
+        // dd($users);
+
+        return view('admin.temp_lists.index')
+            ->with('users', $users);
+
     }
 }

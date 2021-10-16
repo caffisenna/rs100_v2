@@ -38,6 +38,12 @@
             <p>結果画像一覧</p>
         </a>
     </li>
+    <li class="nav-item">
+        <a href="{{ route('templists') }}"
+            class="nav-link {{ Request::is('temps*') ? 'active' : '' }}">
+            <p>体温計測一覧</p>
+        </a>
+    </li>
 @endif
 
 @if (Auth::user()->is_staff)
