@@ -6,10 +6,10 @@
             <tr>
                 <th>名前</th>
                 <th>所属</th>
-                <th>初日開始前</th>
-                <th>初日終了後</th>
-                <th>2日開始前</th>
-                <th>2日終了後</th>
+                <th>1日目開始前</th>
+                <th>1日目終了後</th>
+                <th>2日目開始前</th>
+                <th>2日目終了後</th>
             </tr>
         </thead>
         <tbody>
@@ -20,7 +20,7 @@
                     <td>@if ($user->temps->temp_day1_before == '37.5度以上')<span class="uk-text-danger">{{ $user->temps->temp_day1_before }}</span>@else{{ $user->temps->temp_day1_before }}@endif</td>
                     <td>@if ($user->temps->temp_day1_before == '37.5度以上')<span class="uk-text-danger">{{ $user->temps->temp_day1_before }}</span>@else{{ $user->temps->temp_day1_before }}@endif</td>
                     <td>@if ($user->temps->temp_day2_before == '37.5度以上')<span class="uk-text-danger">{{ $user->temps->temp_day2_before }}</span>@else{{ $user->temps->temp_day2_before }}@endif</td>
-                    <td>@if ($user->temps->temp_day2_before == '37.5度以上')<span class="uk-text-danger">{{ $user->temps->temp_day2_before }}</span>@else{{ $user->temps->temp_day2_before }}@endif</td>
+                    <td>@if ($user->temps->temp_day2_after == '37.5度以上')<span class="uk-text-danger">{{ $user->temps->temp_day2_after }}</span>@else{{ $user->temps->temp_day2_after }}@endif</td>
 
                 </tr>
             @endforeach
