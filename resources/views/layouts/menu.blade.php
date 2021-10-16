@@ -1,4 +1,4 @@
-<p class="uk-hidden">{{ $configs=\App\Models\AdminConfig::first(); }}</p>
+<p class="uk-hidden">{{ $configs = \App\Models\AdminConfig::first() }}</p>
 @if (isset(Auth::user()->email_verified_at))
     @unless(Auth::user()->is_admin || Auth::user()->is_commi)
         @if ($configs->create_application)
@@ -12,6 +12,9 @@
         @endif
         @if ($configs->healthcheck)
             <a href="{{ url('/user/planUploads') }}" class="btn btn-info btn-xs btn-block">計画書アップロード</a>
+        @endif
+        @if ($configs->temps_link)
+            <a href="{{ url('/user/temps') }}" class="btn btn-info btn-xs btn-block">体温計測</a>
         @endif
     @endunless
 @endif
@@ -53,38 +56,19 @@
         </a>
     </li>
 @endif
-{{-- <li class="nav-item">
-    <a href="{{ route('entryForms.index') }}"
-       class="nav-link {{ Request::is('user/entryForms*') ? 'active' : '' }}">
-        <p>Entry Forms</p>
-    </a>
-</li>
 
-
-<li class="nav-item">
-    <a href="{{ route('elearnings.index') }}"
-       class="nav-link {{ Request::is('elearnings*') ? 'active' : '' }}">
-        <p>Elearnings</p>
-    </a>
-</li> --}}
-{{-- <li class="nav-item">
-    <a href="{{ route('resultUploads.index') }}"
-       class="nav-link {{ Request::is('resultUploads*') ? 'active' : '' }}">
-        <p>Result Uploads</p>
-    </a>
-</li> --}}
 @if ($configs->show_status_link)
-<li class="nav-item">
-    <a href="{{ route('status.index') }}" class="nav-link {{ Request::is('status*') ? 'active' : '' }}">
-        <p>スターテス一覧</p>
-    </a>
-</li>
+    <li class="nav-item">
+        <a href="{{ route('status.index') }}" class="nav-link {{ Request::is('status*') ? 'active' : '' }}">
+            <p>スターテス一覧</p>
+        </a>
+    </li>
 @endif
-<li class="nav-item">
-    <a href="{{ route('temps.index') }}"
-       class="nav-link {{ Request::is('temps*') ? 'active' : '' }}">
-        <p>体温計測</p>
-    </a>
-</li>
 
-
+<a href="#" class="btn btn-danger btn-xs btn-block"
+    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+    ログアウト
+</a>
+<form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+    @csrf
+</form>

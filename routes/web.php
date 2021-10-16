@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\entryFormController;
+use App\Http\Controllers\statusController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 
@@ -65,6 +66,9 @@ Route::middleware('verified')->group(function () {
         Route::resource('resultUploads', App\Http\Controllers\resultUploadController::class);
         Route::resource('planUploads', App\Http\Controllers\planUploadController::class, ['except' => ['edit','show','update']]);
         Route::resource('temps', App\Http\Controllers\tempsController::class);
+        Route::get('/status_update', [
+            App\Http\Controllers\statusController::class, 'status_update'
+        ])->name('status_update');
     });
     // 管理ユーザ用
     Route::prefix('admin')->middleware('can:admin')->group(function () {

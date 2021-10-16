@@ -24,6 +24,9 @@
                             @if ($configs->user_upload)
                                 <a href="{{ url('/user/resultUploads') }}" class="btn btn-info btn-lg btn-block">結果アップロード</a>
                             @endif
+                            @if ($configs->temps_link)
+                                <a href="{{ url('/user/temps') }}" class="btn btn-info btn-lg btn-block">体温計測</a>
+                            @endif
                         </div>
                     </div>
                     @if ($configs->status_day1)
@@ -32,10 +35,46 @@
                                 <h4>ステータス報告(1日目)</h4>
                             </div>
                             <div class="card-body">
-                                <a href="#" class="btn btn-warning btn-lg btn-block">ハイク開始(定刻〜10:00までにスタートする場合)</a>
-                                <a href="#" class="btn btn-warning btn-lg btn-block">ハイク終了(1日目のハイクを終了する場合)</a>
-                                <a href="#" class="btn btn-danger btn-lg btn-block">棄権(途中リタイア / 1日目を棄権する場合)</a>
-                                <a href="#" class="btn btn-danger btn-lg btn-block">棄権(全日程を棄権する場合)</a>
+                                @if (empty($status->whole_retire))
+                                    @if (isset($status->day1_start_time))
+                                        <p class="">歩行開始: {{ $status->day1_start_time }}</p>
+                                    @else
+                                        @if (empty($status->day1_retire))
+                                            <a href="{{ url('/user/status_update?q=day1_start') }}"
+                                                class="btn btn-warning btn-lg btn-block"
+                                                onclick="return confirm('1日目のハイクを開始しますか?');">ハイク開始(1日目のハイクを開始する場合)</a>
+                                        @endif
+                                    @endif
+
+                                    @if (isset($status->day1_end_time))
+                                        <p class="">歩行終了: {{ $status->day1_end_time }}</p>
+                                    @else
+                                        @if (empty($status->day1_retire))
+                                            <a href="{{ url('/user/status_update?q=day1_stop') }}"
+                                                class="btn btn-warning btn-lg btn-block"
+                                                onclick="return confirm('1日目のハイクを終了しますか?');">ハイク終了(1日目のハイクを終了する場合)</a>
+                                        @endif
+                                    @endif
+
+                                    @if (isset($status->day1_retire))
+                                        <p class="">1日目リタイア: {{ $status->day1_retire }}</p>
+                                    @else
+                                        @if (empty($status->day1_end_time))
+                                            <a href="{{ url('/user/status_update?q=day1_retire') }}"
+                                                class="btn btn-danger btn-lg btn-block"
+                                                onclick="return confirm('1日目のハイクを棄権しますか?');">棄権(1日目を棄権する場合)</a>
+                                        @endif
+                                    @endif
+                                    @if (empty($status->whole_retire))
+                                        <a href="{{ url('/user/status_update?q=whole_retire') }}"
+                                            class="btn btn-danger btn-lg btn-block"
+                                            onclick="return confirm('全日程を棄権しますか?');">棄権(全日程を棄権する場合)</a>
+                                    @else
+                                        <p class="">全日程リタイア: {{ $status->whole_retire }}</p>
+                                    @endif
+                                @else
+                                    <p class="">全日程リタイア: {{ $status->whole_retire }}</p>
+                                @endif
                             </div>
                         </div>
                     @endif
@@ -45,9 +84,40 @@
                                 <h4>ステータス報告(2日目)</h4>
                             </div>
                             <div class="card-body">
-                                <a href="#" class="btn btn-warning btn-lg btn-block">ハイク開始(定刻〜10:00までにスタートする場合)</a>
-                                <a href="#" class="btn btn-warning btn-lg btn-block">ハイク終了(2日目のハイクを終了する場合)</a>
-                                <a href="#" class="btn btn-danger btn-lg btn-block">棄権(途中リタイア / 2日目を棄権する場合)</a>
+                                @if (empty($status->whole_retire))
+                                    @if (isset($status->day2_start_time))
+                                        <p class="">歩行開始: {{ $status->day2_start_time }}</p>
+                                    @else
+                                        @if (empty($status->day2_retire))
+                                            <a href="{{ url('/user/status_update?q=day2_start') }}"
+                                                class="btn btn-warning btn-lg btn-block"
+                                                onclick="return confirm('2日目のハイクを開始しますか?');"
+                                                class="btn btn-warning btn-lg btn-block">ハイク開始(2日目のハイクを開始する場合)</a>
+                                        @endif
+                                    @endif
+
+                                    @if (isset($status->day2_end_time))
+                                        <p class="">歩行終了: {{ $status->day2_end_time }}</p>
+                                    @else
+                                        @if (empty($status->day2_retire))
+                                            <a href="{{ url('/user/status_update?q=day2_stop') }}"
+                                                class="btn btn-warning btn-lg btn-block"
+                                                onclick="return confirm('2日目のハイクを終了しますか?');"
+                                                class="btn btn-warning btn-lg btn-block">ハイク終了(2日目のハイクを終了する場合)</a>
+                                        @endif
+                                    @endif
+                                    @if (empty($status->day2_end_time) && empty($status->day2_retire))
+                                        <a href="{{ url('/user/status_update?q=day2_retire') }}"
+                                            class="btn btn-danger btn-lg btn-block" onclick="return confirm('2日目のハイクを棄権しますか?');"
+                                            class="btn btn-danger btn-lg btn-block">棄権(2日目を棄権する場合)</a>
+                                    @endif
+
+                                    @if (isset($status->day2_retire))
+                                        <p class="">2日目リタイア: {{ $status->day2_retire }}</p>
+                                    @endif
+                                @else
+                                    <p class="">全日程リタイア: {{ $status->whole_retire }}</p>
+                                @endif
                             </div>
                         </div>
                     @endif

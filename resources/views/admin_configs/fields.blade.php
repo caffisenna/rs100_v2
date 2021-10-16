@@ -50,3 +50,8 @@
     {!! Form::label('show_status_link', 'ステータスリンクの表示') !!}
     {!! Form::select('show_status_link',['1'=>'true','0'=>'false'],is_null(old('$adminConfig->show_status_link')) ? $adminConfig->show_status_link : old('$adminConfig->show_status_link'),['class'=>'form-control']) !!}
 </div>
+
+<div class="form-group col-sm-6">
+    {!! Form::label('temps_link', '体温測定の表示') !!}
+    {!! Form::select('temps_link',['1'=>'true','0'=>'false'],is_null(old('$adminConfig->temps_link')) ? $adminConfig->temps_link : old('$adminConfig->temps_link'),['class'=>'form-control']) !!}
+</div>

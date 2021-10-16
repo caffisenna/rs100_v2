@@ -25,6 +25,7 @@ class CreateAdminConfigsTable extends Migration
             $table->boolean('status_day1')->default(false);
             $table->boolean('status_day2')->default(false);
             $table->boolean('show_status_link')->default(false);
+            $table->boolean('temps_link')->default(false);
             $table->timestamps();
             $table->softDeletes();
         });

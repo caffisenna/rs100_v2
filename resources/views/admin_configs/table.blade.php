@@ -46,5 +46,9 @@
             <th>ステータスリンク</th>
             <td>{{ $adminConfigs->show_status_link }}</td>
         </tr>
+        <tr>
+            <th>体温測定リンク</th>
+            <td>{{ $adminConfigs->temps_link }}</td>
+        </tr>
     </table>
 </div>

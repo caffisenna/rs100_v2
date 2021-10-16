@@ -40,6 +40,7 @@ class AdminConfig extends Model
         'status_day1',
         'status_day2',
         'show_status_link',
+        'temps_link',
     ];
 
     /**

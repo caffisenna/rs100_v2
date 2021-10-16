@@ -13,6 +13,7 @@ use App\Models\User;
 use App\Models\entryForm;
 use App\Models\resultUpload;
 use Carbon\Carbon;
+use App\Http\Util\SlackPost;
 
 class statusController extends AppBaseController
 {
@@ -43,31 +44,54 @@ class statusController extends AppBaseController
             }
 
             // 時間差
-            if (!empty($value['day1_end_time'])) {
-                $t1s = new Carbon($value['day1_start_time']);
-                $t1e = new Carbon($value['day1_end_time']);
-                $diff1 = $t1s->diffInSeconds($t1e);
-                $t2s = new Carbon($value['day2_start_time']);
-                $t2e = new Carbon($value['day2_end_time']);
-                $diff2 = $t2s->diffInSeconds($t2e);
-                $d = $diff1 + $diff2;
-                $hours = floor($d / 3600); //時間
-                $minutes = floor(($d / 60) % 60); //分
-                $seconds = floor($d % 60); //秒
-                $value['hms'] = sprintf("%2d:%02d:%02d", $hours, $minutes, $seconds);
+            // if (!empty($value['day1_end_time'])) {
+            //     $t1s = new Carbon($value['day1_start_time']);
+            //     $t1e = new Carbon($value['day1_end_time']);
+            //     $diff1 = $t1s->diffInSeconds($t1e);
+            //     $t2s = new Carbon($value['day2_start_time']);
+            //     $t2e = new Carbon($value['day2_end_time']);
+            //     $diff2 = $t2s->diffInSeconds($t2e);
+            //     $d = $diff1 + $diff2;
+            //     $hours = floor($d / 3600); //時間
+            //     $minutes = floor(($d / 60) % 60); //分
+            //     $seconds = floor($d % 60); //秒
+            //     $value['hms'] = sprintf("%2d:%02d:%02d", $hours, $minutes, $seconds);
+            // }
+            $results = resultUpload::where('user_id', $value['user_id'])->select('time')->get();
+            $sec = 0;
+            foreach ($results as $val) {
+                $t = explode(":", $val->time); // : でバラす
+                $h = (int)$t[0]; // 時間
+                if (isset($t[1])) { // 分
+                    $m = (int)$t[1];
+                } else {
+                    $m = 0;
+                }
+                if (isset($t[2])) { // 秒
+                    $s = (int)$t[2];
+                } else {
+                    $s = 0;
+                }
+                $t = ($h * 60 * 60) + ($m * 60) + $s; // 秒に合算
+                $sec = $sec + $t; // 合計時間(秒)に加算
             }
+            // 時間(h:m:s)に戻す
+            $hour = floor($sec / 3600); // 時間
+            $minutes = floor(($sec / 60) % 60); // 時間
+            $seconds = floor($sec % 60); // 秒
+            $value['hms'] = sprintf("%2d:%02d:%02d", $hour, $minutes, $seconds);
 
             // 歩行距離
-            $d1 = resultUpload::where('user_id',$value['user_id'])->where('day',1)->sum('distance');
-            $d2 = resultUpload::where('user_id',$value['user_id'])->where('day',2)->sum('distance');
+            $d1 = resultUpload::where('user_id', $value['user_id'])->where('day', 1)->sum('distance');
+            $d2 = resultUpload::where('user_id', $value['user_id'])->where('day', 2)->sum('distance');
             $value['day1_distance'] = $d1; // 1日目
             $value['day2_distance'] = $d2; // 2日目
             $value['distance_total'] = $d1 + $d2; // トータル
 
             // 画像枚数
-            $value['up'] = resultUpload::where('user_id',$value['user_id'])->count();
-
+            $value['up'] = resultUpload::where('user_id', $value['user_id'])->count();
         }
+        // dd($statuses);
 
         return view('status.index')
             ->with('statuses', $statuses);
@@ -196,5 +220,60 @@ class statusController extends AppBaseController
         Flash::success('Status deleted successfully.');
 
         return redirect(route('status.index'));
+    }
+
+    public function status_update(Request $request)
+    {
+        /** @var status $status */
+        if ($request->q) {
+            $status = status::where('user_id', auth()->id())->first();
+            switch ($request->q) {
+                case 'day1_start':
+                    $status->day1_start_time = carbon::now();
+                    $what = "1日目の歩行を開始しました";
+                    break;
+                case 'day1_stop':
+                    $status->day1_end_time = carbon::now();
+                    $what = "1日目の歩行を終了しました";
+                    break;
+                case 'day1_retire':
+                    $status->day1_retire = carbon::now();
+                    $what = "1日目をリタイアしました";
+                    break;
+                case 'whole_retire':
+                    $status->whole_retire = carbon::now();
+                    $what = "全日程をリタイアしました";
+                    break;
+                case 'day2_start':
+                    $status->day2_start_time = carbon::now();
+                    $what = "2日目の歩行を開始しました";
+                    break;
+                case 'day2_stop':
+                    $status->day2_end_time = carbon::now();
+                    $what = "2日目の歩行を終了しました";
+                    break;
+                case 'day2_retire':
+                    $status->day2_retire = carbon::now();
+                    $what = "2日目をリタイアしました";
+                    break;
+
+                default:
+                    # code...
+                    break;
+            }
+
+            $status->save();
+
+            //slack通知
+            $id = Auth()->user()->id;
+            $name = Auth()->user()->name;
+            $slack = new SlackPost();
+            $slack->send(":clock1: 参加者ID:$id " . $name . "さんが$what");
+
+            // Flash::success('Status deleted successfully.');
+            return redirect(route('home'));
+        } else {
+            return redirect(route('home'));
+        }
     }
 }
