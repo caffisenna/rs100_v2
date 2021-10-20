@@ -51,6 +51,12 @@
             <p>50km&100km到達</p>
         </a>
     </li>
+    <li class="nav-item">
+        <a href="{{ url('/admin/deleted') }}"
+           class="nav-link {{ Request::is('deleted*') ? 'active' : '' }}">
+            <p>申込削除</p>
+        </a>
+    </li>
 @endif
 
 @if (Auth::user()->is_staff)

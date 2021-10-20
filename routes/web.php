@@ -76,6 +76,7 @@ Route::middleware('verified')->group(function () {
         // Route::get('/', 'Admin\HomeController@index');
         Route::resource('adminConfigs', App\Http\Controllers\AdminConfigController::class);
         Route::resource('adminentries', App\Http\Controllers\adminentryFormController::class, ['except' => 'create']);
+        Route::get('/deleted', [App\Http\Controllers\adminentryFormController::class, 'deleted'])->name('deleted');
         Route::resource('adminresultUploads', App\Http\Controllers\adminresultUploadController::class, ['except' => 'create']);
         Route::get('/result_lists', [App\Http\Controllers\adminresultUploadController::class, 'lists'])->name('resultlists');
         Route::get('/temp_lists', [App\Http\Controllers\tempsController::class, 'temp_list'])->name('templists');

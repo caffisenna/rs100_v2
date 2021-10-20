@@ -195,4 +195,14 @@ class adminentryFormController extends AppBaseController
 
         return redirect(route('adminentries.index'));
     }
+
+    public function deleted(Request $request)
+    {
+        /** @var entryForm $entryForms */
+
+        $entryForms = entryForm::with('user')->onlyTrashed()->get();
+
+        return view('admin.deleted.index')
+            ->with('entryForms', $entryForms);
+    }
 }
