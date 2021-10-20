@@ -6,6 +6,7 @@ use App\Http\Requests\CreatetempsRequest;
 use App\Http\Requests\UpdatetempsRequest;
 use App\Http\Controllers\AppBaseController;
 use App\Models\entryForm;
+use App\Models\status;
 use App\Models\temps;
 use Illuminate\Http\Request;
 use Flash;
@@ -160,6 +161,7 @@ class tempsController extends AppBaseController
         $users = entryForm::with('user')->get();
         foreach ($users as $value) {
             $value->temps = temps::where('user_id',$value->user_id)->first();
+            $value->times = status::where('user_id',$value->user_id)->first();
         }
         // dd($users);
 

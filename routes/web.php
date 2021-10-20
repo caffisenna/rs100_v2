@@ -69,6 +69,7 @@ Route::middleware('verified')->group(function () {
         Route::get('/status_update', [
             App\Http\Controllers\statusController::class, 'status_update'
         ])->name('status_update');
+        Route::resource('resultInputs', App\Http\Controllers\resultInputsController::class);
     });
     // 管理ユーザ用
     Route::prefix('admin')->middleware('can:admin')->group(function () {
@@ -78,6 +79,7 @@ Route::middleware('verified')->group(function () {
         Route::resource('adminresultUploads', App\Http\Controllers\adminresultUploadController::class, ['except' => 'create']);
         Route::get('/result_lists', [App\Http\Controllers\adminresultUploadController::class, 'lists'])->name('resultlists');
         Route::get('/temp_lists', [App\Http\Controllers\tempsController::class, 'temp_list'])->name('templists');
+        Route::resource('reach50100', App\Http\Controllers\reach50100Controller::class);
     });
     // 地区コミ用
     Route::prefix('commi')->middleware('can:commi')->group(function () {

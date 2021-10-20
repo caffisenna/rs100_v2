@@ -9,6 +9,7 @@
         @endif
         @if ($configs->user_upload)
             <a href="{{ url('/user/resultUploads') }}" class="btn btn-info btn-xs btn-block">結果アップロード</a>
+            <a href="{{ url('/user/resultInputs') }}" class="btn btn-info btn-xs btn-block">結果手入力</a>
         @endif
         @if ($configs->healthcheck)
             <a href="{{ url('/user/planUploads') }}" class="btn btn-info btn-xs btn-block">計画書アップロード</a>
@@ -44,6 +45,12 @@
             <p>体温計測一覧</p>
         </a>
     </li>
+    <li class="nav-item">
+        <a href="{{ route('reach50100.index') }}"
+           class="nav-link {{ Request::is('reach50100*') ? 'active' : '' }}">
+            <p>50km&100km到達</p>
+        </a>
+    </li>
 @endif
 
 @if (Auth::user()->is_staff)
@@ -66,11 +73,12 @@
 @if ($configs->show_status_link)
     <li class="nav-item">
         <a href="{{ route('status.index') }}" class="nav-link {{ Request::is('status*') ? 'active' : '' }}">
-            <p>スターテス一覧</p>
+            <p>ステータス一覧</p>
         </a>
     </li>
 @endif
 
+{{-- ログアウトボタン --}}
 <a href="#" class="btn btn-danger btn-xs btn-block"
     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
     ログアウト
@@ -78,3 +86,4 @@
 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
     @csrf
 </form>
+{{-- ログアウトボタン --}}

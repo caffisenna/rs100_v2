@@ -23,6 +23,10 @@
 
                             @if ($configs->user_upload)
                                 <a href="{{ url('/user/resultUploads') }}" class="btn btn-info btn-lg btn-block">結果アップロード</a>
+                                <a href="{{ url('/user/resultInputs') }}" class="btn btn-info btn-lg btn-block">結果手入力</a>
+                            @endif
+                            @if ($configs->temps_link)
+                                <a href="{{ url('/user/temps') }}" class="btn btn-info btn-lg btn-block">体温計測</a>
                             @endif
                             @if ($configs->temps_link)
                                 <a href="{{ url('/user/temps') }}" class="btn btn-info btn-lg btn-block">体温計測</a>

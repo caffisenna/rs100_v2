@@ -1,0 +1,98 @@
+[
+	{
+		"name": "id",
+		"dbType": "increments",
+		"htmlType": null,
+		"validations": null,
+		"searchable": false,
+		"fillable": false,
+		"primary": true,
+		"inForm": false,
+		"inIndex": false,
+		"inView": false
+	},
+	{
+		"name": "user_id",
+		"dbType": "string",
+		"htmlType": "text",
+		"validations": "required",
+		"searchable": true,
+		"fillable": true,
+		"primary": false,
+		"inForm": true,
+		"inIndex": true,
+		"inView": true
+	},
+	{
+		"name": "day",
+		"dbType": "integer",
+		"htmlType": "text",
+		"validations": "required",
+		"searchable": true,
+		"fillable": true,
+		"primary": false,
+		"inForm": true,
+		"inIndex": true,
+		"inView": true
+	},
+	{
+		"name": "distance",
+		"dbType": "string",
+		"htmlType": "text",
+		"validations": "required",
+		"searchable": true,
+		"fillable": true,
+		"primary": false,
+		"inForm": true,
+		"inIndex": true,
+		"inView": true
+	},
+	{
+		"name": "time",
+		"dbType": "time",
+		"htmlType": "text",
+		"validations": "required",
+		"searchable": true,
+		"fillable": true,
+		"primary": false,
+		"inForm": true,
+		"inIndex": true,
+		"inView": true
+	},
+	{
+		"name": "created_at",
+		"dbType": "timestamp",
+		"htmlType": null,
+		"validations": null,
+		"searchable": false,
+		"fillable": false,
+		"primary": false,
+		"inForm": false,
+		"inIndex": false,
+		"inView": true
+	},
+	{
+		"name": "updated_at",
+		"dbType": "timestamp",
+		"htmlType": null,
+		"validations": null,
+		"searchable": false,
+		"fillable": false,
+		"primary": false,
+		"inForm": false,
+		"inIndex": false,
+		"inView": true
+	},
+	{
+		"name": "deleted_at",
+		"dbType": "timestamp",
+		"htmlType": null,
+		"validations": null,
+		"searchable": false,
+		"fillable": false,
+		"primary": false,
+		"inForm": false,
+		"inIndex": false,
+		"inView": false
+	}
+]

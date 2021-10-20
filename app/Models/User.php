@@ -66,4 +66,12 @@ class User extends Authenticatable implements MustVerifyEmail
     public function temps() {
         return $this->hasOne(temps::class);
     }
+
+    public function resultinputs() {
+        return $this->hasOne(resultinputs::class);
+    }
+
+    public function reach50100() {
+        return $this->hasOne(reach50100::class);
+    }
 }
