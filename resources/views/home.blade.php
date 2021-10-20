@@ -28,9 +28,6 @@
                             @if ($configs->temps_link)
                                 <a href="{{ url('/user/temps') }}" class="btn btn-info btn-lg btn-block">体温計測</a>
                             @endif
-                            @if ($configs->temps_link)
-                                <a href="{{ url('/user/temps') }}" class="btn btn-info btn-lg btn-block">体温計測</a>
-                            @endif
                         </div>
                     </div>
                     @if ($configs->status_day1)
