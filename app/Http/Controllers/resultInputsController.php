@@ -49,7 +49,7 @@ class resultInputsController extends AppBaseController
     public function store(CreateresultInputsRequest $request)
     {
         $input = $request->all();
-        dd($input);
+        // dd($input);
 
         /** @var resultInputs $resultInputs */
         $resultInputs = resultInputs::create($input);
