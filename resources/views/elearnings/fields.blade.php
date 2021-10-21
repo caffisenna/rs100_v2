@@ -277,7 +277,7 @@
 <div class="form-group col-sm-12 @if ($errors->has('q17')) has-error @endif">
     <h3>Q17:TATTAの事前訓練について正しいものを選んでください。</h3>
     <label class="form-check">
-        {!! Form::radio('q17', '1', null, ['class' => 'form-check-input']) !!} 事前にダウンロードを済ませ、しおりで使い方を確認し、実際に一度使って見てから当日に臨む。
+        {!! Form::radio('q17', '1', null, ['class' => 'form-check-input']) !!} 事前にダウンロードを済ませ、TATTA使用マニュアルで使い方を確認し、実際に一度使って見てから当日に臨む。
     </label>
 
     <label class="form-check">
