@@ -20,7 +20,7 @@
                 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.1/css/jquery.dataTables.css">
                 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.js"></script>
                 <div class="table-responsive">
-                    <table class="table" id="entryForms-table">
+                    <table class="uk-table uk-table-striped" id="entryForms-table">
                         <thead>
                             <tr>
                                 <th>名前</th>

@@ -29,8 +29,8 @@
     {!! Form::label('time', '時間:') !!}
     <h3>時刻の入力方法</h3>
     <ul class="uk-text-warning">
-        <li>10時間42分の場合 : 10:42:00 と入力</li>
-        <li>0時間59分の場合 : 0:59:00 と入力</li>
+        <li>10時間42分の場合 : 10:42 と入力</li>
+        <li>0時間59分の場合 : 0:59 と入力</li>
     </ul>
     {!! Form::text('time', null, ['class' => 'form-control']) !!}
     @error('time')

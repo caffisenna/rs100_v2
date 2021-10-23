@@ -484,6 +484,8 @@
                 <div class="uk-card uk-card-primary uk-card-body">
                     <h5 class="uk-card-title"><span uk-icon="icon:info; ratio:1"></span>NEWS</h5>
                     <ul class="uk-list">
+                        <li>2021/10/23 Eラーニングは10/24午前中にオープン予定です</li>
+                        <li>2021/10/23 参加申込受付を10/30(土)23:59まで延長します</li>
                         <li>2021/10/05 参加申込受付をスタートしました</li>
                         <li>2021/10/01 まもなく第54回ローバースカウト100kmハイクの申込をスタートします</li>
                     </ul>
@@ -511,17 +513,6 @@
                 <div class="text-center text-sm text-gray-500 sm:text-left">
                     <div class="flex items-center">
 
-
-                        {{-- <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                            stroke-width="2" viewBox="0 0 24 24" class="ml-4 -mt-px w-5 h-5 text-gray-400">
-                            <path
-                                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z">
-                            </path>
-                        </svg>
-
-                        <a href="" class="ml-1 underline">
-                            スポンサー
-                        </a> --}}
                     </div>
                 </div>
 

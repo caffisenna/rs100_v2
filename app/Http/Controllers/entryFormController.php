@@ -283,13 +283,13 @@ class entryFormController extends AppBaseController
         $entryForm->sm_confirmation = Carbon::now()->format('Y-m-d H:i:s');
 
         // DBに保存
-        // $entryForm->save();
+        $entryForm->save();
 
         // メール送信
         $user = User::select('id', 'email', 'name')->where('id', $entryForm->user_id)->first();
         $user->sm_confirmation = $entryForm->sm_confirmation;
         $sendto = ['email' => $user->email];
-        // Mail::to($sendto)->send(new SmConfirm($user));
+        Mail::to($sendto)->send(new SmConfirm($user));
 
         // slack通知
         $slack = new SlackPost();

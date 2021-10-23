@@ -28,10 +28,17 @@ class adminentryFormController extends AppBaseController
         /** @var entryForm $entryForms */
 
         // 取得したいインスタンス = 子モデル::with(親モデル)->get(); で親子取得
-        $entryForms = entryForm::with('user')->get();
+        // $entryForms = entryForm::with('user')->get();
+        $users = User::where(function ($query) {
+            $query->where('is_admin', 0)
+                ->Where('is_staff', 0)
+                ->Where('is_commi', null)
+                ->where('email_verified_at', '<>', null);
+        })
+            ->with('entryform')->with('elearning')->with('planupload')->get();
 
         return view('admin.entry_forms.index')
-            ->with('entryForms', $entryForms);
+            ->with('users', $users);
     }
 
     /**
@@ -77,7 +84,34 @@ class adminentryFormController extends AppBaseController
     public function show($id)
     {
         /** @var entryForm $entryForm */
-        $entryForm = entryForm::find($id);
+        // $entryForm = entryForm::find($id);
+        $entryForm = entryForm::where('user_id', $id)->first();
+        switch ($entryForm->how_to_join) {
+            case '1':
+                $entryForm->how_to_join = "両日参加(両日とも7:00〜10:00までにスタート)";
+                break;
+            case '2':
+                $entryForm->how_to_join = "両日参加(初日7:00〜10:00までにスタートかつ 2日目10:00以降スタート)";
+                break;
+            case '3':
+                $entryForm->how_to_join = "両日参(初日10:00以降スタート かつ 2日目7:00〜10:00までにスタート)";
+                break;
+            case '4':
+                $entryForm->how_to_join = "両日参加(両日とも10:00以降にスタート)";
+                break;
+            case '5':
+                $entryForm->how_to_join = "1日目だけ参加(7:00〜10:00までにスタート)";
+                break;
+            case '6':
+                $entryForm->how_to_join = "1日目だけ遅参(10:00以降にスタート)";
+                break;
+            case '7':
+                $entryForm->how_to_join = "2日目だけ参加(7:00〜10:00までにスタート)";
+                break;
+            case '8':
+                $entryForm->how_to_join = "2日目だけ遅参(10:00以降にスタート)";
+                break;
+        }
 
         if (empty($entryForm)) {
             Flash::error('Entry Form not found');
@@ -98,7 +132,8 @@ class adminentryFormController extends AppBaseController
     public function edit($id)
     {
         /** @var entryForm $entryForm */
-        $entryForm = entryForm::find($id);
+        // $entryForm = entryForm::find($id);
+        $entryForm = entryForm::where('user_id', $id)->first();
 
         // 生年月日分解
         $entryForm->bd_year =  carbon::parse($entryForm->birth_day)->year;
@@ -156,7 +191,8 @@ class adminentryFormController extends AppBaseController
     public function destroy($id)
     {
         /** @var entryForm $entryForm */
-        $entryForm = entryForm::find($id);
+        // $entryForm = entryForm::find($id);
+        $entryForm = entryForm::where('user_id', $id)->first();
 
         if (empty($entryForm)) {
             Flash::error('見つかりません');

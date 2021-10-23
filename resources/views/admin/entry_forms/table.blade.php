@@ -2,86 +2,113 @@
 <script src="https://cdn.datatables.net/fixedheader/3.2.0/js/dataTables.fixedHeader.min.js"></script>
 <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.js"></script>
 <script type="text/javascript">
-$(document).ready(function () {
-    // Setup - add a text input to each footer cell
-    $('#entryForms-table thead tr')
-        .clone(true)
-        .addClass('filters')
-        .appendTo('#entryForms-table thead');
+    $(document).ready(function() {
+        // Setup - add a text input to each footer cell
+        $('#entryForms-table thead tr')
+            .clone(true)
+            .addClass('filters')
+            .appendTo('#entryForms-table thead');
 
-    var table = $('#entryForms-table').DataTable({
-        orderCellsTop: true,
-        fixedHeader: true,
-        initComplete: function () {
-            var api = this.api();
+        var table = $('#entryForms-table').DataTable({
+            orderCellsTop: true,
+            fixedHeader: true,
+            initComplete: function() {
+                var api = this.api();
 
-            // For each column
-            api
-                .columns()
-                .eq(0)
-                .each(function (colIdx) {
-                    // Set the header cell to contain the input element
-                    var cell = $('.filters th').eq(
-                        $(api.column(colIdx).header()).index()
-                    );
-                    var title = $(cell).text();
-                    $(cell).html('<input type="text" placeholder="' + title + '" />');
+                // For each column
+                api
+                    .columns()
+                    .eq(0)
+                    .each(function(colIdx) {
+                        // Set the header cell to contain the input element
+                        var cell = $('.filters th').eq(
+                            $(api.column(colIdx).header()).index()
+                        );
+                        var title = $(cell).text();
+                        $(cell).html('<input type="text" placeholder="' + title + '" />');
 
-                    // On every keypress in this input
-                    $(
-                        'input',
-                        $('.filters th').eq($(api.column(colIdx).header()).index())
-                    )
-                        .off('keyup change')
-                        .on('keyup change', function (e) {
-                            e.stopPropagation();
+                        // On every keypress in this input
+                        $(
+                                'input',
+                                $('.filters th').eq($(api.column(colIdx).header()).index())
+                            )
+                            .off('keyup change')
+                            .on('keyup change', function(e) {
+                                e.stopPropagation();
 
-                            // Get the search value
-                            $(this).attr('title', $(this).val());
-                            var regexr = '({search})'; //$(this).parents('th').find('select').val();
+                                // Get the search value
+                                $(this).attr('title', $(this).val());
+                                var regexr =
+                                '({search})'; //$(this).parents('th').find('select').val();
 
-                            var cursorPosition = this.selectionStart;
-                            // Search the column for that value
-                            api
-                                .column(colIdx)
-                                .search(
-                                    this.value != ''
-                                        ? regexr.replace('{search}', '(((' + this.value + ')))')
-                                        : '',
-                                    this.value != '',
-                                    this.value == ''
-                                )
-                                .draw();
+                                var cursorPosition = this.selectionStart;
+                                // Search the column for that value
+                                api
+                                    .column(colIdx)
+                                    .search(
+                                        this.value != '' ?
+                                        regexr.replace('{search}', '(((' + this.value +
+                                            ')))') :
+                                        '',
+                                        this.value != '',
+                                        this.value == ''
+                                    )
+                                    .draw();
 
-                            $(this)
-                                .focus()[0]
-                                .setSelectionRange(cursorPosition, cursorPosition);
-                        });
-                });
-        },
+                                $(this)
+                                    .focus()[0]
+                                    .setSelectionRange(cursorPosition, cursorPosition);
+                            });
+                    });
+            },
+        });
     });
-});
 </script>
 <div class="table-responsive">
-    <table class="table" id="entryForms-table">
+    <table class="uk-table table-striped uk-table-small" id="entryForms-table">
         <thead>
             <tr>
+                <td>No</td>
                 <th>名前</th>
                 <th>所属</th>
                 <th>登録確認</th>
-                <th>Action</th>
+                <th>Eラン</th>
+                <td>Action</td>
             </tr>
         </thead>
         <tbody>
-            @foreach ($entryForms as $entryForm)
-                @unless($entryForm->user->is_admin || $entryForm->user->is_staff || $entryForm->user->is_commi)
-                    <tr>
-                        <td><a href="{{ route('adminentries.show', [$entryForm->id]) }}">{{ $entryForm->user->name }}</a> ({{ $entryForm->gender }})<br>{{ $entryForm->furigana }}</td>
-                        <td>{{ $entryForm->district }} {{ $entryForm->dan_name }} {{ $entryForm->dan_number }}</td>
-                        <td><span class="uk-text-small">{{ $entryForm->hq_confirmation }}</span></td>
-                        <td>@if ($entryForm->id){!! Form::open(['route' => ['adminentries.destroy', $entryForm->id], 'method' => 'delete']) !!}<div class='btn-group'><a href="{{ route('adminentries.show', [$entryForm->id]) }}" class='btn btn-default btn-xs'> <i class="far fa-eye"></i></a><a href="{{ route('adminentries.edit', [$entryForm->id]) }}" class='btn btn-default btn-xs'> <i class="far fa-edit"></i></a>{!! Form::button('<i class="far fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('本当に削除しますか?')"]) !!}</div>{!! Form::close() !!}@endif</td>
-                    </tr>
-                @endunless
+            @foreach ($users as $user)
+                {{-- @unless($user->user->is_admin || $user->user->is_staff || $user->user->is_commi) --}}
+                <tr>
+                    <td>{{ @$user->entryform->id }}</td>
+                    @if (isset($user->entryform->gender))
+                        <td><a href="{{ route('adminentries.show', [$user->id]) }}">{{ $user->name }}</a>
+                            ({{ @$user->entryform->gender }})<br>{{ @$user->entryform->furigana }}</td>
+                    @else
+                        <td>{{ $user->name }}<br>(申込書未作成)</td>
+                    @endif
+                    <td>{{ @$user->entryform->district }} {{ @$user->entryform->dan_name }}
+                        {{ @$user->entryform->dan_number }}</td>
+                    @if (isset($user->entryform->hq_confirmation))
+                        <td><span class="uk-text-success">済</span></td>
+                    @else
+                        <td>未確認</td>
+                    @endif
+                    @if (isset($user->elearning->created_at))
+                        <td><span class="uk-text-success">合格</span></td>
+                    @else
+                        <td>未修了</td>
+                    @endif
+                    <td>@if ($user->id){!! Form::open(['route' => ['adminentries.destroy', $user->id], 'method' => 'delete']) !!}
+                        <div class='btn-group'>
+                            {{-- <a href="{{ route('adminentries.show', [$user->id]) }}" class='btn btn-default btn-xs'> <i class="far fa-eye"></i></a> --}}
+                            <a href="{{ route('adminentries.edit', [$user->id]) }}" class='btn btn-default btn-xs'> <i class="far fa-edit"></i></a>
+                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('本当に削除しますか?')"]) !!}
+                        </div>
+                        {!! Form::close() !!}@endif
+                    </td>
+                </tr>
+                {{-- @endunless --}}
             @endforeach
         </tbody>
     </table>
