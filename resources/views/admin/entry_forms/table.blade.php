@@ -39,7 +39,7 @@
                                 // Get the search value
                                 $(this).attr('title', $(this).val());
                                 var regexr =
-                                '({search})'; //$(this).parents('th').find('select').val();
+                                    '({search})'; //$(this).parents('th').find('select').val();
 
                                 var cursorPosition = this.selectionStart;
                                 // Search the column for that value
@@ -72,6 +72,7 @@
                 <th>名前</th>
                 <th>所属</th>
                 <th>登録確認</th>
+                <th>団承認</th>
                 <th>Eラン</th>
                 <td>Action</td>
             </tr>
@@ -94,18 +95,26 @@
                     @else
                         <td>未確認</td>
                     @endif
+                    @if (isset($user->entryform->sm_confirmation))
+                        <td><span class="uk-text-success">済</span></td>
+                    @else
+                        <td>未承認</td>
+                    @endif
                     @if (isset($user->elearning->created_at))
                         <td><span class="uk-text-success">合格</span></td>
                     @else
                         <td>未修了</td>
                     @endif
-                    <td>@if ($user->id){!! Form::open(['route' => ['adminentries.destroy', $user->id], 'method' => 'delete']) !!}
-                        <div class='btn-group'>
-                            {{-- <a href="{{ route('adminentries.show', [$user->id]) }}" class='btn btn-default btn-xs'> <i class="far fa-eye"></i></a> --}}
-                            <a href="{{ route('adminentries.edit', [$user->id]) }}" class='btn btn-default btn-xs'> <i class="far fa-edit"></i></a>
-                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('本当に削除しますか?')"]) !!}
-                        </div>
-                        {!! Form::close() !!}@endif
+                    <td>
+                        @if ($user->id){!! Form::open(['route' => ['adminentries.destroy', $user->id], 'method' => 'delete']) !!}
+                            <div class='btn-group'>
+                                {{-- <a href="{{ route('adminentries.show', [$user->id]) }}" class='btn btn-default btn-xs'> <i class="far fa-eye"></i></a> --}}
+                                <a href="{{ route('adminentries.edit', [$user->id]) }}"
+                                    class='btn btn-default btn-xs'> <i class="far fa-edit"></i></a>
+                                {!! Form::button('<i class="far fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('本当に削除しますか?')"]) !!}
+                            </div>
+                            {!! Form::close() !!}
+                        @endif
                     </td>
                 </tr>
                 {{-- @endunless --}}

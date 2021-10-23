@@ -484,7 +484,7 @@
                 <div class="uk-card uk-card-primary uk-card-body">
                     <h5 class="uk-card-title"><span uk-icon="icon:info; ratio:1"></span>NEWS</h5>
                     <ul class="uk-list">
-                        <li>2021/10/23 Eラーニングは10/24午前中にオープン予定です</li>
+                        <li>2021/10/24 Eラーニングの受講が可能になりました</li>
                         <li>2021/10/23 参加申込受付を10/30(土)23:59まで延長します</li>
                         <li>2021/10/05 参加申込受付をスタートしました</li>
                         <li>2021/10/01 まもなく第54回ローバースカウト100kmハイクの申込をスタートします</li>
