@@ -68,7 +68,7 @@
     <table class="uk-table table-striped uk-table-small" id="entryForms-table">
         <thead>
             <tr>
-                <td>No</td>
+                <th>No</th>
                 <th>名前</th>
                 <th>所属</th>
                 <th>登録確認</th>
