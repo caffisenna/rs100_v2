@@ -74,12 +74,14 @@
                 <th>登録確認</th>
                 <th>団承認</th>
                 <th>Eラン</th>
+                <th>計画書</th>
                 <td>Action</td>
             </tr>
         </thead>
         <tbody>
             @foreach ($users as $user)
                 {{-- @unless($user->user->is_admin || $user->user->is_staff || $user->user->is_commi) --}}
+                @if(isset($user->entryform))
                 <tr>
                     <td>{{ @$user->entryform->id }}</td>
                     @if (isset($user->entryform->gender))
@@ -105,6 +107,11 @@
                     @else
                         <td>未修了</td>
                     @endif
+                    @if (isset($user->planupload['0']))
+                        <td><span class="uk-text-success">済</span></td>
+                    @else
+                        <td>未</td>
+                    @endif
                     <td>
                         @if ($user->id){!! Form::open(['route' => ['adminentries.destroy', $user->id], 'method' => 'delete']) !!}
                             <div class='btn-group'>
@@ -117,6 +124,7 @@
                         @endif
                     </td>
                 </tr>
+                @endif
                 {{-- @endunless --}}
             @endforeach
         </tbody>
