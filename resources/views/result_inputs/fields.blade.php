@@ -27,7 +27,7 @@
 <!-- Time Field -->
 <div class="form-group col-sm-12">
     {!! Form::label('time', '時間:') !!}
-    <h3>時刻の入力方法</h3>
+    <h3>時間の入力方法</h3>
     <ul class="uk-text-warning">
         <li>10時間42分の場合 : 10:42 と入力</li>
         <li>0時間59分の場合 : 0:59 と入力</li>

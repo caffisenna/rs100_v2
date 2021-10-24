@@ -34,6 +34,12 @@
         </a>
     </li>
     <li class="nav-item">
+        <a href="{{ route('planUploads.index') }}"
+            class="nav-link {{ Request::is('plan_uploads*') ? 'active' : '' }}">
+            <p>計画書一覧</p>
+        </a>
+    </li>
+    <li class="nav-item">
         <a href="{{ route('adminresultUploads.index') }}"
             class="nav-link {{ Request::is('entryForms*') ? 'active' : '' }}">
             <p>結果画像一覧</p>
