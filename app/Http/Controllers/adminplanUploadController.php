@@ -11,7 +11,9 @@ use Response;
 use Auth;
 use File;
 use App\Http\Util\SlackPost;
+use App\Models\entryForm;
 use App\Models\User;
+use Carbon\Carbon;
 
 class adminplanUploadController extends AppBaseController
 {
@@ -38,30 +40,13 @@ class adminplanUploadController extends AppBaseController
             ->with('users', $users);
     }
 
-    /**
-     * Show the form for creating a new planUpload.
-     *
-     * @return Response
-     */
-
-
-    /**
-     * Show the form for editing the specified planUpload.
-     *
-     * @param int $id
-     *
-     * @return Response
-     */
-
-
-    /**
-     * Remove the specified planUpload from storage.
-     *
-     * @param int $id
-     *
-     * @throws \Exception
-     *
-     * @return Response
-     */
+    public function check(Request $request)
+    {
+        // dd($request->id);
+        $db = planUpload::find($request->id);
+        $db->checked_at = carbon::now();
+        $db->save();
+        return back();
+    }
 
 }

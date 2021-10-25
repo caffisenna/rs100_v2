@@ -9,6 +9,7 @@
                 <th>氏名</th>
                 <th>ファイル名</th>
                 <th>uploaded</th>
+                <th>check</th>
             </tr>
         </thead>
         <tbody>
@@ -21,6 +22,12 @@
                         <td><a href="{{ url('/') }}/plans/{{ $value->file_path }}">{{ $value->file_path }}</a>
                         </td>
                         <td>{{ $value->created_at }}</td>
+                        @if (isset($value->checked_at))
+                            <td><span class="uk-text-success">済</td>
+                        @else
+                            <td><a href="{{ url("/plan_check?id=$value->id") }}"
+                                    onclick="return confirm('この歩行計画をチェック済みにしますか?')">check</a></td>
+                        @endif
                     </tr>
                 @endforeach
             @endforeach

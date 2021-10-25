@@ -104,3 +104,7 @@ Route::resource('status', App\Http\Controllers\statusController::class);
 Route::get('/hq_confirm', [
     App\Http\Controllers\adminentryFormController::class, 'hq_confirm'
 ])->name('hq_comfirm');
+
+Route::get('/plan_check', [
+    App\Http\Controllers\adminplanUploadController::class, 'check'
+])->name('plan_upload');
