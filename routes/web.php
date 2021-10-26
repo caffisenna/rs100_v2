@@ -81,7 +81,7 @@ Route::middleware('verified')->group(function () {
         Route::get('/result_lists', [App\Http\Controllers\adminresultUploadController::class, 'lists'])->name('resultlists');
         Route::get('/temp_lists', [App\Http\Controllers\tempsController::class, 'temp_list'])->name('templists');
         Route::resource('reach50100', App\Http\Controllers\reach50100Controller::class);
-        Route::resource('planUploads', App\Http\Controllers\adminplanUploadController::class, ['except' => ['create','edit','show','update']]);
+        Route::resource('adminplanUploads', App\Http\Controllers\adminplanUploadController::class, ['except' => ['create','edit','show','update']]);
     });
     // 地区コミ用
     Route::prefix('commi')->middleware('can:commi')->group(function () {

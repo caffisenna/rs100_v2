@@ -34,7 +34,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="{{ route('planUploads.index') }}"
+        <a href="{{ route('adminplanUploads.index') }}"
             class="nav-link {{ Request::is('plan_uploads*') ? 'active' : '' }}">
             <p>計画書一覧</p>
         </a>
