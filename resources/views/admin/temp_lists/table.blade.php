@@ -79,16 +79,16 @@
         <tbody>
             @foreach ($users as $user)
                 <tr>
-                    <td><a href="{{ route('adminentries.show', [$user->user_id]) }}">{{ $user->user->name }}</a></td>
-                    <td>{{ $user->district }} {{ $user->dan_name }}</td>
+                    <td><a href="{{ route('adminentries.show', [$user->id]) }}">{{ $user->name }}</a></td>
+                    <td>{{ @$user->entryform->district }} {{ @$user->entryform->dan_name }}</td>
                     <td>@if(isset($user->temps->temp_day1_before))@if ($user->temps->temp_day1_before == '37.5度以上')<span class="uk-text-danger">{{ $user->temps->temp_day1_before }}</span>@else{{ $user->temps->temp_day1_before }}@endif @endif<br>
-                        {{ $user->times->day1_start_time }}</td>
+                        {{ @$user->status->day1_start_time }}</td>
                     <td>@if(isset($user->temps->temp_day1_after))@if ($user->temps->temp_day1_after == '37.5度以上')<span class="uk-text-danger">{{ $user->temps->temp_day1_after }}</span>@else{{ $user->temps->temp_day1_after }}@endif @endif<br>
-                        {{ $user->times->day1_end_time }}</td>
+                        {{ @$user->status->day1_end_time }}</td>
                     <td>@if(isset($user->temps->temp_day2_before))@if ($user->temps->temp_day2_before == '37.5度以上')<span class="uk-text-danger">{{ $user->temps->temp_day2_before }}</span>@else{{ $user->temps->temp_day2_before }}@endif @endif<br>
-                        {{ $user->times->day2_start_time }}</td>
+                        {{ @$user->status->day2_start_time }}</td>
                     <td>@if(isset($user->temps->temp_day2_after))@if ($user->temps->temp_day2_after == '37.5度以上')<span class="uk-text-danger">{{ $user->temps->temp_day2_after }}</span>@else{{ $user->temps->temp_day2_after }}@endif @endif<br>
-                        {{ $user->times->day2_end_time }}</td>
+                        {{ @$user->status->day2_end_time }}</td>
                 </tr>
 
             @endforeach

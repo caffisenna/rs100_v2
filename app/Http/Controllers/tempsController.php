@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Response;
 use Auth;
+use App\Models\User;
 
 class tempsController extends AppBaseController
 {
@@ -158,12 +159,14 @@ class tempsController extends AppBaseController
 
     public function temp_list()
     {
-        $users = entryForm::with('user')->get();
-        foreach ($users as $value) {
-            $value->temps = temps::where('user_id',$value->user_id)->first();
-            $value->times = status::where('user_id',$value->user_id)->first();
-        }
-        // dd($users);
+        $users = User::where(function ($query) {
+            $query->where('is_admin', 0)
+                ->Where('is_staff', 0)
+                ->Where('is_commi', null)
+                ->where('email_verified_at', '<>', null);
+        })
+            ->with('entryform')->with('temps')->with('status')->get();
+
 
         return view('admin.temp_lists.index')
             ->with('users', $users);
