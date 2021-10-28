@@ -21,7 +21,8 @@
         <div>
             <div class="uk-card uk-card-default uk-card-body">
                 <h3 class="uk-card-title">計画書のアップロード</h3>
-                <p class="uk-text-warning">計画書はPDF、ワード(docx)、エクセル(xlsx)、画像(jpg)形式でアップロードしてください。</p>
+                <p class="uk-text-warning">計画書は<a href="https://blog.rs100.info/wp-content/uploads/2021/10/hike_plan.xlsx">指定の書式(excel)</a>をダウンロードし入力し、隊長の捺印を取り付けたうえでアップロードしてください。<br>
+                    PDF、ワード(docx)、エクセル(xlsx)、画像(jpg)形式でアップロードが可能です。</p>
             </div>
         </div>
 

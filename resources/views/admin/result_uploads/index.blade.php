@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>管理者用歩行データチェック</h1>
+                    <h1>歩行データチェック</h1>
                 </div>
             </div>
         </div>
