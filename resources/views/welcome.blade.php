@@ -425,12 +425,16 @@
                         <div class="flex items-center">
                             @auth
                             @else
-                                <span uk-icon="icon:user; ratio:2"></span>
-                                <div class="ml-4 text-lg leading-7 font-semibold">
-                                    <a href="{{ route('register') }}" class="underline text-gray-900 dark:text-white">
-                                        ユーザー登録
-                                    </a>
-                                </div>
+                                @if (env('USER_CREATE') > now())
+                                    <span uk-icon="icon:user; ratio:2"></span>
+                                    <div class="ml-4 text-lg leading-7 font-semibold">
+                                        <a href="{{ route('register') }}" class="underline text-gray-900 dark:text-white">
+                                            ユーザー登録
+                                        </a>
+                                    </div>
+                                @else
+                                    <p class="uk-text-danger">新規ユーザー登録を修了しました</p>
+                                @endif
                             @endauth
                         </div>
                     </div>
