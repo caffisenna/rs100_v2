@@ -1,6 +1,6 @@
 <p class="uk-hidden">{{ $configs = \App\Models\AdminConfig::first() }}</p>
 @if (isset(Auth::user()->email_verified_at))
-    @unless(Auth::user()->is_admin || Auth::user()->is_commi)
+    @unless(Auth::user()->is_admin || Auth::user()->is_commi || Auth::user()->is_staff)
         @if ($configs->create_application)
             <a href="{{ url('/user/entryForms') }}" class="btn btn-info btn-xs btn-block">申込書</a>
         @endif
@@ -46,20 +46,18 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="{{ route('templists') }}"
-            class="nav-link {{ Request::is('temps*') ? 'active' : '' }}">
+        <a href="{{ route('templists') }}" class="nav-link {{ Request::is('temps*') ? 'active' : '' }}">
             <p>体温計測一覧</p>
         </a>
     </li>
     <li class="nav-item">
         <a href="{{ route('reach50100.index') }}"
-           class="nav-link {{ Request::is('reach50100*') ? 'active' : '' }}">
+            class="nav-link {{ Request::is('reach50100*') ? 'active' : '' }}">
             <p>50km&100km到達</p>
         </a>
     </li>
     <li class="nav-item">
-        <a href="{{ url('/admin/deleted') }}"
-           class="nav-link {{ Request::is('deleted*') ? 'active' : '' }}">
+        <a href="{{ url('/admin/deleted') }}" class="nav-link {{ Request::is('deleted*') ? 'active' : '' }}">
             <p>申込削除</p>
         </a>
     </li>
@@ -67,9 +65,9 @@
 
 @if (Auth::user()->is_staff)
     <li class="nav-item">
-        <a href="{{ route('adminConfigs.index') }}"
-            class="nav-link {{ Request::is('adminConfigs*') ? 'active' : '' }}">
-            <p>スタッフ用メニュー</p>
+        <a href="{{ url('/staff/staffplanUploads') }}"
+            class="nav-link {{ Request::is('staff/staffplanUploads*') ? 'active' : '' }}">
+            <p>スタッフ用計画書一覧</p>
         </a>
     </li>
 @endif

@@ -48,5 +48,10 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('commi', function (\App\Models\User $user) {
             return $user->is_commi;
         });
+
+        // staff
+        Gate::define('staff', function (\App\Models\User $user) {
+            return $user->is_staff;
+        });
     }
 }

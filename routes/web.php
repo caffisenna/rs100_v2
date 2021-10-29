@@ -7,6 +7,7 @@ use App\Http\Controllers\entryFormController;
 use App\Http\Controllers\statusController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use App\Http\Controllers\staffplanUploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -82,6 +83,10 @@ Route::middleware('verified')->group(function () {
         Route::get('/temp_lists', [App\Http\Controllers\tempsController::class, 'temp_list'])->name('templists');
         Route::resource('reach50100', App\Http\Controllers\reach50100Controller::class);
         Route::resource('adminplanUploads', App\Http\Controllers\adminplanUploadController::class, ['except' => ['create','edit','show','update']]);
+    });
+    // スタッフ用
+    Route::prefix('staff')->middleware('can:staff')->group(function () {
+        Route::resource('staffplanUploads', App\Http\Controllers\staffplanUploadController::class, ['except' => ['create','edit','show','update']]);
     });
     // 地区コミ用
     Route::prefix('commi')->middleware('can:commi')->group(function () {

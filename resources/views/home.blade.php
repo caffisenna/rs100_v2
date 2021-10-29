@@ -3,7 +3,7 @@
     <div class="container">
         <div class="row">
             @if (isset(Auth::user()->email_verified_at))
-                @unless(Auth::user()->is_admin || Auth::user()->is_commi)
+                @unless(Auth::user()->is_admin || Auth::user()->is_commi || Auth::user()->is_staff)
                     <div class="card" style="width:100%;">
                         <div class="card-header">
                             <h4>各種申請書</h4>
