@@ -6,7 +6,7 @@
                 @unless(Auth::user()->is_admin || Auth::user()->is_commi || Auth::user()->is_staff)
                     <div class="card" style="width:100%;">
                         <div class="card-header">
-                            <h4>各種申請書1</h4>
+                            <h4>各種申請書</h4>
                         </div>
                         <div class="card-body">
                             @if ($configs->create_application)
