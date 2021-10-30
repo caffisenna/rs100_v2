@@ -23,41 +23,41 @@
 @if (Auth::user()->is_admin)
     <li class="nav-item">
         <a href="{{ route('adminConfigs.index') }}"
-            class="nav-link {{ Request::is('adminConfigs*') ? 'active' : '' }}">
+            class="nav-link {{ Request::is('admin/adminConfigs*') ? 'active' : '' }}">
             <p>管理コンパネ</p>
         </a>
     </li>
     <li class="nav-item">
         <a href="{{ route('adminentries.index') }}"
-            class="nav-link {{ Request::is('entryForms*') ? 'active' : '' }}">
+            class="nav-link {{ Request::is('admin/adminentries*') ? 'active' : '' }}">
             <p>参加者一覧</p>
         </a>
     </li>
     <li class="nav-item">
         <a href="{{ route('adminplanUploads.index') }}"
-            class="nav-link {{ Request::is('plan_uploads*') ? 'active' : '' }}">
+            class="nav-link {{ Request::is('admin/adminplanUploads*') ? 'active' : '' }}">
             <p>計画書一覧</p>
         </a>
     </li>
     <li class="nav-item">
         <a href="{{ route('adminresultUploads.index') }}"
-            class="nav-link {{ Request::is('entryForms*') ? 'active' : '' }}">
+            class="nav-link {{ Request::is('admin/adminresultUploads*') ? 'active' : '' }}">
             <p>結果画像一覧</p>
         </a>
     </li>
     <li class="nav-item">
-        <a href="{{ route('templists') }}" class="nav-link {{ Request::is('temps*') ? 'active' : '' }}">
+        <a href="{{ route('templists') }}" class="nav-link {{ Request::is('admin/temp_lists*') ? 'active' : '' }}">
             <p>体温計測一覧</p>
         </a>
     </li>
     <li class="nav-item">
         <a href="{{ route('reach50100.index') }}"
-            class="nav-link {{ Request::is('reach50100*') ? 'active' : '' }}">
+            class="nav-link {{ Request::is('admin/reach50100*') ? 'active' : '' }}">
             <p>50km&100km到達</p>
         </a>
     </li>
     <li class="nav-item">
-        <a href="{{ url('/admin/deleted') }}" class="nav-link {{ Request::is('deleted*') ? 'active' : '' }}">
+        <a href="{{ url('/admin/deleted') }}" class="nav-link {{ Request::is('admin/deleted*') ? 'active' : '' }}">
             <p>申込削除</p>
         </a>
     </li>
