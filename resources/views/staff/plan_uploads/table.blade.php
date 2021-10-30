@@ -8,7 +8,7 @@
                 <th>ID</th>
                 <th>氏名</th>
                 <th>ファイル名</th>
-                <th>uploaded</th>
+                <th>参加形態</th>
                 <th>check</th>
             </tr>
         </thead>
@@ -21,7 +21,34 @@
                         </td>
                         <td><a href="{{ url('/') }}/plans/{{ $value->file_path }}">{{ $value->file_path }}</a>
                         </td>
-                        <td>{{ $value->created_at }}</td>
+                        <td class="uk-text-small">
+                            @switch($user->entryform->how_to_join)
+                                @case(1)
+                                    両日参加(両日とも7:00〜10:00までにスタート)
+                                @break
+                                @case(2)
+                                    両日参加(初日7:00〜10:00までにスタートかつ 2日目10:00以降スタート)
+                                @break
+                                @case(3)
+                                    両日参(初日10:00以降スタート かつ 2日目7:00〜10:00までにスタート)
+                                @break
+                                @case(4)
+                                    両日参加(両日とも10:00以降にスタート)
+                                @break
+                                @case(5)
+                                    1日目だけ参加(7:00〜10:00までにスタート)
+                                @break
+                                @case(6)
+                                    1日目だけ遅参(10:00以降にスタート)
+                                @break
+                                @case(7)
+                                    2日目だけ参加(7:00〜10:00までにスタート)
+                                @break
+                                @case(8)
+                                    2日目だけ遅参(10:00以降にスタート)
+                                @break
+                            @endswitch
+                            </td>
                         @if (isset($value->checked_at))
                             <td><span class="uk-text-success">済</td>
                         @else
