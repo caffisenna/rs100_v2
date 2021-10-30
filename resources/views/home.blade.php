@@ -9,9 +9,9 @@
                             <h4>各種申請書</h4>
                         </div>
                         <div class="card-body">
-                            @if ($configs->create_application)
+                            {{-- @if ($configs->create_application) --}}
                                 <a href="{{ url('/user/entryForms') }}" class="btn btn-info btn-lg btn-block">申込書</a>
-                            @endif
+                            {{-- @endif --}}
 
                             @if ($configs->elearning)
                                 <a href="{{ url('/user/elearnings') }}" class="btn btn-info btn-lg btn-block">Eラーニング</a>

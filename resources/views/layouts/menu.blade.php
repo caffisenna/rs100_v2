@@ -1,9 +1,9 @@
 <p class="uk-hidden">{{ $configs = \App\Models\AdminConfig::first() }}</p>
 @if (isset(Auth::user()->email_verified_at))
     @unless(Auth::user()->is_admin || Auth::user()->is_commi || Auth::user()->is_staff)
-        @if ($configs->create_application)
+        {{-- @if ($configs->create_application) --}}
             <a href="{{ url('/user/entryForms') }}" class="btn btn-info btn-xs btn-block">申込書</a>
-        @endif
+        {{-- @endif --}}
         @if ($configs->elearning)
             <a href="{{ url('/user/elearnings') }}" class="btn btn-info btn-xs btn-block">Eラーニング</a>
         @endif
