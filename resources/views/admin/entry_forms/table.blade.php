@@ -83,7 +83,7 @@
                 {{-- @unless($user->user->is_admin || $user->user->is_staff || $user->user->is_commi) --}}
                 @if(isset($user->entryform))
                 <tr>
-                    <td>{{ @$user->entryform->id }}</td>
+                    <td>{{ @$user->id }}</td>
                     @if (isset($user->entryform->gender))
                         <td><a href="{{ route('adminentries.show', [$user->id]) }}">{{ $user->name }}</a>
                             ({{ @$user->entryform->gender }})<br>{{ @$user->entryform->furigana }}</td>
