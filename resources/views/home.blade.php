@@ -10,7 +10,7 @@
                         </div>
                         <div class="card-body">
                             {{-- @if ($configs->create_application) --}}
-                                <a href="{{ url('/user/entryForms') }}" class="btn btn-info btn-lg btn-block">申込書</a>
+                            <a href="{{ url('/user/entryForms') }}" class="btn btn-info btn-lg btn-block">申込書</a>
                             {{-- @endif --}}
 
                             @if ($configs->elearning)
@@ -56,25 +56,6 @@
                                                 onclick="return confirm('1日目のハイクを終了しますか?');">ハイク終了(1日目のハイクを終了する場合)</a>
                                         @endif
                                     @endif
-
-                                    @if (isset($status->day1_retire))
-                                        <p class="">1日目リタイア: {{ $status->day1_retire }}</p>
-                                    @else
-                                        @if (empty($status->day1_end_time))
-                                            <a href="{{ url('/user/status_update?q=day1_retire') }}"
-                                                class="btn btn-danger btn-lg btn-block"
-                                                onclick="return confirm('1日目のハイクを棄権しますか?');">棄権(1日目を棄権する場合)</a>
-                                        @endif
-                                    @endif
-                                    @if (empty($status->whole_retire))
-                                        <a href="{{ url('/user/status_update?q=whole_retire') }}"
-                                            class="btn btn-danger btn-lg btn-block"
-                                            onclick="return confirm('全日程を棄権しますか?');">棄権(全日程を棄権する場合)</a>
-                                    @else
-                                        <p class="">全日程リタイア: {{ $status->whole_retire }}</p>
-                                    @endif
-                                @else
-                                    <p class="">全日程リタイア: {{ $status->whole_retire }}</p>
                                 @endif
                             </div>
                         </div>
@@ -107,21 +88,24 @@
                                                 class="btn btn-warning btn-lg btn-block">ハイク終了(2日目のハイクを終了する場合)</a>
                                         @endif
                                     @endif
-                                    @if (empty($status->day2_end_time) && empty($status->day2_retire))
-                                        <a href="{{ url('/user/status_update?q=day2_retire') }}"
-                                            class="btn btn-danger btn-lg btn-block" onclick="return confirm('2日目のハイクを棄権しますか?');"
-                                            class="btn btn-danger btn-lg btn-block">棄権(2日目を棄権する場合)</a>
-                                    @endif
-
-                                    @if (isset($status->day2_retire))
-                                        <p class="">2日目リタイア: {{ $status->day2_retire }}</p>
-                                    @endif
-                                @else
-                                    <p class="">全日程リタイア: {{ $status->whole_retire }}</p>
                                 @endif
                             </div>
                         </div>
                     @endif
+                    <div class="card" style="">
+                        <div class="card-header">
+                            <h4>リタイア報告</h4>
+                        </div>
+                        <div class="card-body">
+                            @if (empty($status->whole_retire))
+                                <a href="{{ url('/user/status_update?q=whole_retire') }}"
+                                    class="btn btn-danger btn-lg btn-block"
+                                    onclick="return confirm('全日程を棄権しますか?');">棄権・リタイア(ハイク全体でこれ以上歩かない場合)</a>
+                            @else
+                                <p class="uk-text-danger">リタイア日時: {{ $status->whole_retire }}</p>
+                            @endif
+                        </div>
+                    </div>
                 @endunless
 
             @else
