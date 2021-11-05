@@ -17,12 +17,12 @@
                 @foreach ($user->planupload as $value)
                     <tr>
                         <td>{{ $user->id }}</td>
-                        <td>{{ $user->name }}<br>{{ $user->entryform->district }} {{ $user->entryform->dan_name }}
+                        <td>{{ $user->name }}<br>{{ @$user->entryform->district }} {{ @$user->entryform->dan_name }}
                         </td>
                         <td><a href="{{ url('/') }}/plans/{{ $value->file_path }}">{{ $value->file_path }}</a>
                         </td>
                         <td class="uk-text-small">
-                        @switch($user->entryform->how_to_join)
+                        @switch(@$user->entryform->how_to_join)
                             @case(1)
                                 両日参加(両日とも7:00〜10:00までにスタート)
                             @break

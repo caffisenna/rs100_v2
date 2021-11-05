@@ -11,6 +11,7 @@ use Response;
 use Auth;
 use File;
 use App\Http\Util\SlackPost;
+use App\Models\entryForm;
 
 class planUploadController extends AppBaseController
 {
@@ -27,6 +28,10 @@ class planUploadController extends AppBaseController
         // 当該IDのみ抽出
         if (Auth::user()) {
             $planUploads = planUpload::where('user_id', Auth::user()->id)->get();
+            $entryform = entryForm::where('user_id', Auth::user()->id)->get();
+            if(empty($entryform->id)){
+                return view('welcome');
+            }
         } else {
             return view('auth.login');
         }
