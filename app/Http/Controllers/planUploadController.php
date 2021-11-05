@@ -28,7 +28,7 @@ class planUploadController extends AppBaseController
         // 当該IDのみ抽出
         if (Auth::user()) {
             $planUploads = planUpload::where('user_id', Auth::user()->id)->get();
-            $entryform = entryForm::where('user_id', Auth::user()->id)->get();
+            $entryform = entryForm::where('user_id', Auth::user()->id)->first();
             if(empty($entryform->id)){
                 return view('welcome');
             }
