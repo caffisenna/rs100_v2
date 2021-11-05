@@ -9,6 +9,7 @@
                             <h4>各種申請書</h4>
                         </div>
                         <div class="card-body">
+                            <p class="uk-text-danger">重要! 参加申込をせずにEラーニングの受講、計画書のアップロードはできません。<br>アカウント作成だけでなく、参加に必要な情報を入力していない場合、参加は認められません。<br>参加申込は10/30で終了しています。</p>
                             {{-- @if ($configs->create_application) --}}
                             <a href="{{ url('/user/entryForms') }}" class="btn btn-info btn-lg btn-block">申込書</a>
                             {{-- @endif --}}

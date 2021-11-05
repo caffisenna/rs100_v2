@@ -31,6 +31,9 @@ class elearningController extends AppBaseController
 
         // 申込書の作成状況をチェック
         $entryform = entryForm::where('user_id', Auth::user()->id)->first();
+            if(empty($entryform->id)){
+                return view('welcome');
+            }
 
         if (is_null($elearning)) {
             $elearning = new elearning;
