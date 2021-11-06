@@ -39,7 +39,7 @@
                                 // Get the search value
                                 $(this).attr('title', $(this).val());
                                 var regexr =
-                                '({search})'; //$(this).parents('th').find('select').val();
+                                    '({search})'; //$(this).parents('th').find('select').val();
 
                                 var cursorPosition = this.selectionStart;
                                 // Search the column for that value
@@ -78,18 +78,20 @@
         </thead>
         <tbody>
             @foreach ($users as $user)
-                <tr>
-                    <td><a href="{{ route('adminentries.show', [$user->id]) }}">{{ $user->name }}</a></td>
-                    <td>{{ @$user->entryform->district }} {{ @$user->entryform->dan_name }}</td>
-                    <td>@if(isset($user->temps->temp_day1_before))@if ($user->temps->temp_day1_before == '37.5度以上')<span class="uk-text-danger">{{ $user->temps->temp_day1_before }}</span>@else{{ $user->temps->temp_day1_before }}@endif @endif<br>
-                        {{ @$user->status->day1_start_time }}</td>
-                    <td>@if(isset($user->temps->temp_day1_after))@if ($user->temps->temp_day1_after == '37.5度以上')<span class="uk-text-danger">{{ $user->temps->temp_day1_after }}</span>@else{{ $user->temps->temp_day1_after }}@endif @endif<br>
-                        {{ @$user->status->day1_end_time }}</td>
-                    <td>@if(isset($user->temps->temp_day2_before))@if ($user->temps->temp_day2_before == '37.5度以上')<span class="uk-text-danger">{{ $user->temps->temp_day2_before }}</span>@else{{ $user->temps->temp_day2_before }}@endif @endif<br>
-                        {{ @$user->status->day2_start_time }}</td>
-                    <td>@if(isset($user->temps->temp_day2_after))@if ($user->temps->temp_day2_after == '37.5度以上')<span class="uk-text-danger">{{ $user->temps->temp_day2_after }}</span>@else{{ $user->temps->temp_day2_after }}@endif @endif<br>
-                        {{ @$user->status->day2_end_time }}</td>
-                </tr>
+                @if (isset($user->entryform->district))
+                    <tr>
+                        <td><a href="{{ route('adminentries.show', [$user->id]) }}">{{ $user->name }}</a></td>
+                        <td>{{ @$user->entryform->district }} {{ @$user->entryform->dan_name }}</td>
+                        <td>@if (isset($user->temps->temp_day1_before))@if ($user->temps->temp_day1_before == '37.5度以上')<span class="uk-text-danger">{{ $user->temps->temp_day1_before }}</span>@else{{ $user->temps->temp_day1_before }}@endif @endif<br>
+                            {{ @$user->status->day1_start_time }}</td>
+                        <td>@if (isset($user->temps->temp_day1_after))@if ($user->temps->temp_day1_after == '37.5度以上')<span class="uk-text-danger">{{ $user->temps->temp_day1_after }}</span>@else{{ $user->temps->temp_day1_after }}@endif @endif<br>
+                            {{ @$user->status->day1_end_time }}</td>
+                        <td>@if (isset($user->temps->temp_day2_before))@if ($user->temps->temp_day2_before == '37.5度以上')<span class="uk-text-danger">{{ $user->temps->temp_day2_before }}</span>@else{{ $user->temps->temp_day2_before }}@endif @endif<br>
+                            {{ @$user->status->day2_start_time }}</td>
+                        <td>@if (isset($user->temps->temp_day2_after))@if ($user->temps->temp_day2_after == '37.5度以上')<span class="uk-text-danger">{{ $user->temps->temp_day2_after }}</span>@else{{ $user->temps->temp_day2_after }}@endif @endif<br>
+                            {{ @$user->status->day2_end_time }}</td>
+                    </tr>
+                @endif
 
             @endforeach
         </tbody>
