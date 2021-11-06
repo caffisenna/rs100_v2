@@ -31,6 +31,7 @@
             <li>合計タイム: {{ $resultUploads->hms }}</li>
             <li>総距離: {{ $resultUploads->distance_sum }}<span class="uk-text-small">km</span></li>
         </ul>
+        <p class="uk-text-warning">大会の公式記録が確定するまではTATTAアプリでの歩行記録は削除しないようにしてください。</p>
 
         <div class="card">
             <div class="card-body p-0">
