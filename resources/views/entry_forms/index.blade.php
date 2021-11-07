@@ -24,7 +24,8 @@
 
         @include('flash::message')
         @if (!$entryForm->available)
-            <p class="text-info">申込書作成期間外です</p>
+            <p class="text-info">申込書作成期間外のため、参加者自身による参加取り消しはできません。<br>
+                <a href="mailto:register.rs100km@gmail.com">register.rs100km@gmail.com</a>までお問い合わせください。</p>
         @endif
 
         <div class="clearfix"></div>
