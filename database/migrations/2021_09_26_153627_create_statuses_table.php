@@ -28,6 +28,10 @@ class CreateStatusesTable extends Migration
             $table->dateTime('reach_100km_time')->nullable();
             $table->string('day1_distance')->nullable();
             $table->string('day2_distance')->nullable();
+            $table->string('total_distance')->nullable();
+            $table->time('day1_time')->nullable();
+            $table->time('day2_time')->nullable();
+            $table->time('total_time')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

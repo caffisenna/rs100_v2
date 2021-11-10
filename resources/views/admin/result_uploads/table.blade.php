@@ -20,7 +20,7 @@
                             href="{{ route('adminentries.show', [$resultUpload->user_id]) }}">{{ $resultUpload->user_name }}</a><br>
                         {{ $resultUpload->district }}地区{{ $resultUpload->dan_name }}団
                     </td>
-                    <td>{{ $resultUpload->distance }}km<br>{{ $resultUpload->time }}</td>
+                    <td>{{ $resultUpload->day }}日目<br>{{ $resultUpload->distance }}km<br>{{ $resultUpload->time }}</td>
                     <td><img src="{{ url('/') . '/images/user_uploads/' . $resultUpload->image_path }}" width="200px">
                     <td>{{ $resultUpload->checked_at }}</td>
                     </td>

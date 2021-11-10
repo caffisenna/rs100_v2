@@ -96,7 +96,6 @@
                     @if ($configs->status_day1 || $configs->status_day2)
                     <div class="card" style="">
                         <div class="card-header">
-                            <h4>リタイア報告</h4>
                         </div>
                         <div class="card-body">
                             @if (empty($status->whole_retire))

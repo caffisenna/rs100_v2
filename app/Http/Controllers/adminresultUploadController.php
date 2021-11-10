@@ -13,6 +13,8 @@ use Flash;
 use Response;
 use Auth;
 use File;
+use App\Models\status;
+use Carbon\Carbon;
 
 class adminresultUploadController extends AppBaseController
 {
@@ -33,30 +35,121 @@ class adminresultUploadController extends AppBaseController
             // 現在時刻を取得
             $resultUpload->checked_at = now();
             $resultUpload->save();
+            // **************** 保存処理 ****************
+            // $resultUpload->save();
+            // **************** 保存処理 ****************
+
+            //ここからステータステーブルの更新
+            $status = status::where('user_id',$resultUpload->user_id)->first();
+
+            // 秒変換関数
+            function to_time($from_time)
+            {
+                $sec = 0;
+                $t = explode(":", $from_time); // : でバラす
+                $h = (int)$t[0]; // 時間
+                if (isset($t[1])) { // 分
+                    $m = (int)$t[1];
+                } else {
+                    $m = 0;
+                }
+                if (isset($t[2])) { // 秒
+                    $s = (int)$t[2];
+                } else {
+                    $s = 0;
+                }
+                $t = ($h * 60 * 60) + ($m * 60) + $s; // 秒に合算
+                $sec = $sec + $t; // 合計時間(秒)に加算
+                return $sec;
+            }
+
+            // 時間(h:m:s)に戻す
+            function to_hour($from_sec)
+            {
+                $hour = floor($from_sec / 3600); // 時間
+                $minutes = floor(($from_sec / 60) % 60); // 時間
+                $from_seconds = floor($from_sec % 60); // 秒
+                $val = sprintf("%2d:%02d:%02d", $hour, $minutes, $from_seconds);
+                return $val;
+            }
+
+            // 時間を秒に換算
+            $new_sec = to_time($resultUpload->time);
+
+            // 歩行日判定と距離加算
+            if ($resultUpload->day == 1) {
+                $status->day1_distance = $status->day1_distance + $resultUpload->distance;
+                $past_time = to_time($status->day1_time); // day1の累計時間を秒に換算
+                $status->day1_time = to_hour($new_sec + $past_time);
+            } elseif ($resultUpload->day == 2) {
+                $status->day2_distance = $status->day2_distance + $resultUpload->distance;
+                $past_time = to_time($status->day2_time); // day2の累計時間を秒に換算
+                $status->day2_time = to_hour($new_sec + $past_time);
+            }
+
+            // 距離加算
+            $status->total_distance = $status->day1_distance + $status->day2_distance;
+
+
+            // 累計歩行時間計算
+            if (isset($status->day1_time)) {
+                $t1 = to_time($status->day1_time);
+            }
+            if (isset($status->day2_time)) {
+                $t2 = to_time($status->day2_time);
+            }
+            if (isset($t1) && isset($t2)) {
+                $t_total = to_hour($t1 + $t2);
+            } elseif (empty($t1) && isset($t2)) {
+                $t_total = to_hour($t2);
+            } elseif (isset($t1) && empty($t2)) {
+                $t_total = to_hour($t1);
+            } elseif (empty($t1) && empty($t2)) {
+                $t_total = 0;
+            }
+
+            $status->total_time = $t_total;
+
+
+            // 50km 100km判定
+            $total_km = $status->day1_distance + $status->day1_distance;
+            if (empty($status->reach_50km_time) && $total_km > 50) {
+                $status->reach_50km_time = carbon::now();
+            }
+
+            if (empty($status->reach_50km_time) && $total_km > 100) {
+                $status->reach_100km_time = carbon::now();
+            }
+            $status->save();
+
+            //ここまでステータステーブルの更新
+
+
             Flash::success("画像ID: $request->check チェックしました");
             return redirect(route('adminresultUploads.index'));
         }
 
-        $resultUploads = resultUpload::all();
+        // チェック済みのものは非表示に
+        $resultUploads = resultUpload::all()->where('checked_at', NULL);
 
         // 氏名、地区名、団名を取得
         foreach ($resultUploads as $value) {
-                $name = User::where('id', $value['user_id'])->first('name');
-                $value['user_name'] = $name->name;
+            $name = User::where('id', $value['user_id'])->first('name');
+            $value['user_name'] = $name->name;
 
-                // ユーザーIDで引っかけて、地区と団名カラムだけ引っこ抜く
-                $dan_info = entryForm::where('user_id', $value['user_id'])->first(['district', 'dan_name']);
-                // 配列に入れる
-                try {
-                    $value['district'] = $dan_info->district;
-                } catch (\Throwable $e) {
-                    $value['district'] = '申込書なし';
-                }
-                try {
-                    $value['dan_name'] = $dan_info->dan_name;
-                } catch (\Throwable $e) {
-                    $value['dan_name'] = '申込書なし';
-                }
+            // ユーザーIDで引っかけて、地区と団名カラムだけ引っこ抜く
+            $dan_info = entryForm::where('user_id', $value['user_id'])->first(['district', 'dan_name']);
+            // 配列に入れる
+            try {
+                $value['district'] = $dan_info->district;
+            } catch (\Throwable $e) {
+                $value['district'] = '申込書なし';
+            }
+            try {
+                $value['dan_name'] = $dan_info->dan_name;
+            } catch (\Throwable $e) {
+                $value['dan_name'] = '申込書なし';
+            }
         }
         // dd($resultUploads);
 
@@ -258,16 +351,20 @@ class adminresultUploadController extends AppBaseController
         return redirect(route('adminresultUploads.index'));
     }
 
-    public function lists(){
+    public function lists()
+    {
         // $resultLists = resultUpload::with('user')->get();
         // uniqueのユーザーIDを絞る
         // $resultLists = resultUpload::orderBy('user_id')->get()->groupBy('user_id')
         // ->map(function($resultList){
         //     return $resultList->distance;
         // })->sum();
-        $resultLists = resultUpload::select('user_id',resultUpload::raw('SUM(distance) as total_distance'),
-        resultUpload::raw('SUM(time) as total_time'))
-        ->groupBy('user_id')->get();
+        $resultLists = resultUpload::select(
+            'user_id',
+            resultUpload::raw('SUM(distance) as total_distance'),
+            resultUpload::raw('SUM(time) as total_time')
+        )
+            ->groupBy('user_id')->get();
         dd($resultLists);
 
 
