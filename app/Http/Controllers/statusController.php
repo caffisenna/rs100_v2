@@ -27,21 +27,21 @@ class statusController extends AppBaseController
     public function index(Request $request)
     {
         /** @var status $statuses */
-        $statuses = status::all();
+        // $statuses = status::all();
 
-        foreach ($statuses as $value) {
-            $tmp = User::where('id', $value['user_id'])->select('name')->first();
-            $value['name'] = $tmp->name;
-            $tmp = entryForm::where('user_id', $value['user_id'])->select('district', 'dan_name')->first();
-            @$value['dan'] = $tmp->district . "/" . $tmp->dan_name;
+        // foreach ($statuses as $value) {
+        //     $tmp = User::where('id', $value['user_id'])->select('name')->first();
+        //     $value['name'] = $tmp->name;
+        //     $tmp = entryForm::where('user_id', $value['user_id'])->select('district', 'dan_name')->first();
+        //     @$value['dan'] = $tmp->district . "/" . $tmp->dan_name;
 
-            if (empty($value['day1_start_time'])) {
-                $value['day1_start_time'] = '2021-11-13 07:00:00';
-            }
+        //     if (empty($value['day1_start_time'])) {
+        //         $value['day1_start_time'] = '2021-11-13 07:00:00';
+        //     }
 
-            if (empty($value['day2_start_time'])) {
-                $value['day2_start_time'] = '2021-11-14 07:00:00';
-            }
+        //     if (empty($value['day2_start_time'])) {
+        //         $value['day2_start_time'] = '2021-11-14 07:00:00';
+        //     }
 
             // 時間差
             // if (!empty($value['day1_end_time'])) {
@@ -57,44 +57,54 @@ class statusController extends AppBaseController
             //     $seconds = floor($d % 60); //秒
             //     $value['hms'] = sprintf("%2d:%02d:%02d", $hours, $minutes, $seconds);
             // }
-            $results = resultUpload::where('user_id', $value['user_id'])->select('time')->get();
-            $sec = 0;
-            foreach ($results as $val) {
-                $t = explode(":", $val->time); // : でバラす
-                $h = (int)$t[0]; // 時間
-                if (isset($t[1])) { // 分
-                    $m = (int)$t[1];
-                } else {
-                    $m = 0;
-                }
-                if (isset($t[2])) { // 秒
-                    $s = (int)$t[2];
-                } else {
-                    $s = 0;
-                }
-                $t = ($h * 60 * 60) + ($m * 60) + $s; // 秒に合算
-                $sec = $sec + $t; // 合計時間(秒)に加算
-            }
+            // $results = resultUpload::where('user_id', $value['user_id'])->select('time')->get();
+            // $sec = 0;
+            // foreach ($results as $val) {
+            //     $t = explode(":", $val->time); // : でバラす
+            //     $h = (int)$t[0]; // 時間
+            //     if (isset($t[1])) { // 分
+            //         $m = (int)$t[1];
+            //     } else {
+            //         $m = 0;
+            //     }
+            //     if (isset($t[2])) { // 秒
+            //         $s = (int)$t[2];
+            //     } else {
+            //         $s = 0;
+            //     }
+            //     $t = ($h * 60 * 60) + ($m * 60) + $s; // 秒に合算
+            //     $sec = $sec + $t; // 合計時間(秒)に加算
+            // }
             // 時間(h:m:s)に戻す
-            $hour = floor($sec / 3600); // 時間
-            $minutes = floor(($sec / 60) % 60); // 時間
-            $seconds = floor($sec % 60); // 秒
-            $value['hms'] = sprintf("%2d:%02d:%02d", $hour, $minutes, $seconds);
+            // $hour = floor($sec / 3600); // 時間
+            // $minutes = floor(($sec / 60) % 60); // 時間
+            // $seconds = floor($sec % 60); // 秒
+            // $value['hms'] = sprintf("%2d:%02d:%02d", $hour, $minutes, $seconds);
 
             // 歩行距離
-            $d1 = resultUpload::where('user_id', $value['user_id'])->where('day', 1)->sum('distance');
-            $d2 = resultUpload::where('user_id', $value['user_id'])->where('day', 2)->sum('distance');
-            $value['day1_distance'] = $d1; // 1日目
-            $value['day2_distance'] = $d2; // 2日目
-            $value['distance_total'] = $d1 + $d2; // トータル
+            // $d1 = resultUpload::where('user_id', $value['user_id'])->where('day', 1)->sum('distance');
+            // $d2 = resultUpload::where('user_id', $value['user_id'])->where('day', 2)->sum('distance');
+            // $value['day1_distance'] = $d1; // 1日目
+            // $value['day2_distance'] = $d2; // 2日目
+            // $value['distance_total'] = $d1 + $d2; // トータル
 
             // 画像枚数
-            $value['up'] = resultUpload::where('user_id', $value['user_id'])->count();
-        }
+            // $value['up'] = resultUpload::where('user_id', $value['user_id'])->count();
+        // }
         // dd($statuses);
 
+        // $users = User::all()->dd();
+        $users = User::where(function ($query) {
+            $query->where('is_admin', 0)
+                ->Where('is_staff', 0)
+                ->Where('is_commi', null)
+                ->where('email_verified_at', '<>', null);
+        })
+            ->with('entryform')->with('status')->get();
+
+
         return view('status.index')
-            ->with('statuses', $statuses);
+            ->with('users', $users);
     }
 
     /**

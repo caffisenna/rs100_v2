@@ -46,8 +46,11 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="{{ route('templists') }}" class="nav-link {{ Request::is('admin/temp_lists*') ? 'active' : '' }}">
-            <p>体温計測一覧</p>
+        <a href="{{ route('templists') }}?q=day1" class="nav-link {{ Request::is('admin/temp_lists*') ? 'active' : '' }}">
+            <p>体温計測一覧(11/13)</p>
+        </a>
+        <a href="{{ route('templists') }}?q=day2" class="nav-link {{ Request::is('admin/temp_lists*') ? 'active' : '' }}">
+            <p>体温計測一覧(11/14)</p>
         </a>
     </li>
     <li class="nav-item">

@@ -24,8 +24,8 @@ class CreateStatusesTable extends Migration
             $table->dateTime('day1_retire')->nullable();
             $table->dateTime('day2_retire')->nullable();
             $table->dateTime('whole_retire')->nullable();
-            $table->dateTime('reach_50km_time')->nullable();
-            $table->dateTime('reach_100km_time')->nullable();
+            $table->time('reach_50km_time')->nullable();
+            $table->time('reach_100km_time')->nullable();
             $table->string('day1_distance')->nullable();
             $table->string('day2_distance')->nullable();
             $table->string('total_distance')->nullable();

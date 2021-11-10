@@ -15,6 +15,7 @@ use Auth;
 use File;
 use App\Models\status;
 use Carbon\Carbon;
+use App\Http\Util\SlackPost;
 
 class adminresultUploadController extends AppBaseController
 {
@@ -40,7 +41,7 @@ class adminresultUploadController extends AppBaseController
             // **************** 保存処理 ****************
 
             //ここからステータステーブルの更新
-            $status = status::where('user_id',$resultUpload->user_id)->first();
+            $status = status::where('user_id', $resultUpload->user_id)->first();
 
             // 秒変換関数
             function to_time($from_time)
@@ -112,15 +113,25 @@ class adminresultUploadController extends AppBaseController
 
 
             // 50km 100km判定
-            $total_km = $status->day1_distance + $status->day1_distance;
+            //slack通知
+            $id = $status->user_id;
+            $name = user::where('id',$id)->select('name')->first();
+            $slack = new SlackPost();
+            //slack通知
+
+            $total_km = $status->day1_distance + $status->day2_distance;
             if (empty($status->reach_50km_time) && $total_km > 50) {
-                $status->reach_50km_time = carbon::now();
+                $status->reach_50km_time = $t_total;
+                $slack->send(":smile:[50km到達!] 参加者ID:$id " . $name->name . "さんが50kmに到達! (累計:$status->total_distance km)");
             }
 
-            if (empty($status->reach_50km_time) && $total_km > 100) {
-                $status->reach_100km_time = carbon::now();
+            if (empty($status->reach_100km_time) && $total_km > 100) {
+                // $status->reach_100km_time = carbon::now();
+                $status->reach_100km_time = $t_total;
+                $slack->send(":tada:[100km到達!] 参加者ID:$id " . $name->name . "さんが100kmに到達! (累計:$status->total_distance km)");
             }
             $status->save();
+
 
             //ここまでステータステーブルの更新
 

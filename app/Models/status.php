@@ -64,8 +64,8 @@ class status extends Model
         'day1_retire' => 'datetime',
         'day2_retire' => 'datetime',
         'whole_retire' => 'datetime',
-        'reach_50km_time' => 'datetime',
-        'reach_100km_time' => 'datetime',
+        // 'reach_50km_time' => 'datetime',
+        // 'reach_100km_time' => 'datetime',
         'day1_distance' => 'string',
         'day2_distance' => 'string'
     ];
