@@ -17,6 +17,9 @@
         @if ($configs->temps_link)
             <a href="{{ url('/user/temps') }}" class="btn btn-info btn-xs btn-block">体温計測</a>
         @endif
+        @if ($configs->show_status_link)
+            <a href="/public" class="btn btn-info btn-xs btn-block">ステータス一覧(一般公開用)</a>
+        @endif
     @endunless
 @endif
 {{-- 管理者アカウントでのみ表示 --}}
@@ -79,14 +82,6 @@
     <li class="nav-item">
         <a href="{{ route('entries.index') }}" class="nav-link {{ Request::is('entries*') ? 'active' : '' }}">
             <p>地区参加者一覧</p>
-        </a>
-    </li>
-@endif
-
-@if ($configs->show_status_link)
-    <li class="nav-item">
-        <a href="{{ route('status.index') }}" class="nav-link {{ Request::is('status*') ? 'active' : '' }}">
-            <p>ステータス一覧</p>
         </a>
     </li>
 @endif

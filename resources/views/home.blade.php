@@ -9,7 +9,9 @@
                             <h4>各種申請書</h4>
                         </div>
                         <div class="card-body">
-                            <p class="uk-text-danger">重要! 参加申込をせずにEラーニングの受講、計画書のアップロードはできません。<br>アカウント作成だけでなく、参加に必要な情報を入力していない場合、参加は認められません。<br>参加申込は10/30で終了しています。</p>
+                            <p class="uk-text-danger">重要!
+                                参加申込をせずにEラーニングの受講、計画書のアップロードはできません。<br>アカウント作成だけでなく、参加に必要な情報を入力していない場合、参加は認められません。<br>参加申込は10/30で終了しています。
+                            </p>
                             {{-- @if ($configs->create_application) --}}
                             <h3 class="uk-text-success">{{ Auth()->user()->name }}さんの参加ID: {{ Auth()->id() }}</h3>
                             <a href="{{ url('/user/entryForms') }}" class="btn btn-info btn-lg btn-block">申込書</a>
@@ -29,6 +31,9 @@
                             @endif
                             @if ($configs->temps_link)
                                 <a href="{{ url('/user/temps') }}" class="btn btn-info btn-lg btn-block">体温計測</a>
+                            @endif
+                            @if ($configs->show_status_link)
+                                <a href="/public" class="btn btn-info btn-lg btn-block">ステータス一覧(一般公開用)</a>
                             @endif
                         </div>
                     </div>
@@ -95,19 +100,19 @@
                         </div>
                     @endif
                     @if ($configs->status_day1 || $configs->status_day2)
-                    <div class="card" style="">
-                        <div class="card-header">
+                        <div class="card" style="">
+                            <div class="card-header">
+                            </div>
+                            <div class="card-body">
+                                @if (empty($status->whole_retire))
+                                    <a href="{{ url('/user/status_update?q=whole_retire') }}"
+                                        class="btn btn-danger btn-lg btn-block"
+                                        onclick="return confirm('全日程を棄権しますか?');">棄権・リタイア(ハイク全体でこれ以上歩かない場合)</a>
+                                @else
+                                    <p class="uk-text-danger">リタイア日時: {{ $status->whole_retire }}</p>
+                                @endif
+                            </div>
                         </div>
-                        <div class="card-body">
-                            @if (empty($status->whole_retire))
-                                <a href="{{ url('/user/status_update?q=whole_retire') }}"
-                                    class="btn btn-danger btn-lg btn-block"
-                                    onclick="return confirm('全日程を棄権しますか?');">棄権・リタイア(ハイク全体でこれ以上歩かない場合)</a>
-                            @else
-                                <p class="uk-text-danger">リタイア日時: {{ $status->whole_retire }}</p>
-                            @endif
-                        </div>
-                    </div>
                     @endif
                 @endunless
 

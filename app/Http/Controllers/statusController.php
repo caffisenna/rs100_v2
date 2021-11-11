@@ -285,4 +285,17 @@ class statusController extends AppBaseController
             return redirect(route('home'));
         }
     }
+
+    public function public(){
+        $users = User::where(function ($query) {
+            $query->where('is_admin', 0)
+                ->Where('is_staff', 0)
+                ->Where('is_commi', null)
+                ->where('email_verified_at', '<>', null);
+        })
+            ->with('entryform')->with('status')->with('resultupload')->get();
+
+        return view('public.index')
+            ->with('users', $users);
+    }
 }
