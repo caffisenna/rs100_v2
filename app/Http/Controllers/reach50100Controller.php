@@ -9,6 +9,7 @@ use App\Models\reach50100;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use app\Models\User;
 
 class reach50100Controller extends AppBaseController
 {
@@ -22,10 +23,18 @@ class reach50100Controller extends AppBaseController
     public function index(Request $request)
     {
         /** @var reach50100 $reach50100s */
-        $reach50100s = reach50100::all();
+        // $reach50100s = reach50100::all();
+        // $statuses = status::where('reach_50km_time','<>',null)->orwhere('reach_100km_time','<>',null)->get()->dd();
+        $users = User::where(function ($query) {
+            $query->where('is_admin', 0)
+                ->Where('is_staff', 0)
+                ->Where('is_commi', null)
+                ->where('email_verified_at', '<>', null);
+        })
+            ->with('entryform')->with('status')->get();
 
         return view('reach50100.index')
-            ->with('reach50100s', $reach50100s);
+            ->with('users', $users);
     }
 
     /**

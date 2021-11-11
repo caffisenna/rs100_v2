@@ -14,7 +14,7 @@
                 <th>2日目<br>距離</th>
                 <th>総距離</th>
                 <th>総時間</th>
-                <th>画像UP</th>
+                <th>画像</th>
             </tr>
         </thead>
         <tbody>
@@ -34,7 +34,7 @@
                     <td>{{ @$user->status->day2_distance }}</td>
                     <td>{{ @$user->status->total_distance }}</td>
                     <td>{{ @$user->status->total_time }}</td>
-                    <td>{{ @$user->up }}</td>
+                    <td>{{ @$user->resultupload->count() }}</td>
                 </tr>
                 @endif
             @endforeach

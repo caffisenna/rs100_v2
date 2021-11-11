@@ -100,8 +100,7 @@ class statusController extends AppBaseController
                 ->Where('is_commi', null)
                 ->where('email_verified_at', '<>', null);
         })
-            ->with('entryform')->with('status')->get();
-
+            ->with('entryform')->with('status')->with('resultupload')->get();
 
         return view('status.index')
             ->with('users', $users);

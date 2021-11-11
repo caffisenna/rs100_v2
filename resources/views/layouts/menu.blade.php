@@ -56,7 +56,7 @@
     <li class="nav-item">
         <a href="{{ route('reach50100.index') }}"
             class="nav-link {{ Request::is('admin/reach50100*') ? 'active' : '' }}">
-            <p>50km&100km到達</p>
+            <p>ランキングボード</p>
         </a>
     </li>
     <li class="nav-item">
