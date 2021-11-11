@@ -40,7 +40,7 @@
                     <div class="row mb-2">
                         <div class="col-sm-6">
                             <a href="{{ url('/') }}"><img src="{{ url('/images/logo_color.png') }}" class="img-circle elevation-2 uk-image"></a>
-                            <h1>歩行ステータス</h1>
+                            <h1>歩行状況詳細</h1>
                         </div>
                     </div>
                 </div>
