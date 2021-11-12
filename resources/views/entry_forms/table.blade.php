@@ -18,10 +18,11 @@
                             <a href="{{ route('entryForms.show', [$entryForm->id]) }}" class='btn btn-default btn-lg'>
                                 <i class="far fa-eye"></i>確認する
                             </a>
+                            @if($configs->user_edit <> 0)
                             <a href="{{ route('entryForms.edit', [$entryForm->id]) }}" class='btn btn-default btn-lg'>
                                 <i class="far fa-edit"></i>編集する
                             </a>
-                            @if($configs->user_edit <> 0)
+
                             {!! Form::button('<i class="far fa-trash-alt"></i>削除する', ['type' => 'submit', 'class' => 'btn btn-danger btn-lg', 'onclick' => "return confirm('本当に削除しますか?')"]) !!}
                             @endif
                         </div>
