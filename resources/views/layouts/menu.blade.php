@@ -81,7 +81,7 @@
     <li class="nav-item">
         <a href="{{ url('/admin/deleted') }}"
             class="nav-link {{ Request::is('admin/deleted*') ? 'active' : '' }}">
-            <p>申込削除</p>
+            <p>申込削除一覧</p>
         </a>
     </li>
 @endif
