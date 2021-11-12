@@ -9,8 +9,9 @@
                             <h4>各種申請書</h4>
                         </div>
                         <div class="card-body">
-                            <p class="uk-text-danger">重要!
-                                参加申込をせずにEラーニングの受講、計画書のアップロードはできません。<br>アカウント作成だけでなく、参加に必要な情報を入力していない場合、参加は認められません。<br>参加申込は10/30で終了しています。
+                            <p class="uk-text-danger">重要!<br>
+                                体温を計測し、結果を入力してから歩行を開始して下さい。<a href="{{ url('/user/temps') }}">[体温を入力する]</a><br>
+                                歩行の開始と終了はこのページの下部からボタンを押してください。
                             </p>
                             {{-- @if ($configs->create_application) --}}
                             <h3 class="uk-text-success">{{ Auth()->user()->name }}さんの参加ID: {{ Auth()->id() }}</h3>
@@ -33,7 +34,7 @@
                                 <a href="{{ url('/user/temps') }}" class="btn btn-info btn-lg btn-block">体温計測</a>
                             @endif
                             @if ($configs->show_status_link)
-                                <a href="/public" class="btn btn-info btn-lg btn-block">ステータス一覧(一般公開用)</a>
+                                <a href="/public" class="btn btn-info btn-lg btn-block">ステータス一覧</a>
                             @endif
                         </div>
                     </div>
