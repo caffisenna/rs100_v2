@@ -45,6 +45,12 @@
     <li class="nav-item">
         <a href="{{ route('adminresultUploads.index') }}"
             class="nav-link {{ Request::is('admin/adminresultUploads*') ? 'active' : '' }}">
+            <p>結果画像チェック</p>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="/admin/result_lists"
+            class="nav-link {{ Request::is('admin/result_list*') ? 'active' : '' }}">
             <p>結果画像一覧</p>
         </a>
     </li>

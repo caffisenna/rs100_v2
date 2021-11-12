@@ -151,13 +151,13 @@ class resultUploadController extends AppBaseController
         $id = Auth()->user()->id;
         $name = Auth()->user()->name;
         $slack = new SlackPost();
-        if($resultUploads->distance_sum > 100){
-            $slack->send(":tada:[100km到達!] 参加者ID:$id " . $name . "さんが100kmに到達! (累計:$resultUploads->distance_sum km)");
-        }elseif(($resultUploads->distance_sum > 50)){
-            $slack->send(":smile:[50km到達!] 参加者ID:$id " . $name . "さんが50kmに到達! (累計:$resultUploads->distance_sum km)");
-        }else{
-            $slack->send(":frame_with_picture:[スクショ] 参加者ID:$id " . $name . "さんがスクショアップ! (累計:$resultUploads->distance_sum km)");
-        }
+        // if($resultUploads->distance_sum > 100){
+        //     $slack->send(":tada:[100km到達!] 参加者ID:$id " . $name . "さんが100kmに到達! (累計:$resultUploads->distance_sum km) 画像ID: " . $resultUpload->id);
+        // }elseif(($resultUploads->distance_sum > 50)){
+        //     $slack->send(":smile:[50km到達!] 参加者ID:$id " . $name . "さんが50kmに到達! (累計:$resultUploads->distance_sum km) 画像ID: " . $resultUpload->id);
+        // }else{
+        $slack->send(":frame_with_picture:[スクショ] 参加者ID:$id " . $name . "さんがスクショアップ! 画像ID: " . $resultUpload->id);
+        // }
 
         Flash::success('アップロードが完了しました');
 

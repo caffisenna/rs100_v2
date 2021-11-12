@@ -115,7 +115,7 @@ class adminresultUploadController extends AppBaseController
             // 50km 100km判定
             //slack通知
             $id = $status->user_id;
-            $name = user::where('id',$id)->select('name')->first();
+            $name = user::where('id', $id)->select('name')->first();
             $slack = new SlackPost();
             //slack通知
 
@@ -137,6 +137,10 @@ class adminresultUploadController extends AppBaseController
 
 
             Flash::success("画像ID: $request->check チェックしました");
+
+            //slack通知 画像チェック通知
+            $slack->send(":white_check_mark: 参加者ID:$id " . $name->name . "のスクショをチェックしました。画像ID:" . $resultUpload->id);
+
             return redirect(route('adminresultUploads.index'));
         }
 
@@ -364,29 +368,18 @@ class adminresultUploadController extends AppBaseController
 
     public function lists()
     {
-        // $resultLists = resultUpload::with('user')->get();
-        // uniqueのユーザーIDを絞る
-        // $resultLists = resultUpload::orderBy('user_id')->get()->groupBy('user_id')
-        // ->map(function($resultList){
-        //     return $resultList->distance;
-        // })->sum();
-        $resultLists = resultUpload::select(
-            'user_id',
-            resultUpload::raw('SUM(distance) as total_distance'),
-            resultUpload::raw('SUM(time) as total_time')
-        )
-            ->groupBy('user_id')->get();
-        dd($resultLists);
+        // 画像一覧を参加者と一緒に表示する
+        // アクセス先は url('/')/admin/result_lists
 
-
-
-        // 同じIDでまとめる
-        // - 総距離
-        // - 総距離
-        // - 地区、団名を確認取得
-        // - 一覧へ返す
+        $users = User::where(function ($query) {
+            $query->where('is_admin', 0)
+                ->Where('is_staff', 0)
+                ->Where('is_commi', null)
+                ->where('email_verified_at', '<>', null);
+        })
+            ->with('entryform')->with('resultupload')->get();
 
         return view('admin.result_lists.index')
-            ->with('resultLists', $resultLists);
+            ->with('users', $users);
     }
 }

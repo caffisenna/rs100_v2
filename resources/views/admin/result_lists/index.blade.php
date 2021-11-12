@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>管理者用 参加申込状況</h1>
+                    <h1>スクショ一覧</h1>
                 </div>
             </div>
         </div>

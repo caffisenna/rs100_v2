@@ -5,9 +5,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>歩行データチェック</h1>
+                    <h1>画像チェック</h1>
                 </div>
             </div>
+            <ul class="uk-list">
+                <li>スクショ内の「距離」と「グロスタイム」をチェックし、間違った結果が表示されていた編集ボタンから修正</li>
+                <li>スクショの画像とスキャン結果がマッチしていればチェックボタンを押す</li>
+                </ul>
         </div>
     </section>
 

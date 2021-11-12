@@ -13,6 +13,7 @@ use Flash;
 use Response;
 use Auth;
 use App\Models\User;
+use App\Http\Util\SlackPost;
 
 class tempsController extends AppBaseController
 {
@@ -125,7 +126,13 @@ class tempsController extends AppBaseController
         $temps->fill($request->all());
         $temps->save();
 
-        Flash::success('Temps updated successfully.');
+        Flash::success('体温の記録が完了しました');
+
+        //slack通知
+        $id = Auth()->user()->id;
+        $name = Auth()->user()->name;
+        $slack = new SlackPost();
+        $slack->send(":face_with_thermometer: 参加者ID:$id " . $name . "さんが体温を記録しました");
 
         return redirect(route('temps.index'));
     }
