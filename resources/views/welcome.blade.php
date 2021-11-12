@@ -4,6 +4,18 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZXVS5PSFJK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-ZXVS5PSFJK');
+    </script>
 
     <title>{{ config('app.name') }}</title>
 
@@ -463,12 +475,12 @@
 
                     <div class="p-6 border-t border-gray-200 dark:border-gray-700">
                         <div class="flex items-center">
-                            {{-- <span uk-icon="icon:question; ratio:2"></span>
+                            <span uk-icon="icon:warning; ratio:2"></span>
                             <div class="ml-4 text-lg leading-7 font-semibold">
-                                <a href="#" class="underline text-gray-900 dark:text-white">
-                                    よくある質問
+                                <a href="{{ url('/public') }}" class="underline text-gray-900 dark:text-white">
+                                    歩行状況速報
                                 </a>
-                            </div> --}}
+                            </div>
                         </div>
                     </div>
 
@@ -488,6 +500,7 @@
                 <div class="uk-card uk-card-primary uk-card-body">
                     <h5 class="uk-card-title"><span uk-icon="icon:info; ratio:1"></span>NEWS</h5>
                     <ul class="uk-list">
+                        <li>2021/11/11 一般公開用の<a href="{{ url('/public') }}">ステータス画面</a>を公開しました</li>
                         <li>2021/11/06 Eラーニングの受講、計画書のアップロード期限は11/6までです</li>
                         <li>2021/10/24 Eラーニングの受講が可能になりました</li>
                         <li>2021/10/23 参加申込受付を10/30(土)23:59まで延長します</li>

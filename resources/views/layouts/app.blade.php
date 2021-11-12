@@ -5,6 +5,18 @@
     <meta charset="UTF-8">
     <title>{{ config('app.name') }}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZXVS5PSFJK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-ZXVS5PSFJK');
+    </script>
 
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
@@ -64,8 +76,7 @@
                     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <!-- User image -->
                         <li class="user-header bg-primary">
-                            <img src="{{ url('/images/logo_color.png') }}" class=""
-                                alt="User Image">
+                            <img src="{{ url('/images/logo_color.png') }}" class="" alt="User Image">
                             <p>
                                 {{ Auth::user()->name }}
                                 <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small>
