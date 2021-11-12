@@ -5,7 +5,18 @@
     <meta charset="UTF-8">
     <title>{{ config('app.name') }}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZXVS5PSFJK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-ZXVS5PSFJK');
+    </script>
 
     <!-- AdminLTE -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/css/adminlte.min.css"
@@ -39,8 +50,9 @@
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            <a href="{{ url('/') }}"><img src="{{ url('/images/logo_color.png') }}" class="img-circle elevation-2 uk-image"></a>
-                            <h1>歩行状況詳細</h1>
+                            <a href="{{ url('/') }}"><img src="{{ url('/images/logo_color.png') }}"
+                                    class="img-circle elevation-2 uk-image"></a>
+                            <h1>歩行状況詳細</h1> <a href="{{ url('/public') }}">簡易版</a>
                         </div>
                     </div>
                 </div>
@@ -63,7 +75,8 @@
     <!-- Main Footer -->
     <footer class="footer">
         <p class="uk-text-small uk-text-center">ボーイスカウト東京連盟<br>
-            <a href="{{ url('/') }}">{{ config('app.name') }} </a>&copy;</p>
+            <a href="{{ url('/') }}">{{ config('app.name') }} </a>&copy;
+        </p>
     </footer>
 
 </body>
