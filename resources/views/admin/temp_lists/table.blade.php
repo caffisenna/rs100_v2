@@ -68,6 +68,7 @@
     <table class="uk-table table-condensed uk-table-small" id="temps-table">
         <thead>
             <tr>
+                <th>ID</th>
                 <th>名前</th>
                 <th>所属</th>
                 <th>歩行開始</th>
@@ -80,6 +81,7 @@
             @foreach ($users as $user)
                 @if (isset($user->entryform->district))
                     <tr>
+                        <td>{{ @$user->id }}</td>
                         <td><a href="{{ route('adminentries.show', [$user->id]) }}">{{ $user->name }}</a></td>
                         <td>{{ @$user->entryform->district }} {{ @$user->entryform->dan_name }}</td>
                         @if(app('request')->input('q')  == 'day1')
