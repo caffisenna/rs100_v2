@@ -28,11 +28,11 @@
                             <td class="uk-text-warning">歩行終了</td>
                         @elseif (empty($user->status->day1_start_time) && empty($user->status->day1_end_time) && empty($user->status->day2_start_time) && empty($user->status->day2_end_time))
                             <td class="uk-text-primary">開始前</td>
+                        @elseif (isset($user->status->day2_start_time) && empty($user->status->day2_end_time))
+                            <td class="uk-text-success">day2歩行中</td>
                         @elseif (isset($user->status->day1_end_time) && empty($user->status->day2_start_time))
                             <td class="uk-text-warning">day1終了</td>
                         @elseif (isset($user->status->day1_start_time) || empty($user->status->day1_end_time))
-                            <td class="uk-text-success">歩行中</td>
-                        @elseif (isset($user->status->day2_start_time) || empty($user->status->day2_end_time))
                             <td class="uk-text-success">歩行中</td>
                         @endif
 
