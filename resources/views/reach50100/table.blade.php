@@ -81,7 +81,8 @@
         </thead>
         <tbody>
             @foreach ($users as $user)
-            @if(isset($user->status->reach_50km_time) || isset($user->status->reach_100km_time))
+            {{-- @if(isset($user->status->reach_50km_time) || isset($user->status->reach_100km_time)) --}}
+            @if(isset($user->status->total_distance))
                 <tr>
                     <td>{{ $user->id }}</td>
                     <td>{{ $user->name }}</td>
