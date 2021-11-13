@@ -30,7 +30,8 @@
                                 <a href="{{ url('/user/resultUploads') }}" class="btn btn-info btn-lg btn-block">結果アップロード</a>
                                 <a href="{{ url('/user/resultInputs') }}" class="btn btn-info btn-lg btn-block">結果手入力</a>
                             @endif
-                            @if ($configs->temps_link)
+                            {{-- @if ($configs->temps_link) --}}
+                            @if($configs->temp_ok = 'true')
                                 <a href="{{ url('/user/temps') }}" class="btn btn-info btn-lg btn-block">体温計測</a>
                             @endif
                             @if ($configs->show_status_link)
