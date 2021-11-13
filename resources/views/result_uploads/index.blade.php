@@ -32,6 +32,7 @@
             <li>総距離: {{ $resultUploads->distance_sum }}<span class="uk-text-small">km</span></li>
         </ul>
         <ul class="uk-list">
+            <li class="uk-text-danger">これからアップする画像は全て11/14分として扱われます。(11/13分の画像はアップしないでください)</li>
             <li class="uk-text-warning">上記の集計値は速報値です。実行委員会でチェック後に確定します。</li>
             <li class="uk-text-warning">大会の公式記録が確定するまではTATTAアプリでの歩行記録は削除しないようにしてください。</li>
             <li class="uk-text-warning">実行委員会で歩行記録を確認した画像は削除できません。</li>

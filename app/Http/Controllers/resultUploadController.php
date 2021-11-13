@@ -128,7 +128,9 @@ class resultUploadController extends AppBaseController
         }else{
             Flash::warning('正しいスクリーンショットがアップロードされなかった可能性があります。<br>
             もし結果のスクリーンショットをアップしようとしてこのエラーメッセージが表示されている場合は下記のアドレスに画像を送信して下さい。<br>
-            <a href="mailto:register.rs100km@gmail.com">register.rs100km@gmail.com</a>');
+            <a href="mailto:register.rs100km@gmail.com">register.rs100km@gmail.com</a><br>
+            氏名、所属、参加IDを必ず添えてください。<br>
+            正しい形式のスクリーンショットでない場合は受け付けません。マニュアルを確認の上、正しい形式で送信してください。');
             return redirect(route('resultUploads.index'));
         }
         // ここまで画像解析処理
