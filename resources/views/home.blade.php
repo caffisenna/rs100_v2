@@ -10,7 +10,7 @@
                         </div>
                         <div class="card-body">
                             <p class="uk-text-danger">重要!<br>
-                                体温を計測し、結果を入力してから歩行を開始して下さい。<a href="{{ url('/user/temps') }}">[体温を入力する]</a><br>
+                                体温を計測し、結果を入力してから歩行を開始して下さい。@if($configs->temp_ok == 'true')<a href="{{ url('/user/temps') }}">[体温を入力する]</a>@endif<br>
                                 歩行の開始と終了はこのページの下部からボタンを押してください。
                             </p>
                             {{-- @if ($configs->create_application) --}}
