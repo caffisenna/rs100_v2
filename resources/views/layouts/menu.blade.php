@@ -14,7 +14,7 @@
         @if ($configs->healthcheck)
             <a href="{{ url('/user/planUploads') }}" class="btn btn-info btn-xs btn-block">計画書アップロード</a>
         @endif
-        @if ($configs->temps_link)
+        @if($configs->temp_ok == 'true')
             <a href="{{ url('/user/temps') }}" class="btn btn-info btn-xs btn-block">体温計測</a>
         @endif
         @if ($configs->show_status_link)
