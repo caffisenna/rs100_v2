@@ -82,7 +82,7 @@
                 @if (isset($user->entryform->district))
                     <tr>
                         <td>{{ @$user->id }}</td>
-                        <td><a href="{{ route('adminentries.show', [$user->id]) }}">{{ $user->name }}</a></td>
+                        <td><a href="{{ route('adminentries.show', [$user->id]) }}">{{ $user->name }}</a>@if(isset($user->status->whole_retire))<span class="uk-text-danger">[リ]</span>@endif</td>
                         <td>{{ @$user->entryform->district }} {{ @$user->entryform->dan_name }}</td>
                         @if(app('request')->input('q')  == 'day1')
                         <td class="uk-text-small">{{ @$user->status->day1_start_time }}</td>
