@@ -28,9 +28,13 @@ class HomeController extends Controller
         $configs = AdminConfig::where('id', 1)->get()->first();
 
         $env = strtotime(ENV('USER_TEMP'));
+        $st = strtotime(ENV('USER_STATUS'));
         $now = strtotime(now());
         if($now > $env)  {
             $configs->temp_ok = 'true';
+        }
+        if($now > $st)  {
+            $configs->status_ok = 'true';
         }
         $status = status::where('user_id', auth()->id())->first();
         // dd($status);
