@@ -34,8 +34,15 @@ class adminresultUploadController extends AppBaseController
         if (isset($request->check)) {
             $resultUpload = resultUpload::find($request->check);
             // 現在時刻を取得
-            $resultUpload->checked_at = now();
-            $resultUpload->save();
+            // 重複チェック機能
+            if (empty($resultUpload->checked_at)) {
+                $resultUpload->checked_at = now();
+                $resultUpload->save();
+            } else {
+                Flash::success('既にチェック済みです');
+                return redirect(route('adminresultUploads.index'));
+            }
+
             // **************** 保存処理 ****************
             // $resultUpload->save();
             // **************** 保存処理 ****************
@@ -131,14 +138,7 @@ class adminresultUploadController extends AppBaseController
                 $slack->send(":tada:[100km到達!] 参加者ID:$id " . $name->name . "さんが100kmに到達! (累計:$status->total_distance km)");
             }
 
-            // 重複チェック機能
-            if (empty($resultUpload->checked_at)) {
-                $resultUpload->save();
-            } else {
-                Flash::success('既にチェック済みです');
-                return redirect(route('adminresultUploads.index'));
-            }
-            // $status->save();
+            $status->save();
 
 
             //ここまでステータステーブルの更新
