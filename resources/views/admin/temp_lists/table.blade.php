@@ -87,7 +87,7 @@
                                 href="{{ route('adminentries.show', [$user->id]) }}">{{ $user->name }}</a>
                                 @if (isset($user->status->whole_retire))<span class="uk-text-danger">[リ]</span>
                                 @elseif (isset($user->status->day2_end_time))<span class="uk-text-warning">[day2終]</span>
-                                @else <span class="uk-text-success">[歩行中]</span>
+                                @elseif(isset$user->status->day2_start_time) <span class="uk-text-success">[歩行中]</span>
                                 @endif
                         </td>
                         <td class="uk-text-small">{{ @$user->entryform->district }} {{ @$user->entryform->dan_name }}</td>
