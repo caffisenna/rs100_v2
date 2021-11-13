@@ -6,6 +6,7 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>ランキングボード</h1>
+                    <p class="uk-text-success">1つ以上の歩行記録があると氏名が掲載されます</p>
                 </div>
                 <div class="col-sm-6">
                 </div>
