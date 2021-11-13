@@ -68,7 +68,8 @@
                             </div>
                         </div>
                     @endif
-                    @if ($configs->status_day2)
+                    {{-- @if ($configs->status_day2) --}}
+                    @if($configs->temp_ok == 'true')
                         <div class="card" style="">
                             <div class="card-header">
                                 <h4>ステータス報告(2日目)</h4>
@@ -100,7 +101,7 @@
                             </div>
                         </div>
                     @endif
-                    @if ($configs->status_day1 || $configs->status_day2)
+                    @if ($configs->status_day1 || $configs->temp_ok)
                         <div class="card" style="">
                             <div class="card-header">
                             </div>

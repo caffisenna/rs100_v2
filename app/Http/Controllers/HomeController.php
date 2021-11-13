@@ -26,6 +26,12 @@ class HomeController extends Controller
     public function index()
     {
         $configs = AdminConfig::where('id', 1)->get()->first();
+
+        $env = strtotime(ENV('USER_TEMP'));
+        $now = strtotime(now());
+        if($now > $env)  {
+            $configs->temp_ok = 'true';
+        }
         $status = status::where('user_id', auth()->id())->first();
         // dd($status);
         return view('home', compact(['configs','status']));
