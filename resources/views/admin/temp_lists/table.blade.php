@@ -120,7 +120,7 @@
                             <td class="uk-text-small">@if (isset($user->temps->temp_day1_before))@if ($user->temps->temp_day1_before == '37.5度以上')<span class="uk-text-danger">{{ $user->temps->temp_day1_before }}</span>@else{{ $user->temps->temp_day1_before }}@endif @endif</td>
                             <td class="uk-text-small">{{ @$user->status->day1_end_time }}</td>
                             <td class="uk-text-small">@if (isset($user->temps->temp_day1_after))@if ($user->temps->temp_day1_after == '37.5度以上')<span class="uk-text-danger">{{ $user->temps->temp_day1_after }}</span>@else{{ $user->temps->temp_day1_after }}@endif @endif</td>
-                        @else
+                        @elseif (app('request')->input('q') == 'day2')
                             <td class="uk-text-small">{{ @$user->status->day2_start_time }}</td>
                             <td class="uk-text-small">@if (isset($user->temps->temp_day2_before))@if ($user->temps->temp_day2_before == '37.5度以上')<span class="uk-text-danger">{{ $user->temps->temp_day2_before }}</span>@else{{ $user->temps->temp_day2_before }}@endif @endif</td>
                             <td class="uk-text-small">{{ @$user->status->day2_end_time }}</td>
