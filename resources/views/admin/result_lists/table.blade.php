@@ -80,7 +80,7 @@
             <tr>
 
                         <td>{{ $user->id }}</td>
-                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->name }}@if(isset($user->status->whole_retire))<span class="uk-text-danger">[リ]</span>@endif</td>
                         <td>{{ $user->entryform->district }}/{{ $user->entryform->dan_name }}</td>
                         <td>
                             <div uk-lightbox>
