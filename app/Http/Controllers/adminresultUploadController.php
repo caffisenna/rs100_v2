@@ -359,7 +359,14 @@ class adminresultUploadController extends AppBaseController
         }
 
         $resultUpload->fill($request->all());
-        $resultUpload->save();
+
+        // 重複チェック機能
+        if(empty($resultUpload->checkd_at)){
+            $resultUpload->save();
+        }else{
+            Flash::success('既にチェック済みです');
+            return redirect(route('adminresultUploads.index'));
+        }
 
         Flash::success('Result Upload updated successfully.');
 
