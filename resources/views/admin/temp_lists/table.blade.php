@@ -65,12 +65,13 @@
     });
 </script>
 <div class="table-responsive">
-    <table class="uk-table table-condensed uk-table-small" id="temps-table">
+    <table class="uk-table table-condensed uk-table-striped" id="temps-table">
         <thead>
             <tr>
                 <th>ID</th>
                 <th>名前</th>
                 <th>所属</th>
+                <th>参加形態</th>
                 <th>歩行開始</th>
                 <th>前検温</th>
                 <th>歩行終了</th>
@@ -81,19 +82,49 @@
             @foreach ($users as $user)
                 @if (isset($user->entryform->district))
                     <tr>
-                        <td>{{ @$user->id }}</td>
-                        <td><a href="{{ route('adminentries.show', [$user->id]) }}">{{ $user->name }}</a>@if(isset($user->status->whole_retire))<span class="uk-text-danger">[リ]</span>@endif</td>
-                        <td>{{ @$user->entryform->district }} {{ @$user->entryform->dan_name }}</td>
-                        @if(app('request')->input('q')  == 'day1')
-                        <td class="uk-text-small">{{ @$user->status->day1_start_time }}</td>
-                        <td>@if (isset($user->temps->temp_day1_before))@if ($user->temps->temp_day1_before == '37.5度以上')<span class="uk-text-danger">{{ $user->temps->temp_day1_before }}</span>@else{{ $user->temps->temp_day1_before }}@endif @endif</td>
-                        <td>{{ @$user->status->day1_end_time }}</td>
-                        <td>@if (isset($user->temps->temp_day1_after))@if ($user->temps->temp_day1_after == '37.5度以上')<span class="uk-text-danger">{{ $user->temps->temp_day1_after }}</span>@else{{ $user->temps->temp_day1_after }}@endif @endif</td>
+                        <td class="uk-text-small">{{ @$user->id }}</td>
+                        <td class="uk-text-small"><a
+                                href="{{ route('adminentries.show', [$user->id]) }}">{{ $user->name }}</a>@if (isset($user->status->whole_retire))<span class="uk-text-danger">[リ]</span>@endif
+                        </td>
+                        <td class="uk-text-small">{{ @$user->entryform->district }} {{ @$user->entryform->dan_name }}</td>
+                        @if (app('request')->input('q') == 'day1')
+                            <td class="uk-text-small">
+                                @switch(@$user->entryform->how_to_join)
+                                    @case(1)
+                                        両日参加(両日とも10:00までにスタート)
+                                    @break
+                                    @case(2)
+                                        両日参加(初日10:00までにスタートかつ 2日目10:00以降スタート)
+                                    @break
+                                    @case(3)
+                                        両日参加(初日10:00以降スタート かつ 2日目10:00までにスタート)
+                                    @break
+                                    @case(4)
+                                        両日参加(両日とも10:00以降にスタート)
+                                    @break
+                                    @case(5)
+                                        1日目だけ参加(10:00までにスタート)
+                                    @break
+                                    @case(6)
+                                        1日目だけ遅参(10:00以降にスタート)
+                                    @break
+                                    @case(7)
+                                        2日目だけ参加(10:00までにスタート)
+                                    @break
+                                    @case(8)
+                                        2日目だけ遅参(10:00以降にスタート)
+                                    @break
+                                @endswitch
+                            </td>
+                            <td class="uk-text-small">{{ @$user->status->day1_start_time }}</td>
+                            <td class="uk-text-small">@if (isset($user->temps->temp_day1_before))@if ($user->temps->temp_day1_before == '37.5度以上')<span class="uk-text-danger">{{ $user->temps->temp_day1_before }}</span>@else{{ $user->temps->temp_day1_before }}@endif @endif</td>
+                            <td class="uk-text-small">{{ @$user->status->day1_end_time }}</td>
+                            <td class="uk-text-small">@if (isset($user->temps->temp_day1_after))@if ($user->temps->temp_day1_after == '37.5度以上')<span class="uk-text-danger">{{ $user->temps->temp_day1_after }}</span>@else{{ $user->temps->temp_day1_after }}@endif @endif</td>
                         @else
-                        <td class="uk-text-small">{{ @$user->status->day2_start_time }}</td>
-                        <td>@if (isset($user->temps->temp_day2_before))@if ($user->temps->temp_day2_before == '37.5度以上')<span class="uk-text-danger">{{ $user->temps->temp_day2_before }}</span>@else{{ $user->temps->temp_day2_before }}@endif @endif</td>
-                        <td>{{ @$user->status->day2_end_time }}</td>
-                        <td>@if (isset($user->temps->temp_day2_after))@if ($user->temps->temp_day2_after == '37.5度以上')<span class="uk-text-danger">{{ $user->temps->temp_day2_after }}</span>@else{{ $user->temps->temp_day2_after }}@endif @endif</td>
+                            <td class="uk-text-small">{{ @$user->status->day2_start_time }}</td>
+                            <td class="uk-text-small">@if (isset($user->temps->temp_day2_before))@if ($user->temps->temp_day2_before == '37.5度以上')<span class="uk-text-danger">{{ $user->temps->temp_day2_before }}</span>@else{{ $user->temps->temp_day2_before }}@endif @endif</td>
+                            <td class="uk-text-small">{{ @$user->status->day2_end_time }}</td>
+                            <td class="uk-text-small">@if (isset($user->temps->temp_day2_after))@if ($user->temps->temp_day2_after == '37.5度以上')<span class="uk-text-danger">{{ $user->temps->temp_day2_after }}</span>@else{{ $user->temps->temp_day2_after }}@endif @endif</td>
                         @endif
                     </tr>
                 @endif
