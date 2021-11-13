@@ -132,7 +132,7 @@ class adminresultUploadController extends AppBaseController
             }
 
             // 重複チェック機能
-            if (empty($resultUpload->checkd_at)) {
+            if (empty($resultUpload->checked_at)) {
                 $resultUpload->save();
             } else {
                 Flash::success('既にチェック済みです');
