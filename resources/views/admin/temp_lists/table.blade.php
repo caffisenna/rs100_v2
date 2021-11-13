@@ -121,6 +121,34 @@
                             <td class="uk-text-small">{{ @$user->status->day1_end_time }}</td>
                             <td class="uk-text-small">@if (isset($user->temps->temp_day1_after))@if ($user->temps->temp_day1_after == '37.5度以上')<span class="uk-text-danger">{{ $user->temps->temp_day1_after }}</span>@else{{ $user->temps->temp_day1_after }}@endif @endif</td>
                         @elseif (app('request')->input('q') == 'day2')
+                        <td class="uk-text-small">
+                            @switch(@$user->entryform->how_to_join)
+                                @case(1)
+                                    両日参加(両日とも10:00までにスタート)
+                                @break
+                                @case(2)
+                                    両日参加(初日10:00までにスタートかつ 2日目10:00以降スタート)
+                                @break
+                                @case(3)
+                                    両日参加(初日10:00以降スタート かつ 2日目10:00までにスタート)
+                                @break
+                                @case(4)
+                                    両日参加(両日とも10:00以降にスタート)
+                                @break
+                                @case(5)
+                                    1日目だけ参加(10:00までにスタート)
+                                @break
+                                @case(6)
+                                    1日目だけ遅参(10:00以降にスタート)
+                                @break
+                                @case(7)
+                                    2日目だけ参加(10:00までにスタート)
+                                @break
+                                @case(8)
+                                    2日目だけ遅参(10:00以降にスタート)
+                                @break
+                            @endswitch
+                        </td>
                             <td class="uk-text-small">{{ @$user->status->day2_start_time }}</td>
                             <td class="uk-text-small">@if (isset($user->temps->temp_day2_before))@if ($user->temps->temp_day2_before == '37.5度以上')<span class="uk-text-danger">{{ $user->temps->temp_day2_before }}</span>@else{{ $user->temps->temp_day2_before }}@endif @endif</td>
                             <td class="uk-text-small">{{ @$user->status->day2_end_time }}</td>
