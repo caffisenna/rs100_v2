@@ -130,7 +130,15 @@ class adminresultUploadController extends AppBaseController
                 $status->reach_100km_time = $t_total;
                 $slack->send(":tada:[100km到達!] 参加者ID:$id " . $name->name . "さんが100kmに到達! (累計:$status->total_distance km)");
             }
-            $status->save();
+
+            // 重複チェック機能
+            if (empty($resultUpload->checkd_at)) {
+                $resultUpload->save();
+            } else {
+                Flash::success('既にチェック済みです');
+                return redirect(route('adminresultUploads.index'));
+            }
+            // $status->save();
 
 
             //ここまでステータステーブルの更新
@@ -361,9 +369,9 @@ class adminresultUploadController extends AppBaseController
         $resultUpload->fill($request->all());
 
         // 重複チェック機能
-        if(empty($resultUpload->checkd_at)){
+        if (empty($resultUpload->checkd_at)) {
             $resultUpload->save();
-        }else{
+        } else {
             Flash::success('既にチェック済みです');
             return redirect(route('adminresultUploads.index'));
         }
