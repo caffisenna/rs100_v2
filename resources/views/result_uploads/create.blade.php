@@ -20,6 +20,7 @@
             {!! Form::open(['route' => 'resultUploads.store', 'files' => true]) !!}
 
             <div class="card-body">
+                <p class="uk-text-warning">[アップロード]をタップした後は連打をせず、少し待って下さい。</p>
 
                 <div class="row">
                     @include('result_uploads.fields')

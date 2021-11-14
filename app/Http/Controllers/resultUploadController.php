@@ -71,7 +71,15 @@ class resultUploadController extends AppBaseController
      */
     public function create()
     {
-        return view('result_uploads.create');
+        $now = strtotime(now());
+        $limit = strtotime(ENV('USER_UPLOAD'));
+        if ($now > $limit) {
+            Flash::warning('アップロード期限を過ぎました。(2021/11/14 19:29:59まで)<br>
+            メールでの受付もできません。');
+            return back();
+        } else {
+            return view('result_uploads.create');
+        }
     }
 
     /**
@@ -117,7 +125,7 @@ class resultUploadController extends AppBaseController
         // inputに格納
         if (isset($lines['1']['0'])) {
             $input['time'] = str_replace(PHP_EOL, '', $lines['1']['0']);
-        }else{
+        } else {
             Flash::warning('正しいスクリーンショットがアップロードされなかった可能性があります。<br>
             もし結果のスクリーンショットをアップしようとしてこのエラーメッセージが表示されている場合は下記のアドレスに画像を送信して下さい。<br>
             <a href="mailto:register.rs100km@gmail.com">register.rs100km@gmail.com</a>');
@@ -125,7 +133,7 @@ class resultUploadController extends AppBaseController
         }
         if (isset($lines['0']['1'])) {
             $input['distance'] = str_replace(PHP_EOL, '', $lines['0']['1']);
-        }else{
+        } else {
             Flash::warning('正しいスクリーンショットがアップロードされなかった可能性があります。<br>
             もし結果のスクリーンショットをアップしようとしてこのエラーメッセージが表示されている場合は下記のアドレスに画像を送信して下さい。<br>
             <a href="mailto:register.rs100km@gmail.com">register.rs100km@gmail.com</a><br>
@@ -138,9 +146,9 @@ class resultUploadController extends AppBaseController
         // 初日 or 二日目判定
         $day_limit = strtotime(env('DAY_LIMIT'));
         $now = strtotime(now());
-        if ($day_limit > $now){
+        if ($day_limit > $now) {
             $input['day'] = 1;
-        }else{
+        } else {
             $input['day'] = 2;
         }
 
