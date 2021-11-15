@@ -500,6 +500,7 @@
                 <div class="uk-card uk-card-primary uk-card-body">
                     <h5 class="uk-card-title"><span uk-icon="icon:info; ratio:1"></span>NEWS</h5>
                     <ul class="uk-list">
+                        <li>2021/11/14 第54回大会は終了しました</li>
                         <li>2021/11/11 一般公開用の<a href="{{ url('/public') }}">ステータス画面</a>を公開しました</li>
                         <li>2021/11/06 Eラーニングの受講、計画書のアップロード期限は11/6までです</li>
                         <li>2021/10/24 Eラーニングの受講が可能になりました</li>
