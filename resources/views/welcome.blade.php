@@ -477,9 +477,6 @@
                         <div class="flex items-center">
                             <span uk-icon="icon:warning; ratio:2"></span>
                             <div class="ml-4 text-lg leading-7 font-semibold">
-                                <a href="{{ url('/public') }}" class="underline text-gray-900 dark:text-white">
-                                    歩行状況速報
-                                </a>
                             </div>
                         </div>
                     </div>
@@ -500,15 +497,7 @@
                 <div class="uk-card uk-card-primary uk-card-body">
                     <h5 class="uk-card-title"><span uk-icon="icon:info; ratio:1"></span>NEWS</h5>
                     <ul class="uk-list">
-                        <li>55回大会開発開始</li>
-                        <li>2021/11/20 事後アンケートのURLを送付しました。申込時のEメールをご確認ください。</li>
-                        <li>2021/11/14 第54回大会は終了しました</li>
-                        <li>2021/11/11 一般公開用の<a href="{{ url('/public') }}">ステータス画面</a>を公開しました</li>
-                        <li>2021/11/06 Eラーニングの受講、計画書のアップロード期限は11/6までです</li>
-                        <li>2021/10/24 Eラーニングの受講が可能になりました</li>
-                        <li>2021/10/23 参加申込受付を10/30(土)23:59まで延長します</li>
-                        <li>2021/10/05 参加申込受付をスタートしました</li>
-                        <li>2021/10/01 まもなく第54回ローバースカウト100kmハイクの申込をスタートします</li>
+                        <li>2022/09/10 第55回大会に向けて動き始めます</li>
                     </ul>
                 </div>
             </div>
