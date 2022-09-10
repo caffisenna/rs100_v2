@@ -412,19 +412,19 @@
 <body class="antialiased">
     <div
         class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center sm:pt-0">
-        {{-- @if (Route::has('login'))
+        @if (Route::has('login'))
             <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
                 @auth
                     <a href="{{ url('/home') }}" class="text-sm text-gray-700 underline">Home</a>
                 @else
-                    <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">Login</a>
+                    <a href="{{ route('login') }}" class="text-sm text-gray-700 underline">ログイン</a>
 
                     @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">Register</a>
+                        <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 underline">ユーザー登録</a>
                     @endif
                 @endauth
             </div>
-        @endif --}}
+        @endif
 
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
             <div class="flex justify-center pt-8 sm:justify-start sm:pt-0">
@@ -477,6 +477,7 @@
                         <div class="flex items-center">
                             <span uk-icon="icon:warning; ratio:2"></span>
                             <div class="ml-4 text-lg leading-7 font-semibold">
+                                現在テスト運用中です
                             </div>
                         </div>
                     </div>
@@ -497,7 +498,7 @@
                 <div class="uk-card uk-card-primary uk-card-body">
                     <h5 class="uk-card-title"><span uk-icon="icon:info; ratio:1"></span>NEWS</h5>
                     <ul class="uk-list">
-                        <li>2022/09/10 第55回大会に向けて動き始めます</li>
+                        <li>2022/09/10 第55回大会に向けてテストを開始します</li>
                     </ul>
                 </div>
             </div>
