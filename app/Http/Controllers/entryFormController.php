@@ -7,7 +7,6 @@ use App\Http\Requests\UpdateentryFormRequest;
 use App\Http\Controllers\AppBaseController;
 use App\Mail\SmConfirm;
 use App\Models\entryForm;
-use App\Models\planUpload;
 use Auth;
 use Illuminate\Http\Request;
 use Flash;
@@ -21,7 +20,6 @@ use PhpParser\Node\Stmt\TryCatch;
 use App\Models\elearning;
 use Mail;
 use App\Http\Util\SlackPost;
-use App\Models\status;
 
 class entryFormController extends AppBaseController
 {
@@ -106,9 +104,6 @@ class entryFormController extends AppBaseController
         $slack->send(":u7533: 参加者ID:$id " . $name . "さんが申込書を作成しました");
 
         Flash::success('申込書が作成されました');
-
-        // スターテス画面に反映
-        status::create(['user_id' => $input['user_id']]);
 
         return redirect(route('entryForms.index'));
     }
@@ -213,6 +208,12 @@ class entryFormController extends AppBaseController
         $entryForm->fill($request->all());
         $entryForm->save();
 
+        //slack通知
+        $id = Auth()->user()->id;
+        $name = Auth()->user()->name;
+        $slack = new SlackPost();
+        $slack->send(":memo: 参加者ID:$id " . $name . "さんが申込書を修正しました");
+
         Flash::success('申込書を更新しました。');
 
         return redirect(route('entryForms.index'));
@@ -231,8 +232,6 @@ class entryFormController extends AppBaseController
     {
         /** @var entryForm $entryForm */
         $entryForm = entryForm::find($id);
-        $status = status::where('user_id', $entryForm->user_id);
-
 
         if (empty($entryForm)) {
             Flash::error('Entry Form not found');
@@ -241,7 +240,12 @@ class entryFormController extends AppBaseController
         }
 
         $entryForm->delete();
-        $status->delete();
+
+        //slack通知
+        $id = Auth()->user()->id;
+        $name = Auth()->user()->name;
+        $slack = new SlackPost();
+        $slack->send(":wastebasket: 参加者ID:$id " . $name . "さんが申込書を削除しました");
 
         Flash::success('申込書を削除しました');
 
