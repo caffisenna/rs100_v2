@@ -398,7 +398,6 @@
                 color: rgba(203, 213, 224, var(--text-opacity))
             }
         }
-
     </style>
 
     <!-- UIkit CSS -->
@@ -461,8 +460,7 @@
                                 @auth
                                     <a href="{{ url('/home') }}" class="underline text-gray-900 dark:text-white">Home</a>
                                 @else
-                                    <a href="{{ route('login') }}"
-                                        class="underline text-gray-900 dark:text-white">ログイン</a>
+                                    <a href="{{ route('login') }}" class="underline text-gray-900 dark:text-white">ログイン</a>
 
                                     {{-- @if (Route::has('register'))
                                         <a href="{{ route('register') }}"
@@ -506,15 +504,12 @@
             <div>
                 <div class="uk-card uk-card-primary uk-card-body">
                     <h5 class="uk-card-title"><span uk-icon="icon:info; ratio:1"></span>参加条件</h5>
-                    <ul>
-                        <li>申し込み時点において、東京連盟の加盟登録のあるローバースカウトであること。</li>
-                        <li>または、東京連盟の加盟登録のある 25 歳までの指導者であること。</li>
-                    </ul>
-                    <h3><span uk-icon="icon:warning; ratio:1"></span>参加資格注意事項</h3>
-                    <ul>
-                        <li>今回は感染拡大防止のため、参加者は東京連盟所属のスカウトのみとさせていただきます。</li>
-                        <li>東京都外に在住スカウト(県をまたぐ移動が生じる場合)については所属団団委員長と相談し、参加するかどうかの決定をお願いします。</li>
-                    </ul>
+                    <ol>
+                        <li>申込時点において加盟登録のあるローバースカウト</li>
+                        <li>申込時点において加盟登録のある25歳までの指導者</li>
+                        <li>他県連盟の加盟登録員 (上記の条件に当てはまるローバースカウトまたは指導者で、支部または所属連盟の承認を受けた者)</li>
+                        <li>ガールスカウト及び外国連盟のスカウト (上記の条件に当てはまる25歳までのスカウトまたは指導者で加盟登録があり、支部または所属連盟の承認を受けた者)</li>
+                    </ol>
                     <h3>その他</h3>
                     <p class=""><a href="https://rs100.info">大会公式サイト</a>の情報をよくご確認の上お申し込み下さい。</p>
                 </div>
