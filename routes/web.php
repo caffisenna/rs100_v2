@@ -4,10 +4,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\entryFormController;
-use App\Http\Controllers\statusController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
-use App\Http\Controllers\staffplanUploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,13 +62,13 @@ Route::middleware('verified')->group(function () {
         // Route::get('/', 'User\HomeController@index');
         Route::resource('entryForms', App\Http\Controllers\entryFormController::class);
         Route::resource('elearnings', App\Http\Controllers\elearningController::class);
-        Route::resource('resultUploads', App\Http\Controllers\resultUploadController::class);
-        Route::resource('planUploads', App\Http\Controllers\planUploadController::class, ['except' => ['edit','show','update']]);
-        Route::resource('temps', App\Http\Controllers\tempsController::class);
+        // Route::resource('resultUploads', App\Http\Controllers\resultUploadController::class);
+        // Route::resource('planUploads', App\Http\Controllers\planUploadController::class, ['except' => ['edit','show','update']]);
+        // Route::resource('temps', App\Http\Controllers\tempsController::class);
         Route::get('/status_update', [
-            App\Http\Controllers\statusController::class, 'status_update'
+            // App\Http\Controllers\statusController::class, 'status_update'
         ])->name('status_update');
-        Route::resource('resultInputs', App\Http\Controllers\resultInputsController::class);
+        // Route::resource('resultInputs', App\Http\Controllers\resultInputsController::class);
     });
     // 管理ユーザ用
     Route::prefix('admin')->middleware('can:admin')->group(function () {
@@ -78,15 +76,15 @@ Route::middleware('verified')->group(function () {
         Route::resource('adminConfigs', App\Http\Controllers\AdminConfigController::class);
         Route::resource('adminentries', App\Http\Controllers\adminentryFormController::class, ['except' => 'create']);
         Route::get('/deleted', [App\Http\Controllers\adminentryFormController::class, 'deleted'])->name('deleted');
-        Route::resource('adminresultUploads', App\Http\Controllers\adminresultUploadController::class, ['except' => 'create']);
-        Route::get('/result_lists', [App\Http\Controllers\adminresultUploadController::class, 'lists'])->name('resultlists');
-        Route::get('/temp_lists', [App\Http\Controllers\tempsController::class, 'temp_list'])->name('templists');
-        Route::resource('reach50100', App\Http\Controllers\reach50100Controller::class);
-        Route::resource('adminplanUploads', App\Http\Controllers\adminplanUploadController::class, ['except' => ['create','edit','show','update']]);
+        // Route::resource('adminresultUploads', App\Http\Controllers\adminresultUploadController::class, ['except' => 'create']);
+        // Route::get('/result_lists', [App\Http\Controllers\adminresultUploadController::class, 'lists'])->name('resultlists');
+        // Route::get('/temp_lists', [App\Http\Controllers\tempsController::class, 'temp_list'])->name('templists');
+        // Route::resource('reach50100', App\Http\Controllers\reach50100Controller::class);
+        // Route::resource('adminplanUploads', App\Http\Controllers\adminplanUploadController::class, ['except' => ['create','edit','show','update']]);
     });
     // スタッフ用
     Route::prefix('staff')->middleware('can:staff')->group(function () {
-        Route::resource('staffplanUploads', App\Http\Controllers\staffplanUploadController::class, ['except' => ['create','edit','show','update']]);
+        // Route::resource('staffplanUploads', App\Http\Controllers\staffplanUploadController::class, ['except' => ['create','edit','show','update']]);
     });
     // 地区コミ用
     Route::prefix('commi')->middleware('can:commi')->group(function () {
@@ -104,13 +102,13 @@ Route::post('/sm_confirm', [
 ])->name('comfirm_post');
 
 
-Route::resource('status', App\Http\Controllers\statusController::class);
-Route::get('/public', [App\Http\Controllers\statusController::class, 'public'])->name('public');
+// Route::resource('status', App\Http\Controllers\statusController::class);
+// Route::get('/public', [App\Http\Controllers\statusController::class, 'public'])->name('public');
 
 Route::get('/hq_confirm', [
     App\Http\Controllers\adminentryFormController::class, 'hq_confirm'
 ])->name('hq_comfirm');
 
 Route::get('/plan_check', [
-    App\Http\Controllers\adminplanUploadController::class, 'check'
+    // App\Http\Controllers\adminplanUploadController::class, 'check'
 ])->name('plan_upload');
