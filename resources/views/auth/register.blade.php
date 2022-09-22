@@ -41,7 +41,10 @@
         <div class="card">
             <div class="card-body register-card-body">
                 <p class="login-box-msg">新規ユーザー登録</p>
-
+                <ul>
+                    <li>Emailは受信確認が必要です</li>
+                    <li>必ずご自身で受信できるメールアドレスで登録して下さい</li>
+                </ul>
                 <form method="post" action="{{ route('register') }}">
                     @csrf
 
