@@ -36,7 +36,7 @@
             <p>参加者一覧</p>
         </a>
     </li>
-    <li class="nav-item">
+    {{-- <li class="nav-item">
         <a href="{{ route('adminplanUploads.index') }}"
             class="nav-link {{ Request::is('admin/adminplanUploads*') ? 'active' : '' }}">
             <p>計画書一覧</p>
@@ -77,7 +77,7 @@
     </li>
     <li class="nav-item">
         <a href="/status" class="nav-link"><p>歩行状況(詳細)</p></a>
-    </li>
+    </li> --}}
     <li class="nav-item">
         <a href="{{ url('/admin/deleted') }}"
             class="nav-link {{ Request::is('admin/deleted*') ? 'active' : '' }}">
