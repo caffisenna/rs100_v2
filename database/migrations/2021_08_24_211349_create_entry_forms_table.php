@@ -38,8 +38,8 @@ class CreateEntryFormsTable extends Migration
             $table->text('sm_position');
             $table->date('sm_confirmation')->nullable();
             $table->text('buddy_ok')->nullable(); // バディの要請可否
-            $table->text('buddy_match'); // バディの斡旋希望
-            $table->text('buddy_type'); // バディの組み合わせ
+            $table->text('buddy_match')->nullable(); // バディの斡旋希望
+            $table->text('buddy_type')->nullable(); // バディの組み合わせ
             $table->text('buddy1_name')->nullable();
             $table->text('buddy1_dan')->nullable();
             $table->text('buddy2_name')->nullable();
