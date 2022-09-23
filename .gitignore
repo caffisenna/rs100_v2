@@ -8,6 +8,7 @@
 !/public/images/user_uploads/ocr.sh
 /storage/*.key
 /storage/debugbar
+/storage/fonts
 /vendor
 /.idea
 /.vscode

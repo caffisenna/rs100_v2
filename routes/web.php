@@ -69,6 +69,7 @@ Route::middleware('verified')->group(function () {
             // App\Http\Controllers\statusController::class, 'status_update'
         ])->name('status_update');
         // Route::resource('resultInputs', App\Http\Controllers\resultInputsController::class);
+        Route::get('/pdf', [entryFormController::class, 'pdf'])->name('pdf');
     });
     // 管理ユーザ用
     Route::prefix('admin')->middleware('can:admin')->group(function () {

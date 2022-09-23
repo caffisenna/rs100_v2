@@ -18,6 +18,9 @@
                             <a href="{{ route('entryForms.show', [$entryForm->id]) }}" class='btn btn-default btn-lg'>
                                 <i class="far fa-eye"></i>確認する
                             </a>
+                            <a href="{{ url('/user/pdf') }}" class='btn btn-default btn-lg'>
+                                <i class="far fa-eye"></i>PDF
+                            </a>
                             @if($configs->user_edit <> 0)
                             <a href="{{ route('entryForms.edit', [$entryForm->id]) }}" class='btn btn-default btn-lg'>
                                 <i class="far fa-edit"></i>編集する
