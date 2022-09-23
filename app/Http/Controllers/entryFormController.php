@@ -301,7 +301,7 @@ class entryFormController extends AppBaseController
 
         $pdf = \PDF::loadView('entry_forms.pdf', compact('entryForm',$entryForm));
         $pdf->setPaper('A4');
-        // return $pdf->download();
-        return $pdf->stream();
+        return $pdf->download();
+        // return $pdf->stream();
     }
 }
