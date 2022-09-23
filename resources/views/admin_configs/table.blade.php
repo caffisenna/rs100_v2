@@ -30,25 +30,5 @@
             <th>ユーザー編集</th>
             <td>{{ $adminConfigs->user_edit }}</td>
         </tr>
-        <tr>
-            <th>画像UP</th>
-            <td>{{ $adminConfigs->user_upload }}</td>
-        </tr>
-        <tr>
-            <th>ステータス入力(day1)</th>
-            <td>{{ $adminConfigs->status_day1 }}</td>
-        </tr>
-        <tr>
-            <th>ステータス入力(day2)</th>
-            <td>{{ $adminConfigs->status_day2 }}</td>
-        </tr>
-        <tr>
-            <th>ステータスリンク</th>
-            <td>{{ $adminConfigs->show_status_link }}</td>
-        </tr>
-        <tr>
-            <th>体温測定リンク</th>
-            <td>{{ $adminConfigs->temps_link }}</td>
-        </tr>
     </table>
 </div>
