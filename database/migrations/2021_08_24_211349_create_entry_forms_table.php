@@ -18,9 +18,11 @@ class CreateEntryFormsTable extends Migration
             $table->increments('id');
             $table->foreignId('user_id')->nullable()->constrained();
             $table->text('furigana');
-            $table->text('bs_id');
-            $table->text('district');
-            $table->text('dan_name');
+            $table->text('bs_gs'); // BSかGSか
+            $table->text('bs_id')->nullable(); // GSは取らない
+            $table->text('prefecture'); // 県連
+            $table->text('district');   // 地区
+            $table->text('dan_name');   // 団
             $table->date('birth_day');
             $table->text('gender');
             $table->text('zip');
@@ -35,10 +37,14 @@ class CreateEntryFormsTable extends Migration
             $table->text('sm_name');
             $table->text('sm_position');
             $table->date('sm_confirmation')->nullable();
-            $table->date('map_upload')->nullable();
+            $table->text('buddy_ok')->nullable(); // バディの要請可否
+            $table->text('buddy_match'); // バディの斡旋希望
+            $table->text('buddy_type'); // バディの組み合わせ
+            $table->text('buddy1_name')->nullable();
+            $table->text('buddy1_dan')->nullable();
+            $table->text('buddy2_name')->nullable();
+            $table->text('buddy2_dan')->nullable();
             $table->uuid('uuid')->nullable();
-            $table->text('how_to_join');
-            $table->datetime('hq_confirmation')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

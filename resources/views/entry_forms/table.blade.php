@@ -10,7 +10,7 @@
                 @endif
             </tr>
             <tr>
-                <td>申込書</td>
+                <td>申込書操作</td>
                 <td>
                     @if (isset($entryForm->id))
                         {!! Form::open(['route' => ['entryForms.destroy', $entryForm->id], 'method' => 'delete']) !!}
@@ -39,14 +39,6 @@
                 @endif
             </tr>
             <tr>
-                <td>コース概略</td>
-                @if (isset($entryForm->plan_upload))
-                    <td>{{ $entryForm->plan_upload }}</td>
-                @else
-                    <td> <span class="uk-text-danger">アップロードされていません</span></td>
-                @endif
-            </tr>
-            <tr>
                 <td>Eラーニング修了</td>
                 @if (isset($entryForm->elearning))
                     <td>{{ $entryForm->elearning }}</td>
@@ -54,6 +46,14 @@
                     <td> <span class="uk-text-danger">未修了</span></td>
                 @endif
             </tr>
+            {{-- <tr>
+                <td>健康調査書</td>
+                @if (isset($entryForm->plan_upload))
+                    <td>{{ $entryForm->plan_upload }}</td>
+                @else
+                    <td> <span class="uk-text-danger">アップロードされていません</span></td>
+                @endif
+            </tr> --}}
         </tbody>
     </table>
 </div>

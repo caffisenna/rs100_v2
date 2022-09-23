@@ -13,7 +13,11 @@
 
     <div class="content px-3">
 
-        {{-- @include('adminlte-templates::common.errors') --}}
+        @include('adminlte-templates::common.errors')
+
+        {{-- @include('flash::message') --}}
+
+        {{-- {{ $message }} --}}
 
         <div class="card">
 

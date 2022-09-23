@@ -16,7 +16,6 @@
                     </div>
                 @endunless
             </div>
-            <p class="uk-text-warning">参加費は各地区ごとに定められた方法で、所属地区に納入してください。</p>
         </div>
     </section>
 

@@ -20,6 +20,7 @@ use PhpParser\Node\Stmt\TryCatch;
 use App\Models\elearning;
 use Mail;
 use App\Http\Util\SlackPost;
+use App\Mail\EntryformCreated;
 
 class entryFormController extends AppBaseController
 {
@@ -93,6 +94,10 @@ class entryFormController extends AppBaseController
 
         // 生年月日生成
         $input['birth_day'] = Carbon::create($input['bd_year'], $input['bd_month'], $input['bd_day']);
+        // 存在する日付かチェック
+        if(!checkdate($input['bd_month'], $input['bd_day'],$input['bd_year'])){
+            return back()->with('message', '存在しない日付です');
+        }
 
         /** @var entryForm $entryForm */
         $entryForm = entryForm::create($input);
@@ -104,6 +109,10 @@ class entryFormController extends AppBaseController
         $slack->send(":u7533: 参加者ID:$id " . $name . "さんが申込書を作成しました");
 
         Flash::success('申込書が作成されました');
+
+        // 確認メール送信
+        $sendto = User::where('id', $input['user_id'])->value('email');
+        Mail::to($sendto)->queue(new EntryformCreated($name)); // メールをqueueで送信
 
         return redirect(route('entryForms.index'));
     }
@@ -202,8 +211,14 @@ class entryFormController extends AppBaseController
             return redirect(route('entryForms.index'));
         }
 
-        // 生年月日生成
+        // 生年月日生成(制御がかからない!)
         $request['birth_day'] = Carbon::create($request['bd_year'], $request['bd_month'], $request['bd_day']);
+        if(!checkdate($request['bd_month'], $request['bd_day'],$request['bd_year'])){
+            // return back()->with('message', '存在しない日付です');
+            $messages = '有効な日付';
+            return view('entry_forms.edit', compact('messages'));
+        }
+
 
         $entryForm->fill($request->all());
         $entryForm->save();

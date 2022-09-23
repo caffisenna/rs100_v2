@@ -18,7 +18,7 @@
         </tr>
         <tr>
             <td>所属</td>
-            <td>{{ $entryForm->district }}地区 {{ $entryForm->dan_name }}団</td>
+            <td>{{ $entryForm->prefecture }}連盟 {{ $entryForm->district }}地区 {{ $entryForm->dan_name }}団</td>
         </tr>
         <tr>
             <td>登録番号</td>
@@ -61,12 +61,27 @@
             <td>{{ $entryForm->sm_confirmation }}</td>
         </tr>
         <tr>
-            <td>コース概略</td>
-            <td>{{ $entryForm->map_upload }}</td>
+            <td>バディの可否(男性のみ)</td>
+            <td>{{ $entryForm->buddy_ok }}</td>
         </tr>
         <tr>
-            <td>参加の形態</td>
-            <td>{{ $entryForm->how_to_join }}</td>
+            <td>バディの紹介(女性のみ)</td>
+            <td>{{ $entryForm->buddy_match }}</td>
         </tr>
+        <tr>
+            <td>バディのタイプ</td>
+            <td>{{ $entryForm->buddy_type }}</td>
+        </tr>
+        <tr>
+            <td>バディ(1)</td>
+            <td>@if($entryForm->buddy1_name){{ $entryForm->buddy1_name }}<br>
+                所属団: {{ $entryForm->buddy1_dan }}@endif</td>
+        </tr>
+        <tr>
+            <td>バディ(2)</td>
+            <td>@if($entryForm->buddy2_name){{ $entryForm->buddy2_name }}<br>
+                所属団: {{ $entryForm->buddy2_dan }}@endif</td>
+        </tr>
+
     </tbody>
 </table>
