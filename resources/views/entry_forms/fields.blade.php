@@ -446,6 +446,20 @@
     </div>
     <div class="card-body">
         <span class="">バディの情報を入力してください</span>
+        <h4>バディのタイプ</h4>
+        <div class="form-group">
+            {!! Form::label('buddy_type', 'バディのタイプ:') !!}
+            {!! Form::select('buddy_type', ['' => '',
+            '男性単独' => '男性単独',
+            '男1/女1' => '男1/女1',
+            '男1/女2' => '男1/女2',
+            '男2/女1' => '男2/女1'
+        ], null, ['class' => 'form-control custom-select',]) !!}
+            @error('buddy_type')
+                <div class="error text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+
         <h4>バディ1</h4>
         <div class="form-group">
             {!! Form::label('buddy1_name', 'バディ(1)氏名:') !!}
@@ -456,7 +470,7 @@
         </div>
         <div class="form-group">
             {!! Form::label('buddy1_dan', 'バディ(1)所属団:') !!}
-            {!! Form::text('buddy1_dan', null, ['class' => 'form-control']) !!}
+            {!! Form::text('buddy1_dan', null, ['class' => 'form-control', 'placeholder'=>'〇〇連盟〇〇地区〇〇XX団']) !!}
             @error('buddy1_dan')
                 <div class="error text-danger">{{ $message }}</div>
             @enderror
@@ -472,7 +486,7 @@
         </div>
         <div class="form-group">
             {!! Form::label('buddy2_dan', 'バディ(2)所属団:') !!}
-            {!! Form::text('buddy2_dan', null, ['class' => 'form-control']) !!}
+            {!! Form::text('buddy2_dan', null, ['class' => 'form-control', 'placeholder'=>'〇〇連盟〇〇地区〇〇XX団']) !!}
             @error('buddy2_dan')
                 <div class="error text-danger">{{ $message }}</div>
             @enderror
