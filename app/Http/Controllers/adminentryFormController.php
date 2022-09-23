@@ -35,7 +35,7 @@ class adminentryFormController extends AppBaseController
                 ->Where('is_commi', null)
                 ->where('email_verified_at', '<>', null);
         })
-            ->with('entryform')->with('elearning')->with('planupload')->get();
+            ->with('entryform')->with('elearning')->get();
 
         return view('admin.entry_forms.index')
             ->with('users', $users);

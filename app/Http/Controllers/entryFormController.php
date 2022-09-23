@@ -7,7 +7,6 @@ use App\Http\Requests\UpdateentryFormRequest;
 use App\Http\Controllers\AppBaseController;
 use App\Mail\SmConfirm;
 use App\Models\entryForm;
-use App\Models\planUpload;
 use Auth;
 use Illuminate\Http\Request;
 use Flash;
@@ -21,7 +20,7 @@ use PhpParser\Node\Stmt\TryCatch;
 use App\Models\elearning;
 use Mail;
 use App\Http\Util\SlackPost;
-use App\Models\status;
+use App\Mail\EntryformCreated;
 
 class entryFormController extends AppBaseController
 {
@@ -95,6 +94,10 @@ class entryFormController extends AppBaseController
 
         // 生年月日生成
         $input['birth_day'] = Carbon::create($input['bd_year'], $input['bd_month'], $input['bd_day']);
+        // 存在する日付かチェック
+        if(!checkdate($input['bd_month'], $input['bd_day'],$input['bd_year'])){
+            return back()->with('message', '存在しない日付です');
+        }
 
         /** @var entryForm $entryForm */
         $entryForm = entryForm::create($input);
@@ -107,8 +110,9 @@ class entryFormController extends AppBaseController
 
         Flash::success('申込書が作成されました');
 
-        // スターテス画面に反映
-        status::create(['user_id' => $input['user_id']]);
+        // 確認メール送信
+        $sendto = User::where('id', $input['user_id'])->value('email');
+        Mail::to($sendto)->queue(new EntryformCreated($name)); // メールをqueueで送信
 
         return redirect(route('entryForms.index'));
     }
@@ -207,11 +211,23 @@ class entryFormController extends AppBaseController
             return redirect(route('entryForms.index'));
         }
 
-        // 生年月日生成
+        // 生年月日生成(制御がかからない!)
         $request['birth_day'] = Carbon::create($request['bd_year'], $request['bd_month'], $request['bd_day']);
+        if(!checkdate($request['bd_month'], $request['bd_day'],$request['bd_year'])){
+            // return back()->with('message', '存在しない日付です');
+            $messages = '有効な日付';
+            return view('entry_forms.edit', compact('messages'));
+        }
+
 
         $entryForm->fill($request->all());
         $entryForm->save();
+
+        //slack通知
+        $id = Auth()->user()->id;
+        $name = Auth()->user()->name;
+        $slack = new SlackPost();
+        $slack->send(":memo: 参加者ID:$id " . $name . "さんが申込書を修正しました");
 
         Flash::success('申込書を更新しました。');
 
@@ -231,8 +247,6 @@ class entryFormController extends AppBaseController
     {
         /** @var entryForm $entryForm */
         $entryForm = entryForm::find($id);
-        $status = status::where('user_id', $entryForm->user_id);
-
 
         if (empty($entryForm)) {
             Flash::error('Entry Form not found');
@@ -241,7 +255,12 @@ class entryFormController extends AppBaseController
         }
 
         $entryForm->delete();
-        $status->delete();
+
+        //slack通知
+        $id = Auth()->user()->id;
+        $name = Auth()->user()->name;
+        $slack = new SlackPost();
+        $slack->send(":wastebasket: 参加者ID:$id " . $name . "さんが申込書を削除しました");
 
         Flash::success('申込書を削除しました');
 

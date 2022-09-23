@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1>Edit Admin Config</h1>
+                    <h1>機能の有効化</h1>
                 </div>
             </div>
         </div>

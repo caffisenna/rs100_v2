@@ -36,11 +36,6 @@ class AdminConfig extends Model
         'elearning',
         'healthcheck',
         'user_edit',
-        'user_upload',
-        'status_day1',
-        'status_day2',
-        'show_status_link',
-        'temps_link',
     ];
 
     /**
@@ -54,11 +49,7 @@ class AdminConfig extends Model
         'create_application' => 'string',
         'elearning' => 'string',
         'healthcheck' => 'string',
-        'user_edit' => 'string',
-        'user_upload' => 'string',
-        'status_day1'=>'string',
-        'status_day2'=>'string',
-        'show_status_link'
+        'user_edit' => 'string'
     ];
 
     /**

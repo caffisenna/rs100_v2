@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\AdminConfig;
-use App\Models\status;
 
 class HomeController extends Controller
 {
@@ -27,17 +26,17 @@ class HomeController extends Controller
     {
         $configs = AdminConfig::where('id', 1)->get()->first();
 
-        $env = strtotime(ENV('USER_TEMP'));
-        $st = strtotime(ENV('USER_STATUS'));
+        // $env = strtotime(ENV('USER_TEMP'));
+        // $st = strtotime(ENV('USER_STATUS'));
         $now = strtotime(now());
-        if($now > $env)  {
-            $configs->temp_ok = 'true';
-        }
-        if($now > $st)  {
-            $configs->status_ok = 'true';
-        }
-        $status = status::where('user_id', auth()->id())->first();
+        // if($now > $env)  {
+        //     $configs->temp_ok = 'true';
+        // }
+        // if($now > $st)  {
+        //     $configs->status_ok = 'true';
+        // }
+        // $status = status::where('user_id', auth()->id())->first();
         // dd($status);
-        return view('home', compact(['configs','status']));
+        return view('home', compact(['configs']));
     }
 }
