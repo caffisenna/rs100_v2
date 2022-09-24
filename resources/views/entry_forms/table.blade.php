@@ -15,11 +15,11 @@
                     @if (isset($entryForm->id))
                         {!! Form::open(['route' => ['entryForms.destroy', $entryForm->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>
+                            <a href="{{ url('/user/pdf') }}" class='btn btn-default btn-lg'>
+                                <span uk-icon="download"></span>PDF
+                            </a>
                             <a href="{{ route('entryForms.show', [$entryForm->id]) }}" class='btn btn-default btn-lg'>
                                 <i class="far fa-eye"></i>確認する
-                            </a>
-                            <a href="{{ url('/user/pdf') }}" class='btn btn-default btn-lg'>
-                                <i class="far fa-eye"></i>PDF
                             </a>
                             @if($configs->user_edit <> 0)
                             <a href="{{ route('entryForms.edit', [$entryForm->id]) }}" class='btn btn-default btn-lg'>
