@@ -41,7 +41,7 @@
             <td>自宅: {{ $entryForm->telephone }}<br>ケータイ: {{ $entryForm->cellphone }}</td>
         </tr>
         <tr>
-            <td>50kmハイクの経験</td>
+            <td>長距離ハイクの経験</td>
             <td>{{ $entryForm->exp_50km }}</td>
         </tr>
         <tr>

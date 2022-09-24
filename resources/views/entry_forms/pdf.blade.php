@@ -85,7 +85,7 @@
                     {{ $entryForm->entryform->sm_confirmation }}</td>
             </tr>
             <tr>
-                <td>50kmハイクの経験</td>
+                <td>長距離ハイクの経験</td>
                 <td>{{ $entryForm->entryform->exp_50km }}</td>
             </tr>
             @if ($entryForm->entryform->gender == '男')
