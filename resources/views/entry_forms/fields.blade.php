@@ -12,7 +12,7 @@
         <!-- Furigana Field -->
         <div class="form-group">
             {!! Form::label('furigana', 'ふりがな:') !!}
-            {!! Form::text('furigana', null, ['class' => 'form-control', 'placeholder'=>'ひらがな/カタカナ可']) !!}
+            {!! Form::text('furigana', null, ['class' => 'form-control', 'placeholder' => 'ひらがな/カタカナ可']) !!}
             @error('furigana')
                 <div class="error text-danger">{{ $message }}</div>
             @enderror
@@ -152,7 +152,11 @@
         <!-- Zip Field -->
         <div class="form-group">
             {!! Form::label('zip', '郵便番号:') !!}
-            {!! Form::text('zip', null, ['class' => 'form-control', 'maxlength' => '7', 'placeholder'=>'7桁の整数で入力してください']) !!}
+            {!! Form::text('zip', null, [
+                'class' => 'form-control',
+                'maxlength' => '7',
+                'placeholder' => '7桁の整数で入力してください',
+            ]) !!}
             @error('zip')
                 <div class="error text-danger">{{ $message }}</div>
             @enderror
@@ -170,7 +174,7 @@
         <!-- Telephone Field -->
         <div class="form-group">
             {!! Form::label('telephone', '電話番号(自宅):') !!}
-            {!! Form::text('telephone', null, ['class' => 'form-control','placeholder'=>'自宅の固定電話など']) !!}
+            {!! Form::text('telephone', null, ['class' => 'form-control', 'placeholder' => '自宅の固定電話など']) !!}
 
             @error('telephone')
                 <div class="error text-danger">{{ $message }}</div>
@@ -192,10 +196,21 @@
 
         <!-- 50Km Exp Field -->
         <div class="form-group">
-            {!! Form::label('exp_50km_exp', '50kmハイクの経験:') !!}
-            {!! Form::select('exp_50km', ['' => '', 'あり' => 'あり', 'なし' => 'なし'], null, [
-                'class' => 'form-control custom-select',
-            ]) !!}
+            {!! Form::label('exp_50km_exp', '長距離ハイクの経験:') !!}
+            {!! Form::select(
+                'exp_50km',
+                [
+                    '' => '',
+                    '50km' => '50kmハイクの経験あり',
+                    '100km' => '100kmハイクの経験あり',
+                    '50km&100km' => '50kmと100kmハイクの経験あり',
+                    'なし' => 'なし',
+                ],
+                null,
+                [
+                    'class' => 'form-control custom-select',
+                ],
+            ) !!}
             @error('exp_50km')
                 <div class="error text-danger">{{ $message }}</div>
             @enderror
@@ -405,7 +420,7 @@
         <h3>バディについて</h3>
         <span class="uk-text-warning uk-text-small">バディとは一緒に歩くパートナーのことです。女性の参加者は必ず男性のバディと歩行することが必要です。<br>
             女性1名と男性1名、女性2名と男性1名、女性1名と男性2名などの組み合わせで登録してください。<br>
-        組み合わせは実行委員会で確認します。</span>
+            組み合わせは実行委員会で確認します。</span>
     </div>
     <div class="card-body">
         {{-- バディの可否(男性のみ) --}}
@@ -425,13 +440,17 @@
         <div class="form-group">
             {!! Form::label('buddy_match', 'バディの紹介(女性のみ):') !!}
             <span class="uk-text-warning uk-text-small">女性の参加希望者で一緒に歩く男性がまだ未定の方(実行委員会から男性のバディをご紹介します)</sp>
-            {!! Form::select('buddy_match', ['' => '', 'バディの紹介を希望' => 'バディの紹介を希望',
-            '男性バディが決まっている' => '男性バディが決まっている'], null, [
-                'class' => 'form-control custom-select',
-            ]) !!}
-            @error('buddy_match')
-                <div class="error text-danger">{{ $message }}</div>
-            @enderror
+                {!! Form::select(
+                    'buddy_match',
+                    ['' => '', 'バディの紹介を希望' => 'バディの紹介を希望', '男性バディが決まっている' => '男性バディが決まっている'],
+                    null,
+                    [
+                        'class' => 'form-control custom-select',
+                    ],
+                ) !!}
+                @error('buddy_match')
+                    <div class="error text-danger">{{ $message }}</div>
+                @enderror
         </div>
         {{-- バディの斡旋(女性のみ) --}}
 
@@ -449,12 +468,12 @@
         <h4>バディのタイプ</h4>
         <div class="form-group">
             {!! Form::label('buddy_type', 'バディのタイプ:') !!}
-            {!! Form::select('buddy_type', ['' => '',
-            '男性単独' => '男性単独',
-            '男1/女1' => '男1/女1',
-            '男1/女2' => '男1/女2',
-            '男2/女1' => '男2/女1'
-        ], null, ['class' => 'form-control custom-select',]) !!}
+            {!! Form::select(
+                'buddy_type',
+                ['' => '', '男性単独' => '男性単独', '男1/女1' => '男1/女1', '男1/女2' => '男1/女2', '男2/女1' => '男2/女1'],
+                null,
+                ['class' => 'form-control custom-select'],
+            ) !!}
             @error('buddy_type')
                 <div class="error text-danger">{{ $message }}</div>
             @enderror
@@ -470,7 +489,7 @@
         </div>
         <div class="form-group">
             {!! Form::label('buddy1_dan', 'バディ(1)所属団:') !!}
-            {!! Form::text('buddy1_dan', null, ['class' => 'form-control', 'placeholder'=>'〇〇連盟〇〇地区〇〇XX団']) !!}
+            {!! Form::text('buddy1_dan', null, ['class' => 'form-control', 'placeholder' => '〇〇連盟〇〇地区〇〇XX団']) !!}
             @error('buddy1_dan')
                 <div class="error text-danger">{{ $message }}</div>
             @enderror
@@ -486,7 +505,7 @@
         </div>
         <div class="form-group">
             {!! Form::label('buddy2_dan', 'バディ(2)所属団:') !!}
-            {!! Form::text('buddy2_dan', null, ['class' => 'form-control', 'placeholder'=>'〇〇連盟〇〇地区〇〇XX団']) !!}
+            {!! Form::text('buddy2_dan', null, ['class' => 'form-control', 'placeholder' => '〇〇連盟〇〇地区〇〇XX団']) !!}
             @error('buddy2_dan')
                 <div class="error text-danger">{{ $message }}</div>
             @enderror

@@ -98,7 +98,7 @@
 
             <!-- 50Km Exp Field -->
             <tr>
-                <td>50kmハイク経験</td>
+                <td>長距離ハイク経験</td>
                 <td>{{ $entryForm->exp_50km }}</td>
             </tr>
 
