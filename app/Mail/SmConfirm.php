@@ -10,6 +10,7 @@ use Illuminate\Queue\SerializesModels;
 class SmConfirm extends Mailable
 {
     use Queueable, SerializesModels;
+    protected $user;
 
     /**
      * Create a new message instance.
@@ -28,8 +29,8 @@ class SmConfirm extends Mailable
      */
     public function build()
     {
-        return $this->text('emails.smconfirm')
-        ->subject('RS100kmハイク 団の承認完了')
-        ->with(['user'=>$this->user]);
+        return $this->view('emails.smconfirm')
+            ->subject('RS100kmハイク 団の承認完了')
+            ->with('user', $this->user);
     }
 }

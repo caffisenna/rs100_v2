@@ -23,7 +23,7 @@
                     <h3 class="uk-card-title">団の承認</h3>
                 </div>
                 <div class="uk-card-body">
-                    以下のスカウトが第54回RS100kmハイクに参加申込をしています。<br>参加を承認する場合は以下のボタンをクリックしてください。
+                    以下のスカウトが第55回RS100kmハイクに参加申込をしています。<br>参加を承認する場合は以下のボタンをクリックしてください。
                 </div>
                 <div class="uk-card-footer">
                     {{ Form::open(['confirm_post']) }}
@@ -43,7 +43,7 @@
     @endif
 
     @if(isset($entryForm))
-    <table class=" uk-table uk-table-striped">
+    <table class=" uk-table uk-table-striped uk-table-small">
         <thead>
             <tr>
                 <th>項目</th>
@@ -74,14 +74,8 @@
 
             <!-- Zip Field -->
             <tr>
-                <td>郵便番号</td>
-                <td>{{ $entryForm->zip }}</td>
-            </tr>
-
-            <!-- Address Field -->
-            <tr>
                 <td>住所</td>
-                <td>{{ $entryForm->address }}</td>
+                <td>{{ $entryForm->zip }} {{ $entryForm->address }}</td>
             </tr>
 
             <!-- Telephone Field -->
@@ -105,19 +99,7 @@
             <!-- Parent Name Field -->
             <tr>
                 <td>保護者氏名</td>
-                <td>{{ $entryForm->parent_name }}</td>
-            </tr>
-
-            <!-- Parent Name Furigana Field -->
-            <tr>
-                <td>保護者ふりがな</td>
-                <td>{{ $entryForm->parent_name_furigana }}</td>
-            </tr>
-
-            <!-- Parent Relation Field -->
-            <tr>
-                <td>保護者続柄</td>
-                <td>{{ $entryForm->parent_relation }}</td>
+                <td>{{ $entryForm->parent_name }} ({{ $entryForm->parent_name_furigana }}) {{ $entryForm->parent_relation }}</td>
             </tr>
 
             <!-- Emer Phone Field -->
@@ -128,18 +110,28 @@
 
             <!-- Sm Name Field -->
             <tr>
-                <td>隊長氏名</td>
-                <td>{{ $entryForm->sm_name }}</td>
+                <td>隊長・団委員長氏名</td>
+                <td>{{ $entryForm->sm_name }} ({{ $entryForm->sm_position }})</td>
             </tr>
 
-            <!-- Sm Position Field -->
-            <tr>
-                <td>役務</td>
-                <td>{{ $entryForm->sm_position }}</td>
-            </tr>
             <tr>
                 <td>団の承認</td>
                 <td>{{ $entryForm->sm_confirmation }}</td>
+            </tr>
+            <tr>
+                <td>バディ情報</td>
+                <td>@if($entryForm->buddy_match)<p>{{ $entryForm->buddy_match }}</p>@endif
+                    @if($entryForm->buddy_ok)<p>【バディの可否】{{ $entryForm->buddy_ok }}</p>@endif
+                    @if($entryForm->buddy_type)<p>【バディのタイプ】{{ $entryForm->buddy_type }}</p>@endif
+                    @if($entryForm->buddy1_name)<p>【バディ(1)】{{ $entryForm->buddy1_name }}({{ $entryForm->buddy1_dan }})</p>@endif
+                    @if($entryForm->buddy2_name)<p>【バディ(2)】{{ $entryForm->buddy2_name }}({{ $entryForm->buddy2_dan }})</p>@endif
+                </td>
+            </tr>
+            <tr>
+                <td>申込データ</td>
+                <td><p class="uk-text-small">【データ作成日】: {{ $entryForm->created_at }}</p>
+                    <p class="uk-text-small">【データ更新日】: {{ $entryForm->updated_at }}</p>
+                </td>
             </tr>
         </tbody>
         @endif
