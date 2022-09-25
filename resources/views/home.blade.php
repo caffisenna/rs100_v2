@@ -47,23 +47,13 @@
 
             {{-- 管理者のみ表示 --}}
             @if (Auth::user()->is_admin)
-                <div class="uk-card uk-card-secondary uk-card-body uk-width-1-2@m">
+                <div class="uk-card uk-card-secondary uk-card-body">
                     <h3 class="uk-card-title">注意</h3>
                     <p class="uk-text-danger">管理者としてログイン中です。<br>
                         データの削除、変更も可能なため操作にはご注意ください。<br>
                         表示量が多いためPCでの閲覧を推奨します。<br>
                         情報の取り扱いには充分ご注意ください。
                     </p>
-                </div>
-
-                <div class="uk-card uk-card-default uk-card-body uk-width-1-2@m">
-                    <h3 class="uk-card-title">メニュー</h3>
-                    <ul class="uk-list">
-                        <li><a href="admin/reach50100" class="uk-button uk-button-primary">ランキングボード</a></li>
-                        <li><a href="/public" class="uk-button uk-button-primary">歩行状況(一般公開用)</a></li>
-                        <li><a href="/status" class="uk-button uk-button-primary">歩行状況(詳細)</a></li>
-                    </ul>
-                    その他のメニューは左上の<span uk-icon="menu"></span>よりアクセスしてください。
                 </div>
             @endif
         </div>
