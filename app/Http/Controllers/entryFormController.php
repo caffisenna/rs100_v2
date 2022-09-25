@@ -278,10 +278,11 @@ class entryFormController extends AppBaseController
         $entryForm->save();
 
         // メール送信
-        $user = User::select('id', 'email', 'name')->where('id', $entryForm->user_id)->first();
-        $user->sm_confirmation = $entryForm->sm_confirmation;
+        // $user = User::select('id', 'email', 'name')->where('id', $entryForm->user_id)->first();
+        $user = User::select('id', 'email', 'name')->where('id', $entryForm->user_id)->with('entryform')->first();
+        // $user->sm_confirmation = $entryForm->sm_confirmation;
         $sendto = ['email' => $user->email];
-        Mail::to($sendto)->send(new SmConfirm($user));
+        Mail::to($sendto)->queue(new SmConfirm($user));
 
         // slack通知
         $slack = new SlackPost();
