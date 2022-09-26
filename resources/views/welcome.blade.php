@@ -496,7 +496,7 @@
                 <div class="uk-card uk-card-primary uk-card-body">
                     <h5 class="uk-card-title"><span uk-icon="icon:info; ratio:1"></span>NEWS</h5>
                     <ul class="uk-list">
-                        <li>2022/09/10 第55回大会に向けてテストを開始します</li>
+                        <li>2022/09/10 第55回大会に向けてテスト運用中</li>
                     </ul>
                 </div>
             </div>
@@ -512,6 +512,10 @@
                     </ol>
                     <h3>その他</h3>
                     <p class=""><a href="https://rs100.info">大会公式サイト</a>の情報をよくご確認の上お申し込み下さい。</p>
+
+                    <h3>個人情報の取り扱い</h3>
+                    <p class="uk-text-small">入力されたデータは、ボーイスカウト東京連盟RS100kmハイク(本大会実行委員会)へ参加を申込いただいた皆様に本大会のサービス、 活動情報、安全管理等に関する情報を提供するために使用させていただく場合があります。<br>
+                        また個人情報の保全・安全管理につきましては適切に取り扱い、大会業務終了後に破棄させていただきます。</p>
                 </div>
             </div>
 
