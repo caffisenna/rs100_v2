@@ -103,6 +103,10 @@
     </li>
 @endif
 
+{{-- 公式サイトリンク --}}
+<a href="https://blog.rs100.info" class="btn btn-info btn-xs btn-block">公式サイト</a>
+{{-- 公式サイトリンク --}}
+
 {{-- ログアウトボタン --}}
 <a href="#" class="btn btn-danger btn-xs btn-block"
     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
