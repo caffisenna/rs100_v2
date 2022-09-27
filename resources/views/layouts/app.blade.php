@@ -76,7 +76,7 @@
                     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <!-- User image -->
                         <li class="user-header bg-primary">
-                            <img src="{{ url('/images/logo_color.png') }}" class="" alt="User Image">
+                            <img src="{{ url('/images/rs100km_55th.png') }}" class="" alt="User Image">
                             <p>
                                 {{ Auth::user()->name }}
                                 <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small>
