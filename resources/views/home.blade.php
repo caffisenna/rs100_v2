@@ -18,9 +18,9 @@
                                 <a href="{{ url('/user/elearnings') }}" class="btn btn-info btn-lg btn-block">Eラーニング</a>
                             @endif
 
-                            @if ($configs->healthcheck)
+                            {{-- @if ($configs->healthcheck)
                                 <a href="{{ url('/user/planUploads') }}" class="btn btn-info btn-lg btn-block">健康調査書</a>
-                            @endif
+                            @endif --}}
                         </div>
                     </div>
                 @endunless
