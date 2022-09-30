@@ -116,3 +116,11 @@
     @csrf
 </form>
 {{-- ログアウトボタン --}}
+<li class="nav-item">
+    <a href="{{ route('buddylists.index') }}"
+       class="nav-link {{ Request::is('buddylists*') ? 'active' : '' }}">
+        <p>Buddylists</p>
+    </a>
+</li>
+
+
