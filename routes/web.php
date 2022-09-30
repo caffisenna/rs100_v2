@@ -113,3 +113,6 @@ Route::get('/hq_confirm', [
 Route::get('/plan_check', [
     // App\Http\Controllers\adminplanUploadController::class, 'check'
 ])->name('plan_upload');
+
+
+Route::resource('buddylists', App\Http\Controllers\BuddylistController::class);
