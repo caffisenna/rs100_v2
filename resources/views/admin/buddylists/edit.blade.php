@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1>Create Buddylist</h1>
+                    <h1>編集</h1>
                 </div>
             </div>
         </div>
@@ -17,14 +17,12 @@
 
         <div class="card">
 
-            {!! Form::open(['route' => 'buddylists.store']) !!}
+            {!! Form::model($buddylist, ['route' => ['buddylists.update', $buddylist->id], 'method' => 'patch']) !!}
 
             <div class="card-body">
-
                 <div class="row">
-                    @include('buddylists.fields')
+                    @include('admin.buddylists.fields')
                 </div>
-
             </div>
 
             <div class="card-footer">

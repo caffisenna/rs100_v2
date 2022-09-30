@@ -77,6 +77,7 @@ Route::middleware('verified')->group(function () {
         Route::resource('adminConfigs', App\Http\Controllers\AdminConfigController::class);
         Route::resource('adminentries', App\Http\Controllers\adminentryFormController::class, ['except' => 'create']);
         Route::get('/deleted', [App\Http\Controllers\adminentryFormController::class, 'deleted'])->name('deleted');
+        Route::resource('buddylists', App\Http\Controllers\BuddylistController::class);
         // Route::resource('adminresultUploads', App\Http\Controllers\adminresultUploadController::class, ['except' => 'create']);
         // Route::get('/result_lists', [App\Http\Controllers\adminresultUploadController::class, 'lists'])->name('resultlists');
         // Route::get('/temp_lists', [App\Http\Controllers\tempsController::class, 'temp_list'])->name('templists');
@@ -113,6 +114,3 @@ Route::get('/hq_confirm', [
 Route::get('/plan_check', [
     // App\Http\Controllers\adminplanUploadController::class, 'check'
 ])->name('plan_upload');
-
-
-Route::resource('buddylists', App\Http\Controllers\BuddylistController::class);

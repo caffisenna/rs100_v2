@@ -18,8 +18,8 @@ class CreateBuddylistsTable extends Migration
             $table->increments('id');
             $table->integer('person1');
             $table->integer('person2');
-            $table->integer('person3');
-            $table->dateTime('confirmed');
+            $table->integer('person3')->nullable();
+            $table->dateTime('confirmed')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });

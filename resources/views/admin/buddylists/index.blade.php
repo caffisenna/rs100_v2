@@ -5,12 +5,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Buddylists</h1>
+                    <h1>バディリスト</h1>
                 </div>
                 <div class="col-sm-6">
-                    <a class="btn btn-primary float-right"
-                       href="{{ route('buddylists.create') }}">
-                        Add New
+                    <a class="btn btn-primary float-right" href="{{ route('buddylists.create') }}">
+                        新規バディ登録
                     </a>
                 </div>
             </div>
@@ -25,17 +24,15 @@
 
         <div class="card">
             <div class="card-body p-0">
-                @include('buddylists.table')
+                @include('admin.buddylists.table')
 
                 <div class="card-footer clearfix float-right">
                     <div class="float-right">
-                        
+
                     </div>
                 </div>
             </div>
 
         </div>
     </div>
-
 @endsection
-

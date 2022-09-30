@@ -5,12 +5,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Buddylist Details</h1>
+                    <h1>バディ詳細</h1>
                 </div>
                 <div class="col-sm-6">
-                    <a class="btn btn-default float-right"
-                       href="{{ route('buddylists.index') }}">
-                        Back
+                    <a class="btn btn-default float-right" href="{{ route('buddylists.index') }}">
+                        戻る
                     </a>
                 </div>
             </div>
@@ -22,7 +21,7 @@
 
             <div class="card-body">
                 <div class="row">
-                    @include('buddylists.show_fields')
+                    @include('admin.buddylists.show_fields')
                 </div>
             </div>
 
