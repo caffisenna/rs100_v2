@@ -24,7 +24,7 @@ class BuddylistController extends AppBaseController
         /** @var Buddylist $buddylists */
         $buddylists = Buddylist::all();
 
-        return view('buddylists.index')
+        return view('admin.buddylists.index')
             ->with('buddylists', $buddylists);
     }
 
@@ -35,7 +35,7 @@ class BuddylistController extends AppBaseController
      */
     public function create()
     {
-        return view('buddylists.create');
+        return view('admin.buddylists.create');
     }
 
     /**
@@ -72,10 +72,10 @@ class BuddylistController extends AppBaseController
         if (empty($buddylist)) {
             Flash::error('Buddylist not found');
 
-            return redirect(route('buddylists.index'));
+            return redirect(route('admin.buddylists.index'));
         }
 
-        return view('buddylists.show')->with('buddylist', $buddylist);
+        return view('admin.buddylists.show')->with('buddylist', $buddylist);
     }
 
     /**
@@ -93,10 +93,10 @@ class BuddylistController extends AppBaseController
         if (empty($buddylist)) {
             Flash::error('Buddylist not found');
 
-            return redirect(route('buddylists.index'));
+            return redirect(route('admin.buddylists.index'));
         }
 
-        return view('buddylists.edit')->with('buddylist', $buddylist);
+        return view('admin.buddylists.edit')->with('buddylist', $buddylist);
     }
 
     /**
@@ -115,7 +115,7 @@ class BuddylistController extends AppBaseController
         if (empty($buddylist)) {
             Flash::error('Buddylist not found');
 
-            return redirect(route('buddylists.index'));
+            return redirect(route('admin.buddylists.index'));
         }
 
         $buddylist->fill($request->all());
