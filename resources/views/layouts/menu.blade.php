@@ -96,6 +96,12 @@
             <p>参加費チェック</p>
         </a>
     </li>
+    <li class="nav-item">
+        <a href="{{ url('/admin/registration_check') }}"
+           class="nav-link {{ Request::is('admin/registration_check*') ? 'active' : '' }}">
+            <p>加盟登録チェック</p>
+        </a>
+    </li>
 
 
 

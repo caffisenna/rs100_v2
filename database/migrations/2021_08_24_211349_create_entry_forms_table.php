@@ -47,6 +47,7 @@ class CreateEntryFormsTable extends Migration
             $table->text('buddy2_name')->nullable();
             $table->text('buddy2_dan')->nullable();
             $table->date('fee_checked_at')->nullable(); // 東連以外の参加費納付チェック
+            $table->date('registration_checked_at')->nullable(); // 東連の加盟登録チェック
             $table->uuid('uuid')->nullable();
             $table->timestamps();
             $table->softDeletes();
