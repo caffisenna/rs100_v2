@@ -97,7 +97,7 @@
                         <div class="flex items-center">
                             <span uk-icon="icon:warning; ratio:2"></span>
                             <div class="ml-4 text-lg leading-7 font-semibold">
-                                現在テスト運用中です
+                                <a href="https://docs.google.com/presentation/d/e/2PACX-1vS9rKuXA7m7BIS_JFuhmIljMyzQhC56vgU5Qm6sjmP7z-8t_v0e6mQurhq5LMPuC0fhgBv-fRvxATBU/pub?start=false&loop=false&delayms=3000" target="_blank">参加申込ガイド</a>
                             </div>
                         </div>
                     </div>
@@ -118,7 +118,7 @@
                 <div class="uk-card uk-card-primary uk-card-body">
                     <h5 class="uk-card-title"><span uk-icon="icon:info; ratio:1"></span>NEWS</h5>
                     <ul class="uk-list">
-                        <li>2022/09/10 第55回大会に向けてテスト運用中</li>
+                        <li>2022/10/1 第55回大会の参加申込を開始しました</li>
                     </ul>
                 </div>
             </div>
