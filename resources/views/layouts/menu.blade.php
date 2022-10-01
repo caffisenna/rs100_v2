@@ -90,6 +90,12 @@
             <p>バディリスト</p>
         </a>
     </li>
+    <li class="nav-item">
+        <a href="{{ url('/admin/fee_check') }}"
+           class="nav-link {{ Request::is('admin/fee_check*') ? 'active' : '' }}">
+            <p>参加費チェック</p>
+        </a>
+    </li>
 
 
 
