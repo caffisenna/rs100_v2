@@ -21,7 +21,7 @@
 
             <div class="card-body">
                 <div class="row">
-                    @include('entry_forms.show_fields')
+                    @include('admin.entry_forms.show_fields')
                 </div>
             </div>
 

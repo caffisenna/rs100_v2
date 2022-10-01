@@ -1,126 +1,95 @@
-<!-- Furigana Field -->
-<div class="col-sm-12">
-    {!! Form::label('furigana', 'Furigana:') !!}
-    <p>{{ $entryForm->furigana }}</p>
-</div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.7.3/dist/css/uikit.min.css" />
 
-<!-- Email Field -->
-<div class="col-sm-12">
-    {!! Form::label('email', 'Email:') !!}
-    <p>{{ $entryForm->email }}</p>
-</div>
+<table class="uk-table uk-table-striped uk-table-hover">
+    <thead>
+        <tr>
+            <th>項目</th>
+            <th>内容</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>氏名</td>
+            <td>{{ $entryForm->user->name }}({{ $entryForm->furigana }})</td>
+        </tr>
+        <tr>
+            <td>email</td>
+            <td>{{ $entryForm->user->email }}</td>
+        </tr>
+        <tr>
+            <td>所属</td>
+            <td>{{ $entryForm->prefecture }}連盟 {{ $entryForm->district }}地区 {{ $entryForm->dan_name }}団</td>
+        </tr>
+        <tr>
+            <td>登録番号</td>
+            <td>{{ $entryForm->bs_id }}</td>
+        </tr>
+        <tr>
+            <td>性別</td>
+            <td>{{ $entryForm->gender }}</td>
+        </tr>
+        <tr>
+            <td>生年月日</td>
+            <td>{{ $entryForm->birth_day->format('Y年m月d日') }} ({{ \Carbon\Carbon::parse($entryForm->birth_day)->age }}才)</td>
+        </tr>
+        <tr>
+            <td>住所</td>
+            <td>〒{{ $entryForm->zip }}<br>{{ $entryForm->address }}</td>
+        </tr>
+        <tr>
+            <td>電話</td>
+            <td>自宅: {{ $entryForm->telephone }}<br>ケータイ: {{ $entryForm->cellphone }}</td>
+        </tr>
+        <tr>
+            <td>長距離ハイクの経験</td>
+            <td>{{ $entryForm->exp_50km }}</td>
+        </tr>
+        <tr>
+            <td>代表スカウト</td>
+            <td>{{ $entryForm->captain }}</td>
+        </tr>
+        <tr>
+            <td>保護者</td>
+            <td>{{ $entryForm->parent_name }} ({{ $entryForm->parent_name_furigana }})<br>続柄:{{ $entryForm->parent_relation }}</td>
+        </tr>
+        <tr>
+            <td>保護者</td>
+            <td>緊急連絡先: {{ $entryForm->emer_phone }}</td>
+        </tr>
+        <tr>
+            <td>隊長・団委員長</td>
+            <td>{{ $entryForm->sm_name }} ({{ $entryForm->sm_position }})</td>
+        </tr>
+        <tr>
+            <td>隊・団の承認</td>
+            <td>{{ $entryForm->sm_confirmation }}</td>
+        </tr>
+        <tr>
+            <td>バディの可否(男性のみ)</td>
+            <td>{{ $entryForm->buddy_ok }}</td>
+        </tr>
+        <tr>
+            <td>バディの紹介(女性のみ)</td>
+            <td>{{ $entryForm->buddy_match }}</td>
+        </tr>
+        <tr>
+            <td>バディのタイプ</td>
+            <td>{{ $entryForm->buddy_type }}</td>
+        </tr>
+        <tr>
+            <td>バディ(1)</td>
+            <td>@if($entryForm->buddy1_name){{ $entryForm->buddy1_name }}<br>
+                所属団: {{ $entryForm->buddy1_dan }}@endif</td>
+        </tr>
+        <tr>
+            <td>バディ(2)</td>
+            <td>@if($entryForm->buddy2_name){{ $entryForm->buddy2_name }}<br>
+                所属団: {{ $entryForm->buddy2_dan }}@endif</td>
+        </tr>
+        <tr>
+            <td>団承認URL</td>
+            <td>@if($entryForm->uuid)<a href="{{ url('/sm_confirm/?q=') }}{{ $entryForm->uuid }}">{{ $entryForm->uuid }}</a>@endif</td>
+        </tr>
 
-<!-- Bs Id Field -->
-<div class="col-sm-12">
-    {!! Form::label('bs_id', 'Bs Id:') !!}
-    <p>{{ $entryForm->bs_id }}</p>
-</div>
-
-<!-- District Field -->
-<div class="col-sm-12">
-    {!! Form::label('district', 'District:') !!}
-    <p>{{ $entryForm->district }}</p>
-</div>
-
-<!-- Dan Name Field -->
-<div class="col-sm-12">
-    {!! Form::label('dan_name', 'Dan Name:') !!}
-    <p>{{ $entryForm->dan_name }}</p>
-</div>
-
-<!-- Dan Number Field -->
-<div class="col-sm-12">
-    {!! Form::label('dan_number', 'Dan Number:') !!}
-    <p>{{ $entryForm->dan_number }}</p>
-</div>
-
-<!-- Birth Day Field -->
-<div class="col-sm-12">
-    {!! Form::label('birth_day', 'Birth Day:') !!}
-    <p>{{ $entryForm->birth_day }}</p>
-</div>
-
-<!-- Gender Field -->
-<div class="col-sm-12">
-    {!! Form::label('gender', 'Gender:') !!}
-    <p>{{ $entryForm->gender }}</p>
-</div>
-
-<!-- Zip Field -->
-<div class="col-sm-12">
-    {!! Form::label('zip', 'Zip:') !!}
-    <p>{{ $entryForm->zip }}</p>
-</div>
-
-<!-- Address Field -->
-<div class="col-sm-12">
-    {!! Form::label('address', 'Address:') !!}
-    <p>{{ $entryForm->address }}</p>
-</div>
-
-<!-- Telephone Field -->
-<div class="col-sm-12">
-    {!! Form::label('telephone', 'Telephone:') !!}
-    <p>{{ $entryForm->telephone }}</p>
-</div>
-
-<!-- Cellphone Field -->
-<div class="col-sm-12">
-    {!! Form::label('cellphone', 'Cellphone:') !!}
-    <p>{{ $entryForm->cellphone }}</p>
-</div>
-
-<!-- 50Km Exp Field -->
-<div class="col-sm-12">
-    {!! Form::label('exp_50km', 'Exp 50Km:') !!}
-    <p>{{ $entryForm->exp_50km }}</p>
-</div>
-
-<!-- Parent Name Field -->
-<div class="col-sm-12">
-    {!! Form::label('parent_name', 'Parent Name:') !!}
-    <p>{{ $entryForm->parent_name }}</p>
-</div>
-
-<!-- Parent Name Furigana Field -->
-<div class="col-sm-12">
-    {!! Form::label('parent_name_furigana', 'Parent Name Furigana:') !!}
-    <p>{{ $entryForm->parent_name_furigana }}</p>
-</div>
-
-<!-- Parent Relation Field -->
-<div class="col-sm-12">
-    {!! Form::label('parent_relation', 'Parent Relation:') !!}
-    <p>{{ $entryForm->parent_relation }}</p>
-</div>
-
-<!-- Emer Phone Field -->
-<div class="col-sm-12">
-    {!! Form::label('emer_phone', 'Emer Phone:') !!}
-    <p>{{ $entryForm->emer_phone }}</p>
-</div>
-
-<!-- Sm Name Field -->
-<div class="col-sm-12">
-    {!! Form::label('sm_name', 'Sm Name:') !!}
-    <p>{{ $entryForm->sm_name }}</p>
-</div>
-
-<!-- Sm Position Field -->
-<div class="col-sm-12">
-    {!! Form::label('sm_position', 'Sm Position:') !!}
-    <p>{{ $entryForm->sm_position }}</p>
-</div>
-
-<!-- Created At Field -->
-<div class="col-sm-12">
-    {!! Form::label('created_at', 'Created At:') !!}
-    <p>{{ $entryForm->created_at }}</p>
-</div>
-
-<!-- Updated At Field -->
-<div class="col-sm-12">
-    {!! Form::label('updated_at', 'Updated At:') !!}
-    <p>{{ $entryForm->updated_at }}</p>
-</div>
-
+    </tbody>
+</table>
