@@ -18,7 +18,7 @@
         <div class="card">
 
             {!! Form::open(['route' => 'buddylists.store']) !!}
-
+            <p class="uk-text-warning">バディのゼッケンを登録してください</p>
             <div class="card-body">
 
                 <div class="row">

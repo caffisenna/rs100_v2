@@ -9,6 +9,8 @@ use App\Models\Buddylist;
 use Illuminate\Http\Request;
 use Flash;
 use Response;
+use App\Models\entryForm;
+use App\Models\User;
 
 class BuddylistController extends AppBaseController
 {
@@ -23,6 +25,20 @@ class BuddylistController extends AppBaseController
     {
         /** @var Buddylist $buddylists */
         $buddylists = Buddylist::all();
+        foreach ($buddylists as $value) {
+            $entryform = entryForm::where('zekken',$value['person1'])->first();
+            @$value['person1_name'] = User::where('id',$entryform->user_id)->value('name');
+            @$value['person1_dan_name'] = $entryform->dan_name;
+            @$value['person1_gender'] = $entryform->gender;
+            @$entryform = entryForm::where('zekken',$value['person2'])->first();
+            @$value['person2_name'] = User::where('id',$entryform->user_id)->value('name');
+            @$value['person2_dan_name'] = $entryform->dan_name;
+            @$value['person2_gender'] = $entryform->gender;
+            @$entryform = entryForm::where('zekken',$value['person3'])->first();
+            @$value['person3_name'] = User::where('id',$entryform->user_id)->value('name');
+            @$value['person3_dan_name'] = $entryform->dan_name;
+            @$value['person3_gender'] = $entryform->gender;
+        }
 
         return view('admin.buddylists.index')
             ->with('buddylists', $buddylists);
@@ -52,7 +68,7 @@ class BuddylistController extends AppBaseController
         /** @var Buddylist $buddylist */
         $buddylist = Buddylist::create($input);
 
-        Flash::success('Buddylist saved successfully.');
+        Flash::success('バディ情報を登録しました');
 
         return redirect(route('buddylists.index'));
     }
@@ -91,7 +107,7 @@ class BuddylistController extends AppBaseController
         $buddylist = Buddylist::find($id);
 
         if (empty($buddylist)) {
-            Flash::error('Buddylist not found');
+            Flash::error('該当バディが見つかりません。');
 
             return redirect(route('admin.buddylists.index'));
         }
@@ -113,7 +129,7 @@ class BuddylistController extends AppBaseController
         $buddylist = Buddylist::find($id);
 
         if (empty($buddylist)) {
-            Flash::error('Buddylist not found');
+            Flash::error('該当バディが見つかりません。');
 
             return redirect(route('admin.buddylists.index'));
         }
@@ -121,7 +137,7 @@ class BuddylistController extends AppBaseController
         $buddylist->fill($request->all());
         $buddylist->save();
 
-        Flash::success('Buddylist updated successfully.');
+        Flash::success('バディを更新しました');
 
         return redirect(route('buddylists.index'));
     }
@@ -141,14 +157,14 @@ class BuddylistController extends AppBaseController
         $buddylist = Buddylist::find($id);
 
         if (empty($buddylist)) {
-            Flash::error('Buddylist not found');
+            Flash::error('該当バディが見つかりません。');
 
             return redirect(route('buddylists.index'));
         }
 
         $buddylist->delete();
 
-        Flash::success('Buddylist deleted successfully.');
+        Flash::success('バディを削除しました');
 
         return redirect(route('buddylists.index'));
     }
