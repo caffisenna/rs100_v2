@@ -216,6 +216,25 @@
             @enderror
         </div>
 
+        <!-- captain Field -->
+        <div class="form-group">
+            {!! Form::label('captain', '主将などの代表者:') !!}
+            {!! Form::select(
+                'captain',
+                [
+                    '' => '',
+                    'captain' => '主将などの代表者である',
+                ],
+                null,
+                [
+                    'class' => 'form-control custom-select',
+                ],
+            ) !!}
+            @error('captain')
+                <div class="error text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+
     </div>
 </div>
 

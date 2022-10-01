@@ -31,6 +31,7 @@ class CreateEntryFormsTable extends Migration
             $table->text('telephone');
             $table->text('cellphone');
             $table->text('exp_50km');
+            $table->text('captain')->nullable(); // 代表者
             $table->text('parent_name');
             $table->text('parent_name_furigana');
             $table->text('parent_relation');
@@ -45,6 +46,7 @@ class CreateEntryFormsTable extends Migration
             $table->text('buddy1_dan')->nullable();
             $table->text('buddy2_name')->nullable();
             $table->text('buddy2_dan')->nullable();
+            $table->date('fee_checked_at')->nullable(); // 東連以外の参加費納付チェック
             $table->uuid('uuid')->nullable();
             $table->timestamps();
             $table->softDeletes();

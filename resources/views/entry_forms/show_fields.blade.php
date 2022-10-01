@@ -45,6 +45,10 @@
             <td>{{ $entryForm->exp_50km }}</td>
         </tr>
         <tr>
+            <td>代表スカウト</td>
+            <td>{{ $entryForm->captain }}</td>
+        </tr>
+        <tr>
             <td>保護者</td>
             <td>{{ $entryForm->parent_name }} ({{ $entryForm->parent_name_furigana }})<br>続柄:{{ $entryForm->parent_relation }}</td>
         </tr>
