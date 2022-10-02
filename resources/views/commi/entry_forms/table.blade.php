@@ -8,6 +8,7 @@
                 <th>名前</th>
                 <th>所属</th>
                 <th>性別</th>
+                <th>確認</th>
             </tr>
         </thead>
         <tbody>
@@ -19,6 +20,19 @@
                         </td>
                         <td>{{ $entryForm->district }}地区 {{ $entryForm->dan_name }} {{ $entryForm->dan_number }}</td>
                         <td>{{ $entryForm->gender }}</td>
+                        <td>
+                            @if ($entryForm->user_id)
+                                <div class='btn-group'>
+                                    @if (empty($entryForm->commi_ok))
+                                        <a href="{{ url('/commi/commi_check?id=') . $entryForm->user_id }}"
+                                            class="uk-button uk-button-danger uk-button-small"
+                                            onclick="return confirm('確認OK?')">未確認</a>
+                                    @else
+                                        {{ $entryForm->commi_ok }}
+                                    @endif
+                                </div>
+                            @endif
+                        </td>
                     </tr>
                 @endunless
             @endforeach
@@ -26,7 +40,7 @@
     </table>
 </div>
 <script type="text/javascript">
-    $(document).ready( function () {
-    $('#entryForms-table').DataTable();
-} );
+    $(document).ready(function() {
+        $('#entryForms-table').DataTable();
+    });
 </script>

@@ -252,7 +252,7 @@ class adminentryFormController extends AppBaseController
             $entryform = entryForm::with('user')->where('id', $request['id'])->first();
             $entryform->fee_checked_at = now();
 
-            $name = User::where('id', $entryform->user_id)->value('name') . "(" . $entryform->org_district . ")";
+            $name = User::where('id', $entryform->user_id)->value('name') . "(" . $entryform->district . ")";
 
             // slack
             $slackpost = new SlackPost();
@@ -292,7 +292,7 @@ class adminentryFormController extends AppBaseController
 
             // slack
             $slackpost = new SlackPost();
-            $slackpost->send(":dollar: " . $name . ' の加盟登録チェック');
+            $slackpost->send(":white_check_mark: " . $name . ' の加盟登録チェック');
 
             // logger
             Log::info('[登録チェック] ' . $name);

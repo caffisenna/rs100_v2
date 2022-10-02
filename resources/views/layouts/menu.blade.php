@@ -14,7 +14,7 @@
         @if ($configs->healthcheck)
             <a href="{{ url('/user/planUploads') }}" class="btn btn-info btn-xs btn-block">計画書アップロード</a>
         @endif
-        @if($configs->temp_ok == 'true')
+        @if ($configs->temp_ok == 'true')
             <a href="{{ url('/user/temps') }}" class="btn btn-info btn-xs btn-block">体温計測</a>
         @endif
         @if ($configs->show_status_link)
@@ -24,12 +24,6 @@
 @endif
 {{-- 管理者アカウントでのみ表示 --}}
 @if (Auth::user()->is_admin)
-    <li class="nav-item">
-        <a href="{{ route('adminConfigs.index') }}"
-            class="nav-link {{ Request::is('admin/adminConfigs*') ? 'active' : '' }}">
-            <p>管理コンパネ</p>
-        </a>
-    </li>
     <li class="nav-item">
         <a href="{{ route('adminentries.index') }}"
             class="nav-link {{ Request::is('admin/adminentries*') ? 'active' : '' }}">
@@ -79,32 +73,34 @@
         <a href="/status" class="nav-link"><p>歩行状況(詳細)</p></a>
     </li> --}}
     <li class="nav-item">
-        <a href="{{ url('/admin/deleted') }}"
-            class="nav-link {{ Request::is('admin/deleted*') ? 'active' : '' }}">
+        <a href="{{ url('/admin/deleted') }}" class="nav-link {{ Request::is('admin/deleted*') ? 'active' : '' }}">
             <p>申込削除一覧</p>
         </a>
     </li>
     <li class="nav-item">
         <a href="{{ route('buddylists.index') }}"
-           class="nav-link {{ Request::is('admin/buddylists*') ? 'active' : '' }}">
+            class="nav-link {{ Request::is('admin/buddylists*') ? 'active' : '' }}">
             <p>バディリスト</p>
         </a>
     </li>
     <li class="nav-item">
         <a href="{{ url('/admin/fee_check') }}"
-           class="nav-link {{ Request::is('admin/fee_check*') ? 'active' : '' }}">
+            class="nav-link {{ Request::is('admin/fee_check*') ? 'active' : '' }}">
             <p>参加費チェック</p>
         </a>
     </li>
     <li class="nav-item">
         <a href="{{ url('/admin/registration_check') }}"
-           class="nav-link {{ Request::is('admin/registration_check*') ? 'active' : '' }}">
+            class="nav-link {{ Request::is('admin/registration_check*') ? 'active' : '' }}">
             <p>加盟登録チェック</p>
         </a>
     </li>
-
-
-
+    <li class="nav-item">
+        <a href="{{ route('adminConfigs.index') }}"
+            class="nav-link {{ Request::is('admin/adminConfigs*') ? 'active' : '' }}">
+            <p>管理設定</p>
+        </a>
+    </li>
 @endif
 
 @if (Auth::user()->is_staff)
