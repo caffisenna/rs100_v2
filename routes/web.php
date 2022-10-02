@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\commiEntryFormController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -93,6 +94,7 @@ Route::middleware('verified')->group(function () {
     // 地区コミ用
     Route::prefix('commi')->middleware('can:commi')->group(function () {
         Route::resource('entries', App\Http\Controllers\commiEntryFormController::class, ['only' => ['index', 'show']]);
+        Route::get('commi_check', [App\Http\Controllers\commiEntryFormController::class, 'commi_check'])->name('commi_check');
     });
 });
 
