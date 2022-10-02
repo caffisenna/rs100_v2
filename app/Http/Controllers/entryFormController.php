@@ -21,6 +21,7 @@ use App\Models\elearning;
 use Mail;
 use App\Http\Util\SlackPost;
 use App\Mail\EntryformCreated;
+use Log;
 
 class entryFormController extends AppBaseController
 {
@@ -107,6 +108,9 @@ class entryFormController extends AppBaseController
         $name = Auth()->user()->name;
         $slack = new SlackPost();
         $slack->send(":u7533: 参加者ID:$id " . $name . "さんが申込書を作成しました");
+
+        // logger
+        Log::info('[申込書作成] ' . $name);
 
         Flash::success('申込書が作成されました');
 
@@ -202,6 +206,9 @@ class entryFormController extends AppBaseController
         $slack = new SlackPost();
         $slack->send(":memo: 参加者ID:$id " . $name . "さんが申込書を修正しました");
 
+        // logger
+        Log::info('[申込書修正] ' . $name);
+
         Flash::success('申込書を更新しました。');
 
         return redirect(route('entryForms.index'));
@@ -234,6 +241,9 @@ class entryFormController extends AppBaseController
         $name = Auth()->user()->name;
         $slack = new SlackPost();
         $slack->send(":wastebasket: 参加者ID:$id " . $name . "さんが申込書を削除しました");
+
+        // logger
+        Log::info('[申込書削除] ' . $name);
 
         Flash::success('申込書を削除しました');
 
@@ -287,6 +297,9 @@ class entryFormController extends AppBaseController
         // slack通知
         $slack = new SlackPost();
         $slack->send("[団承認] 参加者ID:$user->id " . $user->name . "さんの団承認が完了しました");
+
+        // logger
+        Log::info('[団承認] ' . $user->name);
 
         // flashメッセージを返してリダイレクト
         Flash::success('以下の参加を承認しました。');

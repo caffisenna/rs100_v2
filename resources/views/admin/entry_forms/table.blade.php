@@ -25,7 +25,8 @@
                             $(api.column(colIdx).header()).index()
                         );
                         var title = $(cell).text();
-                        $(cell).html('<input type="text" placeholder="' + title + '" />');
+                        $(cell).html('<input type="text" placeholder="' + title +
+                                            '" style="width:60px" />');
 
                         // On every keypress in this input
                         $(
@@ -70,11 +71,11 @@
             <tr>
                 <th>No</th>
                 <th>名前</th>
+                <th>県連</th>
                 <th>所属</th>
-                <th>登録確認</th>
                 <th>団承認</th>
                 <th>Eラン</th>
-                <th>計画書</th>
+                <th>登録確認</th>
                 <td>Action</td>
             </tr>
         </thead>
@@ -90,13 +91,9 @@
                     @else
                         <td>{{ $user->name }}<br>(申込書未作成)</td>
                     @endif
+                    <td>{{ @$user->entryform->prefecture }}</td>
                     <td>{{ @$user->entryform->district }} {{ @$user->entryform->dan_name }}
                         {{ @$user->entryform->dan_number }}</td>
-                    @if (isset($user->entryform->hq_confirmation))
-                        <td><span class="uk-text-success">済</span></td>
-                    @else
-                        <td>未確認</td>
-                    @endif
                     @if (isset($user->entryform->sm_confirmation))
                         <td><span class="uk-text-success">済</span></td>
                     @else
@@ -107,7 +104,7 @@
                     @else
                         <td>未修了</td>
                     @endif
-                    @if (isset($user->planupload['0']))
+                    @if (isset($user->entryform->registration_checked_at))
                         <td><span class="uk-text-success">済</span></td>
                     @else
                         <td>未</td>

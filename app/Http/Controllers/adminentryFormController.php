@@ -13,6 +13,7 @@ use Response;
 use App\Models\User;
 use Carbon\Carbon;
 use App\Http\Util\SlackPost;
+use Log;
 
 class adminentryFormController extends AppBaseController
 {
@@ -240,5 +241,78 @@ class adminentryFormController extends AppBaseController
 
         return view('admin.deleted.index')
             ->with('entryForms', $entryForms);
+    }
+
+    public function fee_check(Request $request)
+    {
+        /** @var entryForm $entryForms */
+
+        // 入金ボタン処理
+        if ($request['id']) {
+            $entryform = entryForm::with('user')->where('id', $request['id'])->first();
+            $entryform->fee_checked_at = now();
+
+            $name = User::where('id', $entryform->user_id)->value('name') . "(" . $entryform->org_district . ")";
+
+            // slack
+            $slackpost = new SlackPost();
+            $slackpost->send(":dollar: " . $name . ' の入金チェック');
+
+            // logger
+            Log::info('[入金チェック] ' . $name);
+
+            $entryform->save();
+            Flash::success($entryform->user->name . " の入金確認を行いました");
+            return back();
+        }
+
+        // 取得したいインスタンス = 子モデル::with(親モデル)->get(); で親子取得
+        // $entryForms = entryForm::with('user')->get();
+        $users = User::where(function ($query) {
+            $query->where('is_admin', 0)
+                ->Where('is_staff', 0)
+                ->Where('is_commi', null)
+                ->where('email_verified_at', '<>', null);
+        })
+            ->with('entryform')->with('elearning')->get();
+
+        return view('admin.entry_forms.fee_check')
+            ->with('users', $users);
+    }
+    public function registration_check(Request $request)
+    {
+        /** @var entryForm $entryForms */
+
+        // 登録確認ボタン処理
+        if ($request['id']) {
+            $entryform = entryForm::with('user')->where('id', $request['id'])->first();
+            $entryform->registration_checked_at = now();
+
+            $name = User::where('id', $entryform->user_id)->value('name') . "(" . $entryform->org_district . ")";
+
+            // slack
+            $slackpost = new SlackPost();
+            $slackpost->send(":dollar: " . $name . ' の加盟登録チェック');
+
+            // logger
+            Log::info('[登録チェック] ' . $name);
+
+            $entryform->save();
+            Flash::success($entryform->user->name . " の加盟登録確認を行いました");
+            return back();
+        }
+
+        // 取得したいインスタンス = 子モデル::with(親モデル)->get(); で親子取得
+        // $entryForms = entryForm::with('user')->get();
+        $users = User::where(function ($query) {
+            $query->where('is_admin', 0)
+                ->Where('is_staff', 0)
+                ->Where('is_commi', null)
+                ->where('email_verified_at', '<>', null);
+        })
+            ->with('entryform')->with('elearning')->get();
+
+        return view('admin.entry_forms.registration_check')
+            ->with('users', $users);
     }
 }
