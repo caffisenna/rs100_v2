@@ -31,6 +31,12 @@
             <p>参加者一覧</p>
         </a>
     </li>
+    <li class="nav-item">
+        <a href="{{ url('admin/non_tokyo') }}"
+            class="nav-link {{ Request::is('admin/non_tokyo*') ? 'active' : '' }}">
+            <p>他県参加一覧</p>
+        </a>
+    </li>
     {{-- <li class="nav-item">
         <a href="{{ route('adminplanUploads.index') }}"
             class="nav-link {{ Request::is('admin/adminplanUploads*') ? 'active' : '' }}">
