@@ -14,6 +14,8 @@ use App\Models\User;
 use Carbon\Carbon;
 use App\Http\Util\SlackPost;
 use Log;
+use Mail;
+use App\Mail\FeeConfirm;
 
 class adminentryFormController extends AppBaseController
 {
@@ -252,11 +254,15 @@ class adminentryFormController extends AppBaseController
             $entryform = entryForm::with('user')->where('id', $request['id'])->first();
             $entryform->fee_checked_at = now();
 
-            $name = User::where('id', $entryform->user_id)->value('name') . "(" . $entryform->district . ")";
+            $name = $entryform->user->name . "(" . $entryform->district . ")";
 
             // slack
             $slackpost = new SlackPost();
             $slackpost->send(":dollar: " . $name . ' の入金チェック');
+
+            // 確認メール送信
+            $sendto = $entryform->user->email;
+            Mail::to($sendto)->queue(new FeeConfirm($entryform)); // メールをqueueで送信
 
             // logger
             Log::info('[入金チェック] ' . $name);
