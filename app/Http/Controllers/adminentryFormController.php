@@ -326,4 +326,18 @@ class adminentryFormController extends AppBaseController
         return view('admin.entry_forms.registration_check')
             ->with('users', $users);
     }
+
+    public function non_tokyo(Request $request)
+    {
+        /** @var entryForm $entryForms */
+
+        // 取得したいインスタンス = 子モデル::with(親モデル)->get(); で親子取得
+        // $entryForms = entryForm::with('user')->get();
+        $users = User::whereHas('entryform', function ($query) { // whereHas構文で子テーブルの条件で絞れる
+            $query->where('prefecture', '<>', '東京');
+        })->with('entryform')->with('elearning')->get();
+
+        return view('admin.entry_forms.index')
+            ->with('users', $users);
+    }
 }

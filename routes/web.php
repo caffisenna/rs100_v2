@@ -77,6 +77,7 @@ Route::middleware('verified')->group(function () {
         // Route::get('/', 'Admin\HomeController@index');
         Route::resource('adminConfigs', App\Http\Controllers\AdminConfigController::class);
         Route::resource('adminentries', App\Http\Controllers\adminentryFormController::class, ['except' => 'create']);
+        Route::get('non_tokyo', [App\Http\Controllers\adminentryFormController::class, 'non_tokyo'])->name('non_tokyo');
         Route::get('/deleted', [App\Http\Controllers\adminentryFormController::class, 'deleted'])->name('deleted');
         Route::resource('buddylists', App\Http\Controllers\BuddylistController::class);
         Route::get('fee_check', [App\Http\Controllers\adminentryFormController::class, 'fee_check'])->name('fee_check');
