@@ -24,6 +24,7 @@
 @endif
 {{-- 管理者アカウントでのみ表示 --}}
 @if (Auth::user()->is_admin)
+<p class="uk-text-warning">参加者管理</p>
     <li class="nav-item">
         <a href="{{ route('adminentries.index') }}"
             class="nav-link {{ Request::is('admin/adminentries*') ? 'active' : '' }}">
@@ -83,6 +84,7 @@
             <p>バディリスト</p>
         </a>
     </li>
+    <p class="uk-text-warning">事務局機能</p>
     <li class="nav-item">
         <a href="{{ url('/admin/fee_check') }}"
             class="nav-link {{ Request::is('admin/fee_check*') ? 'active' : '' }}">
@@ -95,6 +97,7 @@
             <p>加盟登録チェック</p>
         </a>
     </li>
+    <p class="uk-text-warning">Setting</p>
     <li class="nav-item">
         <a href="{{ route('adminConfigs.index') }}"
             class="nav-link {{ Request::is('admin/adminConfigs*') ? 'active' : '' }}">
