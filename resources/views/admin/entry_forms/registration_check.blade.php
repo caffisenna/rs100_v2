@@ -92,6 +92,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>名前</th>
+                                <th>登録番号</th>
                                 <th>所属</th>
                                 <th>加盟登録</th>
                             </tr>
@@ -110,6 +111,7 @@
                                         @else
                                             <td>{{ $user->name }}<br>(申込書未作成)</td>
                                         @endif
+                                        <td>{{ @$user->entryform->bs_id }}</td>
                                         <td>{{ @$user->entryform->district }} {{ @$user->entryform->dan_name }}
                                             {{ @$user->entryform->dan_number }}</td>
                                         <td>
