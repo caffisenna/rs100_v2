@@ -16,6 +16,7 @@ use App\Http\Util\SlackPost;
 use Log;
 use Mail;
 use App\Mail\FeeConfirm;
+use App\Mail\RegistrationConfirm;
 
 class adminentryFormController extends AppBaseController
 {
@@ -294,11 +295,15 @@ class adminentryFormController extends AppBaseController
             $entryform = entryForm::with('user')->where('id', $request['id'])->first();
             $entryform->registration_checked_at = now();
 
-            $name = User::where('id', $entryform->user_id)->value('name') . "(" . $entryform->org_district . ")";
+            $name = $entryform->user->name . "(" . $entryform->org_district . ")";
 
             // slack
             $slackpost = new SlackPost();
             $slackpost->send(":white_check_mark: " . $name . ' の加盟登録チェック');
+
+            // 確認メール送信
+            $sendto = $entryform->user->email;
+            Mail::to($sendto)->queue(new RegistrationConfirm($entryform)); // メールをqueueで送信
 
             // logger
             Log::info('[登録チェック] ' . $name);
