@@ -90,32 +90,6 @@ class adminentryFormController extends AppBaseController
         /** @var entryForm $entryForm */
         // $entryForm = entryForm::find($id);
         $entryForm = entryForm::where('user_id', $id)->first();
-        switch ($entryForm->how_to_join) {
-            case '1':
-                $entryForm->how_to_join = "両日参加(両日とも7:00〜10:00までにスタート)";
-                break;
-            case '2':
-                $entryForm->how_to_join = "両日参加(初日7:00〜10:00までにスタートかつ 2日目10:00以降スタート)";
-                break;
-            case '3':
-                $entryForm->how_to_join = "両日参(初日10:00以降スタート かつ 2日目7:00〜10:00までにスタート)";
-                break;
-            case '4':
-                $entryForm->how_to_join = "両日参加(両日とも10:00以降にスタート)";
-                break;
-            case '5':
-                $entryForm->how_to_join = "1日目だけ参加(7:00〜10:00までにスタート)";
-                break;
-            case '6':
-                $entryForm->how_to_join = "1日目だけ遅参(10:00以降にスタート)";
-                break;
-            case '7':
-                $entryForm->how_to_join = "2日目だけ参加(7:00〜10:00までにスタート)";
-                break;
-            case '8':
-                $entryForm->how_to_join = "2日目だけ遅参(10:00以降にスタート)";
-                break;
-        }
 
         if (empty($entryForm)) {
             Flash::error('Entry Form not found');
@@ -137,7 +111,7 @@ class adminentryFormController extends AppBaseController
     {
         /** @var entryForm $entryForm */
         // $entryForm = entryForm::find($id);
-        $entryForm = entryForm::where('user_id', $id)->first();
+        $entryForm = entryForm::where('user_id', $id)->with('user')->first();
 
         // 生年月日分解
         $entryForm->bd_year =  carbon::parse($entryForm->birth_day)->year;
