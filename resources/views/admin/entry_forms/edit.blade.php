@@ -13,7 +13,7 @@
 
     <div class="content px-3">
 
-        {{-- @include('adminlte-templates::common.errors') --}}
+        @include('adminlte-templates::common.errors')
 
         <div class="card">
 
@@ -21,7 +21,7 @@
 
             <div class="card-body">
                 <div class="row">
-                    @include('entry_forms.fields')
+                    @include('admin.entry_forms.fields')
                 </div>
             </div>
 
