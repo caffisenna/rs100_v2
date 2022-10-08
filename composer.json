@@ -24,7 +24,7 @@
         "laravelcollective/html": "^6.2"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.6",
+        "barryvdh/laravel-debugbar": "^3.7",
         "barryvdh/laravel-ide-helper": "^2.10",
         "beyondcode/laravel-query-detector": "^1.5",
         "facade/ignition": "^2.5",
