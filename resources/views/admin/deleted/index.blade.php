@@ -1,6 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
+<link rel="stylesheet" type="text/css" href="{{ url('/datatables/jquery.dataTables.css') }}">
+<script type="text/javascript" charset="utf8" src="{{ url('/datatables/jquery.dataTables.js') }}"></script>
+<script src="{{ url('/datatables/dataTables.fixedHeader.min.js') }}"></script>
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -17,8 +20,6 @@
 
         <div class="card">
             <div class="card-body p-0">
-                <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.1/css/jquery.dataTables.css">
-                <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.js"></script>
                 <div class="table-responsive">
                     <table class="uk-table uk-table-striped" id="entryForms-table">
                         <thead>
@@ -32,8 +33,7 @@
                         </thead>
                         <tbody>
                             @foreach ($entryForms as $entryForm)
-                                @unless($entryForm->user->is_admin || $entryForm->user->is_staff ||
-                                    $entryForm->user->is_commi)
+                                @unless($entryForm->user->is_admin || $entryForm->user->is_staff || $entryForm->user->is_commi)
                                     <tr>
                                         <td>{{ $entryForm->user->id }}</td>
                                         <td>{{ $entryForm->user->name }}({{ $entryForm->gender }})<br>
@@ -58,5 +58,4 @@
 
         </div>
     </div>
-
 @endsection

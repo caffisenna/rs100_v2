@@ -1,6 +1,6 @@
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.1/css/jquery.dataTables.css">
-<script src="https://cdn.datatables.net/fixedheader/3.2.0/js/dataTables.fixedHeader.min.js"></script>
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" type="text/css" href="{{ url('/datatables/jquery.dataTables.css') }}">
+<script src="{{ url('/datatables/dataTables.fixedHeader.min.js') }}"></script>
+<script type="text/javascript" charset="utf8" src="{{ url('/datatables/jquery.dataTables.js') }}"></script>
 <script type="text/javascript">
     $(document).ready(function() {
         // Setup - add a text input to each footer cell
