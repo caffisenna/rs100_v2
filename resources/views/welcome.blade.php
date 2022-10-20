@@ -118,6 +118,7 @@
                 <div class="uk-card uk-card-primary uk-card-body">
                     <h5 class="uk-card-title"><span uk-icon="icon:info; ratio:1"></span>NEWS</h5>
                     <ul class="uk-list">
+                        <li>2022/10/21 参加申込と新規ユーザーの登録受付を終了しました</li>
                         <li>2022/10/1 第55回大会の参加申込を開始しました</li>
                     </ul>
                 </div>
