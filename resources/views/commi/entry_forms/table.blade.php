@@ -8,6 +8,7 @@
                 <th>名前</th>
                 <th>所属</th>
                 <th>性別</th>
+                <th>団承認</th>
                 <th>確認</th>
             </tr>
         </thead>
@@ -20,6 +21,13 @@
                         </td>
                         <td>{{ $entryForm->district }}地区 {{ $entryForm->dan_name }} {{ $entryForm->dan_number }}</td>
                         <td>{{ $entryForm->gender }}</td>
+                        <td>
+                            @if (isset($entryForm->sm_confirmation))
+                                {{ $entryForm->sm_confirmation }}
+                            @else
+                                未承認
+                            @endif
+                        </td>
                         <td>
                             @if ($entryForm->user_id)
                                 <div class='btn-group'>
