@@ -10,19 +10,21 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css"
-        integrity="sha512-0S+nbAYis87iX26mmj/+fWt1MmaKCv80H+Mbo+Ne7ES4I6rxswpfnC6PxmLiw33Ywj2ghbtTw0FkLbMWqh4F7Q=="
-        crossorigin="anonymous" />
+    <link rel="stylesheet" href="{{ url('/css/all.min.css') }}">
 
     <!-- AdminLTE -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/css/adminlte.min.css"
-        integrity="sha512-rVZC4rf0Piwtw/LsgwXxKXzWq3L0P6atiQKBNuXYRbg2FoRbSTIY0k2DxuJcs7dk4e/ShtMzglHKBOJxW8EQyQ=="
-        crossorigin="anonymous" />
+    <link rel="stylesheet" href="{{ url('/css/adminlte.min.css') }}">
 
     <!-- iCheck -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/icheck-bootstrap/3.0.1/icheck-bootstrap.min.css"
-        integrity="sha512-8vq2g5nHE062j3xor4XxPeZiPjmRDh6wlufQlfC6pdQ/9urJkU07NM0tEREeymP++NczacJ/Q59ul+/K2eYvcg=="
-        crossorigin="anonymous" />
+    <link rel="stylesheet" href="{{ url('/css/icheck-bootstrap.min.css') }}">
+
+    <!-- UIkit CSS -->
+    <link rel="stylesheet" href="{{ url('/uikit/uikit.min.css') }}" />
+
+    <!-- UIkit JS -->
+    <script src="{{ url('/uikit/uikit.min.js') }}"></script>
+    <script src="{{ url('/uikit/uikit-icons.min.js') }}"></script>
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -52,7 +54,7 @@
                         <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
                             value="{{ old('name') }}" placeholder="フルネーム(漢字)">
                         <div class="input-group-append">
-                            <div class="input-group-text"><span class="fas fa-user"></span></div>
+                            <div class="input-group-text"><span uk-icon="user"></span></div>
                         </div>
                         @error('name')
                             <span class="error invalid-feedback">{{ $message }}</span>
@@ -63,7 +65,7 @@
                         <input type="email" name="email" value="{{ old('email') }}"
                             class="form-control @error('email') is-invalid @enderror" placeholder="Email">
                         <div class="input-group-append">
-                            <div class="input-group-text"><span class="fas fa-envelope"></span></div>
+                            <div class="input-group-text"><span uk-icon="mail"></span></div>
                         </div>
                         @error('email')
                             <span class="error invalid-feedback">{{ $message }}</span>
@@ -74,7 +76,7 @@
                         <input type="password" name="password"
                             class="form-control @error('password') is-invalid @enderror" placeholder="パスワード">
                         <div class="input-group-append">
-                            <div class="input-group-text"><span class="fas fa-lock"></span></div>
+                            <div class="input-group-text"><span uk-icon="lock"></span></div>
                         </div>
                         @error('password')
                             <span class="error invalid-feedback">{{ $message }}</span>
@@ -85,7 +87,7 @@
                         <input type="password" name="password_confirmation" class="form-control"
                             placeholder="パスワード(確認)">
                         <div class="input-group-append">
-                            <div class="input-group-text"><span class="fas fa-lock"></span></div>
+                            <div class="input-group-text"><span uk-icon="lock"></span></div>
                         </div>
                     </div>
 
@@ -116,9 +118,7 @@
     <!-- /.register-box -->
 
     <!-- AdminLTE App -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.0.5/js/adminlte.min.js"
-        integrity="sha512-++c7zGcm18AhH83pOIETVReg0dr1Yn8XTRw+0bWSIWAVCAwz1s2PwnSj4z/OOyKlwSXc4RLg3nnjR22q0dhEyA=="
-        crossorigin="anonymous"></script>
+    <script src="{{ url('/js/adminlte.min.js') }}"></script>
 
 </body>
 
