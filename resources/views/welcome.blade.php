@@ -23,11 +23,11 @@
     <link rel="stylesheet" href="{{ url('/css/welcome.css') }}" />
 
     <!-- UIkit CSS -->
-    <link rel="stylesheet" href="{{ url('/css/uikit.min.css') }}" />
+    <link rel="stylesheet" href="{{ url('/uikit/uikit.min.css') }}" />
 
     <!-- UIkit JS -->
-    <script src="{{ url('/js/uikit.min.js') }}"></script>
-    <script src="{{ url('/js/uikit-icons.min.js') }}"></script>
+    <script src="{{ url('/uikit/uikit.min.js') }}"></script>
+    <script src="{{ url('/uikit/uikit-icons.min.js') }}"></script>
 </head>
 
 <body class="antialiased">
