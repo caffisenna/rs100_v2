@@ -32,9 +32,6 @@ class commiEntryFormController extends AppBaseController
         // 自地区のユーザーを抽出して返す
         if (Auth::user()->is_commi) {
             switch (Auth::user()->email) {
-                case 'caffi.senna@gmail.com':
-                    $district = '山手';
-                    break;
                 case 'daitoshin@scout.tokyo':
                     $district = '大都心';
                     break;
