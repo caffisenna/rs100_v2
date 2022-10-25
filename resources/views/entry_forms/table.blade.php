@@ -13,7 +13,7 @@
                 <td>申込書操作</td>
                 <td>
                     @if (isset($entryForm->id))
-                        {!! Form::open(['route' => ['entryForms.destroy', $entryForm->id], 'method' => 'delete']) !!}
+                        {{-- {!! Form::open(['route' => ['entryForms.destroy', $entryForm->id], 'method' => 'delete']) !!} --}}
                         <div class='btn-group'>
                             <a href="{{ url('/user/pdf') }}" class='btn btn-default btn-lg'>
                                 <span uk-icon="download"></span>PDF
@@ -26,10 +26,10 @@
                                 <i class="far fa-edit"></i>編集する
                             </a>
 
-                            {!! Form::button('<i class="far fa-trash-alt"></i>削除する', ['type' => 'submit', 'class' => 'btn btn-danger btn-lg', 'onclick' => "return confirm('本当に削除しますか?')"]) !!}
+                            {{-- {!! Form::button('<i class="far fa-trash-alt"></i>削除する', ['type' => 'submit', 'class' => 'btn btn-danger btn-lg', 'onclick' => "return confirm('本当に削除しますか?')"]) !!} --}}
                             @endif
                         </div>
-                        {!! Form::close() !!}
+                        {{-- {!! Form::close() !!} --}}
                     @endif
                 </td>
             </tr>
