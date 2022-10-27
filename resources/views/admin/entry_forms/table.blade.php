@@ -82,7 +82,7 @@
         <tbody>
             @foreach ($users as $user)
                 {{-- @unless($user->user->is_admin || $user->user->is_staff || $user->user->is_commi) --}}
-                @if(isset($user->entryform))
+                @if(isset($user->entryform) && empty($user->entryform->deleted_at))
                 <tr>
                     <td>{{ @$user->id }}</td>
                     @if (isset($user->entryform->gender))
