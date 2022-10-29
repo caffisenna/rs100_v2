@@ -11,7 +11,7 @@
                     <div class="col-sm-6">
                         <a class="btn btn-primary float-right" href="{{ route('entryForms.create') }}">
                             {{-- <a class="btn btn-primary float-right" href="{{ url('/user/entryForms/create') }}"> --}}
-                            申込書作成
+                            情報作成
                         </a>
                     </div>
                 @endunless

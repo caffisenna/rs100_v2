@@ -2,7 +2,7 @@
     <table class="table" id="entryForms-table">
         <tbody>
             <tr>
-                <td>申込作成日</td>
+                <td>作成日</td>
                 @if (isset($entryForm->created_at))
                 <td>{{ $entryForm->created_at }}</td>
                 @else
@@ -10,7 +10,7 @@
                 @endif
             </tr>
             <tr>
-                <td>申込操作</td>
+                <td>操作</td>
                 <td>
                     @if (isset($entryForm->id))
                         {{-- {!! Form::open(['route' => ['entryForms.destroy', $entryForm->id], 'method' => 'delete']) !!} --}}
@@ -19,11 +19,11 @@
                                 <span uk-icon="download"></span>PDF
                             </a>
                             <a href="{{ route('entryForms.show', [$entryForm->id]) }}" class='btn btn-default btn-lg'>
-                                <i class="far fa-eye"></i>確認する
+                                <i class="far fa-eye"></i>確認
                             </a>
                             @if($configs->user_edit <> 0)
                             <a href="{{ route('entryForms.edit', [$entryForm->id]) }}" class='btn btn-default btn-lg'>
-                                <i class="far fa-edit"></i>編集する
+                                <i class="far fa-edit"></i>編集
                             </a>
 
                             {{-- {!! Form::button('<i class="far fa-trash-alt"></i>削除する', ['type' => 'submit', 'class' => 'btn btn-danger btn-lg', 'onclick' => "return confirm('本当に削除しますか?')"]) !!} --}}

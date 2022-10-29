@@ -6,12 +6,12 @@
                 @unless(Auth::user()->is_admin || Auth::user()->is_commi || Auth::user()->is_staff)
                     <div class="card" style="width:100%;">
                         <div class="card-header">
-                            <h4>各種申請書</h4>
+                            <h4>各種情報</h4>
                         </div>
                         <div class="card-body">
                             {{-- @if ($configs->create_application) --}}
                             <h3 class="uk-text-success">{{ Auth()->user()->name }}さん</h3>
-                            <a href="{{ url('/user/entryForms') }}" class="btn btn-info btn-lg btn-block">申込書</a>
+                            <a href="{{ url('/user/entryForms') }}" class="btn btn-info btn-lg btn-block">申込情報</a>
                             {{-- @endif --}}
 
                             @if ($configs->elearning)
