@@ -7,19 +7,6 @@
         @if ($configs->elearning)
             <a href="{{ url('/user/elearnings') }}" class="btn btn-info btn-xs btn-block">Eラーニング</a>
         @endif
-        {{-- @if ($configs->user_upload)
-            <a href="{{ url('/user/resultUploads') }}" class="btn btn-info btn-xs btn-block">結果アップロード</a>
-            <a href="{{ url('/user/resultInputs') }}" class="btn btn-info btn-xs btn-block">結果手入力</a>
-        @endif
-        @if ($configs->healthcheck)
-            <a href="{{ url('/user/planUploads') }}" class="btn btn-info btn-xs btn-block">計画書アップロード</a>
-        @endif
-        @if ($configs->temp_ok == 'true')
-            <a href="{{ url('/user/temps') }}" class="btn btn-info btn-xs btn-block">体温計測</a>
-        @endif
-        @if ($configs->show_status_link)
-            <a href="/public" class="btn btn-info btn-xs btn-block">ステータス一覧(一般公開用)</a>
-        @endif --}}
     @endunless
 @endif
 {{-- 管理者アカウントでのみ表示 --}}
@@ -67,15 +54,6 @@
         <a href="{{ route('adminConfigs.index') }}"
             class="nav-link {{ Request::is('admin/adminConfigs*') ? 'active' : '' }}">
             <p>管理設定</p>
-        </a>
-    </li>
-@endif
-
-@if (Auth::user()->is_staff)
-    <li class="nav-item">
-        <a href="{{ url('/staff/staffplanUploads') }}"
-            class="nav-link {{ Request::is('staff/staffplanUploads*') ? 'active' : '' }}">
-            <p>スタッフ用計画書一覧</p>
         </a>
     </li>
 @endif
