@@ -7,7 +7,7 @@
         @if ($configs->elearning)
             <a href="{{ url('/user/elearnings') }}" class="btn btn-info btn-xs btn-block">Eラーニング</a>
         @endif
-        @if ($configs->user_upload)
+        {{-- @if ($configs->user_upload)
             <a href="{{ url('/user/resultUploads') }}" class="btn btn-info btn-xs btn-block">結果アップロード</a>
             <a href="{{ url('/user/resultInputs') }}" class="btn btn-info btn-xs btn-block">結果手入力</a>
         @endif
@@ -19,7 +19,7 @@
         @endif
         @if ($configs->show_status_link)
             <a href="/public" class="btn btn-info btn-xs btn-block">ステータス一覧(一般公開用)</a>
-        @endif
+        @endif --}}
     @endunless
 @endif
 {{-- 管理者アカウントでのみ表示 --}}
