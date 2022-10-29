@@ -2,7 +2,7 @@
 @if (isset(Auth::user()->email_verified_at))
     @unless(Auth::user()->is_admin || Auth::user()->is_commi || Auth::user()->is_staff)
         {{-- @if ($configs->create_application) --}}
-        <a href="{{ url('/user/entryForms') }}" class="btn btn-info btn-xs btn-block">申込書</a>
+        <a href="{{ url('/user/entryForms') }}" class="btn btn-info btn-xs btn-block">申込情報</a>
         {{-- @endif --}}
         @if ($configs->elearning)
             <a href="{{ url('/user/elearnings') }}" class="btn btn-info btn-xs btn-block">Eラーニング</a>
@@ -37,48 +37,7 @@
             <p>他県参加一覧</p>
         </a>
     </li>
-    {{-- <li class="nav-item">
-        <a href="{{ route('adminplanUploads.index') }}"
-            class="nav-link {{ Request::is('admin/adminplanUploads*') ? 'active' : '' }}">
-            <p>計画書一覧</p>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a href="{{ route('adminresultUploads.index') }}"
-            class="nav-link {{ Request::is('admin/adminresultUploads*') ? 'active' : '' }}">
-            <p>結果画像チェック</p>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a href="/admin/result_lists"
-            class="nav-link {{ Request::is('admin/result_list*') ? 'active' : '' }}">
-            <p>結果画像一覧</p>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a href="{{ route('templists') }}?q=day1"
-            class="nav-link {{ Request::is('admin/temp_lists*1') ? 'active' : '' }}">
-            <p>体温計測一覧(11/13)</p>
-        </a>
-    </li>
-    <li>
-        <a href="{{ route('templists') }}?q=day2"
-            class="nav-link {{ Request::is('admin/temp_lists*2') ? 'active' : '' }}">
-            <p>体温計測一覧(11/14)</p>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a href="{{ route('reach50100.index') }}"
-            class="nav-link {{ Request::is('admin/reach50100*') ? 'active' : '' }}">
-            <p>ランキングボード</p>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a href="/public" class="nav-link"><p>歩行状況(一般公開用)</p></a>
-    </li>
-    <li class="nav-item">
-        <a href="/status" class="nav-link"><p>歩行状況(詳細)</p></a>
-    </li> --}}
+
     <li class="nav-item">
         <a href="{{ url('/admin/deleted') }}" class="nav-link {{ Request::is('admin/deleted*') ? 'active' : '' }}">
             <p>申込削除一覧</p>

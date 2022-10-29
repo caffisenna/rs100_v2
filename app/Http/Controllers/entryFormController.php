@@ -318,4 +318,16 @@ class entryFormController extends AppBaseController
         return $pdf->download();
         // return $pdf->stream();
     }
+
+    public function id_card()
+    {
+        $user = User::where('id',Auth::id())->with('entryform')->first();
+        // dd($entryForm);
+
+        $pdf = \PDF::loadView('entry_forms.id_card', compact('user',$user));
+        // $pdf->setPaper('A4');
+        $pdf->setPaper([0, 0, 283, 420], 'landscape');
+        return $pdf->download();
+        // return $pdf->stream();
+    }
 }

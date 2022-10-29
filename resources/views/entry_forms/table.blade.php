@@ -2,7 +2,7 @@
     <table class="table" id="entryForms-table">
         <tbody>
             <tr>
-                <td>申込書作成日</td>
+                <td>申込作成日</td>
                 @if (isset($entryForm->created_at))
                 <td>{{ $entryForm->created_at }}</td>
                 @else
@@ -10,7 +10,7 @@
                 @endif
             </tr>
             <tr>
-                <td>申込書操作</td>
+                <td>申込操作</td>
                 <td>
                     @if (isset($entryForm->id))
                         {{-- {!! Form::open(['route' => ['entryForms.destroy', $entryForm->id], 'method' => 'delete']) !!} --}}
@@ -34,6 +34,10 @@
                 </td>
             </tr>
             <tr>
+                <td>ゼッケン</td>
+                <td>{{ $entryForm->zekken }}</td>
+            </tr>
+            <tr>
                 <td>団の承認</td>
                 @if (isset($entryForm->sm_confirmation))
                     <td>{{ $entryForm->sm_confirmation }}</td>
@@ -42,12 +46,16 @@
                 @endif
             </tr>
             <tr>
-                <td>Eラーニング修了</td>
+                <td>Eラーニング</td>
                 @if (isset($entryForm->elearning))
                     <td>{{ $entryForm->elearning }}</td>
                 @else
                     <td> <span class="uk-text-danger">未修了</span></td>
                 @endif
+            </tr>
+            <tr>
+                <td>IDカード</td>
+                    <td><a href="{{ url('/user/id_card') }}">ダウンロード</a></td>
             </tr>
             {{-- <tr>
                 <td>健康調査書</td>

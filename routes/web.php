@@ -71,6 +71,7 @@ Route::middleware('verified')->group(function () {
         ])->name('status_update');
         // Route::resource('resultInputs', App\Http\Controllers\resultInputsController::class);
         Route::get('/pdf', [entryFormController::class, 'pdf'])->name('pdf');
+        Route::get('/id_card', [entryFormController::class, 'id_card'])->name('id_card');
     });
     // 管理ユーザ用
     Route::prefix('admin')->middleware('can:admin')->group(function () {
