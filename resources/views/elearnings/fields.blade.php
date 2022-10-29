@@ -219,7 +219,7 @@
 <div class="form-group col-sm-12 @if ($errors->has('q14')) has-error @endif">
     <h3>Q14:当日の配布物について正しいものを選んでください。</h3>
     <label class="form-check">
-        {!! Form::radio('q14', '1', null, ['class' => 'form-check-input']) !!} IDカード、ゼッケン、蛍光シール、安全ピンが渡されるが、着用は個人の自由である。
+        {!! Form::radio('q14', '1', null, ['class' => 'form-check-input']) !!} ゼッケン、蛍光シール、安全ピンが渡されるが、着用は個人の自由である。
     </label>
 
     <label class="form-check">
@@ -227,7 +227,7 @@
     </label>
 
     <label class="form-check">
-        {!! Form::radio('q14', '3', null, ['class' => 'form-check-input']) !!} IDカード、ゼッケン、蛍光シール、安全ピンが渡され、前後から見えるように必ず着用する。
+        {!! Form::radio('q14', '3', null, ['class' => 'form-check-input']) !!} ゼッケン、蛍光シール、安全ピンが渡され、前後から見えるように必ず着用する。
     </label>
     @error('q14')
         <div class="error text-danger">{{ $message }}</div>
