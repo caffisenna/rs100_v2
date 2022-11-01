@@ -326,7 +326,8 @@ class entryFormController extends AppBaseController
 
         $pdf = \PDF::loadView('entry_forms.id_card', compact('user',$user));
         // $pdf->setPaper('A4');
-        $pdf->setPaper([0, 0, 283, 420], 'landscape');
+        // $pdf->setPaper([0, 0, 283, 420], 'landscape');
+        $pdf->setPaper([0, 0, 283, 420], 'vertical');
         return $pdf->download();
         // return $pdf->stream();
     }
