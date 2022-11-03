@@ -69,7 +69,7 @@
     <table class="uk-table table-striped uk-table-small" id="entryForms-table">
         <thead>
             <tr>
-                <th>No</th>
+                <th>ゼッケン</th>
                 <th>名前</th>
                 <th>県連</th>
                 <th>所属</th>
@@ -84,7 +84,7 @@
                 {{-- @unless($user->user->is_admin || $user->user->is_staff || $user->user->is_commi) --}}
                 @if(isset($user->entryform) && empty($user->entryform->deleted_at))
                 <tr>
-                    <td>{{ @$user->id }}</td>
+                    <td>{{ @$user->entryform->zekken }}</td>
                     @if (isset($user->entryform->gender))
                         <td><a href="{{ route('adminentries.show', [$user->id]) }}">{{ $user->name }}</a>
                             ({{ @$user->entryform->gender }})<br>{{ @$user->entryform->furigana }}</td>
