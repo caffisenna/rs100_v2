@@ -36,6 +36,12 @@
             <p>バディリスト</p>
         </a>
     </li>
+    <li class="nav-item">
+        <a href="{{ url('/admin/buddy_ok') }}"
+            class="nav-link {{ Request::is('admin/buddy_ok*') ? 'active' : '' }}">
+            <p>バディOK男性</p>
+        </a>
+    </li>
     <p class="uk-text-warning">事務局機能</p>
     <li class="nav-item">
         <a href="{{ url('/admin/fee_check') }}"
