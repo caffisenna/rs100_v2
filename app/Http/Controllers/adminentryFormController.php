@@ -321,7 +321,7 @@ class adminentryFormController extends AppBaseController
 
         // $entryForms = entryForm::with('user')->where('buddy_ok','バディOK')->get();
         $users = User::whereHas('entryform', function ($query) {
-            $query->where('buddy_ok','OK')->where('gender','男');
+            $query->where('buddy_ok','バディOK')->where('gender','男');
         })->with('entryform')->with('elearning')->get();
 
         return view('admin.entry_forms.index')
