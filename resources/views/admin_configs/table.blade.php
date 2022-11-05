@@ -22,17 +22,13 @@
             <td>{{ $adminConfigs->elearning }}</td>
         </tr>
         <tr>
-            <th>計画書アップ</th>
+            <th>健康調査票</th>
             <td>{{ $adminConfigs->healthcheck }}</td>
         </tr>
 
         <tr>
             <th>ユーザー編集</th>
             <td>{{ $adminConfigs->user_edit }}</td>
-        </tr>
-        <tr>
-            <th>健康調査票</th>
-            <td>{{ $adminConfigs->healthcheck }}</td>
         </tr>
     </table>
 </div>
