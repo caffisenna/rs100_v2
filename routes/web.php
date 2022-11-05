@@ -60,18 +60,11 @@ Route::middleware('verified')->group(function () {
 
     // 一般ユーザ用
     Route::prefix('user')->group(function () {
-        // Route::get('/', 'User\HomeController@index');
         Route::resource('entryForms', App\Http\Controllers\entryFormController::class);
         Route::resource('elearnings', App\Http\Controllers\elearningController::class);
-        // Route::resource('resultUploads', App\Http\Controllers\resultUploadController::class);
-        // Route::resource('planUploads', App\Http\Controllers\planUploadController::class, ['except' => ['edit','show','update']]);
-        // Route::resource('temps', App\Http\Controllers\tempsController::class);
-        Route::get('/status_update', [
-            // App\Http\Controllers\statusController::class, 'status_update'
-        ])->name('status_update');
-        // Route::resource('resultInputs', App\Http\Controllers\resultInputsController::class);
         Route::get('/pdf', [entryFormController::class, 'pdf'])->name('pdf');
         Route::get('/id_card', [entryFormController::class, 'id_card'])->name('id_card');
+        Route::get('/healthcheck', [entryFormController::class, 'healthcheck'])->name('healthcheck');
     });
     // 管理ユーザ用
     Route::prefix('admin')->middleware('can:admin')->group(function () {
@@ -84,11 +77,7 @@ Route::middleware('verified')->group(function () {
         Route::get('fee_check', [App\Http\Controllers\adminentryFormController::class, 'fee_check'])->name('fee_check');
         Route::get('registration_check', [App\Http\Controllers\adminentryFormController::class, 'registration_check'])->name('registration_check');
         Route::get('buddy_ok', [App\Http\Controllers\adminentryFormController::class, 'buddy_ok'])->name('buddy_ok');
-        // Route::resource('adminresultUploads', App\Http\Controllers\adminresultUploadController::class, ['except' => 'create']);
-        // Route::get('/result_lists', [App\Http\Controllers\adminresultUploadController::class, 'lists'])->name('resultlists');
-        // Route::get('/temp_lists', [App\Http\Controllers\tempsController::class, 'temp_list'])->name('templists');
-        // Route::resource('reach50100', App\Http\Controllers\reach50100Controller::class);
-        // Route::resource('adminplanUploads', App\Http\Controllers\adminplanUploadController::class, ['except' => ['create','edit','show','update']]);
+
     });
     // スタッフ用
     Route::prefix('staff')->middleware('can:staff')->group(function () {
@@ -111,13 +100,6 @@ Route::post('/sm_confirm', [
 ])->name('comfirm_post');
 
 
-// Route::resource('status', App\Http\Controllers\statusController::class);
-// Route::get('/public', [App\Http\Controllers\statusController::class, 'public'])->name('public');
-
 Route::get('/hq_confirm', [
     App\Http\Controllers\adminentryFormController::class, 'hq_confirm'
 ])->name('hq_comfirm');
-
-Route::get('/plan_check', [
-    // App\Http\Controllers\adminplanUploadController::class, 'check'
-])->name('plan_upload');

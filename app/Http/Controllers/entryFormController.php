@@ -326,9 +326,19 @@ class entryFormController extends AppBaseController
 
         $pdf = \PDF::loadView('entry_forms.id_card', compact('user',$user));
         // $pdf->setPaper('A4');
-        // $pdf->setPaper([0, 0, 283, 420], 'landscape');
-        $pdf->setPaper([0, 0, 283, 420], 'vertical');
+        // $pdf->setPaper([0, 0, 283, 420], 'landscape'); // 横レイアウト
+        $pdf->setPaper([0, 0, 283, 420], 'vertical'); // 縦レイアウト
         return $pdf->download();
         // return $pdf->stream();
+    }
+
+    public function healthcheck()
+    {
+        // 健康調査票
+        $entryForm = User::where('id',Auth::id())->with('entryform')->first();
+
+        $pdf = \PDF::loadView('entry_forms.healthcheck', compact('entryForm',$entryForm));
+        $pdf->setPaper('A4');
+        return $pdf->download();
     }
 }

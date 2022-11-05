@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\AdminConfig;
+use App\Models\User;
 
 class HomeController extends Controller
 {
@@ -26,17 +27,9 @@ class HomeController extends Controller
     {
         $configs = AdminConfig::where('id', 1)->get()->first();
 
-        // $env = strtotime(ENV('USER_TEMP'));
-        // $st = strtotime(ENV('USER_STATUS'));
-        $now = strtotime(now());
-        // if($now > $env)  {
-        //     $configs->temp_ok = 'true';
-        // }
-        // if($now > $st)  {
-        //     $configs->status_ok = 'true';
-        // }
-        // $status = status::where('user_id', auth()->id())->first();
-        // dd($status);
-        return view('home', compact(['configs']));
+        // 健康調査の判定フラグ用にユーザーデータを取る
+        $user = User::where('id', Auth()->id())->with('elearning')->first();
+
+        return view('home', compact(['configs','user']));
     }
 }
