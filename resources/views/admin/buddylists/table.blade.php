@@ -73,6 +73,8 @@
                 <th>バディ1</th>
                 <th>バディ2</th>
                 <th>バディ3</th>
+                <th>バディ4</th>
+                <th>バディ5</th>
                 <th>確認日時</th>
                 <th>Action</th>
             </tr>
@@ -105,6 +107,22 @@
                             {{ $buddylist->person3_name }}
                         @endif
                         ({{ $buddylist->person3_gender }})<br>{{ $buddylist->person3_dan_name }}
+                    </td>
+                    <td>{{ $buddylist->person4 }}<br>
+                        @if ($buddylist->person4_gender == '女')
+                            <span class="uk-text-danger">{{ $buddylist->person4_name }}</span>
+                        @else
+                            {{ $buddylist->person4_name }}
+                        @endif
+                        ({{ $buddylist->person4_gender }})<br>{{ $buddylist->person4_dan_name }}
+                    </td>
+                    <td>{{ $buddylist->person5 }}<br>
+                        @if ($buddylist->person5_gender == '女')
+                            <span class="uk-text-danger">{{ $buddylist->person5_name }}</span>
+                        @else
+                            {{ $buddylist->person5_name }}
+                        @endif
+                        ({{ $buddylist->person5_gender }})<br>{{ $buddylist->person5_dan_name }}
                     </td>
                     <td>{{ $buddylist->confirmed }}</td>
                     <td>

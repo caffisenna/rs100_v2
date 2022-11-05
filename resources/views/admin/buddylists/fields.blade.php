@@ -16,6 +16,18 @@
     {!! Form::text('person3', null, ['class' => 'form-control']) !!}
 </div>
 <div class="w-100"></div>
+<!-- Person4 Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('person4', 'バディ4:') !!}
+    {!! Form::text('person4', null, ['class' => 'form-control']) !!}
+</div>
+<div class="w-100"></div>
+<!-- Person5 Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('person5', 'バディ5:') !!}
+    {!! Form::text('person5', null, ['class' => 'form-control']) !!}
+</div>
+<div class="w-100"></div>
 <!-- Confirmed Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('confirmed', '確認日時:') !!}

@@ -14,6 +14,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property integer $person1
  * @property integer $person2
  * @property integer $person3
+ * @property integer $person4
+ * @property integer $person5
  * @property string $confirmed
  */
 class Buddylist extends Model
@@ -23,7 +25,7 @@ class Buddylist extends Model
     use HasFactory;
 
     public $table = 'buddylists';
-    
+
 
     protected $dates = ['deleted_at'];
 
@@ -33,6 +35,8 @@ class Buddylist extends Model
         'person1',
         'person2',
         'person3',
+        'person4',
+        'person5',
         'confirmed'
     ];
 
@@ -46,6 +50,8 @@ class Buddylist extends Model
         'person1' => 'integer',
         'person2' => 'integer',
         'person3' => 'integer',
+        'person4' => 'integer',
+        'person5' => 'integer',
         'confirmed' => 'datetime'
     ];
 
@@ -58,8 +64,10 @@ class Buddylist extends Model
         'person1' => 'required',
         'person2' => 'required',
         'person3' => 'nullable',
+        'person4' => 'nullable',
+        'person5' => 'nullable',
         'confirmed' => 'nullable'
     ];
 
-    
+
 }

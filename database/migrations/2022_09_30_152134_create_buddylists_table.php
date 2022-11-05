@@ -19,6 +19,8 @@ class CreateBuddylistsTable extends Migration
             $table->integer('person1');
             $table->integer('person2');
             $table->integer('person3')->nullable();
+            $table->integer('person4')->nullable(); // 最大5人まで
+            $table->integer('person5')->nullable(); // 最大5人まで
             $table->dateTime('confirmed')->nullable();
             $table->timestamps();
             $table->softDeletes();
