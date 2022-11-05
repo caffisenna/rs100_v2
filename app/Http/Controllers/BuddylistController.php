@@ -38,6 +38,14 @@ class BuddylistController extends AppBaseController
             @$value['person3_name'] = User::where('id',$entryform->user_id)->value('name');
             @$value['person3_dan_name'] = $entryform->dan_name;
             @$value['person3_gender'] = $entryform->gender;
+            @$entryform = entryForm::where('zekken',$value['person4'])->first();
+            @$value['person4_name'] = User::where('id',$entryform->user_id)->value('name');
+            @$value['person4_dan_name'] = $entryform->dan_name;
+            @$value['person4_gender'] = $entryform->gender;
+            @$entryform = entryForm::where('zekken',$value['person5'])->first();
+            @$value['person5_name'] = User::where('id',$entryform->user_id)->value('name');
+            @$value['person5_dan_name'] = $entryform->dan_name;
+            @$value['person5_gender'] = $entryform->gender;
         }
 
         return view('admin.buddylists.index')
