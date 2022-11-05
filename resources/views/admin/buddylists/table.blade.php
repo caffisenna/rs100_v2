@@ -100,29 +100,38 @@
                         @endif
                         ({{ $buddylist->person2_gender }})<br>{{ $buddylist->person2_dan_name }}
                     </td>
-                    <td>{{ $buddylist->person3 }}<br>
-                        @if ($buddylist->person3_gender == '女')
-                            <span class="uk-text-danger">{{ $buddylist->person3_name }}</span>
-                        @else
-                            {{ $buddylist->person3_name }}
+                    <td>
+                        @if (isset($buddylist->person3))
+                            {{ $buddylist->person3 }}<br>
+                            @if ($buddylist->person3_gender == '女')
+                                <span class="uk-text-danger">{{ $buddylist->person3_name }}</span>
+                            @else
+                                {{ $buddylist->person3_name }}
+                            @endif
+                            ({{ $buddylist->person3_gender }})<br>{{ $buddylist->person3_dan_name }}
                         @endif
-                        ({{ $buddylist->person3_gender }})<br>{{ $buddylist->person3_dan_name }}
                     </td>
-                    <td>{{ $buddylist->person4 }}<br>
-                        @if ($buddylist->person4_gender == '女')
-                            <span class="uk-text-danger">{{ $buddylist->person4_name }}</span>
-                        @else
-                            {{ $buddylist->person4_name }}
+                    <td>
+                        @if (isset($buddylist->person4))
+                            {{ $buddylist->person4 }}<br>
+                            @if ($buddylist->person4_gender == '女')
+                                <span class="uk-text-danger">{{ $buddylist->person4_name }}</span>
+                            @else
+                                {{ $buddylist->person4_name }}
+                            @endif
+                            ({{ $buddylist->person4_gender }})<br>{{ $buddylist->person4_dan_name }}
                         @endif
-                        ({{ $buddylist->person4_gender }})<br>{{ $buddylist->person4_dan_name }}
                     </td>
-                    <td>{{ $buddylist->person5 }}<br>
-                        @if ($buddylist->person5_gender == '女')
-                            <span class="uk-text-danger">{{ $buddylist->person5_name }}</span>
-                        @else
-                            {{ $buddylist->person5_name }}
+                    <td>
+                        @if (isset($buddylist->person5))
+                            {{ $buddylist->person5 }}<br>
+                            @if ($buddylist->person5_gender == '女')
+                                <span class="uk-text-danger">{{ $buddylist->person5_name }}</span>
+                            @else
+                                {{ $buddylist->person5_name }}
+                            @endif
+                            ({{ $buddylist->person5_gender }})<br>{{ $buddylist->person5_dan_name }}
                         @endif
-                        ({{ $buddylist->person5_gender }})<br>{{ $buddylist->person5_dan_name }}
                     </td>
                     <td>{{ $buddylist->confirmed }}</td>
                     <td>
