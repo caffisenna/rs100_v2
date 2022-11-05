@@ -21,3 +21,9 @@
     {!! Form::label('user_edit', '申込書修正:') !!}
     {!! Form::select('user_edit',['1'=>'true','0'=>'false'],is_null(old('$adminConfig->user_edit')) ? $adminConfig->user_edit : old('$adminConfig->user_edit'),['class'=>'form-control']) !!}
 </div>
+
+<!-- Healthcheck Field -->
+<div class="form-group col-sm-6">
+    {!! Form::label('healthcheck', '健康調査票:') !!}
+    {!! Form::select('healthcheck',['1'=>'true','0'=>'false'],is_null(old('$adminConfig->healthcheck')) ? $adminConfig->healthcheck : old('$adminConfig->user_edit'),['class'=>'form-control']) !!}
+</div>

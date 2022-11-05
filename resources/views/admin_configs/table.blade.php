@@ -30,5 +30,9 @@
             <th>ユーザー編集</th>
             <td>{{ $adminConfigs->user_edit }}</td>
         </tr>
+        <tr>
+            <th>健康調査票</th>
+            <td>{{ $adminConfigs->healthcheck }}</td>
+        </tr>
     </table>
 </div>
