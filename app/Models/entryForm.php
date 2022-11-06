@@ -29,6 +29,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string $emer_phone
  * @property string $sm_name
  * @property string $sm_position
+ * @property string $memo
  */
 class entryForm extends Model
 {
@@ -72,6 +73,7 @@ class entryForm extends Model
         'buddy2_name',
         'buddy2_dan',
         'buddy_type',
+        'memo',
     ];
 
     /**
@@ -108,6 +110,7 @@ class entryForm extends Model
         'buddy2_name'=> 'string',
         'buddy2_dan'=> 'string',
         'buddy_type'=> 'string',
+        'memo'=> 'string',
     ];
 
     /**

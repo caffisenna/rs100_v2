@@ -73,6 +73,8 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Buddylist wherePerson1($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Buddylist wherePerson2($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Buddylist wherePerson3($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Buddylist wherePerson4($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Buddylist wherePerson5($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Buddylist whereUpdatedAt($value)
  * @method static \Illuminate\Database\Query\Builder|Buddylist withTrashed()
  * @method static \Illuminate\Database\Query\Builder|Buddylist withoutTrashed()
@@ -172,6 +174,7 @@ namespace App\Models{
  * @property string $emer_phone
  * @property string $sm_name
  * @property string $sm_position
+ * @property string $memo
  * @property int $id
  * @property int|null $user_id
  * @property int|null $zekken
@@ -223,6 +226,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|entryForm whereFurigana($value)
  * @method static \Illuminate\Database\Eloquent\Builder|entryForm whereGender($value)
  * @method static \Illuminate\Database\Eloquent\Builder|entryForm whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|entryForm whereMemo($value)
  * @method static \Illuminate\Database\Eloquent\Builder|entryForm whereParentName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|entryForm whereParentNameFurigana($value)
  * @method static \Illuminate\Database\Eloquent\Builder|entryForm whereParentRelation($value)

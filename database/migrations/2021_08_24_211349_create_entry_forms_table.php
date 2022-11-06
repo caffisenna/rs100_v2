@@ -50,6 +50,7 @@ class CreateEntryFormsTable extends Migration
             $table->date('fee_checked_at')->nullable(); // 東連以外の参加費納付チェック
             $table->date('registration_checked_at')->nullable(); // 東連の加盟登録チェック
             $table->uuid('uuid')->nullable();
+            $table->text('memo')->nullable();   // 備考欄
             $table->timestamps();
             $table->softDeletes();
         });

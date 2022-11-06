@@ -531,5 +531,11 @@
             @enderror
         </div>
 
+        {{-- 備考 --}}
+        <div class="form-group">
+            {!! Form::label('memo', '備考:') !!}
+            {!! Form::textarea('memo', null, ['class' => 'form-control']) !!}
+        </div>
+
     </div>
 </div>

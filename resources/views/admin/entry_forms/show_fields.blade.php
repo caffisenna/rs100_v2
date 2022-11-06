@@ -1,5 +1,4 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.7.3/dist/css/uikit.min.css" />
-
 <table class="uk-table uk-table-striped uk-table-hover">
     <thead>
         <tr>
@@ -30,7 +29,8 @@
         </tr>
         <tr>
             <td>生年月日</td>
-            <td>{{ $entryForm->birth_day->format('Y年m月d日') }} ({{ \Carbon\Carbon::parse($entryForm->birth_day)->age }}才)</td>
+            <td>{{ $entryForm->birth_day->format('Y年m月d日') }} ({{ \Carbon\Carbon::parse($entryForm->birth_day)->age }}才)
+            </td>
         </tr>
         <tr>
             <td>住所</td>
@@ -50,7 +50,8 @@
         </tr>
         <tr>
             <td>保護者</td>
-            <td>{{ $entryForm->parent_name }} ({{ $entryForm->parent_name_furigana }})<br>続柄:{{ $entryForm->parent_relation }}</td>
+            <td>{{ $entryForm->parent_name }}
+                ({{ $entryForm->parent_name_furigana }})<br>続柄:{{ $entryForm->parent_relation }}</td>
         </tr>
         <tr>
             <td>保護者</td>
@@ -78,17 +79,37 @@
         </tr>
         <tr>
             <td>バディ(1)</td>
-            <td>@if($entryForm->buddy1_name){{ $entryForm->buddy1_name }}<br>
-                所属団: {{ $entryForm->buddy1_dan }}@endif</td>
+            <td>
+                @if ($entryForm->buddy1_name)
+                    {{ $entryForm->buddy1_name }}
+                    <br>
+                    所属団: {{ $entryForm->buddy1_dan }}
+                @endif
+            </td>
         </tr>
         <tr>
             <td>バディ(2)</td>
-            <td>@if($entryForm->buddy2_name){{ $entryForm->buddy2_name }}<br>
-                所属団: {{ $entryForm->buddy2_dan }}@endif</td>
+            <td>
+                @if ($entryForm->buddy2_name)
+                    {{ $entryForm->buddy2_name }}
+                    <br>
+                    所属団: {{ $entryForm->buddy2_dan }}
+                @endif
+            </td>
         </tr>
+        @if (isset($entryForm->memo))
+            <tr>
+                <td>備考</td>
+                <td>{{ $entryForm->memo }}</td>
+            </tr>
+        @endif
         <tr>
             <td>団承認URL</td>
-            <td>@if($entryForm->uuid)<a href="{{ url('/sm_confirm/?q=') }}{{ $entryForm->uuid }}">{{ $entryForm->uuid }}</a>@endif</td>
+            <td>
+                @if ($entryForm->uuid)
+                    <a href="{{ url('/sm_confirm/?q=') }}{{ $entryForm->uuid }}">{{ $entryForm->uuid }}</a>
+                @endif
+            </td>
         </tr>
 
     </tbody>
