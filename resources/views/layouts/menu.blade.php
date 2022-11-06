@@ -42,6 +42,12 @@
             <p>バディOK男性</p>
         </a>
     </li>
+    <li class="nav-item">
+        <a href="{{ url('/admin/with_memo') }}"
+            class="nav-link {{ Request::is('admin/with_memo*') ? 'active' : '' }}">
+            <p>備考入力あり</p>
+        </a>
+    </li>
     <p class="uk-text-warning">事務局機能</p>
     <li class="nav-item">
         <a href="{{ url('/admin/fee_check') }}"

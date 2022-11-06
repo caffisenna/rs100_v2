@@ -77,6 +77,7 @@ Route::middleware('verified')->group(function () {
         Route::get('fee_check', [App\Http\Controllers\adminentryFormController::class, 'fee_check'])->name('fee_check');
         Route::get('registration_check', [App\Http\Controllers\adminentryFormController::class, 'registration_check'])->name('registration_check');
         Route::get('buddy_ok', [App\Http\Controllers\adminentryFormController::class, 'buddy_ok'])->name('buddy_ok');
+        Route::get('with_memo', [App\Http\Controllers\adminentryFormController::class, 'with_memo'])->name('with_memo');
 
     });
     // スタッフ用

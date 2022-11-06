@@ -327,4 +327,16 @@ class adminentryFormController extends AppBaseController
         return view('admin.entry_forms.index')
             ->with('users', $users);
     }
+
+    public function with_memo()
+    {
+        /** @var entryForm $entryForms */
+
+        $users = User::whereHas('entryform', function ($query) {
+            $query->where('memo','<>', NULL);
+        })->with('entryform')->with('elearning')->get();
+
+        return view('admin.entry_forms.index')
+            ->with('users', $users);
+    }
 }
