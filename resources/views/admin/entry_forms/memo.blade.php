@@ -98,7 +98,7 @@
                         </thead>
                         <tbody>
                             @foreach ($users as $user)
-                                @if (isset($user->entryform) && $user->entryform->prefecture == '東京')
+                                @if (isset($user->entryform))
                                     <tr>
                                         <td>{{ @$user->entryform->zekken }}</td>
                                         @if (isset($user->entryform->gender))
