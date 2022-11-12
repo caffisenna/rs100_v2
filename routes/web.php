@@ -78,6 +78,8 @@ Route::middleware('verified')->group(function () {
         Route::get('registration_check', [App\Http\Controllers\adminentryFormController::class, 'registration_check'])->name('registration_check');
         Route::get('buddy_ok', [App\Http\Controllers\adminentryFormController::class, 'buddy_ok'])->name('buddy_ok');
         Route::get('with_memo', [App\Http\Controllers\adminentryFormController::class, 'with_memo'])->name('with_memo');
+        Route::get('id_card', [App\Http\Controllers\adminentryFormController::class, 'id_card'])->name('id_card');
+        Route::get('health_check', [App\Http\Controllers\adminentryFormController::class, 'health_check'])->name('health_check');
 
     });
     // スタッフ用

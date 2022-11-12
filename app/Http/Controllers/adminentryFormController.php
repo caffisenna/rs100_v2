@@ -339,4 +339,33 @@ class adminentryFormController extends AppBaseController
         return view('admin.entry_forms.memo')
             ->with('users', $users);
     }
+
+    public function health_check(Request $request)
+    {
+        $input = $request->all();
+        // dd($input['q']);
+
+        // IDカード
+        $entryForm = entryForm::where('uuid',$input['q'])->with('user')->first();
+        // dd($entryForm);
+
+        $pdf = \PDF::loadView('admin.entry_forms.healthcheck', compact('entryForm',$entryForm));
+        $pdf->setPaper('A4');
+        return $pdf->download();
+    }
+
+    public function id_card(Request $request)
+    {
+        $input = $request->all();
+        // dd($input['q']);
+        $user = User::where('id',$input['q'])->with('entryform')->first();
+        // dd($user);
+
+        $pdf = \PDF::loadView('admin.entry_forms.id_card', compact('user',$user));
+        // $pdf->setPaper('A4');
+        // $pdf->setPaper([0, 0, 283, 420], 'landscape'); // 横レイアウト
+        $pdf->setPaper([0, 0, 283, 420], 'vertical'); // 縦レイアウト
+        return $pdf->download();
+        // return $pdf->stream();
+    }
 }

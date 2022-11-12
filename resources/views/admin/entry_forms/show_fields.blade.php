@@ -112,5 +112,15 @@
             </td>
         </tr>
 
+        {{-- PDF out --}}
+        <tr>
+            <td>PDF</td>
+            <td>
+                <ul>
+                    <li><a href="{{ url('/admin/id_card/?q=') }}{{ $entryForm->user_id }}">参加者ID</a></li>
+                    <li><a href="{{ url('/admin/health_check/?q=') }}{{ $entryForm->uuid }}">健康調査</a></li>
+                </ul>
+            </td>
+        </tr>
     </tbody>
 </table>
