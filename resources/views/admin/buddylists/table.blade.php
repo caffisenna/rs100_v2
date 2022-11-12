@@ -137,6 +137,9 @@
                     <td>
                         {!! Form::open(['route' => ['buddylists.destroy', $buddylist->id], 'method' => 'delete']) !!}
                         <div class='btn-group'>
+                            <a href="{{ url('/admin/buddy_confirm/?q=') }}{{ $buddylist->id }}"
+                                class="uk-button uk-button-default"
+                                onclick="return confirm('{{ $buddylist->id }}を承認しますか?')">確認</a>
                             <a href="{{ route('buddylists.edit', [$buddylist->id]) }}" class='btn btn-default btn-xs'>
                                 <i class="far fa-edit"></i>
                             </a>

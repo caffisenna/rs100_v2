@@ -17,6 +17,7 @@ use Log;
 use Mail;
 use App\Mail\FeeConfirm;
 use App\Mail\RegistrationConfirm;
+use App\Models\Buddylist;
 
 class adminentryFormController extends AppBaseController
 {
@@ -321,7 +322,7 @@ class adminentryFormController extends AppBaseController
 
         // $entryForms = entryForm::with('user')->where('buddy_ok','バディOK')->get();
         $users = User::whereHas('entryform', function ($query) {
-            $query->where('buddy_ok','バディOK')->where('gender','男');
+            $query->where('buddy_ok', 'バディOK')->where('gender', '男');
         })->with('entryform')->with('elearning')->get();
 
         return view('admin.entry_forms.index')
@@ -333,7 +334,7 @@ class adminentryFormController extends AppBaseController
         /** @var entryForm $entryForms */
 
         $users = User::whereHas('entryform', function ($query) {
-            $query->where('memo','<>', NULL);
+            $query->where('memo', '<>', NULL);
         })->with('entryform')->with('elearning')->get();
 
         return view('admin.entry_forms.memo')
@@ -342,30 +343,50 @@ class adminentryFormController extends AppBaseController
 
     public function health_check(Request $request)
     {
+        // 健康調査票
+        // inputを取得
         $input = $request->all();
-        // dd($input['q']);
 
-        // IDカード
-        $entryForm = entryForm::where('uuid',$input['q'])->with('user')->first();
-        // dd($entryForm);
+        // 参加者データを取得
+        $entryForm = entryForm::where('uuid', $input['q'])->with('user')->first();
 
-        $pdf = \PDF::loadView('admin.entry_forms.healthcheck', compact('entryForm',$entryForm));
+        // PDF生成
+        $pdf = \PDF::loadView('admin.entry_forms.healthcheck', compact('entryForm', $entryForm));
         $pdf->setPaper('A4');
         return $pdf->download();
     }
 
     public function id_card(Request $request)
     {
-        $input = $request->all();
-        // dd($input['q']);
-        $user = User::where('id',$input['q'])->with('entryform')->first();
-        // dd($user);
+        // IDカード
 
-        $pdf = \PDF::loadView('admin.entry_forms.id_card', compact('user',$user));
-        // $pdf->setPaper('A4');
-        // $pdf->setPaper([0, 0, 283, 420], 'landscape'); // 横レイアウト
+        // inputを取得
+        $input = $request->all();
+
+        // 参加者データを取得
+        $user = User::where('id', $input['q'])->with('entryform')->first();
+
+        // PDFを生成、DL
+        $pdf = \PDF::loadView('admin.entry_forms.id_card', compact('user', $user));
         $pdf->setPaper([0, 0, 283, 420], 'vertical'); // 縦レイアウト
         return $pdf->download();
-        // return $pdf->stream();
+    }
+
+    public function buddy_confirm(Request $request)
+    {
+        // IDカード
+
+        // inputを取得
+        $input = $request->all();
+
+
+        // 参加者データを取得
+        $buddy = Buddylist::where('id', $input['q'])->first();
+        $buddy->confirmed = now();
+        // dd($buddy->confirmed);
+
+        $buddy->save();
+        Flash::success("バディ登録を行いました");
+        return back();
     }
 }

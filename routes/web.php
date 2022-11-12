@@ -80,6 +80,7 @@ Route::middleware('verified')->group(function () {
         Route::get('with_memo', [App\Http\Controllers\adminentryFormController::class, 'with_memo'])->name('with_memo');
         Route::get('id_card', [App\Http\Controllers\adminentryFormController::class, 'id_card'])->name('id_card');
         Route::get('health_check', [App\Http\Controllers\adminentryFormController::class, 'health_check'])->name('health_check');
+        Route::get('buddy_confirm', [App\Http\Controllers\adminentryFormController::class, 'buddy_confirm'])->name('buddy_confirm');
 
     });
     // スタッフ用
