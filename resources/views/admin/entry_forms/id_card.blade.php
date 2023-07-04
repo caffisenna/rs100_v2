@@ -43,7 +43,7 @@
         <img src="{{ url('/images/rs100km_55th.png') }}" alt="" style="height:100px;"><br>
         <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQI12NgYAAAAAMAASDVlMcAAAAASUVORK5CYII="
         alt="" height="20" width="1">
-        東京連盟<br>第55回ローバースカウト100kmハイク<br>参加者ID
+        東京連盟<br>第56回ローバースカウト100kmハイク<br>参加者ID
     </div>
 
     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQI12NgYAAAAAMAASDVlMcAAAAASUVORK5CYII="

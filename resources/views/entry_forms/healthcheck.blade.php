@@ -26,7 +26,7 @@
     <p style="text-align:left">
         <img src="{{ url('/images/rs100km_55th.png') }}" alt="" style="height:70px;">
     </p>
-    <p style="font-size:large; text-align:center;">第55回東京連盟ローバースカウト100kmハイク<br>
+    <p style="font-size:large; text-align:center;">第56回東京連盟ローバースカウト100kmハイク<br>
         健康調査票 兼 Eラーニング修了証</p>
     <p class="">ゼッケン: {{ $entryForm->entryform->zekken }}</p>
 

@@ -23,7 +23,7 @@
                     <h3 class="uk-card-title">団の承認</h3>
                 </div>
                 <div class="uk-card-body">
-                    以下のスカウトが第55回RS100kmハイクに参加申込をしています。<br>参加を承認する場合は以下のボタンをクリックしてください。
+                    以下のスカウトが第56回RS100kmハイクに参加申込をしています。<br>参加を承認する場合は以下のボタンをクリックしてください。
                 </div>
                 <div class="uk-card-footer">
                     {{ Form::open(['confirm_post']) }}
