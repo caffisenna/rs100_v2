@@ -79,7 +79,7 @@
 @endif
 
 {{-- 公式サイトリンク --}}
-<a href="https://blog.rs100.info" class="btn btn-info btn-xs btn-block">公式サイト</a>
+<a href="https://rs100.scout.tokyo" class="btn btn-info btn-xs btn-block">公式サイト</a>
 {{-- 公式サイトリンク --}}
 
 {{-- ログアウトボタン --}}

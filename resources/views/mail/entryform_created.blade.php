@@ -34,10 +34,10 @@
 2022年10月26日(水)迄<br>
 <br>
 
-<p>恐れ入りますがもしこの登録にお心当たりが無い場合は、<a href="mailto:register.rs100km@gmail.com">register.rs100km@gmail.com</a>までご連絡ください。</p>
+<p>恐れ入りますがもしこの登録にお心当たりが無い場合は、<a href="mailto:{{ config('mail.from.address') }}">{{ config('mail.from.address') }}</a>までご連絡ください。</p>
 <p></p>
 
 ----<br>
 東京連盟RS100kmハイク<br>
 参加受付システム<br>
-<a href="mailto:register.rs100km@gmail.com">register.rs100km@gmail.com</a>
+<a href="mailto:{{ config('mail.from.address') }}">{{ config('mail.from.address') }}</a>

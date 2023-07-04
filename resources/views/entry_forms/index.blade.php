@@ -24,7 +24,7 @@
         @include('flash::message')
         @if (!$entryForm->available)
             <p class="text-info">期間外のため、参加者自身による参加取り消しはできません。<br>
-                <a href="mailto:register.rs100km@gmail.com">register.rs100km@gmail.com</a>までお問い合わせください。</p>
+                <a href="mailto:{{ config('mail.from.address') }}">{{ config('mail.from.address') }}</a>までお問い合わせください。</p>
         @endif
 
         <div class="clearfix"></div>
