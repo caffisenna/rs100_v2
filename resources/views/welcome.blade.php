@@ -118,15 +118,14 @@
                 <div class="uk-card uk-card-primary uk-card-body">
                     <h5 class="uk-card-title"><span uk-icon="icon:info; ratio:1"></span>NEWS</h5>
                     <ul class="uk-list">
-                        <li>2022/10/21 参加申込と新規ユーザーの登録受付を終了しました</li>
-                        <li>2022/10/1 第55回大会の参加申込を開始しました</li>
+                        <li>2023/07/04 第56回大会に向けてテスト中です</li>
                     </ul>
                 </div>
             </div>
 
             <div>
                 <div class="uk-card uk-card-primary uk-card-body">
-                    <h5 class="uk-card-title"><span uk-icon="icon:info; ratio:1"></span>参加条件</h5>
+                    <h5 class="uk-card-title"><span uk-icon="icon:info; ratio:1"></span>参加条件(未定)</h5>
                     <ol>
                         <li>申込時点において加盟登録のあるローバースカウト</li>
                         <li>申込時点において加盟登録のある25歳までの指導者</li>
@@ -134,7 +133,7 @@
                         <li>ガールスカウト及び外国連盟のスカウト (上記の条件に当てはまる25歳までのスカウトまたは指導者で加盟登録があり、支部または所属連盟の承認を受けた者)</li>
                     </ol>
                     <h3>その他</h3>
-                    <p class=""><a href="https://blog.rs100.info">大会公式サイト</a>の情報をよくご確認の上お申し込み下さい。</p>
+                    <p class=""><a href="{{ config('app.url') }}">大会公式サイト</a>の情報をよくご確認の上お申し込み下さい。</p>
 
                     <h3>個人情報の取り扱い</h3>
                     <p class="uk-text-small">入力されたデータは、ボーイスカウト東京連盟RS100kmハイク(本大会実行委員会)へ参加を申込いただいた皆様に本大会のサービス、 活動情報、安全管理等に関する情報を提供するために使用させていただく場合があります。<br>
