@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZXVS5PSFJK"></script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XM1T90QY6J"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
 
@@ -14,7 +14,7 @@
         }
         gtag('js', new Date());
 
-        gtag('config', 'G-ZXVS5PSFJK');
+        gtag('config', 'G-XM1T90QY6J');
     </script>
 
     <title>{{ config('app.name') }}</title>
@@ -97,7 +97,8 @@
                         <div class="flex items-center">
                             <span uk-icon="icon:warning; ratio:2"></span>
                             <div class="ml-4 text-lg leading-7 font-semibold">
-                                <a href="https://docs.google.com/presentation/d/e/2PACX-1vS9rKuXA7m7BIS_JFuhmIljMyzQhC56vgU5Qm6sjmP7z-8t_v0e6mQurhq5LMPuC0fhgBv-fRvxATBU/pub?start=false&loop=false&delayms=3000" target="_blank">参加申込ガイド</a>
+                                <a href="https://docs.google.com/presentation/d/e/2PACX-1vS9rKuXA7m7BIS_JFuhmIljMyzQhC56vgU5Qm6sjmP7z-8t_v0e6mQurhq5LMPuC0fhgBv-fRvxATBU/pub?start=false&loop=false&delayms=3000"
+                                    target="_blank">参加申込ガイド</a>
                             </div>
                         </div>
                     </div>
@@ -136,7 +137,8 @@
                     <p class=""><a href="{{ config('app.url') }}">大会公式サイト</a>の情報をよくご確認の上お申し込み下さい。</p>
 
                     <h3>個人情報の取り扱い</h3>
-                    <p class="uk-text-small">入力されたデータは、ボーイスカウト東京連盟RS100kmハイク(本大会実行委員会)へ参加を申込いただいた皆様に本大会のサービス、 活動情報、安全管理等に関する情報を提供するために使用させていただく場合があります。<br>
+                    <p class="uk-text-small">入力されたデータは、ボーイスカウト東京連盟RS100kmハイク(本大会実行委員会)へ参加を申込いただいた皆様に本大会のサービス、
+                        活動情報、安全管理等に関する情報を提供するために使用させていただく場合があります。<br>
                         また個人情報の保全・安全管理につきましては適切に取り扱い、大会業務終了後に破棄させていただきます。</p>
                 </div>
             </div>
