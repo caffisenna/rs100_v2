@@ -234,4 +234,7 @@ return [
         'PDF' => Barryvdh\DomPDF\Facade::class, // dompdf
     ],
 
+    // .env読み込み
+    'user_create' => env('USER_CREATE', null),  // config('app.user_create') で呼び出せる
+
 ];
