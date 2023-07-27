@@ -105,10 +105,13 @@
 
                     <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-l">
                         <div class="flex items-center">
-                            <a href="https://rs100.info" class="uk-icon-link" uk-icon="world" ratio="2"></a>
+                            <a href="https://rs100.scout.tokyo/" class="uk-icon-link" uk-icon="world"
+                                ratio="2"></a>
                             <a href="https://www.facebook.com/rs100km/" class="uk-icon-link" uk-icon="facebook"
                                 ratio="2"></a>
                             <a href="https://twitter.com/rs100km/" class="uk-icon-link" uk-icon="twitter"
+                                ratio="2"></a>
+                            <a href="https://www.instagram.com/rs100km/?hl=ja" class="uk-icon-link" uk-icon="instagram"
                                 ratio="2"></a>
                         </div>
                     </div>
