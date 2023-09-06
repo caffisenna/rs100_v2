@@ -4,7 +4,7 @@
             <tr>
                 <td>作成日</td>
                 @if (isset($entryForm->created_at))
-                <td>{{ $entryForm->created_at }}</td>
+                    <td>{{ $entryForm->created_at }}</td>
                 @else
                     <td> <span class="uk-text-danger">未作成</span></td>
                 @endif
@@ -21,12 +21,13 @@
                             <a href="{{ route('entryForms.show', [$entryForm->id]) }}" class='btn btn-default btn-lg'>
                                 <i class="far fa-eye"></i>確認
                             </a>
-                            @if($configs->user_edit <> 0)
-                            <a href="{{ route('entryForms.edit', [$entryForm->id]) }}" class='btn btn-default btn-lg'>
-                                <i class="far fa-edit"></i>編集
-                            </a>
+                            @if ($configs->user_edit != 0)
+                                <a href="{{ route('entryForms.edit', [$entryForm->id]) }}"
+                                    class='btn btn-default btn-lg'>
+                                    <i class="far fa-edit"></i>編集
+                                </a>
 
-                            {{-- {!! Form::button('<i class="far fa-trash-alt"></i>削除する', ['type' => 'submit', 'class' => 'btn btn-danger btn-lg', 'onclick' => "return confirm('本当に削除しますか?')"]) !!} --}}
+                                {{-- {!! Form::button('<i class="far fa-trash-alt"></i>削除する', ['type' => 'submit', 'class' => 'btn btn-danger btn-lg', 'onclick' => "return confirm('本当に削除しますか?')"]) !!} --}}
                             @endif
                         </div>
                         {{-- {!! Form::close() !!} --}}
@@ -55,7 +56,11 @@
             </tr>
             <tr>
                 <td>IDカード</td>
-                    <td><a href="{{ url('/user/id_card') }}">ダウンロード</a></td>
+                <td>
+                    @if ($entryForm->id)
+                        <a href="{{ url('/user/id_card') }}">ダウンロード</a>
+                    @endif
+                </td>
             </tr>
             {{-- <tr>
                 <td>健康調査書</td>
