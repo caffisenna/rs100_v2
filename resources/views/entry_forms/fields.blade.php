@@ -1,3 +1,4 @@
+<script src="{{ url('js/yubinbango.js') }}" charset="UTF-8"></script>
 <div class="card col-sm-6">
     <div class="card-header">
         <h3>個人情報</h3>
@@ -24,94 +25,21 @@
             <div class="form-row">
                 <div class="col">
                     {{-- {!! Form::text('bd_year', null, ['class' => 'form-control', 'maxlength' => '4', 'placeholder' => '西暦']) !!} --}}
-                    {!! Form::select(
-                        'bd_year',
-                        [
-                            '' => '',
-                            '2004' => '2004',
-                            '2003' => '2003',
-                            '2002' => '2002',
-                            '2001' => '2001',
-                            '2000' => '2000',
-                            '1999' => '1999',
-                            '1998' => '1998',
-                            '1997' => '1997',
-                            '1996' => '1996',
-                        ],
-                        null,
-                        [
-                            'class' => 'form-control custom-select',
-                        ],
-                    ) !!}
+                    {!! Form::select('bd_year', array_combine(range(2005, 1960), range(2005, 1960)), null, [
+                        'class' => 'form-control custom-select',
+                    ]) !!}
                 </div>
                 <div class="col">
                     {{-- {!! Form::text('bd_month', null, ['class' => 'form-control', 'maxlength' => '2', 'placeholder' => '月']) !!} --}}
-                    {!! Form::select(
-                        'bd_month',
-                        [
-                            '' => '',
-                            '1' => '1',
-                            '2' => '2',
-                            '3' => '3',
-                            '4' => '4',
-                            '5' => '5',
-                            '6' => '6',
-                            '7' => '7',
-                            '8' => '8',
-                            '9' => '9',
-                            '10' => '10',
-                            '11' => '11',
-                            '12' => '12',
-                        ],
-                        null,
-                        [
-                            'class' => 'form-control custom-select',
-                        ],
-                    ) !!}
+                    {!! Form::select('bd_month', array_combine(range(1, 12), range(1, 12)), null, [
+                        'class' => 'form-control custom-select',
+                    ]) !!}
                 </div>
                 <div class="col">
                     {{-- {!! Form::text('bd_day', null, ['class' => 'form-control', 'maxlength' => '2', 'placeholder' => '日']) !!} --}}
-                    {!! Form::select(
-                        'bd_day',
-                        [
-                            '' => '',
-                            '1' => '1',
-                            '2' => '2',
-                            '3' => '3',
-                            '4' => '4',
-                            '5' => '5',
-                            '6' => '6',
-                            '7' => '7',
-                            '8' => '8',
-                            '9' => '9',
-                            '10' => '10',
-                            '11' => '11',
-                            '12' => '12',
-                            '13' => '13',
-                            '14' => '14',
-                            '15' => '15',
-                            '16' => '16',
-                            '17' => '17',
-                            '18' => '18',
-                            '19' => '19',
-                            '20' => '20',
-                            '21' => '21',
-                            '22' => '22',
-                            '23' => '23',
-                            '24' => '24',
-                            '25' => '25',
-                            '26' => '26',
-                            '27' => '27',
-                            '28' => '28',
-                            '29' => '29',
-                            '30' => '30',
-                            '31' => '31',
-                        ],
-                        null,
-                        [
-                            'class' => 'form-control custom-select',
-                        ],
-                    ) !!}
+                    {!! Form::select('bd_day', array_combine(range(1, 31), range(1, 31)), null, [
+                        'class' => 'form-control custom-select',
+                    ]) !!}
 
 
                 </div>
@@ -152,24 +80,18 @@
 
         <!-- Zip Field -->
         <div class="form-group">
-            {!! Form::label('zip', '郵便番号:') !!}
-            {!! Form::text('zip', null, [
-                'class' => 'form-control',
-                'maxlength' => '7',
-                'placeholder' => '7桁の整数で入力してください',
-            ]) !!}
-            @error('zip')
-                <div class="error text-danger">{{ $message }}</div>
-            @enderror
-        </div>
-
-        <!-- Address Field -->
-        <div class="form-group">
-            {!! Form::label('address', '住所:') !!}
-            {!! Form::text('address', null, ['class' => 'form-control', 'placeholder' => '番地まで正確に']) !!}
-            @error('address')
-                <div class="error text-danger">{{ $message }}</div>
-            @enderror
+            {!! Form::label('zip', '住所:') !!}
+            <div class="h-adr">
+                <span class="p-country-name" style="display:none;">Japan</span>
+                {!! Form::text('zip', null, [
+                    'class' => 'p-postal-code form-control',
+                    'placeholder' => '郵便番号を7桁の整数で入力(例: 1510071)',
+                ]) !!}
+                {!! Form::text('address', null, [
+                    'class' => 'p-region p-locality p-street-address p-extended-address form-control',
+                    'placeholder' => '住所が自動で補完されます。番地以降を追記入力してください。',
+                ]) !!}
+            </div>
         </div>
 
         <!-- Telephone Field -->
@@ -219,7 +141,7 @@
 
         <!-- captain Field -->
         <div class="form-group">
-            {!! Form::label('captain', '主将などの代表者:') !!}
+            {!! Form::label('captain', '主将や幹事などの代表者:') !!}
             {!! Form::select(
                 'captain',
                 [
@@ -257,6 +179,23 @@
             @enderror
         </div>
         {{-- BSかGSか --}}
+
+        {{-- 現役 or OB --}}
+        <div class="form-group">
+            {!! Form::label('generation', '年代:') !!}
+            {!! Form::select(
+                'generation',
+                ['' => '', '現役' => '現役スカウト', 'オーバーエイジ' => 'オーバーエイジ'],
+                null,
+                [
+                    'class' => 'form-control custom-select',
+                ],
+            ) !!}
+            @error('generation')
+                <div class="error text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+        {{-- 現役 or OB --}}
 
         <!-- Bs Id Field -->
         <div class="form-group">
@@ -367,7 +306,7 @@
     <div class="card-body">
         <!-- Parent Name Field -->
         <div class="form-group">
-            {!! Form::label('parent_name', '保護者氏名:') !!}
+            {!! Form::label('parent_name', '氏名:') !!}
             {!! Form::text('parent_name', null, ['class' => 'form-control']) !!}
             @error('parent_name')
                 <div class="error text-danger">{{ $message }}</div>
@@ -376,7 +315,7 @@
 
         <!-- Parent Name Furigana Field -->
         <div class="form-group">
-            {!! Form::label('parent_name_furigana', '保護者ふりがな:') !!}
+            {!! Form::label('parent_name_furigana', 'ふりがな:') !!}
             {!! Form::text('parent_name_furigana', null, ['class' => 'form-control']) !!}
             @error('parent_name_furigana')
                 <div class="error text-danger">{{ $message }}</div>
@@ -385,7 +324,7 @@
 
         <!-- Parent Relation Field -->
         <div class="form-group">
-            {!! Form::label('parent_relation', '保護者続柄:') !!}
+            {!! Form::label('parent_relation', '続柄:') !!}
             {!! Form::text('parent_relation', null, ['class' => 'form-control', 'placeholder' => '父、母など']) !!}
             @error('parent_relation')
                 <div class="error text-danger">{{ $message }}</div>
@@ -440,7 +379,9 @@
         <h3>バディについて</h3>
         <span class="uk-text-warning uk-text-small">バディとは一緒に歩くパートナーのことです。女性の参加者は必ず男性のバディと歩行することが必要です。<br>
             女性1名と男性1名、女性2名と男性1名、女性1名と男性2名などの組み合わせで登録してください。<br>
-            組み合わせは実行委員会で確認します。</span>
+            組み合わせは実行委員会で確認します。<br>
+            オーバーエイジの女性に限り、男性と同じく単独歩行が認められます。
+        </span>
     </div>
     <div class="card-body">
         {{-- バディの可否(男性のみ) --}}
@@ -462,7 +403,12 @@
             <span class="uk-text-warning uk-text-small">女性の参加希望者で一緒に歩く男性がまだ未定の方(実行委員会から男性のバディをご紹介します)</sp>
                 {!! Form::select(
                     'buddy_match',
-                    ['' => '', 'バディの紹介を希望' => 'バディの紹介を希望', '男性バディが決まっている' => '男性バディが決まっている'],
+                    [
+                        '' => '',
+                        'バディの紹介を希望' => 'バディの紹介を希望',
+                        '男性バディが決まっている' => '男性バディが決まっている',
+                        'オーバーエイジの女性で単独歩行する' => 'オーバーエイジの女性で単独歩行する',
+                    ],
                     null,
                     [
                         'class' => 'form-control custom-select',
@@ -490,7 +436,14 @@
             {!! Form::label('buddy_type', 'バディのタイプ:') !!}
             {!! Form::select(
                 'buddy_type',
-                ['' => '', '男性単独' => '男性単独', '男1/女1' => '男1/女1', '男1/女2' => '男1/女2', '男2/女1' => '男2/女1'],
+                [
+                    '' => '',
+                    '男性単独' => '男性単独',
+                    '女性単独(オーバーエイジ)' => '女性単独(オーバーエイジ)',
+                    '男1/女1' => '男1/女1',
+                    '男1/女2' => '男1/女2',
+                    '男2/女1' => '男2/女1',
+                ],
                 null,
                 ['class' => 'form-control custom-select'],
             ) !!}

@@ -322,14 +322,13 @@ class entryFormController extends AppBaseController
     public function id_card()
     {
         $user = User::where('id',Auth::id())->with('entryform')->first();
-        // dd($entryForm);
 
-        $pdf = \PDF::loadView('entry_forms.id_card', compact('user',$user));
+        $pdf = \PDF::loadView('entry_forms.id_card', compact('user'));
         // $pdf->setPaper('A4');
-        // $pdf->setPaper([0, 0, 283, 420], 'landscape'); // 横レイアウト
-        $pdf->setPaper([0, 0, 283, 420], 'vertical'); // 縦レイアウト
-        return $pdf->download();
-        // return $pdf->stream();
+        $pdf->setPaper([0, 0, 283, 420], 'landscape'); // 横レイアウト
+        // $pdf->setPaper([0, 0, 283, 420], 'vertical'); // 縦レイアウト
+        // return $pdf->download();
+        return $pdf->stream();
     }
 
     public function healthcheck()

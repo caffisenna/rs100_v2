@@ -20,6 +20,7 @@ class CreateEntryFormsTable extends Migration
             $table->integer('zekken')->nullable(); // ゼッケン
             $table->text('furigana');
             $table->text('bs_gs'); // BSかGSか
+            $table->text('generation'); // 現役 or オーバーエイジ
             $table->text('bs_id')->nullable(); // GSは取らない
             $table->text('prefecture'); // 県連
             $table->text('district');   // 地区
