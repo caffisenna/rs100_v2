@@ -1,5 +1,7 @@
 <script src="{{ url('js/yubinbango.js') }}" charset="UTF-8"></script>
 <div class="card col-sm-6">
+    <p>今大会は東京連盟に所属の加盟員に限り、26歳以上の方の参加も可能です。以下のフォームではこれに該当する方を便宜上<span class="uk-text-warning">オーバーエイジ</span>と表記しています。
+    </p>
     <div class="card-header">
         <h3>個人情報</h3>
     </div>
@@ -185,7 +187,7 @@
             {!! Form::label('generation', '年代:') !!}
             {!! Form::select(
                 'generation',
-                ['' => '', '現役' => '現役スカウト', 'オーバーエイジ' => 'オーバーエイジ'],
+                ['' => '', '現役' => '現役スカウト', 'オーバーエイジ' => 'オーバーエイジ(東京連盟所属に限る)'],
                 null,
                 [
                     'class' => 'form-control custom-select',
@@ -380,7 +382,7 @@
         <span class="uk-text-warning uk-text-small">バディとは一緒に歩くパートナーのことです。女性の参加者は必ず男性のバディと歩行することが必要です。<br>
             女性1名と男性1名、女性2名と男性1名、女性1名と男性2名などの組み合わせで登録してください。<br>
             組み合わせは実行委員会で確認します。<br>
-            オーバーエイジの女性に限り、男性と同じく単独歩行が認められます。
+            オーバーエイジ(東京連盟所属に限る)の女性に限り、男性と同じく単独歩行が認められます。
         </span>
     </div>
     <div class="card-body">
