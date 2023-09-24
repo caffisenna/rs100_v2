@@ -97,7 +97,7 @@
                         <div class="flex items-center">
                             <span uk-icon="icon:warning; ratio:2"></span>
                             <div class="ml-4 text-lg leading-7 font-semibold">
-                                <a href="https://docs.google.com/presentation/d/e/2PACX-1vS9rKuXA7m7BIS_JFuhmIljMyzQhC56vgU5Qm6sjmP7z-8t_v0e6mQurhq5LMPuC0fhgBv-fRvxATBU/pub?start=false&loop=false&delayms=3000"
+                                <a href="https://docs.google.com/presentation/d/13vzSDYwJJ9tARexoqPisMH7PF1IT4HBYFh3AF6ffZDg/"
                                     target="_blank">参加申込ガイド</a>
                             </div>
                         </div>
