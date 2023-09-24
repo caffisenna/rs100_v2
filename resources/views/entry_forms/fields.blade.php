@@ -175,29 +175,13 @@
             {!! Form::label('bs_gs', '所属:') !!}
             {!! Form::select('bs_gs', ['' => '', 'BS' => 'ボーイスカウト', 'GS' => 'ガールスカウト'], null, [
                 'class' => 'form-control custom-select',
+                'id' => 'bs_gs',
             ]) !!}
             @error('bs_gs')
                 <div class="error text-danger">{{ $message }}</div>
             @enderror
         </div>
         {{-- BSかGSか --}}
-
-        {{-- 現役 or OB --}}
-        <div class="form-group">
-            {!! Form::label('generation', '年代:') !!}
-            {!! Form::select(
-                'generation',
-                ['' => '', '現役' => '現役スカウト', 'オーバーエイジ' => 'オーバーエイジ(東京連盟所属に限る)'],
-                null,
-                [
-                    'class' => 'form-control custom-select',
-                ],
-            ) !!}
-            @error('generation')
-                <div class="error text-danger">{{ $message }}</div>
-            @enderror
-        </div>
-        {{-- 現役 or OB --}}
 
         <!-- Bs Id Field -->
         <div class="form-group">
@@ -268,7 +252,7 @@
                     '沖縄' => '沖縄',
                 ],
                 null,
-                ['class' => 'form-control custom-select'],
+                ['class' => 'form-control custom-select', 'id' => 'prefecture'],
             ) !!}
             @error('prefecture')
                 <div class="error text-danger">{{ $message }}</div>
@@ -294,6 +278,24 @@
         @error('dan_name')
             <div class="error text-danger">{{ $message }}</div>
         @enderror
+
+        {{-- 現役 or OB --}}
+        <div class="form-group">
+            {!! Form::label('generation', '年代:') !!}
+            {!! Form::select(
+                'generation',
+                ['' => '', '現役' => '現役スカウト', 'オーバーエイジ' => '26歳以上のオーバーエイジ(東京連盟所属に限る)'],
+                null,
+                [
+                    'class' => 'form-control custom-select',
+                    'id' => 'generation',
+                ],
+            ) !!}
+            @error('generation')
+                <div class="error text-danger">{{ $message }}</div>
+            @enderror
+        </div>
+        {{-- 現役 or OB --}}
     </div>
 </div>
 
@@ -488,3 +490,31 @@
 
     </div>
 </div>
+
+
+<script>
+    function updateGenerationOption() {
+        var bs_gsInput = document.getElementById("bs_gs");
+        var prefectureSelect = document.getElementById("prefecture");
+        var generationSelect = document.getElementById("generation");
+        var overAgeOption = document.createElement("option");
+        overAgeOption.value = "オーバーエイジ";
+        overAgeOption.text = "オーバーエイジ";
+
+        if (bs_gsInput.value === "BS" && prefectureSelect.value === "東京") {
+            // BSかつ東京の場合、オーバーエイジオプションを追加
+            generationSelect.appendChild(overAgeOption);
+        } else {
+            // それ以外の場合、オーバーエイジオプションを削除
+            var overAgeOptionToRemove = generationSelect.querySelector("option[value='オーバーエイジ']");
+            if (overAgeOptionToRemove) {
+                generationSelect.removeChild(overAgeOptionToRemove);
+            }
+        }
+    }
+
+    // ページ読み込み時とフォーム要素が変更されたときにupdateGenerationOptionを呼び出す
+    document.addEventListener("DOMContentLoaded", updateGenerationOption);
+    document.getElementById("bs_gs").addEventListener("input", updateGenerationOption);
+    document.getElementById("prefecture").addEventListener("change", updateGenerationOption);
+</script>
