@@ -21,7 +21,7 @@
 
         <!-- Birth Day Field -->
         <div class="form-group">
-            {!! Form::label('birth_day', '生年月日') !!}
+            {!! Form::label('birth_day', '生年月日(東京連盟所属の方に限り、26歳以上でもお申し込みいただけます)') !!}
             <div class="form-row">
                 <div class="col">
                     {{-- {!! Form::text('bd_year', null, ['class' => 'form-control', 'maxlength' => '4', 'placeholder' => '西暦']) !!} --}}
