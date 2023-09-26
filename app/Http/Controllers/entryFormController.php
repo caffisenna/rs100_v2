@@ -313,7 +313,7 @@ class entryFormController extends AppBaseController
         $entryForm = User::where('id',Auth::id())->with('entryform')->first();
         // dd($entryForm);
 
-        $pdf = \PDF::loadView('entry_forms.pdf', compact('entryForm',$entryForm));
+        $pdf = \PDF::loadView('entry_forms.pdf', compact('entryForm'));
         $pdf->setPaper('A4');
         return $pdf->download();
         // return $pdf->stream();

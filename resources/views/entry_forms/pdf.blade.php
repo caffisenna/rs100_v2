@@ -4,7 +4,7 @@
 <head>
     <title>pdf output test</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" type="text/css" href="{{ url('css/uikit.min.css') }}" media="all">
+    <link rel="stylesheet" type="text/css" href="{{ url('uikit/uikit.min.css') }}" media="all">
     <style>
         @font-face {
             font-family: migmix;
