@@ -122,7 +122,7 @@
                 <div class="uk-card uk-card-primary uk-card-body">
                     <h5 class="uk-card-title"><span uk-icon="icon:info; ratio:1"></span>NEWS</h5>
                     <ul class="uk-list">
-                        <li>2023/07/04 第56回大会に向けてテスト中です</li>
+                        <li>2023/09/27 第56回大会 参加者受付を開始しました</li>
                     </ul>
                 </div>
             </div>
