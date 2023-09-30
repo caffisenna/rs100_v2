@@ -16,7 +16,6 @@ class SlackPost
 
     protected function routeNotificationForSlack()
     {
-        // return env('SLACK_WEBHOOK_' . config('app.env'));
         return config('slack.url');
     }
 }
