@@ -119,6 +119,8 @@ class entryFormController extends AppBaseController
         $genderM = entryForm::where('gender', '男')->count();
         $genderF = entryForm::where('gender', '女')->count();
 
+        $data->district = str_replace('地区','',$data->district);
+
         //slack通知
         $id = Auth()->user()->id;
         $generation = '年代: ' . $data->generation;
