@@ -17,6 +17,7 @@ class CreateEntryFormsTable extends Migration
         Schema::create('entry_forms', function (Blueprint $table) {
             $table->increments('id');
             $table->foreignId('user_id')->nullable()->constrained();
+            $table->unique('user_id');
             $table->integer('zekken')->nullable(); // ゼッケン
             $table->text('furigana');
             $table->text('bs_gs'); // BSかGSか

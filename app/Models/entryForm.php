@@ -122,6 +122,7 @@ class entryForm extends Model
      */
     public static $rules = [
         'furigana' => 'required',
+        'user_id' => 'unique',
         'bs_gs' => 'required',
         'bs_id' => 'required_if:bs_gs,BS',
         'prefecture' => 'required',
@@ -155,6 +156,7 @@ class entryForm extends Model
     // viewの方の該当箇所に {{ $message }} を入れると拾ってくれる
     public static $messages = [
         'furigana.required' => '入力必須です',
+        'user_id.unique' => '既に申込が行われています。重複して申し込みデータを作成することはできません。',
         'bs_gs.required' => '所属を選択してください',
         'bs_id.required_if' => '登録証を確認してください',
         // 'bs_id.digits'=>'加盟登録番号(10桁)を登録証で確認してください',
