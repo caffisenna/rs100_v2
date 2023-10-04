@@ -96,18 +96,42 @@ class entryFormController extends AppBaseController
         // 生年月日生成
         $input['birth_day'] = Carbon::create($input['bd_year'], $input['bd_month'], $input['bd_day']);
         // 存在する日付かチェック
-        if(!checkdate($input['bd_month'], $input['bd_day'],$input['bd_year'])){
+        if (!checkdate($input['bd_month'], $input['bd_day'], $input['bd_year'])) {
             return back()->with('message', '存在しない日付です');
         }
 
         /** @var entryForm $entryForm */
-        $entryForm = entryForm::create($input);
+        // DBに登録する前に user_id の重複を判定する
+        try {
+            $entryForm = entryForm::create($input);
+        } catch (\Illuminate\Database\QueryException $e) {
+            if ($e->errorInfo[1] == 1062) { // ユニーク制約違反のエラーコード
+                return back()->withInput()->withErrors(['user_id' => '既に申し込みが行われています。重複して申し込みデータを作成することはできません。']);
+            }
+            // その他のデータベースエラーを処理するコード
+        }
+
+        // データ取得
+        $data = entryForm::where('user_id', $input['user_id'])->first();
+        $entryCounts = entryForm::all()->count();
+        $overageCounts = entryForm::where('generation', 'オーバーエイジ')->count();
+        $rsCounts = entryForm::where('generation', '現役')->count();
+        $genderM = entryForm::where('gender', '男')->count();
+        $genderF = entryForm::where('gender', '女')->count();
 
         //slack通知
         $id = Auth()->user()->id;
+        $generation = '年代: ' . $data->generation;
         $name = Auth()->user()->name;
+        $belongs = '所属: ' . $data->prefecture . '連盟 ' . $data->district . '地区 ' . $data->dan_name;
+        $countStatus = 'トータル:' . $entryCounts . '人 / 現役:' . $rsCounts . '人 / OA:' . $overageCounts . '人';
         $slack = new SlackPost();
-        $slack->send(":u7533: 参加者ID:$id " . $name . "さんが申込書を作成しました");
+        $slack->send(":u7533: 参加者ID:$id " . $name . "さんが申込書を作成しました\n
+        $belongs \n
+        $generation \n
+        $countStatus\n
+        男性: $genderM 名 / 女性: $genderF 名
+        ");
 
         // logger
         Log::info('[申込書作成] ' . $name);
@@ -190,7 +214,7 @@ class entryFormController extends AppBaseController
 
         // 生年月日生成(制御がかからない!)
         $request['birth_day'] = Carbon::create($request['bd_year'], $request['bd_month'], $request['bd_day']);
-        if(!checkdate($request['bd_month'], $request['bd_day'],$request['bd_year'])){
+        if (!checkdate($request['bd_month'], $request['bd_day'], $request['bd_year'])) {
             // return back()->with('message', '存在しない日付です');
             $messages = '有効な日付';
             return view('entry_forms.edit', compact('messages'));
@@ -310,7 +334,7 @@ class entryFormController extends AppBaseController
 
     public function pdf()
     {
-        $entryForm = User::where('id',Auth::id())->with('entryform')->first();
+        $entryForm = User::where('id', Auth::id())->with('entryform')->first();
         // dd($entryForm);
 
         $pdf = \PDF::loadView('entry_forms.pdf', compact('entryForm'));
@@ -321,7 +345,7 @@ class entryFormController extends AppBaseController
 
     public function id_card()
     {
-        $user = User::where('id',Auth::id())->with('entryform')->first();
+        $user = User::where('id', Auth::id())->with('entryform')->first();
 
         $pdf = \PDF::loadView('entry_forms.id_card', compact('user'));
         // $pdf->setPaper('A4');
@@ -334,9 +358,9 @@ class entryFormController extends AppBaseController
     public function healthcheck()
     {
         // 健康調査票
-        $entryForm = User::where('id',Auth::id())->with('entryform')->first();
+        $entryForm = User::where('id', Auth::id())->with('entryform')->first();
 
-        $pdf = \PDF::loadView('entry_forms.healthcheck', compact('entryForm',$entryForm));
+        $pdf = \PDF::loadView('entry_forms.healthcheck', compact('entryForm', $entryForm));
         $pdf->setPaper('A4');
         return $pdf->download();
     }
