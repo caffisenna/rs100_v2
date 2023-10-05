@@ -10,7 +10,7 @@
     @endunless
 @endif
 {{-- 管理者アカウントでのみ表示 --}}
-@if (Auth::user()->is_admin)
+@if (isset(Auth::user()->is_admin))
 <p class="uk-text-warning">参加者管理</p>
     <li class="nav-item">
         <a href="{{ route('adminentries.index') }}"
@@ -70,7 +70,7 @@
     </li>
 @endif
 
-@if (Auth::user()->is_commi)
+@if (isset(Auth::user()->is_commi))
     <li class="nav-item">
         <a href="{{ route('entries.index') }}" class="nav-link {{ Request::is('entries*') ? 'active' : '' }}">
             <p>地区参加者一覧</p>
@@ -91,3 +91,10 @@
     @csrf
 </form>
 {{-- ログアウトボタン --}}
+
+<li class="nav-item">
+    <a href="{{ route('car_registrations.index') }}" class="nav-link {{ Request::is('carRegistrations*') ? 'active' : '' }}">
+        <i class="nav-icon fas fa-home"></i>
+        <p>車両登録</p>
+    </a>
+</li>

@@ -71,15 +71,15 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown user-menu">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                        <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
+                        {{-- <span class="d-none d-md-inline">{{ Auth::user()->name }}</span> --}}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <!-- User image -->
                         <li class="user-header bg-primary">
                             <img src="{{ url('/images/rs100km_56th.png') }}" class="" alt="User Image">
                             <p>
-                                {{ Auth::user()->name }}
-                                <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small>
+                                {{-- {{ Auth::user()->name }} --}}
+                                {{-- <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small> --}}
                             </p>
                         </li>
                         <!-- Menu Footer-->

@@ -107,3 +107,6 @@ Route::post('/sm_confirm', [
 Route::get('/hq_confirm', [
     App\Http\Controllers\adminentryFormController::class, 'hq_confirm'
 ])->name('hq_comfirm');
+
+Route::resource('car_registrations', App\Http\Controllers\car_registrationController::class);
+Route::get('/car_registration_pdf', [App\Http\Controllers\car_registrationController::class, 'pdf'])->name('car_registration_pdf');
