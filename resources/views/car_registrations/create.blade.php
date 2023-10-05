@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-12">
-                    <h1>新規登録</h1>
+                    <h1>車両情報登録</h1>
                 </div>
             </div>
         </div>
