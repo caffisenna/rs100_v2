@@ -9,6 +9,8 @@ use App\Models\car_registration;
 use App\Repositories\car_registrationRepository;
 use Illuminate\Http\Request;
 use Flash;
+use Mail;
+use App\Mail\CarRegistrationCreated;
 
 class car_registrationController extends AppBaseController
 {
@@ -50,7 +52,13 @@ class car_registrationController extends AppBaseController
 
         Flash::success('車両情報を登録しました。');
 
-        return redirect(route('car_registrations.index'));
+        $name = $input['driver_name'];
+        $sendto = $input['email'];
+        $uuid = $input['uuid'];
+        Mail::to($sendto)->queue(new CarRegistrationCreated($name,$uuid)); // メールをqueueで送信
+
+        // return redirect(route('car_registrations.index'));
+        return view('car_registrations.download')->with(compact('name'))->with(compact('uuid'));
     }
 
     /**
@@ -135,7 +143,7 @@ class car_registrationController extends AppBaseController
         // dd($car_info);
 
         $pdf = \PDF::loadView('car_registrations.pdf', compact('car_info'));
-        $pdf->setPaper('A4','landscape');
+        $pdf->setPaper('A4', 'landscape');
         // $pdf->setPaper([0, 0, 283, 420], 'landscape'); // 横レイアウト
         return $pdf->download();
         // return $pdf->stream();

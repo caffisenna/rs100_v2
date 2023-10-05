@@ -39,16 +39,15 @@
 </head>
 
 <body class="uk-text-center">
-    <img src="{{ url('/images/rs100km_56th.png') }}" style="height:200px;">
-
-    <p class="uk-text" style="font-size: 60pt">駐車許可証</p>
+    <p class="uk-text" style="font-size: 60pt"><img src="{{ url('/images/rs100km_56th.png') }}"
+            style="height:200px;">駐車許可証</p>
 
     <div class="uk-text" style="font-size: 60pt">
         交付番号: {{ $car_info->id }}
+        <br>
+        {{ $car_info->car_number }}
     </div>
-
     管理ID: {{ $car_info->uuid }}
-
     <p class="uk-tetx" style="font-size: 30pt">第56回東京連盟ローバースカウト100kmハイク実行委員会</p>
 </body>
 
