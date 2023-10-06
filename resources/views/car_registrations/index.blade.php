@@ -5,11 +5,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>車両登録</h1>
+                    <h1>駐車許可申請</h1>
                 </div>
                 <div class="col-sm-6">
                     <a class="btn btn-primary float-right" href="{{ route('car_registrations.create') }}">
-                        新規追加
+                        新規申請
                     </a>
                 </div>
             </div>
