@@ -94,7 +94,7 @@
 
 <li class="nav-item">
     <a href="{{ route('car_registrations.index') }}" class="nav-link {{ Request::is('carRegistrations*') ? 'active' : '' }}">
-        <i class="nav-icon fas fa-home"></i>
-        <p>車両登録</p>
+        <span uk-icon="file-text"></span>
+        <p>駐車許可証申請</p>
     </a>
 </li>
