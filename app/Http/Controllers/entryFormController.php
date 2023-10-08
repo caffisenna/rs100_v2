@@ -341,7 +341,7 @@ class entryFormController extends AppBaseController
 
         $pdf = \PDF::loadView('entry_forms.pdf', compact('entryForm'));
         $pdf->setPaper('A4');
-        return $pdf->download();
+        return $pdf->download('RS100km_参加申込書');
         // return $pdf->stream();
     }
 
@@ -354,7 +354,7 @@ class entryFormController extends AppBaseController
         $pdf->setPaper([0, 0, 283, 420], 'landscape'); // 横レイアウト
         // $pdf->setPaper([0, 0, 283, 420], 'vertical'); // 縦レイアウト
         // return $pdf->download();
-        return $pdf->stream();
+        return $pdf->stream('RS100km_参加IDカード');
     }
 
     public function healthcheck()
@@ -364,6 +364,6 @@ class entryFormController extends AppBaseController
 
         $pdf = \PDF::loadView('entry_forms.healthcheck', compact('entryForm', $entryForm));
         $pdf->setPaper('A4');
-        return $pdf->download();
+        return $pdf->download('RS100km_健康調査票兼Eラーニング修了書');
     }
 }
