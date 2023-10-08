@@ -46,6 +46,7 @@
         #img {
             width: 100px;
         }
+
     </style>
 </head>
 
@@ -68,12 +69,12 @@
         </p>
     </div>
     <hr>
-    <div id="container" style="margin-top:10px">
+    <div class="fixed-bottom" id="container" style="margin-top:10px; bottom:0;">
         <div id="text">
             <p class="uk-text-small" style="line-height:0.8;">このIDカードを拾われた方は<br>以下までご連絡をお願い致します。<br>大会本部連絡先:
                 03-6387-9317</p>
         </div>
-        <div id="img" style="float:right; margin-top:-100px">
+        <div id="img" style="float:right; margin-top:-90px;">
             <img src="{{ url('/images/rs100km_56th.png') }}">
         </div>
     </div>
