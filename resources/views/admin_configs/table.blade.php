@@ -30,5 +30,10 @@
             <th>ユーザー編集</th>
             <td>{{ $adminConfigs->user_edit }}</td>
         </tr>
+
+        <tr>
+            <th>駐車許可証</th>
+            <td>{{ $adminConfigs->car_registration }}</td>
+        </tr>
     </table>
 </div>

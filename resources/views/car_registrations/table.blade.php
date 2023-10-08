@@ -2,46 +2,60 @@
     <div class="table-responsive">
         <table class="table" id="car_registrations-table">
             <thead>
-            <tr>
-                <th>運転者</th>
-                <th>ケータイ</th>
-                <th>Email</th>
-                <th>地区</th>
-                <th>団名</th>
-                <th>役務</th>
-                <th>参加者との関係</th>
-                <th>カーナンバー</th>
-                <th colspan="3">Action</th>
-            </tr>
+                <tr>
+                    <th>ID</th>
+                    <th>運転者</th>
+                    <th>地区</th>
+                    <th>団名</th>
+                    <th>役務</th>
+                    <th>カーナンバー</th>
+                    <th>許可証</th>
+                    <th>発行</th>
+                    <th>操作</th>
+                </tr>
             </thead>
             <tbody>
-            @foreach($carRegistrations as $carRegistration)
-                <tr>
-                    <td>{{ $carRegistration->driver_name }}</td>
-                    <td>{{ $carRegistration->cell_phone }}</td>
-                    <td>{{ $carRegistration->email }}</td>
-                    <td>{{ $carRegistration->district }}</td>
-                    <td>{{ $carRegistration->dan_name }}</td>
-                    <td>{{ $carRegistration->position }}</td>
-                    <td>{{ $carRegistration->relation }}</td>
-                    <td>{{ $carRegistration->car_number }}</td>
-                    <td  style="width: 120px">
-                        {!! Form::open(['route' => ['car_registrations.destroy', $carRegistration->id], 'method' => 'delete']) !!}
-                        <div class='btn-group'>
-                            <a href="{{ route('car_registrations.show', [$carRegistration->id]) }}"
-                               class='btn btn-default btn-xs'>
-                                <i class="far fa-eye"></i>
-                            </a>
-                            <a href="{{ route('car_registrations.edit', [$carRegistration->id]) }}"
-                               class='btn btn-default btn-xs'>
-                                <i class="far fa-edit"></i>
-                            </a>
-                            {!! Form::button('<i class="far fa-trash-alt"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
-                        </div>
-                        {!! Form::close() !!}
-                    </td>
-                </tr>
-            @endforeach
+                @foreach ($carRegistrations as $carRegistration)
+                    <tr>
+                        <td><a
+                                href="{{ route('car_registrations.show', [$carRegistration->id]) }}">{{ $carRegistration->id }}</a>
+                        </td>
+                        <td>{{ $carRegistration->driver_name }}</td>
+                        <td>{{ $carRegistration->district }}</td>
+                        <td>{{ $carRegistration->dan_name }}</td>
+                        <td>{{ $carRegistration->position }}</td>
+                        <td>{{ $carRegistration->car_number }}</td>
+                        <td><a href="{{ url('/car_registration_pdf?uuid=') }}{{ $carRegistration->uuid }}"><span
+                                    uk-icon="file-pdf"></span></a></td>
+                        <td>
+                            @if (!$carRegistration->published_at)
+                                <a
+                                    href="{{ url('/car_registration_publish?uuid=') }}{{ $carRegistration->uuid }}">発行</a>
+                            @else
+                                済み
+                            @endif
+                        </td>
+                        <td style="width: 120px">
+                            {!! Form::open(['route' => ['car_registrations.destroy', $carRegistration->id], 'method' => 'delete']) !!}
+                            <div class='btn-group'>
+                                <a href="{{ route('car_registrations.show', [$carRegistration->id]) }}"
+                                    class='btn btn-default btn-xs'>
+                                    <span uk-icon="eye"></span>
+                                </a>
+                                <a href="{{ route('car_registrations.edit', [$carRegistration->id]) }}"
+                                    class='btn btn-default btn-xs'>
+                                    <span uk-icon="file-edit"></span>
+                                </a>
+                                {!! Form::button('<span uk-icon="trash"></span>', [
+                                    'type' => 'submit',
+                                    'class' => 'btn btn-danger btn-xs',
+                                    'onclick' => "return confirm('Are you sure?')",
+                                ]) !!}
+                            </div>
+                            {!! Form::close() !!}
+                        </td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

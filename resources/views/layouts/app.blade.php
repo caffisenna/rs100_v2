@@ -46,11 +46,11 @@
 
     @yield('third_party_stylesheets')
     <!-- UIkit CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.7.3/dist/css/uikit.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.17.1/dist/css/uikit.min.css" />
 
     <!-- UIkit JS -->
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.3/dist/js/uikit.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/uikit@3.7.3/dist/js/uikit-icons.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.1/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.17.1/dist/js/uikit-icons.min.js"></script>
 
 
     @stack('page_css')
@@ -71,15 +71,19 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown user-menu">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
-                        {{-- <span class="d-none d-md-inline">{{ Auth::user()->name }}</span> --}}
+                        @if (!Auth::guest())
+                            <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
+                        @endif
                     </a>
                     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <!-- User image -->
                         <li class="user-header bg-primary">
                             <img src="{{ url('/images/rs100km_56th.png') }}" class="" alt="User Image">
                             <p>
-                                {{-- {{ Auth::user()->name }} --}}
-                                {{-- <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small> --}}
+                                @if (!Auth::guest())
+                                    {{ Auth::user()->name }}
+                                    <small>Member since {{ Auth::user()->created_at->format('M. Y') }}</small>
+                                @endif
                             </p>
                         </li>
                         <!-- Menu Footer-->
@@ -89,8 +93,7 @@
                                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                 Sign out
                             </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                class="d-none">
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                 @csrf
                             </form>
                         </li>

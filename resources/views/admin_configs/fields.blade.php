@@ -27,3 +27,8 @@
     {!! Form::label('healthcheck', '健康調査票:') !!}
     {!! Form::select('healthcheck',['1'=>'true','0'=>'false'],is_null(old('$adminConfig->healthcheck')) ? $adminConfig->healthcheck : old('$adminConfig->user_edit'),['class'=>'form-control']) !!}
 </div>
+
+<div class="form-group col-sm-6">
+    {!! Form::label('car_registration', '駐車許可証:') !!}
+    {!! Form::select('car_registration',['1'=>'true','0'=>'false'],is_null(old('$adminConfig->car_registration')) ? $adminConfig->car_registration : old('$adminConfig->car_registration'),['class'=>'form-control']) !!}
+</div>

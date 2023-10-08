@@ -1,60 +1,42 @@
-<!-- Driver Name Field -->
-<div class="col-sm-12">
-    {!! Form::label('driver_name', 'Driver Name:') !!}
-    <p>{{ $carRegistration->driver_name }}</p>
-</div>
-
-<!-- Cell Phone Field -->
-<div class="col-sm-12">
-    {!! Form::label('cell_phone', 'Cell Phone:') !!}
-    <p>{{ $carRegistration->cell_phone }}</p>
-</div>
-
-<!-- Email Field -->
-<div class="col-sm-12">
-    {!! Form::label('email', 'Email:') !!}
-    <p>{{ $carRegistration->email }}</p>
-</div>
-
-<!-- District Field -->
-<div class="col-sm-12">
-    {!! Form::label('district', 'District:') !!}
-    <p>{{ $carRegistration->district }}</p>
-</div>
-
-<!-- Dan Name Field -->
-<div class="col-sm-12">
-    {!! Form::label('dan_name', 'Dan Name:') !!}
-    <p>{{ $carRegistration->dan_name }}</p>
-</div>
-
-<!-- Position Field -->
-<div class="col-sm-12">
-    {!! Form::label('position', 'Position:') !!}
-    <p>{{ $carRegistration->position }}</p>
-</div>
-
-<!-- Relation Field -->
-<div class="col-sm-12">
-    {!! Form::label('relation', 'Relation:') !!}
-    <p>{{ $carRegistration->relation }}</p>
-</div>
-
-<!-- Car Number Field -->
-<div class="col-sm-12">
-    {!! Form::label('car_number', 'Car Number:') !!}
-    <p>{{ $carRegistration->car_number }}</p>
-</div>
-
-<!-- Created At Field -->
-<div class="col-sm-12">
-    {!! Form::label('created_at', 'Created At:') !!}
-    <p>{{ $carRegistration->created_at }}</p>
-</div>
-
-<!-- Updated At Field -->
-<div class="col-sm-12">
-    {!! Form::label('updated_at', 'Updated At:') !!}
-    <p>{{ $carRegistration->updated_at }}</p>
-</div>
-
+<table class="uk-table">
+    <tr>
+        <th>運転者</th>
+        <td>{{ $carRegistration->driver_name }}</td>
+    </tr>
+    <tr>
+        <th>ケータイ</th>
+        <td>{{ $carRegistration->cell_phone }}</td>
+    </tr>
+    <tr>
+        <th>Email</th>
+        <td>{{ $carRegistration->email }}</td>
+    </tr>
+    <tr>
+        <th>所属</th>
+        <td>{{ $carRegistration->district }}地区 {{ $carRegistration->dan_name }} {{ $carRegistration->position }}</td>
+    </tr>
+    <tr>
+        <th>参加者との関係</th>
+        <td>{{ $carRegistration->relation }}</td>
+    </tr>
+    <tr>
+        <th>カーナンバー</th>
+        <td>{{ $carRegistration->car_number }}</td>
+    </tr>
+    <tr>
+        <th>申請日</th>
+        <td>{{ $carRegistration->created_at }}</td>
+    </tr>
+    <tr>
+        <th>更新日</th>
+        <td>{{ $carRegistration->updated_at }}</td>
+    </tr>
+    <tr>
+        <th>uuid</th>
+        <td>{{ $carRegistration->uuid }}</td>
+    </tr>
+    <tr>
+        <th>発行日</th>
+        <td>{{ $carRegistration->published_at }}</td>
+    </tr>
+</table>

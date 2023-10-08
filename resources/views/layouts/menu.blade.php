@@ -1,6 +1,6 @@
 <p class="uk-hidden">{{ $configs = \App\Models\AdminConfig::first() }}</p>
-@if (isset(Auth::user()->email_verified_at))
-    @unless(Auth::user()->is_admin || Auth::user()->is_commi || Auth::user()->is_staff)
+@if (!Auth::guest() && Auth::user()->email_verified_at)
+    @unless (Auth::user()->is_admin || Auth::user()->is_commi || Auth::user()->is_staff)
         {{-- @if ($configs->create_application) --}}
         <a href="{{ url('/user/entryForms') }}" class="btn btn-info btn-xs btn-block">申込情報</a>
         {{-- @endif --}}
@@ -10,8 +10,8 @@
     @endunless
 @endif
 {{-- 管理者アカウントでのみ表示 --}}
-@if (isset(Auth::user()->is_admin))
-<p class="uk-text-warning">参加者管理</p>
+@if (!Auth::guest() && Auth::user()->is_admin)
+    <p class="uk-text-warning">参加者管理</p>
     <li class="nav-item">
         <a href="{{ route('adminentries.index') }}"
             class="nav-link {{ Request::is('admin/adminentries*') ? 'active' : '' }}">
@@ -19,8 +19,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="{{ url('admin/non_tokyo') }}"
-            class="nav-link {{ Request::is('admin/non_tokyo*') ? 'active' : '' }}">
+        <a href="{{ url('admin/non_tokyo') }}" class="nav-link {{ Request::is('admin/non_tokyo*') ? 'active' : '' }}">
             <p>他県参加一覧</p>
         </a>
     </li>
@@ -37,8 +36,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="{{ url('/admin/buddy_ok') }}"
-            class="nav-link {{ Request::is('admin/buddy_ok*') ? 'active' : '' }}">
+        <a href="{{ url('/admin/buddy_ok') }}" class="nav-link {{ Request::is('admin/buddy_ok*') ? 'active' : '' }}">
             <p>バディOK男性</p>
         </a>
     </li>
@@ -70,7 +68,7 @@
     </li>
 @endif
 
-@if (isset(Auth::user()->is_commi))
+@if (!Auth::guest() && Auth::user()->is_commi)
     <li class="nav-item">
         <a href="{{ route('entries.index') }}" class="nav-link {{ Request::is('entries*') ? 'active' : '' }}">
             <p>地区参加者一覧</p>
@@ -92,9 +90,13 @@
 </form>
 {{-- ログアウトボタン --}}
 
-<li class="nav-item">
-    <a href="{{ route('car_registrations.index') }}" class="nav-link {{ Request::is('carRegistrations*') ? 'active' : '' }}">
-        <span uk-icon="file-text"></span>
-        <p>駐車許可証申請</p>
-    </a>
-</li>
+@if ($configs->car_registration)
+    <p class="uk-text-warning">駐車許可証</p>
+    <li class="nav-item">
+        <a href="{{ route('car_registrations.index') }}"
+            class="nav-link {{ Request::is('carRegistrations*') ? 'active' : '' }}">
+            <span uk-icon="file-text"></span>
+            <p>駐車許可証申請</p>
+        </a>
+    </li>
+@endif

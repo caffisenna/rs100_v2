@@ -6,7 +6,7 @@
             <div class="row mb-2">
                 <div class="col-sm-12">
                     <h1>
-                        Edit Car Registration
+                        駐車許可証修正
                     </h1>
                 </div>
             </div>
@@ -19,7 +19,10 @@
 
         <div class="card">
 
-            {!! Form::model($carRegistration, ['route' => ['carRegistrations.update', $carRegistration->id], 'method' => 'patch']) !!}
+            {!! Form::model($carRegistration, [
+                'route' => ['car_registrations.update', $carRegistration->id],
+                'method' => 'patch',
+            ]) !!}
 
             <div class="card-body">
                 <div class="row">
@@ -28,8 +31,8 @@
             </div>
 
             <div class="card-footer">
-                {!! Form::submit('Save', ['class' => 'btn btn-primary']) !!}
-                <a href="{{ route('carRegistrations.index') }}" class="btn btn-default"> Cancel </a>
+                {!! Form::submit('更新', ['class' => 'btn btn-primary']) !!}
+                <a href="{{ route('car_registrations.index') }}" class="btn btn-default"> キャンセル </a>
             </div>
 
             {!! Form::close() !!}

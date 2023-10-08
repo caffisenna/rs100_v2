@@ -110,3 +110,4 @@ Route::get('/hq_confirm', [
 
 Route::resource('car_registrations', App\Http\Controllers\car_registrationController::class);
 Route::get('/car_registration_pdf', [App\Http\Controllers\car_registrationController::class, 'pdf'])->name('car_registration_pdf');
+Route::get('/car_registration_publish', [App\Http\Controllers\car_registrationController::class, 'publish'])->name('car_registration_publish');

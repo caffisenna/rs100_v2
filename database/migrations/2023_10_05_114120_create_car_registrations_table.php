@@ -24,6 +24,7 @@ return new class extends Migration
             $table->string('relation');
             $table->string('car_number');
             $table->uuid('uuid')->unique();
+            $table->timestamp('published_at')->nullable();
             $table->timestamps();
             $table->timestamp('deleted_at')->nullable();
         });

@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Flash;
 use Mail;
 use App\Mail\CarRegistrationCreated;
+use App\Mail\CarRegistrationPublish;
 
 class car_registrationController extends AppBaseController
 {
@@ -50,15 +51,15 @@ class car_registrationController extends AppBaseController
 
         $carRegistration = $this->carRegistrationRepository->create($input);
 
-        Flash::success('車両情報を登録しました。');
+        Flash::success('車両情報を登録しました。メールをご確認ください。');
 
-        $name = $input['driver_name'];
+        // $name = $input['driver_name'];
         $sendto = $input['email'];
-        $uuid = $input['uuid'];
-        Mail::to($sendto)->queue(new CarRegistrationCreated($name,$uuid)); // メールをqueueで送信
+        // $uuid = $input['uuid'];
+        Mail::to($sendto)->queue(new CarRegistrationCreated($input)); // メールをqueueで送信
 
-        // return redirect(route('car_registrations.index'));
-        return view('car_registrations.download')->with(compact('name'))->with(compact('uuid'));
+        return redirect(route('car_registrations.index'));
+        // return view('car_registrations.download')->with(compact('name'))->with(compact('uuid'));
     }
 
     /**
@@ -147,5 +148,22 @@ class car_registrationController extends AppBaseController
         // $pdf->setPaper([0, 0, 283, 420], 'landscape'); // 横レイアウト
         return $pdf->download();
         // return $pdf->stream();
+    }
+
+    public function publish(Request $request)
+    {
+        $input = $request->all();
+        $publish_data = car_registration::where('uuid', $input['uuid'])->first();
+        $publish_data->published_at = now(); // 発行日を打刻
+        $publish_data->save(); // DB保存
+
+        Flash::success('車両許可証情報を申請者にメール発送しました。');
+
+        $sendto = $publish_data['email'];
+
+        Mail::to($sendto)->queue(new CarRegistrationPublish($publish_data)); // メールをqueueで送信
+
+        return redirect(route('car_registrations.index'));
+        // return view('car_registrations.download')->with(compact('name'))->with(compact('uuid'));
     }
 }

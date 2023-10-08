@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
  * @property string $elearning
  * @property string $healthcheck
  * @property string $user_edit
+ * @property string $car_registration
  */
 class AdminConfig extends Model
 {
@@ -36,6 +37,7 @@ class AdminConfig extends Model
         'elearning',
         'healthcheck',
         'user_edit',
+        'car_registration',
     ];
 
     /**
@@ -49,7 +51,8 @@ class AdminConfig extends Model
         'create_application' => 'string',
         'elearning' => 'string',
         'healthcheck' => 'string',
-        'user_edit' => 'string'
+        'user_edit' => 'string',
+        'car_registration' => 'string'
     ];
 
     /**
@@ -57,9 +60,5 @@ class AdminConfig extends Model
      *
      * @var array
      */
-    public static $rules = [
-
-    ];
-
-
+    public static $rules = [];
 }
