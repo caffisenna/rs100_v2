@@ -1,4 +1,3 @@
-{{-- {{ dd($entryForm) }} --}}
 <html lang="ja">
 
 <head>
@@ -23,7 +22,7 @@
 
         body {
             font-family: migmix;
-            line-height: 60%;
+            /* line-height: 30%; */
         }
 
         /* .main_image {
@@ -35,31 +34,50 @@
         .main_image img {
             width: 90%;
         } */
+
+        #container {
+            display: flex;
+        }
+
+        #text {
+            flex: 1;
+        }
+
+        #img {
+            width: 100px;
+        }
     </style>
 </head>
 
-<body>
-    <div style="text-align:center">
-        <img src="{{ url('/images/rs100km_56th.png') }}" alt="" style="height:100px;"><br>
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQI12NgYAAAAAMAASDVlMcAAAAASUVORK5CYII="
-            alt="" height="10" width="1">
-        <span class="uk-text-danger">ボーイスカウト東京連盟<br>第56回ローバースカウト100kmハイク</span>
+<body class="uk-margin-remove">
+    <div>
+        <div class="uk-text-center" style="margin-top:-20px;">
+            <span class="uk-text-large" style="line-height:0.8">ボーイスカウト東京連盟<br>第56回ローバースカウト100kmハイク</span>
+        </div>
+    </div>
+    <div class="uk-margin-top">
+        <p style="text-align:center; line-height:1em">{{ $user->entryform->prefecture }}連盟
+            {{ $user->entryform->district }}地区
+            {{ $user->entryform->dan_name }}団<br>
+            {{ $user->name }}<br>
+            @if (!$user->entryform->zekken)
+                ゼッケン: 123
+            @else
+                ゼッケン: {{ $user->entryform->zekken }}
+            @endif
+        </p>
+    </div>
+    <hr>
+    <div id="container" style="margin-top:10px">
+        <div id="text">
+            <p class="uk-text-small" style="line-height:0.8;">このIDカードを拾われた方は<br>以下までご連絡をお願い致します。<br>大会本部連絡先:
+                03-6387-9317</p>
+        </div>
+        <div id="img" style="float:right; margin-top:-100px">
+            <img src="{{ url('/images/rs100km_56th.png') }}">
+        </div>
     </div>
 
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQI12NgYAAAAAMAASDVlMcAAAAASUVORK5CYII="
-        alt="" height="10" width="1">
-    <p style="text-align:center; line-height:1em">{{ $user->entryform->prefecture }}連盟
-        {{ $user->entryform->district }}地区
-        {{ $user->entryform->dan_name }}団<br>
-        {{ $user->name }}<br>
-        ゼッケン: {{ $user->entryform->zekken }}</p>
-
-    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQI12NgYAAAAAMAASDVlMcAAAAASUVORK5CYII="
-        alt="" height="10" width="1">
-    <div style="text-align:center">
-        <p style="font-size:small; line-height:0.8">このIDカードを拾われた方はお手数ですが<br>以下までご連絡をお願い致します。<br>
-            大会本部連絡先: 03-6387-9317</p>
-    </div>
 </body>
 
 </html>
