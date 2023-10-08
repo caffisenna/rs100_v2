@@ -351,7 +351,7 @@ class adminentryFormController extends AppBaseController
         $entryForm = entryForm::where('uuid', $input['q'])->with('user')->first();
 
         // PDF生成
-        $pdf = \PDF::loadView('admin.entry_forms.healthcheck', compact('entryForm', $entryForm));
+        $pdf = \PDF::loadView('admin.entry_forms.healthcheck', compact('entryForm'));
         $pdf->setPaper('A4');
         return $pdf->download();
     }
@@ -367,7 +367,7 @@ class adminentryFormController extends AppBaseController
         $user = User::where('id', $input['q'])->with('entryform')->first();
 
         // PDFを生成、DL
-        $pdf = \PDF::loadView('admin.entry_forms.id_card', compact('user', $user));
+        $pdf = \PDF::loadView('admin.entry_forms.id_card', compact('user'));
         $pdf->setPaper([0, 0, 283, 420], 'vertical'); // 縦レイアウト
         return $pdf->download();
     }
