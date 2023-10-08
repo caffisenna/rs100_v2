@@ -6,7 +6,7 @@
 
 <!-- Cell Phone Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('cell_phone', 'ケータイ:') !!}
+    {!! Form::label('cell_phone', '携帯電話番号:') !!}
     {!! Form::text('cell_phone', null, ['class' => 'form-control', 'required']) !!}
 </div>
 

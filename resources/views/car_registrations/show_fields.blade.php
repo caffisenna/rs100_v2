@@ -4,7 +4,7 @@
         <td>{{ $carRegistration->driver_name }}</td>
     </tr>
     <tr>
-        <th>ケータイ</th>
+        <th>携帯電話番号</th>
         <td>{{ $carRegistration->cell_phone }}</td>
     </tr>
     <tr>
