@@ -23,6 +23,11 @@
             <p>他県参加一覧</p>
         </a>
     </li>
+    <li class="nav-item">
+        <a href="{{ route('add_users.index') }}" class="nav-link {{ Request::is('admin/add_users*') ? 'active' : '' }}">
+            <p><span uk-icon="icon: user"></span>アカウント管理</p>
+        </a>
+    </li>
 
     <li class="nav-item">
         <a href="{{ url('/admin/deleted') }}" class="nav-link {{ Request::is('admin/deleted*') ? 'active' : '' }}">

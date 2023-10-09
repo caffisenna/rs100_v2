@@ -81,6 +81,7 @@ Route::middleware('verified')->group(function () {
         Route::get('id_card', [App\Http\Controllers\adminentryFormController::class, 'id_card'])->name('admin_id_card');
         Route::get('health_check', [App\Http\Controllers\adminentryFormController::class, 'health_check'])->name('health_check');
         Route::get('buddy_confirm', [App\Http\Controllers\adminentryFormController::class, 'buddy_confirm'])->name('buddy_confirm');
+        Route::resource('add_users', App\Http\Controllers\addUsersController::class);
 
     });
     // スタッフ用
