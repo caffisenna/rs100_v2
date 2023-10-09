@@ -32,58 +32,58 @@ class commiEntryFormController extends AppBaseController
         // 自地区のユーザーを抽出して返す
         if (Auth::user()->is_commi) {
             switch (Auth::user()->email) {
-                case 'daitoshin@scout.tokyo':
+                case 'commi-daitoshin@scout.tokyo':
                     $district = '大都心';
                     break;
-                case  'sakura@scout.tokyo':
+                case  'commi-sakura@scout.tokyo':
                     $district = 'さくら';
                     break;
 
-                case  'joto@scout.tokyo':
+                case  'commi-joto@scout.tokyo':
                     $district = '城東';
                     break;
 
-                case 'yamanote@scout.tokyo':
+                case 'commi-yamanote@scout.tokyo':
                     $district = '山手';
                     break;
 
-                case  'tsubasa@scout.tokyo':
+                case  'commi-tsubasa@scout.tokyo':
                     $district = 'つばさ';
                     break;
 
-                case  'setagaya@scout.tokyo':
+                case  'commi-setagaya@scout.tokyo':
                     $district = '世田谷';
                     break;
 
-                case 'asunaro@scout.tokyo':
+                case 'commi-asunaro@scout.tokyo':
                     $district = 'あすなろ';
                     break;
 
-                case  'johoku@scout.tokyo':
+                case  'commi-johoku@scout.tokyo':
                     $district = '城北';
                     break;
 
-                case  'nerima@scout.tokyo':
+                case  'commi-nerima@scout.tokyo':
                     $district = '練馬';
                     break;
 
-                case  'tamanishi@scout.tokyo':
+                case  'commi-tamanishi@scout.tokyo':
                     $district = '多摩西';
                     break;
 
-                case  'aratama@scout.tokyo':
+                case  'commi-aratama@scout.tokyo':
                     $district = '新多磨';
                     break;
 
-                case  'mmusashino@scout.tokyo':
+                case  'commi-mmusashino@scout.tokyo':
                     $district = '南武蔵野';
                     break;
 
-                case  'machida@scout.tokyo':
+                case  'commi-machida@scout.tokyo':
                     $district = '町田';
                     break;
 
-                case 'kitatama@scout.tokyo':
+                case 'commi-kitatama@scout.tokyo':
                     $district = '北多摩';
                     break;
 
