@@ -33,7 +33,7 @@
             <li>運転中及び、駐車中に発生した事故については実行委員会では関知しないことをご了承下さい</li>
         </ul>
     @endif
-    @if (!Auth::guest())
+    @if (!Auth::guest() && Auth::user()->is_admin)
         <div class="content px-3">
 
             @include('flash::message')
