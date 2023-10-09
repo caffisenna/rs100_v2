@@ -70,8 +70,8 @@
 
 @if (!Auth::guest() && Auth::user()->is_commi)
     <li class="nav-item">
-        <a href="{{ route('entries.index') }}" class="nav-link {{ Request::is('entries*') ? 'active' : '' }}">
-            <p>地区参加者一覧</p>
+        <a href="{{ route('entries.index') }}" class="nav-link {{ Request::is('commi/entries*') ? 'active' : '' }}">
+            <span uk-icon="icon: users"></span><p>地区参加者一覧</p>
         </a>
     </li>
 @endif
