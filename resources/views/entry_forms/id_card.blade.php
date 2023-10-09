@@ -44,7 +44,7 @@
         }
 
         #img {
-            width: 100px;
+            /* width: 100px; */
         }
     </style>
 </head>
@@ -52,7 +52,8 @@
 <body class="uk-margin-remove">
     <div>
         <div class="uk-text-center" style="margin-top:-20px;">
-            <span class="uk-text-large" style="line-height:0.8">ボーイスカウト東京連盟<br>第56回ローバースカウト100kmハイク</span>
+            <img src="{{ url('/images/tokyo.png') }}" width="150px" height="">
+            <span class="uk-text-large" style="line-height:0.8">ボーイスカウト東京連盟<br>第56回ローバースカウト<br>100kmハイク</span>
         </div>
     </div>
     <div class="uk-margin-top">
@@ -68,13 +69,19 @@
         </p>
     </div>
     <hr>
-    <div class="fixed-bottom" id="container" style="margin-top:10px; bottom:0;">
+    <div class="fixed-bottom" id="container">
         <div id="text">
-            <p class="uk-text-small" style="line-height:0.8;">このIDカードを拾われた方は<br>以下までご連絡をお願い致します。<br>大会本部連絡先:
+            <p class="uk-text-small uk-text-center" style="line-height:0.8;">
+                このIDカードを拾われた方は<br>以下までご連絡をお願い致します。<br>大会本部連絡先:
                 03-6387-9317</p>
         </div>
-        <div id="img" style="float:right; margin-top:-90px;">
-            <img src="{{ url('/images/rs100km_56th.png') }}">
+        <div id="img" class="">
+            <div class="uk-float-left">
+                <img src="{{ url('/images/rs100km_56th.png') }}" width="100px">
+            </div>
+            <div class="uk-float-right">
+                <img src="{{ url('/images/tokyo_75th.png') }}" width="100px">
+            </div>
         </div>
     </div>
 
