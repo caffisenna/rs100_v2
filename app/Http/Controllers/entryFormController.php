@@ -93,6 +93,46 @@ class entryFormController extends AppBaseController
         $input['user_id'] = Auth()->user()->id;
         $input['uuid'] = Uuid::uuid4();
 
+        // チェックデジット計算
+        // 10桁の場合は以下を実行
+        // 9桁以下の場合は知らん
+        if (strlen($input['bs_id']) == 10) {
+            $value = $input['bs_id'];
+            $length = strlen($value);
+
+            if ($length === 10 && ctype_digit($value) && intval(substr($value, 0, 2)) < 49) {
+                $sum = 0;
+                for ($i = 0; $i < $length; $i++) {
+                    $digit = intval(substr($value, $i, 1));
+                    if (($i + 1) % 2 === 0) {
+                        $multiplied_digit = $digit * 3;
+                    } else {
+                        $multiplied_digit = $digit;
+                    }
+                    $sum += $multiplied_digit;
+                }
+                $check_digit = 10 - ($sum % 10);
+                // echo $value . $check_digit . PHP_EOL;
+                $input['bs_id'] = $value . $check_digit;
+            } elseif ($length === 9 && ctype_digit($value)) {
+                $sum = 0;
+                for ($i = 0; $i < $length; $i++) {
+                    $digit = intval(substr($value, $i, 1));
+                    if (($i + 1) % 2 === 0) {
+                        $multiplied_digit = $digit * 3;
+                    } else {
+                        $multiplied_digit = $digit;
+                    }
+                    $sum += $multiplied_digit;
+                }
+                $check_digit = 10 - ($sum % 10);
+                echo '0' . $value . $check_digit . PHP_EOL;
+            } else {
+                echo 'エラー' . PHP_EOL;
+            }
+        }
+
+
         // 生年月日生成
         $input['birth_day'] = Carbon::create($input['bd_year'], $input['bd_month'], $input['bd_day']);
         // 存在する日付かチェック
@@ -119,7 +159,7 @@ class entryFormController extends AppBaseController
         $genderM = entryForm::where('gender', '男')->count();
         $genderF = entryForm::where('gender', '女')->count();
 
-        $data->district = str_replace('地区','',$data->district);
+        $data->district = str_replace('地区', '', $data->district);
 
         //slack通知
         $id = Auth()->user()->id;
