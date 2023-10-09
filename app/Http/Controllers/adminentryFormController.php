@@ -353,7 +353,7 @@ class adminentryFormController extends AppBaseController
         // PDF生成
         $pdf = \PDF::loadView('admin.entry_forms.healthcheck', compact('entryForm'));
         $pdf->setPaper('A4');
-        return $pdf->download();
+        return $pdf->download('RS100km_健康調査票兼Eラーニング修了書.pdf');
     }
 
     public function id_card(Request $request)
@@ -366,10 +366,10 @@ class adminentryFormController extends AppBaseController
         // 参加者データを取得
         $user = User::where('id', $input['q'])->with('entryform')->first();
 
-        // PDFを生成、DL
-        $pdf = \PDF::loadView('admin.entry_forms.id_card', compact('user'));
+        // 以下、参加者と共通のbladeにデータを渡してPDFをレンダリングする
+        $pdf = \PDF::loadView('entry_forms.id_card', compact('user'));
         $pdf->setPaper([0, 0, 283, 420], 'vertical'); // 縦レイアウト
-        return $pdf->download();
+        return $pdf->stream('RS100km_参加IDカード.pdf');
     }
 
     public function buddy_confirm(Request $request)
