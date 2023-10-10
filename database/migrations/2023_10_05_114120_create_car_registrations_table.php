@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('driver_name');
             $table->string('district');
             $table->string('dan_name');
-            $table->string('position');
             $table->string('cell_phone');
             $table->string('email');
             $table->string('relation');

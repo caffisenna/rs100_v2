@@ -19,7 +19,6 @@
 ケータイ: {{ $input['cell_phone'] }}<br>
 地区: {{ $input['district'] }}<br>
 団名: {{ $input['dan_name'] }}<br>
-役務: {{ $input['position'] }}<br>
 参加者との関係: {{ $input['relation'] }}<br>
 車両ナンバー: {{ $input['car_number'] }}
 

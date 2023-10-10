@@ -1,18 +1,18 @@
 <!-- Driver Name Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('driver_name', '運転者氏名:') !!}
-    {!! Form::text('driver_name', null, ['class' => 'form-control', 'required']) !!}
+    {!! Form::text('driver_name', null, ['class' => 'form-control', 'required','placeholder'=>'フルネームで入力してください']) !!}
 </div>
 
 <!-- Cell Phone Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('cell_phone', '携帯電話番号:') !!}
-    {!! Form::text('cell_phone', null, ['class' => 'form-control', 'required']) !!}
+    {!! Form::text('cell_phone', null, ['class' => 'form-control', 'required','placeholder'=>'例:09012345678']) !!}
 </div>
 
 <!-- Email Field -->
 <div class="form-group col-sm-6">
-    {!! Form::label('email', 'Email:許可証をお送りします') !!}
+    {!! Form::label('email', 'Email:') !!}
     {!! Form::text('email', null, ['class' => 'form-control', 'required']) !!}
 </div>
 
@@ -47,14 +47,14 @@
 <!-- Dan Name Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('dan_name', '団名:') !!}
-    {!! Form::text('dan_name', null, ['class' => 'form-control', 'required']) !!}
+    {!! Form::text('dan_name', null, ['class' => 'form-control', 'required','placeholder'=>'例:井荻14団']) !!}
 </div>
 
 <!-- Position Field -->
-<div class="form-group col-sm-6">
+{{-- <div class="form-group col-sm-6">
     {!! Form::label('position', '役務:指導者で役務のある方は入力してください') !!}
     {!! Form::text('position', null, ['class' => 'form-control', 'required']) !!}
-</div>
+</div> --}}
 
 <!-- Relation Field -->
 <div class="form-group col-sm-6">
@@ -63,8 +63,9 @@
         'relation',
         [
             '' => '',
-            '隊・団指導者' => '隊・団指導者',
             '保護者' => '保護者',
+            '隊・団指導者' => '隊・団指導者',
+            '地区関係者' => '地区関係者',
             'その他支援者' => 'その他支援者',
         ],
         null,
@@ -75,7 +76,7 @@
 <!-- Car Number Field -->
 <div class="form-group col-sm-6">
     {!! Form::label('car_number', '車両ナンバー:') !!}
-    {!! Form::text('car_number', null, ['class' => 'form-control', 'required']) !!}
+    {!! Form::text('car_number', null, ['class' => 'form-control', 'required', 'placeholder'=>'例:世田谷300あ1234']) !!}
 </div>
 
 <input type="hidden" name="uuid" value="{{ Str::uuid() }}">
