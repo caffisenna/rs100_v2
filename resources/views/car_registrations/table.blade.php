@@ -7,7 +7,6 @@
                     <th>運転者</th>
                     <th>地区</th>
                     <th>団名</th>
-                    <th>役務</th>
                     <th>カーナンバー</th>
                     <th>許可証</th>
                     <th>発行</th>
@@ -23,7 +22,6 @@
                         <td>{{ $carRegistration->driver_name }}</td>
                         <td>{{ $carRegistration->district }}</td>
                         <td>{{ $carRegistration->dan_name }}</td>
-                        <td>{{ $carRegistration->position }}</td>
                         <td>{{ $carRegistration->car_number }}</td>
                         <td><a href="{{ url('/car_registration_pdf?uuid=') }}{{ $carRegistration->uuid }}"><span
                                     uk-icon="file-pdf"></span></a></td>

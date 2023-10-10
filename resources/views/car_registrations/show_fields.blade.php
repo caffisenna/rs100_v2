@@ -13,7 +13,7 @@
     </tr>
     <tr>
         <th>所属</th>
-        <td>{{ $carRegistration->district }}地区 {{ $carRegistration->dan_name }} {{ $carRegistration->position }}</td>
+        <td>{{ $carRegistration->district }}地区 {{ $carRegistration->dan_name }}</td>
     </tr>
     <tr>
         <th>参加者との関係</th>
