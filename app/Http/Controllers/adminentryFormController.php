@@ -270,7 +270,7 @@ class adminentryFormController extends AppBaseController
             $entryform = entryForm::with('user')->where('id', $request['id'])->first();
             $entryform->registration_checked_at = now();
 
-            $name = $entryform->user->name . "(" . $entryform->org_district . ")";
+            $name = $entryform->user->name . "(" . $entryform->district . ")";
 
             // slack
             $slackpost = new SlackPost();
