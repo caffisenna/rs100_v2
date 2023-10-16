@@ -41,6 +41,12 @@
         </a>
     </li>
     <li class="nav-item">
+        <a href="{{ url('/admin/buddy_match') }}"
+            class="nav-link {{ Request::is('admin/buddy_match*') ? 'active' : '' }}">
+            <p>バディ斡旋希望</p>
+        </a>
+    </li>
+    <li class="nav-item">
         <a href="{{ url('/admin/buddy_ok') }}" class="nav-link {{ Request::is('admin/buddy_ok*') ? 'active' : '' }}">
             <p>バディOK男性</p>
         </a>
@@ -52,8 +58,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="{{ url('/admin/overage') }}"
-            class="nav-link {{ Request::is('admin/overage*') ? 'active' : '' }}">
+        <a href="{{ url('/admin/overage') }}" class="nav-link {{ Request::is('admin/overage*') ? 'active' : '' }}">
             <p>OAチェック</p>
         </a>
     </li>
@@ -82,7 +87,8 @@
 @if (!Auth::guest() && Auth::user()->is_commi)
     <li class="nav-item">
         <a href="{{ route('entries.index') }}" class="nav-link {{ Request::is('commi/entries*') ? 'active' : '' }}">
-            <span uk-icon="icon: users"></span><p>地区参加者一覧</p>
+            <span uk-icon="icon: users"></span>
+            <p>地区参加者一覧</p>
         </a>
     </li>
 @endif

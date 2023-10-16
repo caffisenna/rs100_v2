@@ -400,4 +400,15 @@ class adminentryFormController extends AppBaseController
         return view('admin.overage.index')
             ->with(compact('entries'));
     }
+
+    public function buddy_match(Request $request)
+    {
+        /** @var entryForm $entryForms */
+        $entries = entryForm::where('buddy_match',  'バディの紹介を希望')->with('user')->get();
+        // dd($entries);
+
+
+        return view('admin.buddy_match.index')
+            ->with(compact('entries'));
+    }
 }
