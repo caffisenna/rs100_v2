@@ -389,4 +389,15 @@ class adminentryFormController extends AppBaseController
         Flash::success("バディ登録を行いました");
         return back();
     }
+
+    public function overage_filter(Request $request)
+    {
+        /** @var entryForm $entryForms */
+        $entries = entryForm::where('birth_day', '<=', '1997-11-10')->with('user')->get();
+        // dd($entries);
+
+
+        return view('admin.overage.index')
+            ->with(compact('entries'));
+    }
 }

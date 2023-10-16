@@ -82,6 +82,7 @@ Route::middleware('verified')->group(function () {
         Route::get('health_check', [App\Http\Controllers\adminentryFormController::class, 'health_check'])->name('health_check');
         Route::get('buddy_confirm', [App\Http\Controllers\adminentryFormController::class, 'buddy_confirm'])->name('buddy_confirm');
         Route::resource('add_users', App\Http\Controllers\addUsersController::class);
+        Route::get('/overage', [App\Http\Controllers\adminentryFormController::class, 'overage_filter'])->name('overage_filter');
 
     });
     // スタッフ用

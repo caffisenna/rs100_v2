@@ -51,6 +51,12 @@
             <p>備考入力あり</p>
         </a>
     </li>
+    <li class="nav-item">
+        <a href="{{ url('/admin/overage') }}"
+            class="nav-link {{ Request::is('admin/overage*') ? 'active' : '' }}">
+            <p>OAチェック</p>
+        </a>
+    </li>
     <p class="uk-text-warning">事務局機能</p>
     <li class="nav-item">
         <a href="{{ url('/admin/fee_check') }}"
