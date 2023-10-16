@@ -34,11 +34,6 @@ class HomeController extends Controller
         // 健康調査の判定フラグ用にユーザーデータを取る
         $user = User::where('id', Auth()->id())->with('elearning')->first();
 
-        // $district_counts = EntryForm::select('district', DB::raw('count(*) as count'))
-        //     ->whereNull('deleted_at')
-        //     ->groupBy('district')
-        //     ->orderBy('district', 'desc')
-        //     ->get();
         $districtCounts = EntryForm::select('district')
             ->selectRaw('COUNT(*) as total_count')
             ->selectRaw('SUM(CASE WHEN generation = "現役" THEN 1 ELSE 0 END) as active_count')
@@ -50,10 +45,25 @@ class HomeController extends Controller
             ->orderBy('district', 'desc')
             ->get();
 
-        // if (Auth::user()->is_commi) {
-            // return redirect()->roure('commiEntryFormController.index');
-        // } else {
-            return view('home', compact(['configs', 'user', 'districtCounts']));
-        // }
+            $districtCounts = $districtCounts->sortBy(function ($district) {
+            return array_search($district->district, [
+                '大都心',
+                'さくら',
+                '城東',
+                '山手',
+                'つばさ',
+                '世田谷',
+                'あすなろ',
+                '城北',
+                '練馬',
+                '多摩西',
+                '新多磨',
+                '南武蔵野',
+                '町田',
+                '北多摩'
+            ]);
+        });
+
+        return view('home', compact(['configs', 'user', 'districtCounts']));
     }
 }
