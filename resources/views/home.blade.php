@@ -68,6 +68,13 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @php
+                            $countTotal = 0;
+                            $countActive = 0;
+                            $countOverage = 0;
+                            $countMale = 0;
+                            $countFemale = 0;
+                        @endphp
                         @foreach ($districtCounts as $districtCount)
                             <tr>
                                 <td>{{ $districtCount->district }}</td>
@@ -77,7 +84,22 @@
                                 <td>{{ $districtCount->male_count }}</td>
                                 <td>{{ $districtCount->female_count }}</td>
                             </tr>
+                            @php
+                                $countTotal += $districtCount->total_count;
+                                $countActive += $districtCount->active_count;
+                                $countOverage += $districtCount->over_age_count;
+                                $countMale += $districtCount->male_count;
+                                $countFemale += $districtCount->female_count;
+                            @endphp
                         @endforeach
+                        <tr class="uk-text-large">
+                            <td>合計</td>
+                            <td>{{ $countTotal }}</td>
+                            <td>{{ $countActive }}</td>
+                            <td>{{ $countOverage }}</td>
+                            <td>{{ $countMale }}</td>
+                            <td>{{ $countFemale }}</td>
+                        </tr>
                     </tbody>
                 </table>
             @endif
@@ -114,6 +136,6 @@
                     地区参加者一覧を表示
                 </a>
             @endif
-    </div>
+        </div>
     </div>
 @endsection
