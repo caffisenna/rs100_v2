@@ -13,6 +13,12 @@
 @if (!Auth::guest() && Auth::user()->is_admin)
     <p class="uk-text-warning">参加者管理</p>
     <li class="nav-item">
+        <a href="{{ route('home') }}"
+            class="nav-link {{ Request::is('home') ? 'active' : '' }}">
+            <p>参加者内訳</p>
+        </a>
+    </li>
+    <li class="nav-item">
         <a href="{{ route('adminentries.index') }}"
             class="nav-link {{ Request::is('admin/adminentries*') ? 'active' : '' }}">
             <p>参加者一覧</p>
@@ -24,7 +30,8 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="{{ route('add_users.index') }}" class="nav-link {{ Request::is('admin/add_users*') ? 'active' : '' }}">
+        <a href="{{ route('add_users.index') }}"
+            class="nav-link {{ Request::is('admin/add_users*') ? 'active' : '' }}">
             <p><span uk-icon="icon: user"></span>アカウント管理</p>
         </a>
     </li>
