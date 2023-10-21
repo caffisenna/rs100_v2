@@ -402,7 +402,7 @@ class entryFormController extends AppBaseController
         // 健康調査票
         $entryForm = User::where('id', Auth::id())->with('entryform')->first();
 
-        $pdf = \PDF::loadView('entry_forms.healthcheck', compact('entryForm', $entryForm));
+        $pdf = \PDF::loadView('entry_forms.healthcheck', compact('entryForm'));
         $pdf->setPaper('A4');
         return $pdf->download('RS100km_健康調査票兼Eラーニング修了書.pdf');
     }
