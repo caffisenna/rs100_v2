@@ -25,9 +25,9 @@ class addUsersController extends AppBaseController
      */
     public function index(Request $request)
     {
-        // $addUsers = $this->addUsersRepository->paginate(10);
-        $users = User::all();
-        // dd($users);
+        // 一般ユーザーは取得しない
+        $users = User::where('is_admin', 1)
+            ->orWhere('is_commi', '<>', NULL)->get();
 
         return view('add_users.index')
             ->with('users', $users);
@@ -49,7 +49,7 @@ class addUsersController extends AppBaseController
         $input = $request->all();
         $input['password'] = bcrypt($input['password']); // hash可
         $input['email_verified_at'] = now();
-        if($input['role'] == 'admin'){
+        if ($input['role'] == 'admin') {
             $input['is_admin'] = 1;
         }
 
