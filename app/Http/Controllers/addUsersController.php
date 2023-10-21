@@ -49,7 +49,9 @@ class addUsersController extends AppBaseController
         $input = $request->all();
         $input['password'] = bcrypt($input['password']); // hash可
         $input['email_verified_at'] = now();
-        // dd($input);
+        if($input['role'] == 'admin'){
+            $input['is_admin'] = 1;
+        }
 
         $addUsers = user::create($input);
 
