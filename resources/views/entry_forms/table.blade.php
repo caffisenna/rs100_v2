@@ -44,7 +44,7 @@
                 @if (isset($entryForm->sm_confirmation))
                     <td>{{ $entryForm->sm_confirmation }}</td>
                 @else
-                    <td> <span class="uk-text-danger">未承認</span></td>
+                    <td> <span class="uk-text-danger">未承認(今後団で承認手続きが行われます)</span></td>
                 @endif
             </tr>
             <tr>
@@ -52,7 +52,7 @@
                 @if (isset($entryForm->elearning))
                     <td>{{ $entryForm->elearning }}</td>
                 @else
-                    <td> <span class="uk-text-danger">未修了</span></td>
+                    <td> <span class="uk-text-danger">未修了(今後受講が可能になります)</span></td>
                 @endif
             </tr>
             <tr>
