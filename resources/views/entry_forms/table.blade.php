@@ -36,8 +36,13 @@
             </tr>
             <tr>
                 <td>ゼッケン</td>
-                {{-- <td>{{ $entryForm->zekken }}</td> --}}
-                <td>後日公開</td>
+                <td>
+                    @if ($entryForm->zekken)
+                        {{ $entryForm->zekken }}
+                    @else
+                        後日公開
+                    @endif
+                </td>
             </tr>
             <tr>
                 <td>団の承認</td>
