@@ -57,9 +57,23 @@
         </div>
     </div>
     <div class="uk-margin-top">
-        <p style="text-align:center; line-height:1em">{{ $user->entryform->prefecture }}連盟
-            {{ $user->entryform->district }}地区
-            {{ $user->entryform->dan_name }}団<br>
+        <p style="text-align:center; line-height:1em">
+            @if ($user->entryform->bs_gs == 'BS')
+                {{ $user->entryform->prefecture }}連盟
+            @elseif($user->entryform->bs_gs == 'GS')
+                {{ $user->entryform->prefecture }}都連盟
+            @endif
+
+            @if ($user->entryform->district !== 'なし')
+                {{ $user->entryform->district }}地区
+            @else
+            @endif
+
+            @if ($user->entryform->dan_name !== 'なし')
+                {{ $user->entryform->dan_name }}団<br>
+            @else
+            @endif
+
             {{ $user->name }}<br>
             @if (!$user->entryform->zekken)
                 ゼッケン: 123
@@ -73,14 +87,14 @@
         <div id="text">
             <p class="uk-text-small uk-text-center" style="line-height:0.8;">
                 このIDカードを拾われた方は<br>以下までご連絡をお願い致します。<br>大会本部連絡先:
-                03-6387-9317</p>
+                03-4214-2551</p>
         </div>
         <div id="img" class="">
             <div class="uk-float-left">
-                <img src="{{ url('/images/rs100km_56th.png') }}" width="100px">
+                <img src="{{ url('/images/rs100km_56th.png') }}" width="80px">
             </div>
             <div class="uk-float-right">
-                <img src="{{ url('/images/tokyo_75th.png') }}" width="100px">
+                <img src="{{ url('/images/tokyo_75th.png') }}" width="80px">
             </div>
         </div>
     </div>
