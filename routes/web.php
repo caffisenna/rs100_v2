@@ -84,6 +84,7 @@ Route::middleware('verified')->group(function () {
         Route::resource('add_users', App\Http\Controllers\addUsersController::class);
         Route::get('/overage', [App\Http\Controllers\adminentryFormController::class, 'overage_filter'])->name('overage_filter');
         Route::get('/buddy_match', [App\Http\Controllers\adminentryFormController::class, 'buddy_match'])->name('buddy_match');
+        Route::get('/non_registered', [App\Http\Controllers\adminentryFormController::class, 'non_registered'])->name('non_registered');
 
     });
     // スタッフ用

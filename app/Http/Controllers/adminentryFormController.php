@@ -18,6 +18,7 @@ use Mail;
 use App\Mail\FeeConfirm;
 use App\Mail\RegistrationConfirm;
 use App\Models\Buddylist;
+use Illuminate\Support\Facades\DB;
 
 class adminentryFormController extends AppBaseController
 {
@@ -30,20 +31,30 @@ class adminentryFormController extends AppBaseController
      */
     public function index(Request $request)
     {
-        /** @var entryForm $entryForms */
+        $input = $request->all();
+        $filter = $input['bs_gs'] ?? ($input['district'] ?? null);
 
-        // 取得したいインスタンス = 子モデル::with(親モデル)->get(); で親子取得
-        // $entryForms = entryForm::with('user')->get();
-        $users = User::where(function ($query) {
+        $users = User::where(function ($query) use ($filter) {
             $query->where('is_admin', 0)
-                ->Where('is_staff', 0)
-                ->Where('is_commi', null)
+                ->where('is_staff', 0)
+                ->where('is_commi', null)
                 ->where('email_verified_at', '<>', null);
-        })
-            ->with('entryform')->with('elearning')->get();
 
-        return view('admin.entry_forms.index')
-            ->with('users', $users);
+            if (isset($filter) && $filter == 'bs_gs') {
+                $query->whereHas('entryform', function ($entryformQuery) use ($filter) {
+                    $entryformQuery->where('bs_gs', $filter);
+                });
+            } elseif (isset($filter) && $filter == 'district') {
+                $query->whereHas('entryform', function ($entryformQuery) use ($filter) {
+                    $entryformQuery->where('district', $filter);
+                });
+            }
+        })
+            ->with('entryform')
+            ->with('elearning')
+            ->get();
+
+        return view('admin.entry_forms.index')->with('users', $users);
     }
 
     /**
@@ -410,5 +421,21 @@ class adminentryFormController extends AppBaseController
 
         return view('admin.buddy_match.index')
             ->with(compact('entries'));
+    }
+
+    public function non_registered(Request $request)
+    {
+        // 未登録ユーザーの抽出
+        $users = DB::table('users')
+            ->leftJoin('entry_forms', 'users.id', '=', 'entry_forms.user_id')
+            ->whereNull('entry_forms.user_id')
+            ->whereNull('entry_forms.deleted_at')
+            ->where('users.is_admin', 0)
+            ->whereNull('users.is_commi')
+            ->whereNotNull('users.email_verified_at')
+            ->get();
+
+        return view('admin.non_registered.index')
+            ->with(compact('users'));
     }
 }
