@@ -27,7 +27,7 @@
                                 <th>ID</th>
                                 <th>名前</th>
                                 <th>所属</th>
-                                <th>作成日</th>
+                                <th>備考</th>
                                 <th>削除日</th>
                             </tr>
                         </thead>
@@ -40,7 +40,7 @@
                                             {{ $entryForm->furigana }}</td>
                                         <td>{{ $entryForm->district }} {{ $entryForm->dan_name }}
                                             {{ $entryForm->dan_number }}</td>
-                                        <td><span class="uk-text-small">{{ $entryForm->created_at }}</span></td>
+                                        <td><span class="uk-text-small">{{ $entryForm->memo }}</span></td>
                                         <td><span class="uk-text-small">{{ $entryForm->deleted_at }}</span></td>
                                     </tr>
                                 @endunless
