@@ -13,8 +13,7 @@
 @if (!Auth::guest() && Auth::user()->is_admin)
     <p class="uk-text-warning">参加者管理</p>
     <li class="nav-item">
-        <a href="{{ route('home') }}"
-            class="nav-link {{ Request::is('home') ? 'active' : '' }}">
+        <a href="{{ route('home') }}" class="nav-link {{ Request::is('home') ? 'active' : '' }}">
             <p>参加者内訳</p>
         </a>
     </li>
@@ -30,17 +29,29 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="{{ route('add_users.index') }}"
-            class="nav-link {{ Request::is('admin/add_users*') ? 'active' : '' }}">
-            <p><span uk-icon="icon: user"></span>アカウント管理</p>
-        </a>
-    </li>
-
-    <li class="nav-item">
         <a href="{{ url('/admin/deleted') }}" class="nav-link {{ Request::is('admin/deleted*') ? 'active' : '' }}">
             <p>申込削除一覧</p>
         </a>
     </li>
+    <li class="nav-item">
+        <a href="{{ url('/admin/with_memo') }}"
+            class="nav-link {{ Request::is('admin/with_memo*') ? 'active' : '' }}">
+            <p>備考入力あり</p>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ url('/admin/overage') }}" class="nav-link {{ Request::is('admin/overage*') ? 'active' : '' }}">
+            <p>OAチェック</p>
+        </a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ url('/admin/non_registered') }}"
+            class="nav-link {{ Request::is('admin/non_registered*') ? 'active' : '' }}">
+            <p>未申込者</p>
+        </a>
+    </li>
+
+    <p class="uk-text-warning">バディ関係</p>
     <li class="nav-item">
         <a href="{{ route('buddylists.index') }}"
             class="nav-link {{ Request::is('admin/buddylists*') ? 'active' : '' }}">
@@ -58,22 +69,7 @@
             <p>バディOK男性</p>
         </a>
     </li>
-    <li class="nav-item">
-        <a href="{{ url('/admin/with_memo') }}"
-            class="nav-link {{ Request::is('admin/with_memo*') ? 'active' : '' }}">
-            <p>備考入力あり</p>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a href="{{ url('/admin/overage') }}" class="nav-link {{ Request::is('admin/overage*') ? 'active' : '' }}">
-            <p>OAチェック</p>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a href="{{ url('/admin/non_registered') }}" class="nav-link {{ Request::is('admin/non_registered*') ? 'active' : '' }}">
-            <p>未申込者</p>
-        </a>
-    </li>
+
     <p class="uk-text-warning">事務局機能</p>
     <li class="nav-item">
         <a href="{{ url('/admin/fee_check') }}"
@@ -94,6 +90,12 @@
             <p>管理設定</p>
         </a>
     </li>
+    <li class="nav-item">
+        <a href="{{ route('add_users.index') }}"
+            class="nav-link {{ Request::is('admin/add_users*') ? 'active' : '' }}">
+            <p><span uk-icon="icon: user"></span>アカウント管理</p>
+        </a>
+    </li>
 @endif
 
 @if (!Auth::guest() && Auth::user()->is_commi)
@@ -105,6 +107,7 @@
     </li>
 @endif
 
+<p class="uk-text-warning">Links</p>
 {{-- 公式サイトリンク --}}
 <a href="https://rs100.scout.tokyo" class="btn btn-info btn-xs btn-block">公式サイト</a>
 {{-- 公式サイトリンク --}}
