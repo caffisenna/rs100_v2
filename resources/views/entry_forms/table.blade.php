@@ -13,7 +13,6 @@
                 <td>操作</td>
                 <td>
                     @if (isset($entryForm->id))
-                        {{-- {!! Form::open(['route' => ['entryForms.destroy', $entryForm->id], 'method' => 'delete']) !!} --}}
                         <div class='btn-group'>
                             <a href="{{ url('/user/pdf') }}" class='btn btn-default btn-lg'>
                                 <span uk-icon="download"></span>PDF
@@ -26,11 +25,8 @@
                                     class='btn btn-default btn-lg'>
                                     <i class="far fa-edit"></i>編集
                                 </a>
-
-                                {{-- {!! Form::button('<i class="far fa-trash-alt"></i>削除する', ['type' => 'submit', 'class' => 'btn btn-danger btn-lg', 'onclick' => "return confirm('本当に削除しますか?')"]) !!} --}}
                             @endif
                         </div>
-                        {{-- {!! Form::close() !!} --}}
                     @endif
                 </td>
             </tr>
@@ -61,22 +57,19 @@
                 @endif
             </tr>
             <tr>
+                <td>健康調査票</td>
+                <td>Eラーニングの修了証が兼務します</td>
+            </tr>
+            <tr>
                 <td>IDカード</td>
                 <td>
                     @if ($entryForm->id)
-                        {{-- <a href="{{ url('/user/id_card') }}">ダウンロード</a> --}}
-                        後日公開
+                        {{-- <a href="{{ url('/user/id_card') }}" target="_blank">ダウンロード</a><br>
+                        (表示されるPDFを各端末にダウンロードしてから印刷してください) --}}
+                        後日公開予定
                     @endif
                 </td>
             </tr>
-            {{-- <tr>
-                <td>健康調査書</td>
-                @if (isset($entryForm->plan_upload))
-                    <td>{{ $entryForm->plan_upload }}</td>
-                @else
-                    <td> <span class="uk-text-danger">アップロードされていません</span></td>
-                @endif
-            </tr> --}}
         </tbody>
     </table>
 </div>
