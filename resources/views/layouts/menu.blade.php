@@ -71,7 +71,7 @@
     </li>
     <li class="nav-item">
         <a href="{{ url('/admin/non_registered') }}" class="nav-link {{ Request::is('admin/non_registered*') ? 'active' : '' }}">
-            <p>未登録者</p>
+            <p>未申込者</p>
         </a>
     </li>
     <p class="uk-text-warning">事務局機能</p>
