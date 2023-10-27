@@ -146,7 +146,7 @@ class car_registrationController extends AppBaseController
         $pdf = \PDF::loadView('car_registrations.pdf', compact('car_info'));
         $pdf->setPaper('A4', 'landscape');
         // $pdf->setPaper([0, 0, 283, 420], 'landscape'); // 横レイアウト
-        return $pdf->download();
+        return $pdf->download('56th_RS100km_車両駐車許可証.pdf');
         // return $pdf->stream();
     }
 

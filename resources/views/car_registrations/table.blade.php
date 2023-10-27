@@ -27,10 +27,10 @@
                                     uk-icon="file-pdf"></span></a></td>
                         <td>
                             @if (!$carRegistration->published_at)
-                                <a
-                                    href="{{ url('/car_registration_publish?uuid=') }}{{ $carRegistration->uuid }}">発行</a>
+                                <a href="{{ url('/car_registration_publish?uuid=') }}{{ $carRegistration->uuid }}"
+                                    class="uk-button uk-button-primary uk-button-small">発行</a>
                             @else
-                                済み
+                                <p class="uk-text-success">済み</p>
                             @endif
                         </td>
                         <td style="width: 120px">
