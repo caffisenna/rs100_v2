@@ -24,6 +24,11 @@
         </a>
     </li>
     <li class="nav-item">
+        <a href="{{ url('/admin/overage') }}" class="nav-link {{ Request::is('admin/overage*') ? 'active' : '' }}">
+            <p>オーバーエイジ</p>
+        </a>
+    </li>
+    <li class="nav-item">
         <a href="{{ url('admin/non_tokyo') }}" class="nav-link {{ Request::is('admin/non_tokyo*') ? 'active' : '' }}">
             <p>他県参加一覧</p>
         </a>
@@ -37,11 +42,6 @@
         <a href="{{ url('/admin/with_memo') }}"
             class="nav-link {{ Request::is('admin/with_memo*') ? 'active' : '' }}">
             <p>備考入力あり</p>
-        </a>
-    </li>
-    <li class="nav-item">
-        <a href="{{ url('/admin/overage') }}" class="nav-link {{ Request::is('admin/overage*') ? 'active' : '' }}">
-            <p>OAチェック</p>
         </a>
     </li>
     <li class="nav-item">
