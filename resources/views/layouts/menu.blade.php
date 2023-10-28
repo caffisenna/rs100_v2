@@ -51,6 +51,26 @@
         </a>
     </li>
 
+    <p class="uk-text-warning">チェックイン業務</p>
+
+    <li class="nav-item">
+        <a href="{{ url('/admin/checkin') }}" class="nav-link {{ Request::is('admin/checkin') ? 'active' : '' }}">
+            <p><span uk-icon="check"></span>チェックイン</p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ url('/admin/checkin/done') }}" class="nav-link {{ Request::is('admin/checkin/done*') ? 'active' : '' }}">
+            <p><span uk-icon="users"></span>チェックイン済み一覧</p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ url('/admin/checkin/not_yet') }}" class="nav-link {{ Request::is('admin/checkin/not_yet*') ? 'active' : '' }}">
+            <p><span uk-icon="bolt"></span>未チェックイン</p>
+        </a>
+    </li>
+
     <p class="uk-text-warning">バディ関係</p>
     <li class="nav-item">
         <a href="{{ route('buddylists.index') }}"

@@ -438,4 +438,131 @@ class adminentryFormController extends AppBaseController
         return view('admin.non_registered.index')
             ->with(compact('users'));
     }
+
+    public function checkin(Request $request)
+    {
+        // 当日受付チェックイン
+
+        // 登録番号でチェック
+        if (isset($request['reg_number'])) {
+            $input = $request->all();
+
+            $user = entryForm::where('bs_id', $input['reg_number'])->with('user')->firstorFail();
+
+            // 重複チェックインを確認
+            if (empty($user->checkin_at)) {
+                $name = $user->user->name;
+                if (isset($user->prefecture)) {
+                    $pref = $user->prefecture . '連盟 ';
+                }
+                if (isset($user->district) && !$user->district == 'なし') {
+                    $dist = $user->district . '地区 ';
+                } else {
+                    $dist = NULL;
+                }
+                if (isset($user->dan_name) && $user->dan_name !== 'なし') {
+                    $dan = $user->dan_name . '団 ';
+                } else {
+                    $dan = NULL;
+                }
+                // ゼッケン取得
+                $zekken = $user->zekken;
+
+                // flashメッセージ生成
+                $user_info = "<span class='uk-text-large'>" . $name . "($user->furigana)</span> さん<br>
+            所属: " . $pref . $dist . $dan . "<br>
+            登録番号: " . $input['reg_number'] . "<br>
+            ゼッケン: " . $zekken;
+
+                Flash::success($user_info . "<br><br><br>チェックイン完了! <br>Eラン兼健康調査票を確認してください。");
+
+                // 打刻してDB保存
+                $user->checkin_at = now();
+                $user->save();
+            } else {
+                $checkin_at  = $user->checkin_at;
+                Flash::error($user->user->name . "さんは既にチェックイン済みです。<br>
+                チェックイン時刻: $checkin_at <br>
+                管理者に確認してください。");
+            }
+        }
+
+        // ゼッケンでチェック
+        if (isset($request['zekken'])) {
+            $input = $request->all();
+            $user = entryForm::where('zekken', $input['zekken'])->with('user')->firstorFail();
+
+            // 重複チェックインを確認
+            if (empty($user->checkin_at)) {
+
+                $name = $user->user->name;
+                if (isset($user->prefecture)) {
+                    $pref = $user->prefecture . '連盟 ';
+                }
+                if (isset($user->district) && !$user->district == 'なし') {
+                    $dist = $user->district . '地区 ';
+                } else {
+                    $dist = NULL;
+                }
+                if (isset($user->dan_name) && $user->dan_name !== 'なし') {
+                    $dan = $user->dan_name . '団 ';
+                } else {
+                    $dan = NULL;
+                }
+
+                // ゼッケン取得
+                $zekken = $user->zekken;
+
+                // flashメッセージ生成
+                $user_info = "<span class='uk-text-large'>" . $name . "($user->furigana)</span> さん<br>
+            所属: " . $pref . $dist . $dan . "<br>
+            登録番号: " . $user->bs_id . "<br>
+            ゼッケン: " . $zekken;
+
+                Flash::success($user_info . "<br><br><br>チェックイン完了! <br>Eラン兼健康調査票を確認してください。");
+
+                // 打刻してDB保存
+                $user->checkin_at = now();
+                $user->save();
+            } else {
+                $checkin_at  = $user->checkin_at;
+                Flash::error($user->user->name . "さんは既にチェックイン済みです。<br>
+                チェックイン時刻: $checkin_at <br>
+                管理者に確認してください。");
+            }
+        }
+
+        return view('admin.checkin.index');
+    }
+
+    public function checkin_done(Request $request)
+    {
+        //
+        $users = entryForm::where('checkin_at','<>', NULL)->with('user')->get();
+
+        return view('admin.checkin.done')
+        ->with(compact('users'));
+    }
+
+    public function checkin_not_yet(Request $request)
+    {
+        // 未チェックインを取得
+        $users = entryForm::where('checkin_at', NULL)->with('user')->get();
+        return view('admin.checkin.not_yet')->with(compact('users'));
+    }
+
+    public function checkin_delete(Request $request)
+    {
+        // チェックイン情報の削除
+        // uuidを受け取ってDBからcheckin_atカラム情報をnull化する
+        $input = $request->all();
+        if(isset($input['uuid'])){
+            $user = entryForm::where('uuid', $input['uuid'])->with('user')->firstorFail();
+            $user->checkin_at = NULL;
+            $user->save();
+            Flash::success($user->user->name . "さんのチェックイン情報を初期化しました。");
+            $users = entryForm::where('checkin_at','<>', NULL)->with('user')->get();
+        }
+        return view('admin.checkin.done')->with(compact('users'));
+    }
 }
