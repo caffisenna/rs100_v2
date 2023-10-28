@@ -455,7 +455,7 @@ class adminentryFormController extends AppBaseController
                 if (isset($user->prefecture)) {
                     $pref = $user->prefecture . '連盟 ';
                 }
-                if (isset($user->district) && !$user->district == 'なし') {
+                if (isset($user->district) && $user->district !== 'なし') {
                     $dist = $user->district . '地区 ';
                 } else {
                     $dist = NULL;
@@ -538,10 +538,10 @@ class adminentryFormController extends AppBaseController
     public function checkin_done(Request $request)
     {
         //
-        $users = entryForm::where('checkin_at','<>', NULL)->with('user')->get();
+        $users = entryForm::where('checkin_at', '<>', NULL)->with('user')->get();
 
         return view('admin.checkin.done')
-        ->with(compact('users'));
+            ->with(compact('users'));
     }
 
     public function checkin_not_yet(Request $request)
@@ -556,12 +556,12 @@ class adminentryFormController extends AppBaseController
         // チェックイン情報の削除
         // uuidを受け取ってDBからcheckin_atカラム情報をnull化する
         $input = $request->all();
-        if(isset($input['uuid'])){
+        if (isset($input['uuid'])) {
             $user = entryForm::where('uuid', $input['uuid'])->with('user')->firstorFail();
             $user->checkin_at = NULL;
             $user->save();
             Flash::success($user->user->name . "さんのチェックイン情報を初期化しました。");
-            $users = entryForm::where('checkin_at','<>', NULL)->with('user')->get();
+            $users = entryForm::where('checkin_at', '<>', NULL)->with('user')->get();
         }
         return view('admin.checkin.done')->with(compact('users'));
     }
