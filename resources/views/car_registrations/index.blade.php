@@ -19,7 +19,7 @@
         @include('flash::message')
         <p class="uk-text-default">第56回100kmハイクのスタート&ゴール地点 ひよどり山キャンプ場に車両で来場する際には必ず事前登録が必要です。<br>
             <span class="uk-text-danger">※事前登録がない車両は、ひよどり山キャンプ場内に入ることができません。</span>
-            ご希望の方は以下ボタンからの申請フォーム移動してください。<br>
+            ご希望の方は以下ボタンからの申請フォームへ移動してください。<br>
             <a class="btn btn-primary" href="{{ route('car_registrations.create') }}">
                 申請フォーム
             </a>
