@@ -565,4 +565,23 @@ class adminentryFormController extends AppBaseController
         }
         return view('admin.checkin.done')->with(compact('users'));
     }
+
+    public function check_status(Request $request)
+    {
+        $input = $request->all();
+        $cat = $input['cat'];
+        if ($cat == 'commi') {
+            $users = entryForm::where('prefecture', '東京')
+                ->where('commi_ok', NULL)
+                ->with('user')
+                ->get();
+        } elseif ($cat == 'dan') {
+            $users = entryForm::where('prefecture', '東京')
+                ->where('sm_confirmation', NULL)
+                ->with('user')
+                ->get();
+        }
+
+        return view('admin.check_status.index')->with(compact('users'))->with(compact('cat'));
+    }
 }

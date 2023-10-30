@@ -51,6 +51,21 @@
         </a>
     </li>
 
+    <p class="uk-text-warning">確認ステータス</p>
+    <li class="nav-item">
+        <a href="{{ url('/admin/check_status?cat=commi') }}"
+            class="nav-link {{ Request::is('admin/check_status?cat=commi') ? 'active' : '' }}">
+            <p>地区コミ未確認</p>
+        </a>
+    </li>
+
+    <li class="nav-item">
+        <a href="{{ url('/admin/check_status?cat=dan') }}"
+            class="nav-link {{ Request::is('admin/check_status?cat=dan') ? 'active' : '' }}">
+            <p>団未承認</p>
+        </a>
+    </li>
+
     <p class="uk-text-warning">チェックイン業務</p>
 
     <li class="nav-item">

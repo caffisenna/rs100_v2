@@ -87,11 +87,13 @@ Route::middleware('verified')->group(function () {
         Route::get('/non_registered', [App\Http\Controllers\adminentryFormController::class, 'non_registered'])->name('non_registered');
 
         // チェックイン機能
-        Route::match(['get','post'],'/checkin', [App\Http\Controllers\adminentryFormController::class, 'checkin'])->name('checkin'); // チェックイン機能
+        Route::match(['get', 'post'], '/checkin', [App\Http\Controllers\adminentryFormController::class, 'checkin'])->name('checkin'); // チェックイン機能
         Route::get('/checkin/done', [App\Http\Controllers\adminentryFormController::class, 'checkin_done'])->name('checkin_done'); // チェックイン済み
         Route::get('/checkin/not_yet', [App\Http\Controllers\adminentryFormController::class, 'checkin_not_yet'])->name('checkin_not_yet'); // 未チェックイン
         Route::get('/checkin/delete', [App\Http\Controllers\adminentryFormController::class, 'checkin_delete'])->name('checkin_delete'); // チェックイン削除
 
+        // 確認ステータス
+        Route::get('/check_status/', [App\Http\Controllers\adminentryFormController::class, 'check_status'])->name('check_status');
     });
     // スタッフ用
     Route::prefix('staff')->middleware('can:staff')->group(function () {
