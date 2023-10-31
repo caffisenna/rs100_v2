@@ -582,6 +582,6 @@ class adminentryFormController extends AppBaseController
                 ->get();
         }
 
-        return view('admin.check_status.index')->with(compact('users'))->with(compact('cat'));
+        return view('admin.check_status.index')->with(compact('users','cat'));
     }
 }

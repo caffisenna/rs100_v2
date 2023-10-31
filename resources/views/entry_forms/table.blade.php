@@ -64,9 +64,9 @@
                 <td>IDカード</td>
                 <td>
                     @if ($entryForm->id)
-                        {{-- <a href="{{ url('/user/id_card') }}" target="_blank">ダウンロード</a><br>
-                        (表示されるPDFを各端末にダウンロードしてから印刷してください) --}}
-                        後日公開予定
+                        <a href="{{ url('/user/id_card') }}" target="_blank">ダウンロード</a><br>
+                        (表示されるPDFを各端末にダウンロードしてから印刷してください)
+                        {{-- 後日公開予定 --}}
                     @endif
                 </td>
             </tr>
