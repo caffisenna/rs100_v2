@@ -30,7 +30,7 @@
             </div>
 
         </div>
-        {{-- @if (isset($elearning->created_at)) --}}
+        @if (isset($elearning->created_at))
         <h2>Eラーニングの解説</h2>
         <div class="exp">
             <div class="uk-margin-bottom">
@@ -185,6 +185,6 @@
                 </div>
             </div>
         </div>
-        {{-- @endif --}}
+        @endif
     </div>
 @endsection
