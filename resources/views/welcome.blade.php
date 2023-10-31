@@ -122,6 +122,7 @@
                 <div class="uk-card uk-card-primary uk-card-body">
                     <h5 class="uk-card-title"><span uk-icon="icon:info; ratio:1"></span>NEWS</h5>
                     <ul class="uk-list">
+                        <li>2023/11/01 Eラーニングの受講が可能になりました</li>
                         <li>2023/10/31 参加IDカードのダウンロードが可能になりました</li>
                         <li>2023/10/21 参加申込を終了しました</li>
                         <li>2023/09/27 第56回大会 参加者受付を開始しました</li>
