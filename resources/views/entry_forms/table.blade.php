@@ -51,22 +51,34 @@
             <tr>
                 <td>Eラーニング</td>
                 @if (isset($entryForm->elearning))
-                    <td>{{ $entryForm->elearning }}</td>
+                    <td>修了済み</td>
                 @else
-                    <td> <span class="uk-text-danger">未修了(今後受講が可能になります)</span></td>
+                    <td>
+                        @if ($configs->elearning)
+                            <a href="{{ url('/user/elearnings') }}" class="uk-button uk-button-primary">受講する</a>
+                        @else
+                            <span class="uk-text-danger">未修了(今後受講が可能になります)</span>
+                        @endif
+                    </td>
                 @endif
             </tr>
             <tr>
                 <td>健康調査票</td>
-                <td>Eラーニングの修了証が兼務します</td>
+                @if (isset($entryForm->elearning))
+                    <td>
+                        <a href="{{ url('/user/healthcheck') }}" class="uk-button uk-button-primary">ダウンロード</a>
+                    </td>
+                @else
+                    <td><span class="uk-text-warning">Eラーニング修了後にダウンロードできるようになります</span></td>
+                @endif
             </tr>
             <tr>
                 <td>IDカード</td>
                 <td>
                     @if ($entryForm->id)
-                        <a href="{{ url('/user/id_card') }}" target="_blank">ダウンロード</a><br>
+                        <a href="{{ url('/user/id_card') }}" target="_blank"
+                            class="uk-button uk-button-primary">ダウンロード</a><br>
                         (表示されるPDFを各端末にダウンロードしてから印刷してください)
-                        {{-- 後日公開予定 --}}
                     @endif
                 </td>
             </tr>
