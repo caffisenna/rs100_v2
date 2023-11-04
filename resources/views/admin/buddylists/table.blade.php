@@ -66,7 +66,7 @@
     });
 </script>
 <div class="table-responsive">
-    <table class="uk-table uk-table-small uk-table-divider uk-table-hover" id="buddylists-table">
+    <table class="uk-table uk-table-divider uk-table-hover" id="buddylists-table">
         <thead>
             <tr>
                 <th>ID</th>
@@ -81,77 +81,86 @@
         </thead>
         <tbody class="uk-text-small">
             @foreach ($buddylists as $buddylist)
-                <tr>
-                    <td>{{ $buddylist->id }}</td>
-                    <td>{{ $buddylist->person1 }}<br>
-                        @if ($buddylist->person1_gender == '女')
-                            <span class="uk-text-danger">{{ $buddylist->person1_name }}</span>
-                        @else
-                            {{ $buddylist->person1_name }}
-                        @endif
-                        ({{ $buddylist->person1_gender }})
-                        <br>{{ $buddylist->person1_dan_name }}
-                    </td>
-                    <td>{{ $buddylist->person2 }}<br>
-                        @if ($buddylist->person2_gender == '女')
-                            <span class="uk-text-danger">{{ $buddylist->person2_name }}</span>
-                        @else
-                            {{ $buddylist->person2_name }}
-                        @endif
-                        ({{ $buddylist->person2_gender }})<br>{{ $buddylist->person2_dan_name }}
-                    </td>
-                    <td>
-                        @if (isset($buddylist->person3))
-                            {{ $buddylist->person3 }}<br>
-                            @if ($buddylist->person3_gender == '女')
-                                <span class="uk-text-danger">{{ $buddylist->person3_name }}</span>
-                            @else
-                                {{ $buddylist->person3_name }}
+                @if (isset($buddylist->id))
+                    <tr>
+                        <td>{{ $buddylist->id }}</td>
+                        <td>
+                            @if (isset($buddylist->person1Form->zekken))
+                                {{ $buddylist->person1Form->zekken }}<br>
+                                @if ($buddylist->person1Form->gender === '女')
+                                    <span class="uk-text-danger">{{ $buddylist->person1Form->user->name }}</span>
+                                @else
+                                    {{ $buddylist->person1Form->user->name }}
+                                @endif
+                                ({{ $buddylist->person1Form->gender }})
+                                <br>{{ $buddylist->person1Form->dan_name }}
                             @endif
-                            ({{ $buddylist->person3_gender }})<br>{{ $buddylist->person3_dan_name }}
-                        @endif
-                    </td>
-                    <td>
-                        @if (isset($buddylist->person4))
-                            {{ $buddylist->person4 }}<br>
-                            @if ($buddylist->person4_gender == '女')
-                                <span class="uk-text-danger">{{ $buddylist->person4_name }}</span>
-                            @else
-                                {{ $buddylist->person4_name }}
+                        </td>
+                        <td>
+                            @if (isset($buddylist->person2Form->zekken))
+                                {{ $buddylist->person2Form->zekken }}<br>
+                                @if ($buddylist->person2Form->gender === '女')
+                                    <span class="uk-text-danger">{{ $buddylist->person2Form->user->name }}</span>
+                                @else
+                                    {{ $buddylist->person2Form->user->name }}
+                                @endif
+                                ({{ $buddylist->person2Form->gender }})<br>{{ $buddylist->person2Form->dan_name }}
                             @endif
-                            ({{ $buddylist->person4_gender }})<br>{{ $buddylist->person4_dan_name }}
-                        @endif
-                    </td>
-                    <td>
-                        @if (isset($buddylist->person5))
-                            {{ $buddylist->person5 }}<br>
-                            @if ($buddylist->person5_gender == '女')
-                                <span class="uk-text-danger">{{ $buddylist->person5_name }}</span>
-                            @else
-                                {{ $buddylist->person5_name }}
+                        </td>
+                        <td>
+                            @if (isset($buddylist->person3Form->zekken))
+                                {{ $buddylist->person3Form->zekken }}<br>
+                                @if ($buddylist->person3Form->gender === '女')
+                                    <span class="uk-text-danger">{{ $buddylist->person3Form->user->name }}</span>
+                                @else
+                                    {{ $buddylist->person3Form->user->name }}
+                                @endif
+                                ({{ $buddylist->person3Form->gender }})<br>{{ $buddylist->person3Form->dan_name }}
                             @endif
-                            ({{ $buddylist->person5_gender }})<br>{{ $buddylist->person5_dan_name }}
-                        @endif
-                    </td>
-                    <td>{{ $buddylist->confirmed }}</td>
-                    <td>
-                        {!! Form::open(['route' => ['buddylists.destroy', $buddylist->id], 'method' => 'delete']) !!}
-                        <div class='btn-group'>
-                            <a href="{{ url('/admin/buddy_confirm/?q=') }}{{ $buddylist->id }}"
-                                class="uk-button uk-button-default"
-                                onclick="return confirm('{{ $buddylist->id }}を承認しますか?')">確認</a>
-                            <a href="{{ route('buddylists.edit', [$buddylist->id]) }}" class='btn btn-default btn-xs'>
-                                <i class="far fa-edit"></i>
-                            </a>
-                            {!! Form::button('<i class="far fa-trash-alt"></i>', [
-                                'type' => 'submit',
-                                'class' => 'btn btn-danger btn-xs',
-                                'onclick' => "return confirm('本当に削除しますか?')",
-                            ]) !!}
-                        </div>
-                        {!! Form::close() !!}
-                    </td>
-                </tr>
+                        </td>
+                        <td>
+                            @if (isset($buddylist->person4Form->zekken))
+                                {{ $buddylist->person4Form->zekken }}<br>
+                                @if ($buddylist->person4Form->gender === '女')
+                                    <span class="uk-text-danger">{{ $buddylist->person4Form->user->name }}</span>
+                                @else
+                                    {{ $buddylist->person4Form->user->name }}
+                                @endif
+                                ({{ $buddylist->person4Form->gender }})<br>{{ $buddylist->person4Form->dan_name }}
+                            @endif
+                        </td>
+                        <td>
+                            @if (isset($buddylist->person5Form->zekken))
+                                {{ $buddylist->person5Form->zekken }}<br>
+                                @if ($buddylist->person5Form->gender === '女')
+                                    <span class="uk-text-danger">{{ $buddylist->person5Form->user->name }}</span>
+                                @else
+                                    {{ $buddylist->person5Form->user->name }}
+                                @endif
+                                ({{ $buddylist->person5Form->gender }})<br>{{ $buddylist->person5Form->dan_name }}
+                            @endif
+                        </td>
+                        <td>{{ $buddylist->confirmed }}</td>
+                        <td>
+                            {!! Form::open(['route' => ['buddylists.destroy', $buddylist->id], 'method' => 'delete']) !!}
+                            <div class='btn-group'>
+                                <a href="{{ url('/admin/buddy_confirm/?q=') }}{{ $buddylist->id }}"
+                                    class="uk-button uk-button-default"
+                                    onclick="return confirm('{{ $buddylist->id }}を承認しますか?')">確認</a>
+                                <a href="{{ route('buddylists.edit', [$buddylist->id]) }}"
+                                    class='btn btn-default btn-xs'>
+                                    <i class="far fa-edit"></i>
+                                </a>
+                                {!! Form::button('<i class="far fa-trash-alt"></i>', [
+                                    'type' => 'submit',
+                                    'class' => 'btn btn-danger btn-xs',
+                                    'onclick' => "return confirm('本当に削除しますか?')",
+                                ]) !!}
+                            </div>
+                            {!! Form::close() !!}
+                        </td>
+                    </tr>
+                @endif
             @endforeach
         </tbody>
     </table>

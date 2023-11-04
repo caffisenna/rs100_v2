@@ -11,6 +11,8 @@ use Flash;
 use Response;
 use App\Models\entryForm;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
+
 
 class BuddylistController extends AppBaseController
 {
@@ -23,33 +25,17 @@ class BuddylistController extends AppBaseController
      */
     public function index(Request $request)
     {
-        /** @var Buddylist $buddylists */
-        $buddylists = Buddylist::all();
-        foreach ($buddylists as $value) {
-            $entryform = entryForm::where('zekken',$value['person1'])->first();
-            @$value['person1_name'] = User::where('id',$entryform->user_id)->value('name');
-            @$value['person1_dan_name'] = $entryform->dan_name;
-            @$value['person1_gender'] = $entryform->gender;
-            @$entryform = entryForm::where('zekken',$value['person2'])->first();
-            @$value['person2_name'] = User::where('id',$entryform->user_id)->value('name');
-            @$value['person2_dan_name'] = $entryform->dan_name;
-            @$value['person2_gender'] = $entryform->gender;
-            @$entryform = entryForm::where('zekken',$value['person3'])->first();
-            @$value['person3_name'] = User::where('id',$entryform->user_id)->value('name');
-            @$value['person3_dan_name'] = $entryform->dan_name;
-            @$value['person3_gender'] = $entryform->gender;
-            @$entryform = entryForm::where('zekken',$value['person4'])->first();
-            @$value['person4_name'] = User::where('id',$entryform->user_id)->value('name');
-            @$value['person4_dan_name'] = $entryform->dan_name;
-            @$value['person4_gender'] = $entryform->gender;
-            @$entryform = entryForm::where('zekken',$value['person5'])->first();
-            @$value['person5_name'] = User::where('id',$entryform->user_id)->value('name');
-            @$value['person5_dan_name'] = $entryform->dan_name;
-            @$value['person5_gender'] = $entryform->gender;
-        }
+        $buddylists = Buddylist::with(
+            [
+                'person1Form.user',
+                'person2Form.user',
+                'person3Form.user',
+                'person4Form.user',
+                'person5Form.user',
+            ]
+        )->get();
 
-        return view('admin.buddylists.index')
-            ->with('buddylists', $buddylists);
+        return view('admin.buddylists.index', compact('buddylists'));
     }
 
     /**

@@ -5,6 +5,8 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\entryForm;
+use App\Models\User;
 
 /**
  * Class Buddylist
@@ -29,8 +31,6 @@ class Buddylist extends Model
 
     protected $dates = ['deleted_at'];
 
-
-
     public $fillable = [
         'person1',
         'person2',
@@ -47,11 +47,11 @@ class Buddylist extends Model
      */
     protected $casts = [
         'id' => 'integer',
-        'person1' => 'integer',
-        'person2' => 'integer',
-        'person3' => 'integer',
-        'person4' => 'integer',
-        'person5' => 'integer',
+        'person1' => 'string',
+        'person2' => 'string',
+        'person3' => 'string',
+        'person4' => 'string',
+        'person5' => 'string',
         'confirmed' => 'datetime'
     ];
 
@@ -69,5 +69,29 @@ class Buddylist extends Model
         'confirmed' => 'nullable'
     ];
 
+    // Buddylistモデルのエントリフォームへのリレーションを定義
+    public function person1Form()
+    {
+        return $this->belongsTo(EntryForm::class, 'person1', 'zekken');
+    }
 
+    public function person2Form()
+    {
+        return $this->belongsTo(EntryForm::class, 'person2', 'zekken');
+    }
+
+    public function person3Form()
+    {
+        return $this->belongsTo(EntryForm::class, 'person3', 'zekken');
+    }
+
+    public function person4Form()
+    {
+        return $this->belongsTo(EntryForm::class, 'person4', 'zekken');
+    }
+
+    public function person5Form()
+    {
+        return $this->belongsTo(EntryForm::class, 'person5', 'zekken');
+    }
 }
