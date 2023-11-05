@@ -84,62 +84,28 @@
                 @if (isset($buddylist->id))
                     <tr>
                         <td>{{ $buddylist->id }}</td>
-                        <td>
-                            @if (isset($buddylist->person1Form->zekken))
-                                {{ $buddylist->person1Form->zekken }}<br>
-                                @if ($buddylist->person1Form->gender === '女')
-                                    <span class="uk-text-danger">{{ $buddylist->person1Form->user->name }}</span>
-                                @else
-                                    {{ $buddylist->person1Form->user->name }}
+
+                        {{-- バディ1-5をforで表示 --}}
+                        @for ($i = 1; $i <= 5; $i++)
+                            <td>
+                                @php
+                                    $personData = $buddylist->{"person$i" . 'Form'};
+                                @endphp
+
+                                @if (isset($personData->zekken))
+                                    {{ $personData->zekken }}<br>
+                                    @if ($personData->gender === '女')
+                                        <span class="uk-text-danger">{{ $personData->user->name }}</span>
+                                    @else
+                                        {{ $personData->user->name }}
+                                    @endif
+                                    ({{ $personData->gender }})
+                                    <br>{{ $personData->dan_name }}
                                 @endif
-                                ({{ $buddylist->person1Form->gender }})
-                                <br>{{ $buddylist->person1Form->dan_name }}
-                            @endif
-                        </td>
-                        <td>
-                            @if (isset($buddylist->person2Form->zekken))
-                                {{ $buddylist->person2Form->zekken }}<br>
-                                @if ($buddylist->person2Form->gender === '女')
-                                    <span class="uk-text-danger">{{ $buddylist->person2Form->user->name }}</span>
-                                @else
-                                    {{ $buddylist->person2Form->user->name }}
-                                @endif
-                                ({{ $buddylist->person2Form->gender }})<br>{{ $buddylist->person2Form->dan_name }}
-                            @endif
-                        </td>
-                        <td>
-                            @if (isset($buddylist->person3Form->zekken))
-                                {{ $buddylist->person3Form->zekken }}<br>
-                                @if ($buddylist->person3Form->gender === '女')
-                                    <span class="uk-text-danger">{{ $buddylist->person3Form->user->name }}</span>
-                                @else
-                                    {{ $buddylist->person3Form->user->name }}
-                                @endif
-                                ({{ $buddylist->person3Form->gender }})<br>{{ $buddylist->person3Form->dan_name }}
-                            @endif
-                        </td>
-                        <td>
-                            @if (isset($buddylist->person4Form->zekken))
-                                {{ $buddylist->person4Form->zekken }}<br>
-                                @if ($buddylist->person4Form->gender === '女')
-                                    <span class="uk-text-danger">{{ $buddylist->person4Form->user->name }}</span>
-                                @else
-                                    {{ $buddylist->person4Form->user->name }}
-                                @endif
-                                ({{ $buddylist->person4Form->gender }})<br>{{ $buddylist->person4Form->dan_name }}
-                            @endif
-                        </td>
-                        <td>
-                            @if (isset($buddylist->person5Form->zekken))
-                                {{ $buddylist->person5Form->zekken }}<br>
-                                @if ($buddylist->person5Form->gender === '女')
-                                    <span class="uk-text-danger">{{ $buddylist->person5Form->user->name }}</span>
-                                @else
-                                    {{ $buddylist->person5Form->user->name }}
-                                @endif
-                                ({{ $buddylist->person5Form->gender }})<br>{{ $buddylist->person5Form->dan_name }}
-                            @endif
-                        </td>
+                            </td>
+                        @endfor
+                        {{-- バディ1-5をforで表示 --}}
+
                         <td>{{ $buddylist->confirmed }}</td>
                         <td>
                             {!! Form::open(['route' => ['buddylists.destroy', $buddylist->id], 'method' => 'delete']) !!}

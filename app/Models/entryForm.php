@@ -5,6 +5,7 @@ namespace App\Models;
 use Eloquent as Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\Buddylist;
 
 /**
  * Class entryForm
@@ -195,5 +196,10 @@ class entryForm extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function buddylist()
+    {
+        return $this->hasOne(Buddylist::class);
     }
 }
