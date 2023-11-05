@@ -23,7 +23,14 @@
             <input type="text" name="reg_number" id="reg_number" oninput="limitInput(this); checkInputLength(this);"
                 maxlength="11" required class="uk-input uk-form-large" placeholder="登録証QRをスキャン、もしくはゼッケンを手入力">
         </form>
-        <p class="uk-text-warning">ゼッケンは1桁〜3桁を入力したらEnterで確定させてください</p>
+
+        <h3>How to use</h3>
+        <ul>
+            <li>登録証のQRをスキャンして<span class="uk-text-danger">「404 見つかりません」</span>が出たらこのページに戻り、ゼッケンで受付してください</li>
+            <li>ゼッケン番号は半角数字で1〜3桁を入力!</li>
+            <li>ゼッケン番号を入力したらEnterで確定!</li>
+            <li>チェックインを取り消す場合は <a href="{{ url('/admin/checkin/done') }}">チェックイン済み一覧</a> から該当者を削除してください。</li>
+        </ul>
     @endsection
 
     <script>
