@@ -443,93 +443,33 @@ class adminentryFormController extends AppBaseController
     {
         // 当日受付チェックイン
 
-        // 登録番号でチェック
-        if (isset($request['reg_number'])) {
-            $input = $request->all();
+        $input = $request->all();
 
-            $user = entryForm::where('bs_id', $input['reg_number'])->with('user')->firstorFail();
-
-            // 重複チェックインを確認
-            if (empty($user->checkin_at)) {
-                $name = $user->user->name;
-                if (isset($user->prefecture)) {
-                    $pref = $user->prefecture . '連盟 ';
-                }
-                if (isset($user->district) && $user->district !== 'なし') {
-                    $dist = $user->district . '地区 ';
-                } else {
-                    $dist = NULL;
-                }
-                if (isset($user->dan_name) && $user->dan_name !== 'なし') {
-                    $dan = $user->dan_name . '団 ';
-                } else {
-                    $dan = NULL;
-                }
-                // ゼッケン取得
-                $zekken = $user->zekken;
-
-                // flashメッセージ生成
-                $user_info = "<span class='uk-text-large'>" . $name . "($user->furigana)</span> さん<br>
-            所属: " . $pref . $dist . $dan . "<br>
-            登録番号: " . $input['reg_number'] . "<br>
-            ゼッケン: " . $zekken;
-
-                Flash::success($user_info . "<br><br><br>チェックイン完了! <br>Eラン兼健康調査票を確認してください。");
-
-                // 打刻してDB保存
-                $user->checkin_at = now();
-                $user->save();
-            } else {
-                $checkin_at  = $user->checkin_at;
-                Flash::error($user->user->name . "さんは既にチェックイン済みです。<br>
-                チェックイン時刻: $checkin_at <br>
-                管理者に確認してください。");
-            }
+        if (isset($input['reg_number']) && strlen($input['reg_number']) >= 8) {
+            $user = entryForm::where('bs_id', $input['reg_number'])->with('user')->firstOrFail();
+        } elseif (isset($input['reg_number']) && strlen($input['reg_number']) <= 3) {
+            $user = entryForm::where('zekken', $input['reg_number'])->with('user')->firstOrFail();
+        } else {
+            // それ以外ならばスキャン画面にリダイレクト
+            return view('admin.checkin.index');
         }
 
-        // ゼッケンでチェック
-        if (isset($request['zekken'])) {
-            $input = $request->all();
-            $user = entryForm::where('zekken', $input['zekken'])->with('user')->firstorFail();
+        if (empty($user->checkin_at)) {
+            $name = $user->user->name;
+            $pref = $user->prefecture ? $user->prefecture . '連盟 ' : '';
+            $dist = $user->district && $user->district !== 'なし' ? $user->district . '地区 ' : '';
+            $dan = $user->dan_name && $user->dan_name !== 'なし' ? $user->dan_name . '団 ' : '';
+            $zekken = $user->zekken;
 
-            // 重複チェックインを確認
-            if (empty($user->checkin_at)) {
+            $user_info = "<span class='uk-text-large'>$name($user->furigana)</span> さん<br>所属: $pref$dist$dan<br>登録番号: " . $user->bs_id . "<br>ゼッケン: $zekken";
 
-                $name = $user->user->name;
-                if (isset($user->prefecture)) {
-                    $pref = $user->prefecture . '連盟 ';
-                }
-                if (isset($user->district) && !$user->district == 'なし') {
-                    $dist = $user->district . '地区 ';
-                } else {
-                    $dist = NULL;
-                }
-                if (isset($user->dan_name) && $user->dan_name !== 'なし') {
-                    $dan = $user->dan_name . '団 ';
-                } else {
-                    $dan = NULL;
-                }
+            Flash::success("$user_info<br><br><br>チェックイン完了! <br>Eラン兼健康調査票を確認してください");
 
-                // ゼッケン取得
-                $zekken = $user->zekken;
-
-                // flashメッセージ生成
-                $user_info = "<span class='uk-text-large'>" . $name . "($user->furigana)</span> さん<br>
-            所属: " . $pref . $dist . $dan . "<br>
-            登録番号: " . $user->bs_id . "<br>
-            ゼッケン: " . $zekken;
-
-                Flash::success($user_info . "<br><br><br>チェックイン完了! <br>Eラン兼健康調査票を確認してください。");
-
-                // 打刻してDB保存
-                $user->checkin_at = now();
-                $user->save();
-            } else {
-                $checkin_at  = $user->checkin_at;
-                Flash::error($user->user->name . "さんは既にチェックイン済みです。<br>
-                チェックイン時刻: $checkin_at <br>
-                管理者に確認してください。");
-            }
+            $user->checkin_at = now();
+            $user->save();
+        } else {
+            $checkin_at = $user->checkin_at;
+            Flash::error("$user->user->name さんは既にチェックイン済みです。<br>チェックイン時刻: $checkin_at <br>管理者に確認してください");
         }
 
         return view('admin.checkin.index');
@@ -582,6 +522,6 @@ class adminentryFormController extends AppBaseController
                 ->get();
         }
 
-        return view('admin.check_status.index')->with(compact('users','cat'));
+        return view('admin.check_status.index')->with(compact('users', 'cat'));
     }
 }

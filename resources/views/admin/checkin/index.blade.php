@@ -19,23 +19,27 @@
         <div class="clearfix"></div>
         <form method="POST" action="{{ url('/admin/checkin') }}" id="myForm">
             @csrf
-            <h3>登録番号でチェックイン</h3>
-            <p class="uk-text-warning">参加者のQRコードをスキャン</p>
-            <input type="text" name="reg_number" id="reg_number" oninput="limitInput(this); checkInputLength(this);"
-                maxlength="11" required class="uk-input uk-form-large">
-        </form>
 
-        <form method="POST" action="{{ url('/admin/checkin') }}" id="myForm">
-            @csrf
-            <h3>ゼッケンでチェックイン</h3>
-            {{-- ゼッケンは手入力のためjsでauto submitはさせない --}}
-            <p class="uk-text-warning">IDに書かれているゼッケンを手入力(ゼッケンを入力したらEnter!!!)</p>
-            <input type="text" name="zekken" id="zekken" maxlength="3" required class="uk-input uk-form-large"
-                oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+            <input type="text" name="reg_number" id="reg_number" oninput="limitInput(this); checkInputLength(this);"
+                maxlength="11" required class="uk-input uk-form-large" placeholder="登録証QRをスキャン、もしくはゼッケンを手入力">
         </form>
+        <p class="uk-text-warning">ゼッケンは1桁〜3桁を入力したらEnterで確定させてください</p>
     @endsection
 
     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // ページが読み込まれたときにフィールドにフォーカスを設定
+            var regNumberField = document.getElementById("reg_number");
+            regNumberField.focus();
+
+            // フォーカスが外れたときに自動的にフォーカスを戻す
+            regNumberField.addEventListener("blur", function() {
+                setTimeout(function() {
+                    regNumberField.focus();
+                }, 0);
+            });
+        });
+
         function limitInput(inputField) {
             // 8桁から11桁までの数字のみを許可
             inputField.value = inputField.value.replace(/\D/g, '').substring(0, 11);
