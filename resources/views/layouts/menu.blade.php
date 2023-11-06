@@ -142,6 +142,17 @@
     </li>
 @endif
 
+@if ($configs->car_registration)
+    <p class="uk-text-warning">駐車許可証</p>
+    <li class="nav-item">
+        <a href="{{ route('car_registrations.index') }}"
+            class="nav-link {{ Request::is('carRegistrations*') ? 'active' : '' }}">
+            <span uk-icon="file-text"></span>
+            <p>駐車許可証申請</p>
+        </a>
+    </li>
+@endif
+
 <p class="uk-text-warning">Links</p>
 {{-- 公式サイトリンク --}}
 <a href="https://rs100.scout.tokyo" class="btn btn-info btn-xs btn-block">公式サイト</a>
@@ -156,14 +167,3 @@
     @csrf
 </form>
 {{-- ログアウトボタン --}}
-
-@if ($configs->car_registration)
-    <p class="uk-text-warning">駐車許可証</p>
-    <li class="nav-item">
-        <a href="{{ route('car_registrations.index') }}"
-            class="nav-link {{ Request::is('carRegistrations*') ? 'active' : '' }}">
-            <span uk-icon="file-text"></span>
-            <p>駐車許可証申請</p>
-        </a>
-    </li>
-@endif
