@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>備考入力あり(欠席など)</h1>
+                    <h1>備考入力あり(遅参など)</h1>
                 </div>
             </div>
         </div>
