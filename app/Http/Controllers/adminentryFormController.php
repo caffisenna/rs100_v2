@@ -272,6 +272,7 @@ class adminentryFormController extends AppBaseController
         return view('admin.entry_forms.fee_check')
             ->with('users', $users);
     }
+
     public function registration_check(Request $request)
     {
         /** @var entryForm $entryForms */
@@ -523,5 +524,42 @@ class adminentryFormController extends AppBaseController
         }
 
         return view('admin.check_status.index')->with(compact('users', 'cat'));
+    }
+
+    public function line_check(Request $request)
+    {
+        /** @var entryForm $entryForms */
+
+        // 入金ボタン処理
+        if ($request['id']) {
+            $entryform = entryForm::with('user')->where('id', $request['id'])->first();
+            $entryform->line_checked_at = now();
+
+            $name = $entryform->user->name . "(" . $entryform->district . ")";
+
+            // slack
+            // $slackpost = new SlackPost();
+            // $slackpost->send(":dollar: " . $name . ' の入金チェック');
+
+            // logger
+            Log::info('[LINEチェック] ' . $name);
+
+            $entryform->save();
+            Flash::success($entryform->user->name . " のLINE登録確認を行いました");
+            return back();
+        }
+
+        // 一覧取得
+        $users = User::where(function ($query) {
+            $query->where('is_admin', 0)
+                ->Where('is_staff', 0)
+                ->Where('is_commi', null)
+                ->where('email_verified_at', '<>', null);
+        })
+            ->with('entryform')->get();
+        // $users = user::with('entryForm')->get();
+
+        return view('admin.entry_forms.line_check')
+            ->with(compact('users'));
     }
 }

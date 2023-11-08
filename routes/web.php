@@ -94,6 +94,9 @@ Route::middleware('verified')->group(function () {
 
         // 確認ステータス
         Route::get('/check_status/', [App\Http\Controllers\adminentryFormController::class, 'check_status'])->name('check_status');
+
+        // Line加入チェック
+        Route::match(['get', 'post'], '/line_check', [App\Http\Controllers\adminentryFormController::class, 'line_check'])->name('line_check'); // チェックイン機能
     });
     // スタッフ用
     Route::prefix('staff')->middleware('can:staff')->group(function () {

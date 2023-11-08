@@ -86,6 +86,12 @@
         </a>
     </li>
 
+    <li class="nav-item">
+        <a href="{{ url('/admin/line_check') }}" class="nav-link {{ Request::is('admin/line_check*') ? 'active' : '' }}">
+            <p><span uk-icon="bolt"></span>LINE確認</p>
+        </a>
+    </li>
+
     <p class="uk-text-warning">バディ関係</p>
     <li class="nav-item">
         <a href="{{ route('buddylists.index') }}"
