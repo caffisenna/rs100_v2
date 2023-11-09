@@ -22,6 +22,7 @@ use Mail;
 use App\Http\Util\SlackPost;
 use App\Mail\EntryformCreated;
 use Log;
+use App\Models\Buddylist;
 
 class entryFormController extends AppBaseController
 {
@@ -62,7 +63,38 @@ class entryFormController extends AppBaseController
         $entryForm->available = AdminConfig::first()->create_application;
         $configs = AdminConfig::first();
 
-        return view('entry_forms.index', compact('entryForm', 'configs'));
+        // バディ取得
+        $zekken = $entryForm->zekken;
+        $buddy = Buddylist::where('person1', $zekken)
+            ->orWhere('person2', $zekken)
+            ->orWhere('person3', $zekken)
+            ->orWhere('person4', $zekken)
+            ->orWhere('person5', $zekken)
+            ->first();
+
+        if (isset($buddy)) {
+            $bd = array(); // バディを配列で格納する
+            $personIds = [
+                $buddy->person1,
+                $buddy->person2,
+                $buddy->person3,
+                $buddy->person4,
+                $buddy->person5
+            ];
+
+            foreach ($personIds as $index => $personId) {
+                if ($personId) {
+                    $personVariableName = 'person' . ($index + 1);
+                    $bd[$personVariableName] = entryForm::where('zekken', $personId)->with('user')->first();
+                }
+            }
+        }
+
+        if (isset($bd)) {
+            return view('entry_forms.index', compact('entryForm', 'configs', 'bd'));
+        } else {
+            return view('entry_forms.index', compact('entryForm', 'configs'));
+        }
     }
 
     /**

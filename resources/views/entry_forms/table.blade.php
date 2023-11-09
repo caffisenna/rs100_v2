@@ -82,6 +82,22 @@
                     @endif
                 </td>
             </tr>
+            <tr>
+                <td>バディ情報</td>
+                @if (isset($bd))
+                    <td>
+                        @foreach ($bd as $person)
+                            {{ $person->user->name }}({{ $person->gender }})<br>
+                            {{ $person->prefecture }}連盟
+                            {{ isset($person->district) ? $person->district . '地区' : '' }}
+                            {{ isset($person->dan_name) ? $person->dan_name . '団' : '' }}
+                            <hr>
+                        @endforeach
+                    </td>
+                @else
+                    <td>男性での単独歩行、もしくは女性を含まない男性同士のバディ情報は割愛しています</td>
+                @endif
+            </tr>
         </tbody>
     </table>
 </div>
