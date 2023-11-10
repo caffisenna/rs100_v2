@@ -12,6 +12,7 @@ use Response;
 use Auth;
 use App\Models\entryForm;
 use App\Http\Util\SlackPost;
+use App\Models\AdminConfig;
 
 class elearningController extends AppBaseController
 {
@@ -50,7 +51,14 @@ class elearningController extends AppBaseController
      */
     public function create()
     {
-        return view('elearnings.create');
+        $config = AdminConfig::first()->elearning;
+        if ($config) {
+            return view('elearnings.create');
+        } else {
+            Flash::warning('Eラーニング受講期間が終了しました');
+            return redirect('/home');
+        }
+        // return view('elearnings.create');
     }
 
     /**
