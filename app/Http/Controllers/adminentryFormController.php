@@ -470,7 +470,7 @@ class adminentryFormController extends AppBaseController
             $user->save();
         } else {
             $checkin_at = $user->checkin_at;
-            Flash::error("$user->user->name さんは既にチェックイン済みです。<br>チェックイン時刻: $checkin_at <br>管理者に確認してください");
+            Flash::error("{$user->user->name} さんは既にチェックイン済みです。<br>チェックイン時刻: $checkin_at <br>管理者に確認してください");
         }
 
         return view('admin.checkin.index');
