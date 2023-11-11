@@ -5,6 +5,7 @@
     <table class="uk-table" id="entryForms-table">
         <thead>
             <tr>
+                <th>ゼッケン</th>
                 <th>名前</th>
                 <th>年代</th>
                 <th>所属</th>
@@ -17,6 +18,7 @@
             @foreach ($entryForms as $entryForm)
                 @unless($entryForm->user->is_admin || $entryForm->user->is_staff || $entryForm->user->is_commi)
                     <tr>
+                        <td>{{ $entryForm->zekken }}</td>
                         <td><a
                                 href="{{ route('entries.show', [$entryForm->id]) }}">{{ $entryForm->user->name }}</a><br>{{ $entryForm->furigana }}
                         </td>
