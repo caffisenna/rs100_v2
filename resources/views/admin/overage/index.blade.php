@@ -41,7 +41,7 @@
                                             @if (!$entry->zekken)
                                                 {{ $entry->user->id }}
                                             @elseif($entry->zekken)
-                                                $entry->zekken
+                                                {{ $entry->zekken }}
                                             @endif
                                         </td>
                                         <td>{{ $entry->user->name }}({{ $entry->gender }})<br>
