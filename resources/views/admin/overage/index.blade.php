@@ -37,7 +37,13 @@
                             @foreach ($entries as $entry)
                                 @unless ($entry->user->is_admin || $entry->user->is_staff || $entry->user->is_commi)
                                     <tr>
-                                        <td>{{ $entry->user->id }}</td>
+                                        <td>
+                                            @if (!$entry->zekken)
+                                                {{ $entry->user->id }}
+                                            @elseif($entry->zekken)
+                                                $entry->zekken
+                                            @endif
+                                        </td>
                                         <td>{{ $entry->user->name }}({{ $entry->gender }})<br>
                                             {{ $entry->furigana }}</td>
                                         <td>{{ $entry->district }} {{ $entry->dan_name }}
