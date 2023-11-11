@@ -26,7 +26,7 @@
                     <table class="uk-table uk-table-striped" id="entryForms-table">
                         <thead>
                             <tr>
-                                <th>ID</th>
+                                <th>ゼッケン</th>
                                 <th>名前</th>
                                 <th>所属</th>
                                 <th>生年月日</th>
