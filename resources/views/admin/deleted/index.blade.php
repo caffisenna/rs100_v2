@@ -35,7 +35,7 @@
                             @foreach ($entryForms as $entryForm)
                                 @unless($entryForm->user->is_admin || $entryForm->user->is_staff || $entryForm->user->is_commi)
                                     <tr>
-                                        <td>{{ $entryForm->user->id }}</td>
+                                        <td>{{ $entryForm->zekken }}</td>
                                         <td>{{ $entryForm->user->name }}({{ $entryForm->gender }})<br>
                                             {{ $entryForm->furigana }}</td>
                                         <td>{{ $entryForm->district }} {{ $entryForm->dan_name }}
