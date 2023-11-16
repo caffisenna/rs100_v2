@@ -47,14 +47,6 @@ class entryFormController extends AppBaseController
             // エラー発生でも進める
         }
 
-        // 計画書アップロード
-        try {
-            $plan = planUpload::where('user_id', Auth::user()->id)->where('deleted_at', NULL)->first();
-            $entryForm->plan_upload = $plan->created_at;
-        } catch (\Throwable $th) {
-            // エラー発生でも進める
-        }
-
         if (is_null($entryForm)) {
             $entryForm = new entryForm;
             // $entryForm->elearning = $elearning->created_at;

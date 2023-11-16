@@ -98,10 +98,11 @@ Route::middleware('verified')->group(function () {
         // Line加入チェック
         Route::match(['get', 'post'], '/line_check', [App\Http\Controllers\adminentryFormController::class, 'line_check'])->name('line_check'); // チェックイン機能
     });
+
     // スタッフ用
     Route::prefix('staff')->middleware('can:staff')->group(function () {
-        // Route::resource('staffplanUploads', App\Http\Controllers\staffplanUploadController::class, ['except' => ['create','edit','show','update']]);
     });
+
     // 地区コミ用
     Route::prefix('commi')->middleware('can:commi')->group(function () {
         Route::resource('entries', App\Http\Controllers\commiEntryFormController::class, ['only' => ['index', 'show']]);
