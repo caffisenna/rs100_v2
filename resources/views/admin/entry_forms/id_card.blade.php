@@ -40,14 +40,9 @@
 
 <body>
     <div style="text-align:center">
-        <img src="{{ url('/images/rs100km_56th.png') }}" alt="" style="height:100px;"><br>
-        {{-- <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQI12NgYAAAAAMAASDVlMcAAAAASUVORK5CYII="
-        alt="" height="20" width="1">
-        東京連盟<br>第56回ローバースカウト100kmハイク<br>参加者ID --}}
+        <img src="{{ url('/images/rs100km.png') }}" alt="" style="height:100px;"><br>
     </div>
 
-    {{-- <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVQI12NgYAAAAAMAASDVlMcAAAAASUVORK5CYII="
-        alt="" height="30" width="1"> --}}
     <p style="text-align:center; line-height:1em">{{ $user->entryform->prefecture }}連盟 {{ $user->entryform->district }}地区
         {{ $user->entryform->dan_name }}団<br>
         {{ $user->name }}<br>

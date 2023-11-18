@@ -53,7 +53,7 @@
     <div>
         <div class="uk-text-center" style="margin-top:-20px;">
             <img src="{{ url('/images/tokyo.png') }}" width="150px" height="">
-            <span class="uk-text-large" style="line-height:0.8">ボーイスカウト東京連盟<br>第56回ローバースカウト<br>100kmハイク</span>
+            <span class="uk-text-large" style="line-height:0.8">ボーイスカウト東京連盟<br>第{{ config('app.number_of_times') }}回ローバースカウト<br>100kmハイク</span>
         </div>
     </div>
     <div class="uk-margin-top">
@@ -91,7 +91,7 @@
         </div>
         <div id="img" class="">
             <div class="uk-float-left">
-                <img src="{{ url('/images/rs100km_56th.png') }}" width="80px">
+                <img src="{{ url('/images/rs100km.png') }}" width="80px">
             </div>
             <div class="uk-float-right">
                 <img src="{{ url('/images/tokyo_75th.png') }}" width="80px">

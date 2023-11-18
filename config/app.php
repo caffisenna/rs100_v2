@@ -236,5 +236,6 @@ return [
 
     // .env読み込み
     'user_create' => env('USER_CREATE', null),  // config('app.user_create') で呼び出せる
+    'number_of_times' => env('NUMBER_OF_TIMES'),
 
 ];

@@ -39,7 +39,7 @@
 </head>
 
 <body>
-    <p class="uk-text-large uk-text-center"><img src="{{ url('/images/rs100km_56th.png')}}" alt="" style="height:50px;">第56回東京連盟ローバースカウト100kmハイク参加申込書</p>
+    <p class="uk-text-large uk-text-center"><img src="{{ url('/images/rs100km.png')}}" alt="" style="height:50px;">第{{ config('app.number_of_times') }}回東京連盟ローバースカウト100kmハイク参加申込書</p>
     <p class="uk-text-right uk-text-small">データ入力日時:{{ $entryForm->entryform->updated_at }}<br>
         申込書番号:{{ $entryForm->entryform->id }}</p>
 

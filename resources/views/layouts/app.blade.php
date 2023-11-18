@@ -67,7 +67,7 @@
                     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <!-- User image -->
                         <li class="user-header bg-primary">
-                            <img src="{{ url('/images/rs100km_56th.png') }}" class="" alt="User Image">
+                            <img src="{{ url('/images/rs100km.png') }}" class="" alt="User Image">
                             <p>
                                 @if (!Auth::guest())
                                     {{ Auth::user()->name }}

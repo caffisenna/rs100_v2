@@ -39,7 +39,7 @@
 </head>
 
 <body>
-    <div class="uk-position-top-left"><img src="{{ url('/images/rs100km_56th.png') }}" style="height:200px;"></div>
+    <div class="uk-position-top-left"><img src="{{ url('/images/rs100km.png') }}" style="height:200px;"></div>
     <div class="uk-text-center">
         <p class="uk-text" style="font-size: 60pt; margin-top:-200px">駐車許可証</p>
 
@@ -49,7 +49,7 @@
             {{ $car_info->car_number }}
         </div>
         管理ID: {{ $car_info->uuid }}
-        <p class="uk-tetx" style="font-size: 30pt">第56回東京連盟ローバースカウト100kmハイク実行委員会</p>
+        <p class="uk-tetx" style="font-size: 30pt">第{{ config('app.number_of_times') }}回東京連盟ローバースカウト100kmハイク実行委員会</p>
     </div>
 </body>
 
