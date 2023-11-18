@@ -32,21 +32,24 @@ class adminentryFormController extends AppBaseController
     public function index(Request $request)
     {
         $input = $request->all();
-        $filter = $input['bs_gs'] ?? ($input['district'] ?? null);
+        if (isset($input['district'])) {
+            $dictrict = $input['district'];
+        }
+        $district = $input['bs_gs'] ?? ($input['district'] ?? null);
 
-        $users = User::where(function ($query) use ($filter) {
+        $users = User::where(function ($query) use ($district) {
             $query->where('is_admin', 0)
                 ->where('is_staff', 0)
                 ->where('is_commi', null)
                 ->where('email_verified_at', '<>', null);
 
-            if (isset($filter) && $filter == 'bs_gs') {
-                $query->whereHas('entryform', function ($entryformQuery) use ($filter) {
-                    $entryformQuery->where('bs_gs', $filter);
+            if (isset($district) && $district === 'bs_gs') {
+                $query->whereHas('entryform', function ($entryformQuery) use ($district) {
+                    $entryformQuery->where('bs_gs', $district);
                 });
-            } elseif (isset($filter) && $filter == 'district') {
-                $query->whereHas('entryform', function ($entryformQuery) use ($filter) {
-                    $entryformQuery->where('district', $filter);
+            } elseif (isset($district)) {
+                $query->whereHas('entryform', function ($entryformQuery) use ($district) {
+                    $entryformQuery->where('district', $district);
                 });
             }
         })
