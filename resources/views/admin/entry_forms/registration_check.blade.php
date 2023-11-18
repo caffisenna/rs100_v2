@@ -111,12 +111,16 @@
                                         @else
                                             <td>{{ $user->name }}<br>(申込書未作成)</td>
                                         @endif
-                                        <td>{{ @$user->entryform->bs_id }}</td>
+                                        <td>
+                                            @if (isset($user->entryform->bs_id))
+                                                <a
+                                                    href="{{ route('regnumber_edit', ['uuid' => $user->entryform->uuid]) }}">{{ @$user->entryform->bs_id }}</a>
+                                            @endif
+                                        </td>
                                         <td>{{ @$user->entryform->district }} {{ @$user->entryform->dan_name }}
                                             {{ @$user->entryform->dan_number }}</td>
                                         <td>
                                             @if ($user->id)
-                                                {!! Form::open(['route' => ['adminentries.destroy', $user->id], 'method' => 'delete']) !!}
                                                 <div class='btn-group'>
                                                     @if (empty($user->entryform->registration_checked_at))
                                                         <a href="{{ url('/admin/registration_check?id=') . $user->entryform->id }}"
@@ -126,7 +130,6 @@
                                                         {{ $user->entryform->registration_checked_at }}
                                                     @endif
                                                 </div>
-                                                {!! Form::close() !!}
                                             @endif
                                         </td>
                                     </tr>

@@ -80,6 +80,7 @@ Route::middleware('verified')->group(function () {
         Route::get('/overage', [adminentryFormController::class, 'overage_filter'])->name('overage_filter');
         Route::get('/buddy_match', [adminentryFormController::class, 'buddy_match'])->name('buddy_match');
         Route::get('/non_registered', [adminentryFormController::class, 'non_registered'])->name('non_registered');
+        Route::match(['get', 'post'], '/regnumber_edit', [adminentryFormController::class, 'regnumber_edit'])->name('regnumber_edit'); // 登録番号修正
 
         // チェックイン機能
         route::group(['prefix' => 'checkin'], function () {

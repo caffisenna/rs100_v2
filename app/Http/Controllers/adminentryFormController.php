@@ -562,4 +562,34 @@ class adminentryFormController extends AppBaseController
         return view('admin.entry_forms.line_check')
             ->with(compact('users'));
     }
+
+    public function regnumber_edit(Request $request)
+    {
+        //登録番号修正
+        /** @var entryForm $entryForms */
+        $input = $request->all();
+        $user = entryForm::where('uuid', $input['uuid'])->with('user')->firstorFail();
+
+        $method = $request->method();
+
+        if ($method === 'GET') {
+            // 修正画面の場合
+            return view('admin.regnumber_edit.index')
+                ->with(compact('user'));
+        }
+        if ($method === 'POST') {
+            // 情報修正の場合
+            $user->bs_id = $input['reg_number'];
+            // 判定
+            if (isset($user->bs_id) && is_numeric($user->bs_id) && strlen($user->bs_id) == 11) {
+                $user->save();
+                Log::info('[登録番号修正] ' . $user->user->name . ' ' . $user->bs_id);
+                Flash::success($user->user->name . " さんの登録番号を修正しました( $user->bs_id )");
+                return redirect()->Route('registration_check');
+            } else {
+                Flash::warning("登録番号が11桁の整数ではありません<br>入力された登録番号: $user->bs_id");
+                return back();
+            }
+        }
+    }
 }
