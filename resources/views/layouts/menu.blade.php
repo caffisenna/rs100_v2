@@ -75,19 +75,22 @@
     </li>
 
     <li class="nav-item">
-        <a href="{{ url('/admin/checkin/done') }}" class="nav-link {{ Request::is('admin/checkin/done*') ? 'active' : '' }}">
+        <a href="{{ url('/admin/checkin/done') }}"
+            class="nav-link {{ Request::is('admin/checkin/done*') ? 'active' : '' }}">
             <p><span uk-icon="users"></span>チェックイン済み一覧</p>
         </a>
     </li>
 
     <li class="nav-item">
-        <a href="{{ url('/admin/checkin/not_yet') }}" class="nav-link {{ Request::is('admin/checkin/not_yet*') ? 'active' : '' }}">
+        <a href="{{ url('/admin/checkin/not_yet') }}"
+            class="nav-link {{ Request::is('admin/checkin/not_yet*') ? 'active' : '' }}">
             <p><span uk-icon="bolt"></span>未チェックイン</p>
         </a>
     </li>
 
     <li class="nav-item">
-        <a href="{{ url('/admin/line_check') }}" class="nav-link {{ Request::is('admin/line_check*') ? 'active' : '' }}">
+        <a href="{{ url('/admin/line_check') }}"
+            class="nav-link {{ Request::is('admin/line_check*') ? 'active' : '' }}">
             <p><span uk-icon="bolt"></span>LINE確認</p>
         </a>
     </li>
@@ -124,6 +127,18 @@
             <p>加盟登録チェック</p>
         </a>
     </li>
+
+    @if ($configs->car_registration)
+        <p class="uk-text-warning">駐車許可証</p>
+        <li class="nav-item">
+            <a href="{{ route('car_registrations.index') }}"
+                class="nav-link {{ Request::is('carRegistrations*') ? 'active' : '' }}">
+                <span uk-icon="file-text"></span>
+                <p>駐車許可証申請</p>
+            </a>
+        </li>
+    @endif
+
     <p class="uk-text-warning">Setting</p>
     <li class="nav-item">
         <a href="{{ route('adminConfigs.index') }}"
@@ -144,17 +159,6 @@
         <a href="{{ route('entries.index') }}" class="nav-link {{ Request::is('commi/entries*') ? 'active' : '' }}">
             <span uk-icon="icon: users"></span>
             <p>地区参加者一覧</p>
-        </a>
-    </li>
-@endif
-
-@if ($configs->car_registration)
-    <p class="uk-text-warning">駐車許可証</p>
-    <li class="nav-item">
-        <a href="{{ route('car_registrations.index') }}"
-            class="nav-link {{ Request::is('carRegistrations*') ? 'active' : '' }}">
-            <span uk-icon="file-text"></span>
-            <p>駐車許可証申請</p>
         </a>
     </li>
 @endif
