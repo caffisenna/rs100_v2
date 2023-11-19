@@ -48,14 +48,6 @@
 
             {{-- 管理者のみ表示 --}}
             @if (Auth::user()->is_admin)
-                {{-- <div class="uk-card uk-card-secondary uk-card-body">
-                    <h3 class="uk-card-title">注意</h3>
-                    <p class="uk-text-danger">管理者としてログイン中です。<br>
-                        データの削除、変更も可能なため操作にはご注意ください。<br>
-                        表示量が多いためPCでの閲覧を推奨します。<br>
-                        情報の取り扱いには充分ご注意ください。
-                    </p>
-                </div> --}}
                 <h3>地区別内訳</h3>
                 <table class="uk-table uk-table-small uk-table-divider">
                     <thead>
@@ -78,7 +70,8 @@
                         @endphp
                         @foreach ($districtCounts as $districtCount)
                             <tr>
-                                <td>{{ $districtCount->district }}</td>
+                                <td><a
+                                    href="{{ route('adminentries.index', ['district' => $districtCount->district]) }}">{{ $districtCount->district }}</a></td>
                                 <td>{{ $districtCount->total_count }}</td>
                                 <td>{{ $districtCount->active_count }}</td>
                                 <td>{{ $districtCount->over_age_count }}</td>
