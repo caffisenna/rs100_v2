@@ -12,6 +12,7 @@ use App\Http\Controllers\AdminConfigController;
 use App\Http\Controllers\BuddylistController;
 use App\Http\Controllers\addUsersController;
 use App\Http\Controllers\car_registrationController;
+use App\Http\Controllers\elearningController;
 
 /*
 |--------------------------------------------------------------------------
