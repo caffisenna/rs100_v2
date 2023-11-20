@@ -1,12 +1,11 @@
 <?php
-
-use App\Http\Controllers\commiEntryFormController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\entryFormController;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
+use App\Http\Controllers\commiEntryFormController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\entryFormController;
 use App\Http\Controllers\adminentryFormController;
 use App\Http\Controllers\AdminConfigController;
 use App\Http\Controllers\BuddylistController;
