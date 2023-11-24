@@ -66,7 +66,7 @@
                                         </a>
                                     </div>
                                 @else
-                                    <p class="uk-text-danger">新規ユーザー登録を終了しました1</p>
+                                    <p class="uk-text-danger">新規ユーザー登録を終了しました</p>
                                 @endif
                             @endauth
                         </div>
