@@ -11,7 +11,7 @@ class Slack extends Notification
 {
     use Queueable;
     protected $name;
-    protected $channnel;
+    protected $channel;
     protected $message;
 
     /**
