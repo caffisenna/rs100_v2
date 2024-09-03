@@ -1,6 +1,7 @@
 {{-- datatables関係 --}}
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.1/css/jquery.dataTables.css">
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.1/js/jquery.dataTables.js"></script>
+<link rel="stylesheet" type="text/css" href="{{ asset('datatables/jquery.dataTables.css') }}">
+<script type="text/javascript" charset="utf8" src="{{ asset('datatables/jquery.dataTables.js') }}"></script>
+<script src="{{ asset('datatables/dataTables.fixedHeader.min.js') }}"></script>
 <div class="table-responsive">
     <table class="uk-table" id="entryForms-table">
         <thead>
@@ -16,7 +17,7 @@
         </thead>
         <tbody>
             @foreach ($entryForms as $entryForm)
-                @unless($entryForm->user->is_admin || $entryForm->user->is_staff || $entryForm->user->is_commi)
+                @unless ($entryForm->user->is_admin || $entryForm->user->is_staff || $entryForm->user->is_commi)
                     <tr>
                         <td>{{ $entryForm->zekken }}</td>
                         <td><a
