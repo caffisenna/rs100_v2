@@ -27,7 +27,7 @@
             <div class="form-row">
                 <div class="col">
                     {{-- {!! Form::text('bd_year', null, ['class' => 'form-control', 'maxlength' => '4', 'placeholder' => '西暦']) !!} --}}
-                    {!! Form::select('bd_year', array_combine(range(2005, 1960), range(2005, 1960)), null, [
+                    {!! Form::select('bd_year', array_combine(range(2006, 1960), range(2006, 1960)), null, [
                         'class' => 'form-control custom-select',
                     ]) !!}
                 </div>
