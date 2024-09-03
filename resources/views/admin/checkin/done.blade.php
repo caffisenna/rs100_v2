@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <link rel="stylesheet" type="text/css" href="{{ url('/datatables/jquery.dataTables.css') }}">
-    <script type="text/javascript" charset="utf8" src="{{ url('/datatables/jquery.dataTables.js') }}"></script>
-    <script src="{{ url('/datatables/dataTables.fixedHeader.min.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="{{ asset('datatables/jquery.dataTables.css') }}">
+    <script type="text/javascript" charset="utf8" src="{{ asset('datatables/jquery.dataTables.js') }}"></script>
+    <script src="{{ asset('datatables/dataTables.fixedHeader.min.js') }}"></script>
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -19,7 +19,7 @@
                 location.href = "/admin/checkin/delete?uuid=";
             }
         }
-        </script>
+    </script>
 
     <div class="content px-3">
         @include('flash::message')
@@ -53,20 +53,21 @@
                                     </td>
                                     <td>{{ $user->zekken }}</td>
                                     <td><span class="uk-text-small">{{ $user->checkin_at }}</span></td>
-                                    <td><a href="{{ url('/admin/checkin/delete?uuid=') }}{{ $user->uuid }}" class="uk-button uk-button-danger" onclick="confirmNavigation()">取消</a></td>
+                                    <td><a href="{{ url('/admin/checkin/delete?uuid=') }}{{ $user->uuid }}"
+                                            class="uk-button uk-button-danger" onclick="confirmNavigation()">取消</a></td>
                                 </tr>
                             @endforeach
                         </tbody>
                     </table>
                 </div>
-                <script type="text/javascript">
-                    $(document).ready(function() {
-                        $('#entryForms-table').DataTable();
-                    });
-                </script>
 
             </div>
 
         </div>
     </div>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#entryForms-table').DataTable();
+        });
+    </script>
 @endsection
