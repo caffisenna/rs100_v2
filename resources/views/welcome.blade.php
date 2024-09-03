@@ -122,13 +122,7 @@
                 <div class="uk-card uk-card-primary uk-card-body">
                     <h5 class="uk-card-title"><span uk-icon="icon:info; ratio:1"></span>NEWS</h5>
                     <ul class="uk-list">
-                        <li>2023/11/12 今大会が終了しました1</li>
-                        <li>2023/11/10 Eラーニングの受講を終了しました</li>
-                        <li>2023/11/01 <a href="{{ url('/car_registrations') }}">駐車許可証申請フォーム</a>をリリースしました</li>
-                        <li>2023/11/01 Eラーニングの受講が可能になりました</li>
-                        <li>2023/10/31 参加IDカードのダウンロードが可能になりました</li>
-                        <li>2023/10/21 参加申込を終了しました</li>
-                        <li>2023/09/27 第{{ config('app.number_of_times') }}回大会 参加者受付を開始しました</li>
+                        <li>2024/09/2 第{{ config('app.number_of_times') }}回大会 に向けてテストを開始</li>
                     </ul>
                 </div>
             </div>

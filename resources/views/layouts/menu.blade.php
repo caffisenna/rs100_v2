@@ -128,7 +128,7 @@
         </a>
     </li>
 
-    @if ($configs->car_registration)
+    @if (isset($configs->car_registration))
         <p class="uk-text-warning">駐車許可証</p>
         <li class="nav-item">
             <a href="{{ route('car_registrations.index') }}"
