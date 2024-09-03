@@ -19,27 +19,27 @@
     </script>
 
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
+    <link rel="stylesheet" href="{{ asset('font-awesome/all.min.css') }}" />
 
-    <link href="{{ url('/') }}/css/bootstrap4-toggle.min.css" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap4-toggle.min.css') }}" rel="stylesheet">
 
     <!-- AdminLTE -->
-    <link rel="stylesheet" href="{{ url('/') }}/css/adminlte.min.css" />
+    <link rel="stylesheet" href="{{ asset('css/adminlte.min.css') }}" />
 
     <!-- iCheck -->
-    <link rel="stylesheet" href="{{ url('/') }}/css/icheck-bootstrap.min.css" />
+    <link rel="stylesheet" href="{{ asset('css/icheck-bootstrap.min.css') }}" />
 
-    <link rel="stylesheet" href="{{ url('/') }}/css/select2.min.css" />
+    <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}" />
 
-    <script src="{{ url('/') }}/js/jquery.min.js"></script>
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
 
     @yield('third_party_stylesheets')
     <!-- UIkit CSS -->
-    <link rel="stylesheet" href="{{ url('/uikit/') }}/uikit.min.css" />
+    <link rel="stylesheet" href="{{ asset('uikit/uikit.min.css') }}" />
 
     <!-- UIkit JS -->
-    <script src="{{ url('/uikit/') }}/uikit.min.js"></script>
-    <script src="{{ url('/uikit/') }}/uikit-icons.min.js"></script>
+    <script src="{{ asset('uikit/uikit.min.js') }}"></script>
+    <script src="{{ asset('uikit/uikit-icons.min.js') }}"></script>
 
 
     @stack('page_css')
@@ -67,7 +67,7 @@
                     <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                         <!-- User image -->
                         <li class="user-header bg-primary">
-                            <img src="{{ url('/images/rs100km.png') }}" class="" alt="User Image">
+                            <img src="{{ asset('images/rs100km.png') }}" class="" alt="User Image">
                             <p>
                                 @if (!Auth::guest())
                                     {{ Auth::user()->name }}
@@ -108,22 +108,22 @@
         </footer>
     </div>
 
-    <script src="{{ url('/') }}/js/popper.min.js"></script>
+    <script src="{{ asset('js/popper.min.js') }}"></script>
 
-    <script src="{{ url('/') }}/js/bootstrap.min.js"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 
-    <script src="{{ url('/') }}/js/bs-custom-file-input.min.js"></script>
+    <script src="{{ asset('js/bs-custom-file-input.min.js') }}"></script>
 
     <!-- AdminLTE App -->
-    <script src="{{ url('/') }}/js/adminlte.min.js"></script>
+    <script src="{{ asset('js/adminlte.min.js') }}"></script>
 
-    <script src="{{ url('/') }}/js/moment.min.js"></script>
+    <script src="{{ asset('js/moment.min.js') }}"></script>
 
-    <script src="{{ url('/') }}/js/bootstrap4-toggle.min.js"></script>
+    <script src="{{ asset('js/bootstrap4-toggle.min.js') }}"></script>
 
-    <script src="{{ url('/') }}/js/select2.min.js"></script>
+    <script src="{{ asset('js/select2.min.js') }}"></script>
 
-    <script src="{{ url('/') }}/js/bootstrap-switch.min.js"></script>
+    <script src="{{ asset('js/bootstrap-switch.min.js') }}"></script>
 
     <script>
         $(function() {
