@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             @if (isset(Auth::user()->email_verified_at))
-            @include('flash::message')
+                @include('flash::message')
                 @unless (Auth::user()->is_admin || Auth::user()->is_commi || Auth::user()->is_staff)
                     <div class="card" style="width:100%;">
                         <div class="card-header">
@@ -71,7 +71,8 @@
                         @foreach ($districtCounts as $districtCount)
                             <tr>
                                 <td><a
-                                    href="{{ route('adminentries.index', ['district' => $districtCount->district]) }}">{{ $districtCount->district }}</a></td>
+                                        href="{{ route('adminentries.index', ['district' => $districtCount->district]) }}">{{ $districtCount->district }}</a>
+                                </td>
                                 <td>{{ $districtCount->total_count }}</td>
                                 <td>{{ $districtCount->active_count }}</td>
                                 <td>{{ $districtCount->over_age_count }}</td>
