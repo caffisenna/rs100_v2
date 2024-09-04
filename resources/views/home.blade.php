@@ -54,8 +54,6 @@
                         <tr>
                             <th>地区</th>
                             <th>合計人数</th>
-                            <th>現役</th>
-                            <th>OA</th>
                             <th>男</th>
                             <th>女</th>
                         </tr>
@@ -63,8 +61,6 @@
                     <tbody>
                         @php
                             $countTotal = 0;
-                            $countActive = 0;
-                            $countOverage = 0;
                             $countMale = 0;
                             $countFemale = 0;
                         @endphp
@@ -74,15 +70,11 @@
                                         href="{{ route('adminentries.index', ['district' => $districtCount->district]) }}">{{ $districtCount->district }}</a>
                                 </td>
                                 <td>{{ $districtCount->total_count }}</td>
-                                <td>{{ $districtCount->active_count }}</td>
-                                <td>{{ $districtCount->over_age_count }}</td>
                                 <td>{{ $districtCount->male_count }}</td>
                                 <td>{{ $districtCount->female_count }}</td>
                             </tr>
                             @php
                                 $countTotal += $districtCount->total_count;
-                                $countActive += $districtCount->active_count;
-                                $countOverage += $districtCount->over_age_count;
                                 $countMale += $districtCount->male_count;
                                 $countFemale += $districtCount->female_count;
                             @endphp
@@ -90,8 +82,6 @@
                         <tr class="uk-text-large">
                             <td>合計</td>
                             <td>{{ $countTotal }}</td>
-                            <td>{{ $countActive }}</td>
-                            <td>{{ $countOverage }}</td>
                             <td>{{ $countMale }}</td>
                             <td>{{ $countFemale }}</td>
                         </tr>
@@ -106,8 +96,6 @@
                         <tr>
                             <th>地区</th>
                             <th>合計人数</th>
-                            <th>現役</th>
-                            <th>OA</th>
                             <th>男</th>
                             <th>女</th>
                         </tr>
@@ -118,8 +106,6 @@
                                 <tr>
                                     <td>{{ $districtCount->district }}</td>
                                     <td>{{ $districtCount->total_count }}</td>
-                                    <td>{{ $districtCount->active_count }}</td>
-                                    <td>{{ $districtCount->over_age_count }}</td>
                                     <td>{{ $districtCount->male_count }}</td>
                                     <td>{{ $districtCount->female_count }}</td>
                                 </tr>

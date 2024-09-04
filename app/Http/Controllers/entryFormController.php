@@ -178,8 +178,6 @@ class entryFormController extends AppBaseController
         // データ取得
         $data = entryForm::where('user_id', $input['user_id'])->first();
         $entryCounts = entryForm::all()->count();
-        $overageCounts = entryForm::where('generation', 'オーバーエイジ')->count();
-        $rsCounts = entryForm::where('generation', '現役')->count();
         $genderM = entryForm::where('gender', '男')->count();
         $genderF = entryForm::where('gender', '女')->count();
 
@@ -187,14 +185,13 @@ class entryFormController extends AppBaseController
 
         //slack通知
         $id = Auth()->user()->id;
-        $generation = '年代: ' . $data->generation;
+
         $name = Auth()->user()->name;
         $belongs = '所属: ' . $data->prefecture . '連盟 ' . $data->district . '地区 ' . $data->dan_name;
-        $countStatus = 'トータル:' . $entryCounts . '人 / 現役:' . $rsCounts . '人 / OA:' . $overageCounts . '人';
+        $countStatus = 'トータル:' . $entryCounts . '人';
         $slack = new SlackPost();
         $slack->send(":u7533: 参加者ID:$id " . $name . "さんが申込書を作成しました\n
         $belongs \n
-        $generation \n
         $countStatus\n
         男性: $genderM 名 / 女性: $genderF 名
         ");

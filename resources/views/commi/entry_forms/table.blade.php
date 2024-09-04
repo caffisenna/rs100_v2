@@ -8,7 +8,6 @@
             <tr>
                 <th>ゼッケン</th>
                 <th>名前</th>
-                <th>年代</th>
                 <th>所属</th>
                 <th>性別</th>
                 <th>団承認</th>
@@ -23,7 +22,6 @@
                         <td><a
                                 href="{{ route('entries.show', [$entryForm->id]) }}">{{ $entryForm->user->name }}</a><br>{{ $entryForm->furigana }}
                         </td>
-                        <td>{{ $entryForm->generation }}</td>
                         <td>{{ $entryForm->district }}地区 {{ $entryForm->dan_name }} {{ $entryForm->dan_number }}</td>
                         <td>{{ $entryForm->gender }}</td>
                         <td>

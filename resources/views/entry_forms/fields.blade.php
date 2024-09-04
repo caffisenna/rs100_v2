@@ -1,7 +1,5 @@
 <script src="{{ url('js/yubinbango.js') }}" charset="UTF-8"></script>
 <div class="card col-sm-6">
-    <p>今大会は東京連盟に所属の加盟員に限り、26歳以上の方の参加も可能です。以下のフォームではこれに該当する方を便宜上<span class="uk-text-warning">オーバーエイジ</span>と表記しています。
-    </p>
     <div class="card-header">
         <h3>個人情報</h3>
     </div>
@@ -23,22 +21,19 @@
 
         <!-- Birth Day Field -->
         <div class="form-group">
-            {!! Form::label('birth_day', '生年月日(東京連盟所属の方に限り、26歳以上でもお申し込みいただけます)') !!}
+            {!! Form::label('birth_day', '生年月日') !!}
             <div class="form-row">
                 <div class="col">
-                    {{-- {!! Form::text('bd_year', null, ['class' => 'form-control', 'maxlength' => '4', 'placeholder' => '西暦']) !!} --}}
-                    {!! Form::select('bd_year', array_combine(range(2006, 1960), range(2006, 1960)), null, [
+                    {!! Form::select('bd_year', array_combine(range(2006, 1998), range(2006, 1998)), null, [
                         'class' => 'form-control custom-select',
                     ]) !!}
                 </div>
                 <div class="col">
-                    {{-- {!! Form::text('bd_month', null, ['class' => 'form-control', 'maxlength' => '2', 'placeholder' => '月']) !!} --}}
                     {!! Form::select('bd_month', array_combine(range(1, 12), range(1, 12)), null, [
                         'class' => 'form-control custom-select',
                     ]) !!}
                 </div>
                 <div class="col">
-                    {{-- {!! Form::text('bd_day', null, ['class' => 'form-control', 'maxlength' => '2', 'placeholder' => '日']) !!} --}}
                     {!! Form::select('bd_day', array_combine(range(1, 31), range(1, 31)), null, [
                         'class' => 'form-control custom-select',
                     ]) !!}
@@ -56,18 +51,6 @@
                 <div class="error text-danger">{{ $message }}</div>
             @enderror
         </div>
-
-        {{-- @push('page_scripts')
-            <script type="text/javascript">
-                $('#birth_day').datepicker({
-                    format: 'yyyy-mm-dd',
-                    useCurrent: true,
-                    sideBySide: true,
-                    language: 'ja',
-                    autoclose: true
-                })
-            </script>
-        @endpush --}}
 
         <!-- Gender Field -->
         <div class="form-group">
@@ -188,9 +171,10 @@
             {!! Form::label('bs_id', '登録番号:') !!}
             {!! Form::number('bs_id', null, [
                 'class' => 'form-control',
-                'placeholder' => '登録証で確認してください',
+                'placeholder' => '登録証で確認してください。',
                 'maxlength' => '10',
             ]) !!}
+            <p class="uk-text-warning">ボーイスカウトの加盟登録番号は11桁です。</p>
             @error('bs_id')
                 <div class="error text-danger">{{ $message }}</div>
             @enderror
@@ -279,23 +263,6 @@
             <div class="error text-danger">{{ $message }}</div>
         @enderror
 
-        {{-- 現役 or OB --}}
-        <div class="form-group">
-            {!! Form::label('generation', '年代:') !!}
-            {!! Form::select(
-                'generation',
-                ['' => '', '現役' => '現役スカウト', 'オーバーエイジ' => '26歳以上のオーバーエイジ(東京連盟所属に限る)'],
-                null,
-                [
-                    'class' => 'form-control custom-select',
-                    'id' => 'generation',
-                ],
-            ) !!}
-            @error('generation')
-                <div class="error text-danger">{{ $message }}</div>
-            @enderror
-        </div>
-        {{-- 現役 or OB --}}
     </div>
 </div>
 
@@ -384,7 +351,6 @@
         <span class="uk-text-warning uk-text-small">バディとは一緒に歩くパートナーのことです。女性の参加者は必ず男性のバディと歩行することが必要です。<br>
             女性1名と男性1名、女性2名と男性1名、女性1名と男性2名などの組み合わせで登録してください。<br>
             組み合わせは実行委員会で確認します。<br>
-            オーバーエイジ(東京連盟所属に限る)の女性に限り、男性と同じく単独歩行が認められます。
         </span>
     </div>
     <div class="card-body">
@@ -411,7 +377,6 @@
                         '' => '',
                         'バディの紹介を希望' => 'バディの紹介を希望',
                         '男性バディが決まっている' => '男性バディが決まっている',
-                        'オーバーエイジの女性で単独歩行する' => 'オーバーエイジの女性で単独歩行する',
                     ],
                     null,
                     [
@@ -443,7 +408,6 @@
                 [
                     '' => '',
                     '男性単独' => '男性単独',
-                    '女性単独(オーバーエイジ)' => '女性単独(オーバーエイジ)',
                     '男1/女1' => '男1/女1',
                     '男1/女2' => '男1/女2',
                     '男2/女1' => '男2/女1',
@@ -490,31 +454,3 @@
 
     </div>
 </div>
-
-
-<script>
-    function updateGenerationOption() {
-        var bs_gsInput = document.getElementById("bs_gs");
-        var prefectureSelect = document.getElementById("prefecture");
-        var generationSelect = document.getElementById("generation");
-        var overAgeOption = document.createElement("option");
-        overAgeOption.value = "オーバーエイジ";
-        overAgeOption.text = "オーバーエイジ";
-
-        if (bs_gsInput.value === "BS" && prefectureSelect.value === "東京") {
-            // BSかつ東京の場合、オーバーエイジオプションを追加
-            generationSelect.appendChild(overAgeOption);
-        } else {
-            // それ以外の場合、オーバーエイジオプションを削除
-            var overAgeOptionToRemove = generationSelect.querySelector("option[value='オーバーエイジ']");
-            if (overAgeOptionToRemove) {
-                generationSelect.removeChild(overAgeOptionToRemove);
-            }
-        }
-    }
-
-    // ページ読み込み時とフォーム要素が変更されたときにupdateGenerationOptionを呼び出す
-    document.addEventListener("DOMContentLoaded", updateGenerationOption);
-    document.getElementById("bs_gs").addEventListener("input", updateGenerationOption);
-    document.getElementById("prefecture").addEventListener("change", updateGenerationOption);
-</script>

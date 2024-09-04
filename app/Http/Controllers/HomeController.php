@@ -36,8 +36,6 @@ class HomeController extends Controller
 
         $districtCounts = EntryForm::select('district')
             ->selectRaw('COUNT(*) as total_count')
-            ->selectRaw('SUM(CASE WHEN generation = "現役" THEN 1 ELSE 0 END) as active_count')
-            ->selectRaw('SUM(CASE WHEN generation = "オーバーエイジ" THEN 1 ELSE 0 END) as over_age_count')
             ->selectRaw('SUM(CASE WHEN gender = "男" THEN 1 ELSE 0 END) as male_count')
             ->selectRaw('SUM(CASE WHEN gender = "女" THEN 1 ELSE 0 END) as female_count')
             ->whereNull('deleted_at')

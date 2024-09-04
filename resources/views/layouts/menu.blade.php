@@ -24,11 +24,6 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="{{ url('/admin/overage') }}" class="nav-link {{ Request::is('admin/overage*') ? 'active' : '' }}">
-            <p>オーバーエイジ</p>
-        </a>
-    </li>
-    <li class="nav-item">
         <a href="{{ url('admin/non_tokyo') }}" class="nav-link {{ Request::is('admin/non_tokyo*') ? 'active' : '' }}">
             <p>他県参加一覧</p>
         </a>

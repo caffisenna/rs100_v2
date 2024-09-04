@@ -353,24 +353,6 @@
         @error('dan_name')
             <div class="error text-danger">{{ $message }}</div>
         @enderror
-
-        {{-- 現役 or OB --}}
-        <div class="form-group">
-            {!! Form::label('generation', '年代:') !!}
-            {!! Form::select(
-                'generation',
-                ['' => '', '現役' => '現役スカウト', 'オーバーエイジ' => '26歳以上のオーバーエイジ(東京連盟所属に限る)'],
-                null,
-                [
-                    'class' => 'form-control custom-select',
-                    'id' => 'generation',
-                ],
-            ) !!}
-            @error('generation')
-                <div class="error text-danger">{{ $message }}</div>
-            @enderror
-        </div>
-        {{-- 現役 or OB --}}
     </div>
 </div>
 

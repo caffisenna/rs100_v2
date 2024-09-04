@@ -75,7 +75,6 @@ class entryForm extends Model
         'buddy2_dan',
         'buddy_type',
         'memo',
-        'generation',
     ];
 
     /**
@@ -113,7 +112,6 @@ class entryForm extends Model
         'buddy2_dan' => 'string',
         'buddy_type' => 'string',
         'memo' => 'string',
-        'generation' => 'string',
     ];
 
     /**
@@ -150,7 +148,6 @@ class entryForm extends Model
         'buddy1_dan' => 'required_if:buddy_match,男性バディが決まっている',
         'buddy2_dan' => 'required_with:buddy2_name',
         'buddy_type' => 'required',
-        'generation' => 'required',
     ];
 
     // ここにカスタムエラーメッセージを定義する
@@ -190,7 +187,6 @@ class entryForm extends Model
         'buddy1_dan.required_if' => '男性バディの所属団を入力してください',
         'buddy2_dan.required_with' => 'バディ2の団名を入力してください',
         'buddy_type.required' => 'バディのタイプを選択してください',
-        'generation.required' => '現役スカウトもしくはオーバーエイジを選択してください',
     ];
 
     public function user()

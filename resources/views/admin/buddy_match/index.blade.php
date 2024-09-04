@@ -29,7 +29,6 @@
                                 <th>名前</th>
                                 <th>所属</th>
                                 <th>生年月日</th>
-                                <th>年代</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -47,7 +46,6 @@
                                                 {{ $entry->birth_day->format('Y-m-d') }}
                                             </span>
                                         </td>
-                                        <td><span class="uk-text-small">{{ $entry->generation }}</span></td>
                                     </tr>
                                 @endunless
                             @endforeach
