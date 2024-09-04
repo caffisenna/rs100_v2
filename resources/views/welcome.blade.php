@@ -20,14 +20,14 @@
     <title>{{ config('app.name') }}</title>
 
     <!-- Styles welcome.cssに追い出した-->
-    <link rel="stylesheet" href="{{ url('/css/welcome.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/css/welcome.css') }}" />
 
     <!-- UIkit CSS -->
-    <link rel="stylesheet" href="{{ url('/uikit/uikit.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('/uikit/uikit.min.css') }}" />
 
     <!-- UIkit JS -->
-    <script src="{{ url('/uikit/uikit.min.js') }}"></script>
-    <script src="{{ url('/uikit/uikit-icons.min.js') }}"></script>
+    <script src="{{ asset('/uikit/uikit.min.js') }}"></script>
+    <script src="{{ asset('/uikit/uikit-icons.min.js') }}"></script>
 </head>
 
 <body class="antialiased">
@@ -76,18 +76,10 @@
                         <div class="flex items-center">
                             <span uk-icon="icon:sign-in; ratio:2"></span>
                             <div class="ml-4 text-lg leading-7 font-semibold">
-                                {{-- <a href="{{ route('login') }}" class="underline text-gray-900 dark:text-white">
-                                    ログイン
-                                </a> --}}
                                 @auth
                                     <a href="{{ url('/home') }}" class="underline text-gray-900 dark:text-white">Home</a>
                                 @else
                                     <a href="{{ route('login') }}" class="underline text-gray-900 dark:text-white">ログイン</a>
-
-                                    {{-- @if (Route::has('register'))
-                                        <a href="{{ route('register') }}"
-                                            class="ml-4 underline text-gray-900 dark:text-white">Register</a>
-                                    @endif --}}
                                 @endauth
                             </div>
                         </div>
@@ -97,8 +89,7 @@
                         <div class="flex items-center">
                             <span uk-icon="icon:warning; ratio:2"></span>
                             <div class="ml-4 text-lg leading-7 font-semibold">
-                                <a href="https://docs.google.com/presentation/d/13vzSDYwJJ9tARexoqPisMH7PF1IT4HBYFh3AF6ffZDg/"
-                                    target="_blank">参加申込ガイド</a>
+                                <a href="#" target="_blank">参加申込ガイド</a>
                             </div>
                         </div>
                     </div>
@@ -134,11 +125,9 @@
                         <li>申込時点において東京連盟に加盟登録のあるローバースカウトおよび同年代指導者</li>
                         <li>他県連盟の加盟登録員 (ローバースカウトまたは25歳までの指導者で、所属県連盟、地区及び団の承認を受けた者)</li>
                         <li>ガールスカウト及び外国連盟のスカウト (25歳までのスカウトまたは指導者で加盟登録があり、支部または所属連盟の承認を受けた者)</li>
-                        <li>申込時点において東京連盟に加盟登録のある26歳以上の者</li>
                     </ol>
                     <h3>注意事項</h3>
                     <ul>
-                        <li>60歳以上の場合は医療機関からの診断書の持参（当日）を必須とする。</li>
                         <li>スタートは初日16時までの遅刻スタートを認めます(要事前連絡)。</li>
                         <li>女性の参加者については安全管理の面より、スタートから朝6:00までは男性1名を含む2人組または3人組で行動することとします (申込時にバディが組めない場合は参加申込フォームに
                             入力する)。</li>
