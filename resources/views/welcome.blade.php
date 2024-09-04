@@ -17,7 +17,7 @@
         gtag('config', 'G-XM1T90QY6J');
     </script>
 
-    <title>{{ config('app.name') }}</title>
+    <title>{{ config('app.name') }}1</title>
 
     <!-- Styles welcome.cssに追い出した-->
     <link rel="stylesheet" href="{{ asset('/css/welcome.css') }}" />
