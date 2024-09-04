@@ -98,7 +98,7 @@
                             <span uk-icon="icon:warning; ratio:2"></span>
                             <div class="ml-4 text-lg leading-7 font-semibold">
                                 <a href="https://docs.google.com/presentation/d/13vzSDYwJJ9tARexoqPisMH7PF1IT4HBYFh3AF6ffZDg/"
-                                    target="_blank">参加申込ガイド</a>
+                                    target="_blank">参加申込ガイド1</a>
                             </div>
                         </div>
                     </div>
