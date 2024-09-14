@@ -89,7 +89,7 @@
                         <div class="flex items-center">
                             <span uk-icon="icon:warning; ratio:2"></span>
                             <div class="ml-4 text-lg leading-7 font-semibold">
-                                <a href="#" target="_blank">参加申込ガイド500</a>
+                                <a href="#" target="_blank">参加申込ガイド300</a>
                             </div>
                         </div>
                     </div>
