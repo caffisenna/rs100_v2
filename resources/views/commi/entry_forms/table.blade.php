@@ -20,7 +20,7 @@
                     <tr>
                         <td>{{ $entryForm->zekken }}</td>
                         <td><a
-                                href="{{ route('entries.show', [$entryForm->id]) }}">{{ $entryForm->user->name }}</a><br>{{ $entryForm->furigana }}
+                                href="{{ route('entries.show', [$entryForm->uuid]) }}">{{ $entryForm->user->name }}</a><br>{{ $entryForm->furigana }}
                         </td>
                         <td>{{ $entryForm->district }}地区 {{ $entryForm->dan_name }} {{ $entryForm->dan_number }}</td>
                         <td>{{ $entryForm->gender }}</td>
@@ -35,7 +35,7 @@
                             @if ($entryForm->user_id)
                                 <div class='btn-group'>
                                     @if (empty($entryForm->commi_ok))
-                                        <a href="{{ url('/commi/commi_check?id=') . $entryForm->user_id }}"
+                                        <a href="{{ url('/commi/commi_check?id=') . $entryForm->uuid }}"
                                             class="uk-button uk-button-danger uk-button-small"
                                             onclick="return confirm('地区コミッショナーとして確認処理をしますか?')">未確認</a>
                                     @else

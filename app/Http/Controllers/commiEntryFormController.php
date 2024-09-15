@@ -31,66 +31,7 @@ class commiEntryFormController extends AppBaseController
         // 取得したいインスタンス = 子モデル::with(親モデル)->get(); で親子取得
         // 自地区のユーザーを抽出して返す
         if (Auth::user()->is_commi) {
-            switch (Auth::user()->email) {
-                case 'commi-daitoshin@scout.tokyo':
-                    $district = '大都心';
-                    break;
-                case  'commi-sakura@scout.tokyo':
-                    $district = 'さくら';
-                    break;
-
-                case  'commi-joto@scout.tokyo':
-                    $district = '城東';
-                    break;
-
-                case 'commi-yamanote@scout.tokyo':
-                    $district = '山手';
-                    break;
-
-                case  'commi-tsubasa@scout.tokyo':
-                    $district = 'つばさ';
-                    break;
-
-                case  'commi-setagaya@scout.tokyo':
-                    $district = '世田谷';
-                    break;
-
-                case 'commi-asunaro@scout.tokyo':
-                    $district = 'あすなろ';
-                    break;
-
-                case  'commi-johoku@scout.tokyo':
-                    $district = '城北';
-                    break;
-
-                case  'commi-nerima@scout.tokyo':
-                    $district = '練馬';
-                    break;
-
-                case  'commi-tamanishi@scout.tokyo':
-                    $district = '多摩西';
-                    break;
-
-                case  'commi-aratama@scout.tokyo':
-                    $district = '新多磨';
-                    break;
-
-                case  'commi-mmusashino@scout.tokyo':
-                    $district = '南武蔵野';
-                    break;
-
-                case  'commi-machida@scout.tokyo':
-                    $district = '町田';
-                    break;
-
-                case 'commi-kitatama@scout.tokyo':
-                    $district = '北多摩';
-                    break;
-
-                default:
-                    $district = '';
-                    break;
-            }
+            $district = Auth::user()->is_commi;
             $entryForms = entryForm::with('user')->where('district', $district)->orderby('dan_name', 'asc')->get();
             Auth::user()->district = $district;
             // 地区名をsessionに入れて別コントローラーでも使う
@@ -112,7 +53,8 @@ class commiEntryFormController extends AppBaseController
     public function show($id)
     {
         /** @var entryForm $entryForm */
-        $entryForm = entryForm::find($id);
+        // $entryForm = entryForm::find($id);
+        $entryForm = entryForm::where('uuid',$id)->firstOrFail();
         $district = session()->get('district'); // sessionから地区名を取得
 
         // 自地区のみをフィルタ
@@ -131,10 +73,10 @@ class commiEntryFormController extends AppBaseController
 
         // 確認ボタン処理
         if ($request['id']) {
-            $entryform = entryForm::with('user')->where('user_id', $request['id'])->first();
+            $entryform = entryForm::with('user')->where('uuid', $request['id'])->first();
             $entryform->commi_ok = now();
 
-            $name = User::where('id', $request['id'])->value('name') . "(" . $entryform->district . ")";
+            $name = $entryform->user->name. "(" . $entryform->district . ")";
 
             // slack
             $slackpost = new SlackPost();
