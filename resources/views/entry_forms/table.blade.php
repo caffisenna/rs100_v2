@@ -55,9 +55,14 @@
                 @else
                     <td>
                         @if ($configs->elearning)
-                            <a href="{{ url('/user/elearnings') }}" class="uk-button uk-button-primary">受講する</a>
+                            @if (empty($entryForm->id))
+                                <span class="uk-text-default">Eラーニングを受講できません。<br>
+                                    参加者情報を<a class="" href="{{ route('entryForms.create') }}">登録</a>して下さい </span>
+                            @elseif (empty($entryForm->elearning))
+                                <a href="{{ url('/user/elearnings') }}" class="uk-button uk-button-primary">受講する</a>
+                            @endif
                         @else
-                            <span class="uk-text-danger">未修了(今後受講が可能になります)</span>
+                            <span class="uk-text-danger">未修了(受講期間外です)</span>
                         @endif
                     </td>
                 @endif

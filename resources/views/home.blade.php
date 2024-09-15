@@ -12,11 +12,11 @@
                         </div>
                         <div class="card-body">
                             {{-- @if ($configs->create_application) --}}
-                            <h3 class="uk-text-success">{{ Auth()->user()->name }}さん</h3>
+                            <h3 class="uk-text-large">{{ Auth()->user()->name }} さん</h3>
                             <a href="{{ url('/user/entryForms') }}" class="btn btn-info btn-lg btn-block">申込情報</a>
                             {{-- @endif --}}
 
-                            @if ($configs->elearning)
+                            @if ($configs->elearning && isset($user->entryForm->id))
                                 <a href="{{ url('/user/elearnings') }}" class="btn btn-info btn-lg btn-block">Eラーニング</a>
                             @endif
 

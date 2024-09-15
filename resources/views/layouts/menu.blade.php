@@ -4,7 +4,7 @@
         {{-- @if ($configs->create_application) --}}
         <a href="{{ url('/user/entryForms') }}" class="btn btn-info btn-xs btn-block">申込情報</a>
         {{-- @endif --}}
-        @if ($configs->elearning)
+        @if ($configs->elearning && isset($user->entryForm->id))
             <a href="{{ url('/user/elearnings') }}" class="btn btn-info btn-xs btn-block">Eラーニング</a>
         @endif
     @endunless

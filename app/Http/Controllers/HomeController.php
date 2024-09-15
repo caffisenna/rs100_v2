@@ -32,7 +32,7 @@ class HomeController extends Controller
         $configs = AdminConfig::where('id', 1)->get()->first();
 
         // 健康調査の判定フラグ用にユーザーデータを取る
-        $user = User::where('id', Auth()->id())->with('elearning')->first();
+        $user = User::where('id', Auth()->id())->with('elearning')->with('entryForm')->first();
 
         $districtCounts = EntryForm::select('district')
             ->selectRaw('COUNT(*) as total_count')
