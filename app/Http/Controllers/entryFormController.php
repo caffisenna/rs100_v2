@@ -166,14 +166,18 @@ class entryFormController extends AppBaseController
 
         /** @var entryForm $entryForm */
         // DBに登録する前に user_id の重複を判定する
-        try {
-            $entryForm = entryForm::create($input);
-        } catch (\Illuminate\Database\QueryException $e) {
-            if ($e->errorInfo[1] == 1062) { // ユニーク制約違反のエラーコード
-                return back()->withInput()->withErrors(['user_id' => '既に申し込みが行われています。重複して申し込みデータを作成することはできません。']);
-            }
-            // その他のデータベースエラーを処理するコード
-        }
+        // try {
+        //     $entryForm = entryForm::create($input);
+        // } catch (\Illuminate\Database\QueryException $e) {
+        //     if ($e->errorInfo[1] == 1062) { // ユニーク制約違反のエラーコード
+        //         return back()->withInput()->withErrors(['user_id' => '既に申し込みが行われています。重複して申し込みデータを作成することはできません。']);
+        //     }
+        //     // その他のデータベースエラーを処理するコード
+        // }
+
+        // DBに保存
+        // 重複申込は modelのルールで排除するように変更
+        entryForm::create($input);
 
         // データ取得
         $data = entryForm::where('user_id', $input['user_id'])->first();

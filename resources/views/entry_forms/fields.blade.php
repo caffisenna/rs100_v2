@@ -3,6 +3,7 @@
     <div class="card-header">
         <h3>個人情報</h3>
     </div>
+    {!! Form::hidden("user_id", Auth::user()->id) !!}
     <div class="card-body">
         <div class="form-group">
             {!! Form::label('furigana', '氏名:') !!}

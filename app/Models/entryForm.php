@@ -121,7 +121,7 @@ class entryForm extends Model
      */
     public static $rules = [
         'furigana' => 'required',
-        'user_id' => 'unique',
+        'user_id' => 'unique:entry_forms',
         'bs_gs' => 'required',
         'bs_id' => 'required_if:bs_gs,BS',
         'prefecture' => 'required',
