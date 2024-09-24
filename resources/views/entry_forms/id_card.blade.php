@@ -90,12 +90,12 @@
                 03-4214-2551</p>
         </div>
         <div id="img" class="">
-            <div class="uk-float-left">
+            <div class="uk-text-center">
                 <img src="{{ url('/images/rs100km.png') }}" width="80px">
             </div>
-            <div class="uk-float-right">
+            {{-- <div class="uk-float-right">
                 <img src="{{ url('/images/tokyo_75th.png') }}" width="80px">
-            </div>
+            </div> --}}
         </div>
     </div>
 
