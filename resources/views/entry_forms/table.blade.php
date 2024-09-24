@@ -80,11 +80,12 @@
             <tr>
                 <td>IDカード</td>
                 <td>
-                    @if ($entryForm->id)
+                    {{-- @if ($entryForm->id)
                         <a href="{{ url('/user/id_card') }}" target="_blank"
                             class="uk-button uk-button-primary">ダウンロード</a><br>
                         (表示されるPDFを各端末にダウンロードしてから印刷してください)
-                    @endif
+                    @endif --}}
+                    現在IDカードはダウンロードできません(別途アナウンスします)
                 </td>
             </tr>
             <tr>
