@@ -127,7 +127,7 @@ class entryForm extends Model
         'prefecture' => 'required',
         'district' => 'required',
         'dan_name' => 'required',
-        'bd_year' => 'integer|between:1953,2005',
+        'bd_year' => 'integer|between:1953,2006',
         'bd_month' => 'integer|between:1,12',
         'bd_day' => 'integer|between:1,31',
         'gender' => 'required',
