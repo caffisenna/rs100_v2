@@ -96,9 +96,8 @@ class elearningController extends AppBaseController
             'q16' => 'in:3|required',
             'q17' => 'in:1|required',
             'q18' => 'in:1|required',
-            'q19' => 'in:2|required',
-            'q20' => 'in:1|required',
-            'q21' => 'in:2|required',
+            'q19' => 'in:1|required',
+            'q20' => 'in:2|required',
         ];
 
         $messages = [
@@ -122,7 +121,6 @@ class elearningController extends AppBaseController
             'q18.in' => 'Q18 不正解です',
             'q19.in' => 'Q19 不正解です',
             'q20.in' => 'Q20 不正解です',
-            'q21.in' => 'Q21 不正解です',
             'q1.required' => 'Q1 選択肢より選択してください',
             'q2.required' => 'Q2 選択肢より選択してください',
             'q3.required' => 'Q3 選択肢より選択してください',
@@ -143,7 +141,6 @@ class elearningController extends AppBaseController
             'q18.required' => 'Q18 選択肢より選択してください',
             'q19.required' => 'Q19 選択肢より選択してください',
             'q20.required' => 'Q20 選択肢より選択してください',
-            'q21.required' => 'Q21 選択肢より選択してください',
         ];
 
         $validation = \Validator::make($input,$rules,$messages);

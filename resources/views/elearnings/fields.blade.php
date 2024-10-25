@@ -85,8 +85,7 @@
         {!! Form::radio('q7', '1', null, ['class' => 'form-check-input']) !!} 100キロハイク中とはいえゲームも大事なので、歩きながらゲームプレイをする。
     </label>
     <label class="form-check">
-        {!! Form::radio('q7', '2', null, ['class' => 'form-check-input']) !!} 歩きながらスマートフォンを操作するのは事故やトラブルの元になるので、歩行中は操
-        作せず、立ち止まって操作する。
+        {!! Form::radio('q7', '2', null, ['class' => 'form-check-input']) !!} 歩きながらスマートフォンを操作するのは事故やトラブルの元になるので、歩行中は操作せず、立ち止まって操作する。
     </label>
     <label class="form-check">
         {!! Form::radio('q7', '3', null, ['class' => 'form-check-input']) !!} 方向音痴な性格なので、たとえ歩行中でもスマートフォンのマップアプリは欠かせない。
@@ -143,7 +142,7 @@
 </div>
 
 <div class="uk-card uk-card-body" @if ($errors->has('q11')) has-error @endif">
-    <h3 class="uk-card-title">Q11:周りの人に迷惑になるようなマナー違反が発覚した場合、実行委員会から出される処置として正しいものを選んでください。</h3>
+    <h3 class="uk-card-title">Q11:周りの人に迷惑になるようなマナー違反が発覚した場合、運営委員会から出される処置として正しいものを選んでください。</h3>
     <label class="form-check">
         {!! Form::radio('q11', '1', null, ['class' => 'form-check-input']) !!} その場で注意される。
     </label>
@@ -238,7 +237,7 @@
 <div class="uk-card uk-card-body" @if ($errors->has('q17')) has-error @endif">
     <h3 class="uk-card-title">Q17:100キロハイク中のSNSへの投稿について正しいものを選んでください。</h3>
     <label class="form-check">
-        {!! Form::radio('q17', '1', null, ['class' => 'form-check-input']) !!} TwitterやInstagram、Facebookなどに #RS100km をつけて投稿する。
+        {!! Form::radio('q17', '1', null, ['class' => 'form-check-input']) !!} Instagram、Facebookなどに #RS100km をつけて投稿する。
     </label>
     <label class="form-check">
         {!! Form::radio('q17', '2', null, ['class' => 'form-check-input']) !!} 大会中は歩くことに専念しなければいけないため、SNSへの投稿は禁止されている。
@@ -249,12 +248,12 @@
 </div>
 
 <div class="uk-card uk-card-body" @if ($errors->has('q18')) has-error @endif">
-    <h3 class="uk-card-title">Q18:ゴールに関するルールについて正しいものを選んでください。</h3>
+    <h3 class="uk-card-title">Q18:スタート地点へのアクセス方法について正しいものを選んでください。</h3>
     <label class="form-check">
-        {!! Form::radio('q18', '1', null, ['class' => 'form-check-input']) !!} 今大会だけの特別ルールで「75周年記念ゴール」でもゴールできる。
+        {!! Form::radio('q18', '1', null, ['class' => 'form-check-input']) !!} 公共交通機関を利用する。
     </label>
     <label class="form-check">
-        {!! Form::radio('q18', '2', null, ['class' => 'form-check-input']) !!} 必ず100km歩かなければゴールすることは出来ない。
+        {!! Form::radio('q18', '2', null, ['class' => 'form-check-input']) !!} 車を利用し増上寺の駐車場を利用する。
     </label>
     @error('q18')
         <div class="error text-danger">{{ $message }}</div>
@@ -262,12 +261,12 @@
 </div>
 
 <div class="uk-card uk-card-body" @if ($errors->has('q19')) has-error @endif">
-    <h3 class="uk-card-title">Q19:送迎者用の駐車場について正しいものを選んでください。</h3>
+    <h3 class="uk-card-title">Q19:加盟登録証の提示について正しいものを選んでください。</h3>
     <label class="form-check">
-        {!! Form::radio('q19', '1', null, ['class' => 'form-check-input']) !!} 参加者の送迎のためなら誰でも駐車場を利用することができる。
+        {!! Form::radio('q19', '1', null, ['class' => 'form-check-input']) !!} QRコード入りの加盟登録証を受付で提示する。
     </label>
     <label class="form-check">
-        {!! Form::radio('q19', '2', null, ['class' => 'form-check-input']) !!} 駐車場を利用するには事前に申請しなければならない。
+        {!! Form::radio('q19', '2', null, ['class' => 'form-check-input']) !!} 過年度の紙の登録証を提示する。
     </label>
     @error('q19')
         <div class="error text-danger">{{ $message }}</div>
@@ -275,27 +274,14 @@
 </div>
 
 <div class="uk-card uk-card-body" @if ($errors->has('q20')) has-error @endif">
-    <h3 class="uk-card-title">Q20:加盟登録証の提示について正しいものを選んでください。</h3>
+    <h3 class="uk-card-title">Q20:本部との連絡手段に関して正しいものを選んでください。</h3>
     <label class="form-check">
-        {!! Form::radio('q20', '1', null, ['class' => 'form-check-input']) !!} QRコード入りの加盟登録証を受付で提示する。
+        {!! Form::radio('q20', '1', null, ['class' => 'form-check-input']) !!} 大会公式メールアドレスにメールを送る
     </label>
     <label class="form-check">
-        {!! Form::radio('q20', '2', null, ['class' => 'form-check-input']) !!} 過年度の紙の登録証を提示する。
+        {!! Form::radio('q20', '2', null, ['class' => 'form-check-input']) !!} 大会公式LINEアカウントを大会前までにLINEで追加しメッセージを送る
     </label>
     @error('q20')
-        <div class="error text-danger">{{ $message }}</div>
-    @enderror
-</div>
-
-<div class="uk-card uk-card-body" @if ($errors->has('q21')) has-error @endif">
-    <h3 class="uk-card-title">Q21:本部との連絡手段に関して正しいものを選んでください。</h3>
-    <label class="form-check">
-        {!! Form::radio('q21', '1', null, ['class' => 'form-check-input']) !!} 大会公式メールアドレスにメールを送る
-    </label>
-    <label class="form-check">
-        {!! Form::radio('q21', '2', null, ['class' => 'form-check-input']) !!} 大会公式LINEアカウントを大会前までにLINEで追加しメッセージを送る
-    </label>
-    @error('q21')
         <div class="error text-danger">{{ $message }}</div>
     @enderror
 </div>
