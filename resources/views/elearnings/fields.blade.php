@@ -14,7 +14,7 @@
 <div class="uk-card uk-card-body" @if ($errors->has('q2')) has-error @endif">
     <h3 class="uk-card-title">Q2:大会中の行動様式について、正しいものを選んでください。</h3>
     <label class="form-check">
-        {!! Form::radio('q2', '1', null, ['class' => 'form-check-input']) !!} 25歳以下の女性の参加者は、スタートから朝6:00までは25歳以下の男性1人を含む2人組または3人組で行動しなければならない。
+        {!! Form::radio('q2', '1', null, ['class' => 'form-check-input']) !!} 女性の参加者は、スタートから朝6:00までは男性1人を含む2人組または3人組で行動しなければならない。
     </label>
     <label class="form-check">
         {!! Form::radio('q2', '2', null, ['class' => 'form-check-input']) !!} どの参加者も常時1人で行動することができる。
@@ -193,9 +193,6 @@
     </label>
     <label class="form-check">
         {!! Form::radio('q14', '2', null, ['class' => 'form-check-input']) !!} 事前に買う。
-    </label>
-    <label class="form-check">
-        {!! Form::radio('q14', '3', null, ['class' => 'form-check-input']) !!} 友達や先輩から借りて、着回しする。
     </label>
     @error('q14')
         <div class="error text-danger">{{ $message }}</div>
