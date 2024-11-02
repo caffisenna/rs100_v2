@@ -595,4 +595,32 @@ class adminentryFormController extends AppBaseController
             }
         }
     }
+
+    public function isApplicationReceived(Request $request)
+    {
+        //他県連申込書到着
+        /** @var entryForm $entryForms */
+        $input = $request->all();
+        $user = entryForm::where('uuid', $input['id'])->with('user')->firstorFail();
+
+        $method = $request->method();
+
+        if ($method === 'GET') {
+            // 修正画面の場合
+            return view('admin.ApplicationReceived.index')
+                ->with(compact('user'));
+        }
+
+        if ($method === 'POST') {
+            // 判定
+            $user->sm_name = $input['sm_name'];
+            $user->sm_position = $input['sm_position'];
+            $user->sm_confirmation = $input['sm_confirmation'];
+            $user->commi_ok = $input['commi_ok'];
+            $user->save();
+            Log::info('[他県申込書] ' . $user->user->name . ' の申込処理完了');
+            Flash::success($user->user->name . " さんの申込書を処理しました(ゼッケン: $user->zekken )");
+            return back();
+        }
+    }
 }

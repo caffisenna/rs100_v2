@@ -1,4 +1,5 @@
 <?php
+
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
@@ -81,6 +82,7 @@ Route::middleware('verified')->group(function () {
         Route::get('/buddy_match', [adminentryFormController::class, 'buddy_match'])->name('buddy_match');
         Route::get('/non_registered', [adminentryFormController::class, 'non_registered'])->name('non_registered');
         Route::match(['get', 'post'], '/regnumber_edit', [adminentryFormController::class, 'regnumber_edit'])->name('regnumber_edit'); // 登録番号修正
+        Route::match(['get', 'post'], '/isApplicationReceived', [adminentryFormController::class, 'isApplicationReceived'])->name('isApplicationReceived'); // 他県連申込書到着
 
         // チェックイン機能
         route::group(['prefix' => 'checkin'], function () {
@@ -98,8 +100,7 @@ Route::middleware('verified')->group(function () {
     });
 
     // スタッフ用
-    Route::prefix('staff')->middleware('can:staff')->group(function () {
-    });
+    Route::prefix('staff')->middleware('can:staff')->group(function () {});
 
     // 地区コミ用
     Route::prefix('commi')->middleware('can:commi')->group(function () {
@@ -109,17 +110,20 @@ Route::middleware('verified')->group(function () {
 });
 
 Route::get('/sm_confirm', [
-    entryFormController::class, 'confirm_index'
+    entryFormController::class,
+    'confirm_index'
     // {url}/sm_confirm/?q=12345 の形式で投げる
 ]);
 
 Route::post('/sm_confirm', [
-    entryFormController::class, 'confirm_post'
+    entryFormController::class,
+    'confirm_post'
 ])->name('comfirm_post');
 
 
 Route::get('/hq_confirm', [
-    App\Http\Controllers\adminentryFormController::class, 'hq_confirm'
+    App\Http\Controllers\adminentryFormController::class,
+    'hq_confirm'
 ])->name('hq_comfirm');
 
 // 駐車許可証発行

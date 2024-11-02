@@ -27,7 +27,13 @@
                         @else
                             <td>{{ $user->name }}<br>(申込書未作成)</td>
                         @endif
-                        <td>{{ @$user->entryform->prefecture }}</td>
+                        <td>{{ @$user->entryform->prefecture }}
+                            @if ($user->entryform->prefecture != '東京')
+                                <br>
+                                <a
+                                    href="{{ route('isApplicationReceived', ['id' => $user->entryform->uuid]) }}">申込書確認</a>
+                            @endif
+                        </td>
                         <td><a
                                 href="{{ route('adminentries.index', ['district' => $user->entryform->district]) }}">{{ @$user->entryform->district }}</a>
                             {{ @$user->entryform->dan_name }}
