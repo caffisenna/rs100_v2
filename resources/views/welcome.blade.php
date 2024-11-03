@@ -113,8 +113,11 @@
                 <div class="uk-card uk-card-primary uk-card-body">
                     <h5 class="uk-card-title"><span uk-icon="icon:info; ratio:1"></span>NEWS</h5>
                     <ul class="uk-list">
-                        <li>2024/10/16 新規ユーザー登録及び、参加申込を締め切りました</li>
-                        <li>2024/09/2 第{{ config('app.number_of_times') }}回大会 に向けてテストを開始</li>
+                        @foreach ($updates as $update)
+                            <li>{{ $update->created_at->format('Y-m-d') }} {{ $update->body }}</li>
+                        @endforeach
+                        {{-- <li>2024/10/16 新規ユーザー登録及び、参加申込を締め切りました</li>
+                        <li>2024/09/2 第{{ config('app.number_of_times') }}回大会 に向けてテストを開始</li> --}}
                     </ul>
                 </div>
             </div>

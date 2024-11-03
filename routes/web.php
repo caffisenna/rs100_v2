@@ -13,6 +13,7 @@ use App\Http\Controllers\BuddylistController;
 use App\Http\Controllers\addUsersController;
 use App\Http\Controllers\car_registrationController;
 use App\Http\Controllers\elearningController;
+use App\Http\Controllers\WelcomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +26,10 @@ use App\Http\Controllers\elearningController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+// トップ画面でニュースをDBから取得する
+Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
+
 
 Auth::routes();
 
@@ -130,3 +132,5 @@ Route::get('/hq_confirm', [
 Route::resource('car_registrations', car_registrationController::class);
 Route::get('/car_registration_pdf', [car_registrationController::class, 'pdf'])->name('car_registration_pdf');
 Route::get('/car_registration_publish', [car_registrationController::class, 'publish'])->name('car_registration_publish');
+
+Route::resource('updates', App\Http\Controllers\UpdateController::class);

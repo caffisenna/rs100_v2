@@ -147,6 +147,12 @@
             <p><span uk-icon="icon: user"></span>アカウント管理</p>
         </a>
     </li>
+    <li class="nav-item">
+        <a href="{{ route('updates.index') }}" class="nav-link {{ Request::is('updates*') ? 'active' : '' }}">
+            <i class="nav-icon fas fa-home"></i>
+            <p>Updates</p>
+        </a>
+    </li>
 @endif
 
 @if (!Auth::guest() && Auth::user()->is_commi)
