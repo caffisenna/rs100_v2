@@ -623,4 +623,35 @@ class adminentryFormController extends AppBaseController
             return back();
         }
     }
+
+    public function uncompleted_elearning(Request $request)
+    {
+        $users = User::select(
+            'users.name',
+            'users.email',
+            'entry_forms.zekken as zekken',
+            'entry_forms.prefecture as pref',
+            'entry_forms.district as dist',
+            'entry_forms.dan_name as dan',
+            'elearnings.created_at as Eラン'
+        )
+            ->leftJoin('entry_forms', 'users.id', '=', 'entry_forms.user_id')
+            ->leftJoin('elearnings', 'users.id', '=', 'elearnings.user_id')
+            ->where('is_admin', 0)
+            ->where('is_staff', 0)
+            ->whereNull('is_commi')
+            ->whereNull('entry_forms.deleted_at')
+            ->whereNotNull('email_verified_at')
+            ->whereNotNull('entry_forms.id')
+            ->whereNull('elearnings.created_at')
+            ->get();
+
+        if ($request['q'] == 'email') {
+            return view('admin.uncompleted_elearning.emails')
+                ->with(compact('users'));
+        } else {
+            return view('admin.uncompleted_elearning.index')
+                ->with(compact('users'));
+        }
+    }
 }

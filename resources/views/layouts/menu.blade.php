@@ -45,6 +45,12 @@
             <p>未申込者</p>
         </a>
     </li>
+    <li class="nav-item">
+        <a href="{{ url('/admin/uncompleted_elearning') }}"
+            class="nav-link {{ Request::is('admin/uncompleted_elearning*') ? 'active' : '' }}">
+            <p>Eラン未修了者</p>
+        </a>
+    </li>
 
     <p class="uk-text-warning">確認ステータス</p>
     <li class="nav-item">

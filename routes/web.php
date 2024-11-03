@@ -85,6 +85,7 @@ Route::middleware('verified')->group(function () {
         Route::get('/non_registered', [adminentryFormController::class, 'non_registered'])->name('non_registered');
         Route::match(['get', 'post'], '/regnumber_edit', [adminentryFormController::class, 'regnumber_edit'])->name('regnumber_edit'); // 登録番号修正
         Route::match(['get', 'post'], '/isApplicationReceived', [adminentryFormController::class, 'isApplicationReceived'])->name('isApplicationReceived'); // 他県連申込書到着
+        Route::get('/uncompleted_elearning', [adminentryFormController::class, 'uncompleted_elearning'])->name('uncompleted_elearning'); // Eラン未受講
 
         // チェックイン機能
         route::group(['prefix' => 'checkin'], function () {
