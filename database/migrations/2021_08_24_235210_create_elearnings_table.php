@@ -17,7 +17,6 @@ class CreateElearningsTable extends Migration
         Schema::create('elearnings', function (Blueprint $table) {
             $table->increments('id');
             $table->foreignId('user_id')->nullable()->constrained();
-            // $table->string('q1');
             $table->timestamps();
             $table->softDeletes();
         });
