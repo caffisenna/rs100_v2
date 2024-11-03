@@ -606,13 +606,13 @@ class adminentryFormController extends AppBaseController
         $method = $request->method();
 
         if ($method === 'GET') {
-            // 修正画面の場合
+            // 参加者の情報を表示
             return view('admin.ApplicationReceived.index')
                 ->with(compact('user'));
         }
 
         if ($method === 'POST') {
-            // 判定
+            // 情報をDBに反映
             $user->sm_name = $input['sm_name'];
             $user->sm_position = $input['sm_position'];
             $user->sm_confirmation = $input['sm_confirmation'];
