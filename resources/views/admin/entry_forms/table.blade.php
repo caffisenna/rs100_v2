@@ -35,8 +35,8 @@
                                     <span class="uk-text-success">申込書OK</span>
                                 @else
                                     {{-- それ以外は入力画面リンクを表示 --}}
-                                    <a
-                                        href="{{ route('isApplicationReceived', ['id' => $user->entryform->uuid]) }}">申込書確認</a>
+                                    <a href="{{ route('isApplicationReceived', ['id' => $user->entryform->uuid]) }}"
+                                        class="uk-button uk-button-primary uk-button-small">申込書確認</a>
                                 @endif
                             @endif
                         </td>
