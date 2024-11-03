@@ -30,8 +30,14 @@
                         <td>{{ @$user->entryform->prefecture }}
                             @if ($user->entryform->prefecture != '東京')
                                 <br>
-                                <a
-                                    href="{{ route('isApplicationReceived', ['id' => $user->entryform->uuid]) }}">申込書確認</a>
+                                {{-- 隊長承認とコミ承認が入っていればOKと表示 --}}
+                                @if ($user->entryform->commi_ok != null && $user->entryform->sm_confirmation != null)
+                                    <span class="uk-text-success">申込書OK</span>
+                                @else
+                                    {{-- それ以外は入力画面リンクを表示 --}}
+                                    <a
+                                        href="{{ route('isApplicationReceived', ['id' => $user->entryform->uuid]) }}">申込書確認</a>
+                                @endif
                             @endif
                         </td>
                         <td><a
