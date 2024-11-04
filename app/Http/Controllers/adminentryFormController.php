@@ -646,10 +646,12 @@ class adminentryFormController extends AppBaseController
             ->whereNull('elearnings.created_at')
             ->get();
 
-        if ($request['q'] == 'email') {
+        if (isset($request['q']) && $request['q'] == 'email') {
+            // メールアドレスのみを表示するview
             return view('admin.uncompleted_elearning.emails')
                 ->with(compact('users'));
         } else {
+            // 氏名と所属を表示するview
             return view('admin.uncompleted_elearning.index')
                 ->with(compact('users'));
         }
