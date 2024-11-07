@@ -87,7 +87,8 @@
         <div id="text">
             <p class="uk-text-small uk-text-center" style="line-height:0.8;">
                 このIDカードを拾われた方は<br>以下までご連絡をお願い致します。<br>大会本部連絡先:
-                03-4214-2551</p>
+                070-8361-0267
+            </p>
         </div>
         <div id="img" class="">
             <div class="uk-text-center">
