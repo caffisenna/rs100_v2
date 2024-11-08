@@ -32,7 +32,10 @@
                         </thead>
                         <tbody>
                             @foreach ($users as $user)
-                                <tr>
+                                <tr
+                                    @if (str_contains($user->memo, '遅刻')) style="background-color: yellow;"
+                    @elseif(str_contains($user->memo, 'キャンセル'))
+                        style="background-color: gray;" @endif>
                                     <td>{{ $user->user->id }}</td>
                                     <td>
                                         {{ $user->user->name }}({{ $user->gender }})<br>

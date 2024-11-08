@@ -11,7 +11,8 @@
                     <h1>Eラン未受講者一覧</h1>
                 </div>
             </div>
-            <span class="uk-text-default"><a href="{{ route('uncompleted_elearning', ['q' => 'email']) }}">Emailのみを表示</a></span>
+            <span class="uk-text-default"><a
+                    href="{{ route('uncompleted_elearning', ['q' => 'email']) }}">Emailのみを表示</a></span>
         </div>
     </section>
 
@@ -32,7 +33,10 @@
                         </thead>
                         <tbody>
                             @foreach ($users as $user)
-                                <tr>
+                                <tr
+                                    @if (str_contains($user->memo, '遅刻')) style="background-color: yellow;"
+            @elseif(str_contains($user->memo, 'キャンセル'))
+                style="background-color: gray;" @endif>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->pref }}連盟 {{ $user->dist }}地区 {{ $user->dan }}団</td>

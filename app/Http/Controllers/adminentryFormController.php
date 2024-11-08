@@ -633,6 +633,7 @@ class adminentryFormController extends AppBaseController
             'entry_forms.prefecture as pref',
             'entry_forms.district as dist',
             'entry_forms.dan_name as dan',
+            'entry_forms.memo as memo',
             'elearnings.created_at as Eラン'
         )
             ->leftJoin('entry_forms', 'users.id', '=', 'entry_forms.user_id')

@@ -34,7 +34,10 @@
                         <tbody>
                             @foreach ($users as $user)
                                 @if (isset($user->entryform->zekken))
-                                    <tr>
+                                <tr
+                                @if (str_contains($user->entryform->memo, '遅刻')) style="background-color: yellow;"
+                        @elseif(str_contains($user->entryform->memo, 'キャンセル'))
+                            style="background-color: gray;" @endif>
                                         <td>{{ $user->entryform->zekken }}</td>
 
                                         <td><a href="{{ route('adminentries.show', [$user->id]) }}">{{ $user->name }}</a>

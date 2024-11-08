@@ -19,7 +19,10 @@
             @foreach ($users as $user)
                 {{-- @unless ($user->user->is_admin || $user->user->is_staff || $user->user->is_commi) --}}
                 @if (isset($user->entryform) && empty($user->entryform->deleted_at))
-                    <tr>
+                    <tr
+                        @if (str_contains($user->entryform->memo, '遅刻')) style="background-color: yellow;"
+                @elseif(str_contains($user->entryform->memo, 'キャンセル'))
+                    style="background-color: gray;" @endif>
                         <td>{{ @$user->entryform->zekken }}</td>
                         @if (isset($user->entryform->gender))
                             <td><a href="{{ route('adminentries.show', [$user->id]) }}">{{ $user->name }}</a>
